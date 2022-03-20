@@ -30,6 +30,8 @@ const Home = () => {
     const [storeKeyword, setStoreKeyword] = useState('');
     const [file1, setFile1] = useState();
     const [file2, setFile2] = useState();
+
+    const [description, setDescription] = useState("")
   
     const handle = () => {
       localStorage.setItem('storeTitle', storeTitle);
@@ -86,7 +88,35 @@ const handleSummaryPost = () => {
               } else if(res.status===201) {
                 alert("summary post created")
                 navigate('/home')
+              }
+          })
+    .catch(error => console.log(error))
+ }
 
+
+  
+const handleThoughtPost = () => {
+  // e.preventDefault();
+  const newData = new FormData();
+
+  newData.append('description', description)
+  newData.append('user', localStorage.getItem('id'))
+
+  console.log(newData)
+
+  fetch(`http://127.0.0.1:8000/post/${localStorage.getItem('id')}/user-thought-create/`, {
+    method: "POST",
+    headers: {
+      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+    },
+    body: newData
+  })
+    .then(res=> {
+              if (res.status===400) {
+                alert("please enter all the required field");
+              } else if(res.status===201) {
+                alert("Thought post created")
+                navigate('/home')
               }
           })
     .catch(error => console.log(error))
@@ -235,11 +265,11 @@ const handleSummaryPost = () => {
                                       </div>
                                   </div>
                                    <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                     <Form.Control as="textarea" rows={3}  placeholder="Share a thought that you like"/>
+                                     <Form.Control onChange={(e) =>setDescription(e.target.value)} as="textarea" rows={3}  placeholder="Share a thought that you like"/>
                                    </Form.Group>
                                    
                                    <div className="d-grid gap-2">
-                                    <Button variant="primary" size="sm">
+                                    <Button variant="primary" size="sm" onClick={()=> handleThoughtPost()} >
                                       Post
                                     </Button>
                                     </div>
@@ -247,8 +277,6 @@ const handleSummaryPost = () => {
                               </Modal.Body>
                             </Modal>
                           </div>
-
-                       
                             <Modal
                               show={modal}
                               onHide={() => setModal(false)}
