@@ -1,0 +1,48 @@
+.main_container {
+    position: fixed;
+    z-index: 2000;
+    top: 35%;
+    left: 38%;
+    background-color: white;
+    margin: 5px;
+    transition: .3s ease;
+    padding: 30px 15px;
+    border-radius: 5px;
+}
+
+.bar {
+    border: 1px solid rgb(98, 98, 98);
+}
+
+.button {
+    height: 35px;
+    outline: none;
+    border: none;
+    background-color: #1877F2;
+    border-radius: 3px;
+    color: white;
+}
+
+.register {
+    background-color: #11a716;
+    width: 200px !important;
+    height: 40px !important;
+}
+
+@media (max-width: 1024px) {
+    .main_container {
+        left: 35%;
+    }
+}
+
+@media (max-width: 768px) {
+    .main_container {
+        left: 27%;
+    }
+}
+
+@media (max-width: 426px) {
+    .main_container {
+        left: -1%;
+    }
+}

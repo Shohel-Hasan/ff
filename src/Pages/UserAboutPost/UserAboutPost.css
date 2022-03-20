@@ -1,0 +1,25 @@
+.custom-width {
+    width: 950%;
+}
+
+.accordion_custom_bg {
+    background-color: transparent !important;
+}
+
+.accordion_custom_div {
+    width: 70%;
+}
+
+.fa-plus {
+    color: #1877F2 !important;
+}
+
+.fa-close {
+    color: #1877F2 !important;
+}
+
+@media screen and (max-width: 575px) {
+    .accordion_custom_div {
+        width: 100%;
+    }
+}

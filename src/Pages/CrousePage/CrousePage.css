@@ -1,0 +1,49 @@
+
+.custom-nav{
+    background-color: #f1f2f6;
+    width: 100%;
+}
+
+
+
+.nav_search{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    background-color: #f1f2f6;
+    padding: 15px;
+    border-radius: 50px;
+    box-shadow: 0px 0px 6px #ccc;
+    width: 100%;
+    padding: 30px;
+    
+}
+.nav_left{
+    display: flex;
+    align-items: center;
+}
+.nav_search input{
+    outline: none;
+    border: none;
+    background: transparent;
+    width: 100%;
+}
+
+/* .fb-box-shadow {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  border-radius: 10px;
+} */
+
+.profile-img{
+    width: 250px;
+    height: 187px;
+    border-radius: 8px;
+}
+/* Button{
+    background-color: #1877F2 !important;
+    background: #1877F2 !important;
+} */
+.a-link{
+    text-decoration: none;
+}

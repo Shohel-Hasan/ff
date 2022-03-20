@@ -1,0 +1,62 @@
+.single_course {
+  padding-top: 70px;
+}
+
+.box{
+  margin-left: 40px;
+  margin-right: 40px;
+}
+.Group-name{
+  font-size: 24px;
+  font-weight: bold;
+
+}
+.course-img{
+  width: 850px;
+  height: 312px;
+
+}
+.badge-circle {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 2px solid white;
+  position: absolute;
+  left: 109px;
+  top: 90px;
+}
+.group-img {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: 5px solid #ced0d4;
+
+}
+
+
+
+.img-ban{
+  width: 50px;
+  height: 50px;
+  margin: 0 !important;
+}
+
+.slick-prev:before {
+  content: none !important;
+}
+.slick-next:before, .slick-prev:before {
+  font-size: 25px;
+  line-height: 1;
+  opacity: .75;
+  color: #1877F2 !important;
+  margin-left: -40px !important;
+}
+
+.square{
+  list-style-type: square;
+}
+.slider-img{
+  width: 90%;
+  height: 80%;
+}
+

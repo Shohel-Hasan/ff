@@ -1,0 +1,192 @@
+.main_container {
+    height: 100vh;
+    width: 100%;
+    padding: 0px 70px;
+    /* overflow: hidden; */
+}
+
+.login_box {
+    height: 100vh;
+    width: 100%;
+}
+
+@media (orientation:landscape) and (max-height: 425px) {
+    .main_container {
+        height: 100%;
+    }
+    .login_box {
+        height: 100%;
+    }
+}
+
+.image img {
+    width: 300px;
+}
+
+.side_bar {
+    height: 250px;
+    background-color: #1877F2;
+    border: 1px solid #1877F2;
+    padding: 0;
+}
+
+.form_box input::placeholder {
+    font-size: 12px;
+}
+
+.form_box input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 250px;
+}
+
+.form_box {
+    padding: 20px 15px;
+    height: auto;
+    /* height: 400px; */
+    max-width: 400px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.fb_box_shadow {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    border-radius: 8px;
+}
+
+.button {
+    height: 35px;
+    outline: none;
+    border: none;
+    background-color: #1877F2;
+    border-radius: 3px;
+    color: white;
+}
+
+.register {
+    background-color: #11a716;
+    width: 200px !important;
+    height: 40px !important;
+}
+
+.bar {
+    width: 100%;
+    border-radius: 30px;
+    border: 1px solid rgba(53, 53, 53, 0.296);
+    margin: 20px 0px;
+}
+
+.forgot_pass {
+    font-size: 14px;
+    cursor: pointer;
+}
+
+@media (max-width: 998px) {
+    .side_bar {
+        display: none;
+    }
+    .login_box {
+        display: flex;
+        justify-content: center !important;
+        align-items: center !important;
+        padding-top: 85px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main_container {
+        padding: 0;
+    }
+    .side_bar {
+        display: none;
+    }
+    .login_box {
+        display: flex;
+        justify-content: center !important;
+        align-items: center !important;
+        padding-top: 85px;
+    }
+    .slogan {
+        font-size: 14px;
+    }
+    .image img {
+        width: 200px;
+    }
+}
+
+
+/* registration box start */
+
+.reg_box {
+    position: absolute;
+    top: 1%;
+    left: 30%;
+    padding: 30px 15px;
+    background-color: white;
+    border-radius: 5px;
+    z-index: 2000;
+    /* z-index: 2000; */
+    margin: 5px;
+    transition: .3s ease;
+    /* display: none !important; */
+}
+
+.reg_bar {
+    border: 1px solid rgba(128, 128, 128, 0.517);
+}
+
+.reg_box_cover {
+    position: fixed;
+    background-color: white;
+    height: 100vh;
+    width: 100%;
+    z-index: -1500;
+}
+
+
+/* registration box end */
+
+
+/* forgot pass start */
+
+.forgot_pass_box {
+    position: fixed;
+    z-index: -2000;
+    top: 35%;
+    left: 38%;
+    background-color: white;
+    margin: 5px;
+    transition: .3s ease;
+    padding: 30px 15px;
+    border-radius: 5px;
+}
+
+
+/* forgot pass end */
+
+@media (max-width: 1024px) {
+    .reg_box {
+        left: 20%;
+    }
+    .forgot_pass_box {
+        left: 35%;
+    }
+}
+
+@media (max-width: 768px) {
+    .reg_box {
+        left: 10%;
+    }
+    .forgot_pass_box {
+        left: 27%;
+    }
+}
+
+@media (max-width: 426px) {
+    .reg_box {
+        left: -1%;
+    }
+    .forgot_pass_box {
+        left: -1%;
+    }
+}

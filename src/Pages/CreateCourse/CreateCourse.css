@@ -1,0 +1,112 @@
+.create-course{
+    width: 850px;
+    height: 312px;
+}
+
+.group-pic {
+  
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    border: 5px solid #ced0d4;
+}
+ 
+.create_course_container {
+  padding-top: 90px;
+}
+  
+  .wrapper{
+    
+    width:100%;
+    height:100%;
+    
+ 
+  }
+    .file-upload{
+  
+      height:150px;
+      width:150px;
+      position:relative;
+      display:flex;
+      justify-content:center;
+      align-items: center;  
+  
+      border:4px solid #FFFFFF;
+      overflow:hidden;
+      background-image: linear-gradient(to bottom, #2590EB 50%, #FFFFFF 50%);
+      background-size: 100% 200%;
+      transition: all 1s;
+      color: #FFFFFF;
+      font-size:100px;
+    }
+  
+    .input-filed{
+  
+        height:143px;
+        width:142px;
+        position:absolute;
+        top:0;
+        left:0;
+        opacity:0;
+        cursor:pointer;
+       
+  
+      }
+  
+      .file-upload :hover{
+        background-position: 0 -100%;
+        color:#2590EB;
+  
+      }
+
+      .icon-container {
+        width: 100%;
+        height: 100%;
+        position:relative;
+      }
+      
+      
+      
+      .status-circle {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: 2px solid white;
+        position: absolute;
+        left: 68px;
+        top: 35px;
+      }
+
+      .image-load img {
+  
+        height: 30px;
+        position: relative;
+        left: 90px;
+        bottom: 40px;
+      }
+
+
+      .cover-image-load img {
+        height: 30px;
+        position: relative;
+        left: 206px;
+        bottom: 308px;
+      }
+
+      .cover-pic{
+        width: 850px;
+        height: 312px;
+        position:relative;
+      }
+      
+
+      .edit-cover  i{
+        position: relative;
+        top: 25px;
+        left: -5px;
+        color: white;
+        
+      }
+      
+    
+  

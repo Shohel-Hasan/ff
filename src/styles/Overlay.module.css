@@ -1,0 +1,9 @@
+.overlay_main {
+    height: 100%;
+    width: 100%;
+    background-color: rgb(56, 56, 56);
+    position: fixed;
+    left: 0;
+    z-index: 1000;
+    opacity: .6;
+}

@@ -1,0 +1,94 @@
+.profile_conatiner {
+  padding-top: 70px;
+}
+
+.block {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+   
+  }
+  
+  .name {
+    font-size: 23px;
+    font-weight: bold;
+  }
+  
+  
+  /* Navigation button */
+  
+  .fb-box-shadow {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    border-radius: 8px;
+  }
+  
+  .NavLink {
+    color: none;
+    font-weight: 500;
+  }
+  
+  .NavLink:active,
+  .NavLink:visited {
+    color: hsl(214, 89%, 52%);
+    border-bottom: 2px solid hsl(214, 89%, 52%) !important;
+    padding-bottom: 2px;
+  }
+  
+  
+  .nav-tab {
+    border-bottom: none !important;
+    margin: auto;
+    width: 84%;
+    padding: 8px;
+  }
+  .cover-shadow-effect {
+    box-shadow: 0 4px 2px -2px rgb(216, 216, 216);
+   
+  }
+  .nav-border{
+    border-bottom: 1px solid #9a9ba0;
+  }
+
+
+  /*---- Upload Badge--- */
+
+.image-upload>input{
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+   
+}
+.image-upload img{
+    cursor: pointer;
+    height: 20px;
+    position:relative;
+    left: 56px;
+    bottom: 48px;
+}
+
+
+.icon-container {
+    width: 100%;
+    height: 100%;
+    position:relative;
+}
+.plus-icon{
+  font-size: 10px !important; 
+  color: white !important;
+
+}
+
+.cover-edit img {
+  height: 20px;
+  position: relative;
+  top: 25px;
+  left: -5px;
+}
+
+
+
+ 
+
+
+

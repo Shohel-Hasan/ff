@@ -1,0 +1,28 @@
+<svg id="Home_Cicked" data-name="Home Cicked" xmlns="http://www.w3.org/2000/svg" width="20" height="27" viewBox="0 0 20 27">
+  <g id="Path_24" data-name="Path 24" transform="translate(0 62.072)" fill="#1877f2" stroke-linecap="square">
+    <path d="M 0.5000025629997253 -47.18603515625 L 0.5000025629997253 -52.06250381469727 L 10.04763507843018 -61.37186431884766 L 19.38919067382812 -52.17554092407227 L 19.3898754119873 -47.20388793945312 L 10.40292263031006 -56.19350051879883 L 10.05300235748291 -56.54351806640625 L 9.699432373046875 -56.19718933105469 L 0.5000025629997253 -47.18603515625 Z" stroke="none"/>
+    <path d="M 1.00000262260437 -48.37571334838867 L 10.05669212341309 -57.24703979492188 L 18.88970947265625 -48.41140747070312 L 18.88922119140625 -51.96610260009766 L 10.04595184326172 -60.6718864440918 L 1.00000262260437 -51.8516845703125 L 1.00000262260437 -48.37571334838867 M 19.89004325866699 -45.99636077880859 L 10.04931259155273 -55.84000015258789 L 2.5830076992861e-06 -45.99636077880859 L 2.5830076992861e-06 -52.27331924438477 L 10.04931259155273 -62.07183837890625 L 19.88916206359863 -52.38496780395508 L 19.89004325866699 -45.99636077880859 Z" stroke="none" fill="#1877f2"/>
+  </g>
+  <g id="Group_3" data-name="Group 3" transform="translate(0 17)">
+    <g id="Rectangle_7" data-name="Rectangle 7" fill="#1877f2" stroke="#1877f2" stroke-linejoin="bevel" stroke-width="1">
+      <rect width="5" height="4" stroke="none"/>
+      <rect x="0.5" y="0.5" width="4" height="3" fill="none"/>
+    </g>
+    <g id="Rectangle_10" data-name="Rectangle 10" transform="translate(0 5)" fill="#1877f2" stroke="#1877f2" stroke-linejoin="bevel" stroke-width="1">
+      <rect width="5" height="5" stroke="none"/>
+      <rect x="0.5" y="0.5" width="4" height="4" fill="none"/>
+    </g>
+    <g id="Rectangle_11" data-name="Rectangle 11" transform="translate(7.5)" fill="#1877f2" stroke="#1877f2" stroke-linejoin="bevel" stroke-width="1">
+      <rect width="5" height="10" stroke="none"/>
+      <rect x="0.5" y="0.5" width="4" height="9" fill="none"/>
+    </g>
+    <g id="Rectangle_8" data-name="Rectangle 8" transform="translate(15)" fill="#1877f2" stroke="#1877f2" stroke-linejoin="bevel" stroke-width="1">
+      <rect width="5" height="4" stroke="none"/>
+      <rect x="0.5" y="0.5" width="4" height="3" fill="none"/>
+    </g>
+    <g id="Rectangle_9" data-name="Rectangle 9" transform="translate(15 5)" fill="#1877f2" stroke="#1877f2" stroke-linejoin="bevel" stroke-width="1">
+      <rect width="5" height="5" stroke="none"/>
+      <rect x="0.5" y="0.5" width="4" height="4" fill="none"/>
+    </g>
+  </g>
+</svg>
