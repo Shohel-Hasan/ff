@@ -6,13 +6,13 @@ import bar_horizontal from '../assets/bar_horizontal_icon.svg';
 // import group_icon from '../assets/group_icon.svg';
 // import home_icon from '../assets/home_icon.svg';
 
-import class_icon from '../assets/Class_room.svg';
-import group_icon from '../assets/Group.svg';
-import home_icon from '../assets/Home.svg';
-// import logo from '../assets/logo.png';
-import logo from '../assets/logo_svg.svg';
+import class_icon from '../assets/re/Classroom.svg';
+import group_icon from '../assets/re/Group.svg';
+import home_icon from '../assets/re/Home.svg';
+
+import logo from '../assets/re/Navbar_Logo.svg';
 import avatar from '../assets/man.jpg';
-import notification_icon_filled from '../assets/notification_filled.svg';
+import notification_icon_filled from '../assets/re/Notice.svg';
 import style from '../styles/Navbar.module.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -61,7 +61,7 @@ export default function Navbar(props) {
     <div className={`${style.navbar_main_container} ${style.fb_box_shadow} d-flex flex-row justify-content-between`}>
       <div className={`${style.branding} d-flex flex-row justify-content-center align-items-center`}>
         <div className={`${style.logo} mx-2`}>
-          <img src={logo} alt='logo' />
+          <img style={{ObjectFit: 'cover'}} src={logo} alt='logo' />
         </div>
         <div className={`${style.nav__search}`}>
           <i className="material-icons">search</i>

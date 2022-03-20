@@ -1,0 +1,7 @@
+<svg id="Notice_Clicked" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34">
+  <g id="Ellipse_10" data-name="Ellipse 10" fill="#1876f2" stroke="#1876f2" stroke-width="1">
+    <circle cx="17" cy="17" r="17" stroke="none"/>
+    <circle cx="17" cy="17" r="16.5" fill="none"/>
+  </g>
+  <path id="Icon_awesome-bell" data-name="Icon awesome-bell" d="M10.5,24a3,3,0,0,0,3-3h-6A3,3,0,0,0,10.5,24Zm10.1-7.019c-.906-.973-2.6-2.437-2.6-7.233a7.4,7.4,0,0,0-6-7.274V1.5a1.5,1.5,0,1,0-3,0v.977A7.4,7.4,0,0,0,3,9.751c0,4.8-1.695,6.26-2.6,7.233A1.465,1.465,0,0,0,0,18a1.5,1.5,0,0,0,1.5,1.5H19.5A1.5,1.5,0,0,0,21,18a1.464,1.464,0,0,0-.4-1.018Z" transform="translate(6 4)" fill="#fff" stroke="#fff" stroke-width="1"/>
+</svg>
