@@ -462,12 +462,9 @@ const BASE_URL = "http://127.0.0.1:8000"
                 <Accordion.Body>            
                   <Row className='my-4 justify-content-center'>
                     <Col md={12}>
-
                       {noLink &&  <div>  <small>{noLink}</small>  </div>}
-
                       {getClassLink &&  <div> <small>{getClassLink}</small>  </div>}
-
-                    { isCourseStaff &&  <form >
+                    { isCourseStaff &&  <form>
                         <div className="form-group my-2">
                           <label >Class Meet Link</label>
                           <input type="url" className="form-control" onChange={e=> setClassLink(e.target.value)}  aria-describedby="emailHelp" placeholder="class link" /> 
@@ -607,46 +604,42 @@ const BASE_URL = "http://127.0.0.1:8000"
                 </div>
               </Col>
             </Row>
-                            
-                          
+                           
+            <Row className='box'>
+              <Col>
+            
+                <div className='mt-4'>
+                    <span className='fs-5 fw-bold  square'>Related Course</span>
+                </div>
 
-                    <Row className='box'>
-
+                <hr style={{ color: "#1877F2",  backgroundColor: "#1877F2",  height: "2px", margin: " auto",  width: "75%",  marginBottom: "15px", marginTop:'10px'  }}  />
+            
+                <div>
+                  <Slider {...setting}>
+                    <div>
+                        <img className="slider-img img-fluid" src={man} alt=''/>
+                      
+                    </div>
+                    <div>
+                        <img className="slider-img img-fluid" src={man} alt=''/>
                         
-                      <Col>
+                    </div>
+                    <div>
+                        <img  className="slider-img img-fluid" src={man} alt=''/>
+                      
+                    </div>
+                    <div>
+                        <img  className="slider-img img-fluid" src={man} alt=''/>
                     
-                        <div className='mt-4'>
-                            <span className='fs-5 fw-bold  square'>Related Course</span>
-                        </div>
-
-                        <hr style={{ color: "#1877F2",  backgroundColor: "#1877F2",  height: "2px", margin: " auto",  width: "75%",  marginBottom: "15px", marginTop:'10px'  }}  />
+                    </div>
+                    <div>
+                        <img  className="slider-img img-fluid" src={man} alt=''/>
                     
-                        <div>
-                          <Slider {...setting}>
-                            <div>
-                                <img className="slider-img img-fluid" src={man} alt=''/>
-                              
-                            </div>
-                            <div>
-                                <img className="slider-img img-fluid" src={man} alt=''/>
-                                
-                            </div>
-                            <div>
-                                <img  className="slider-img img-fluid" src={man} alt=''/>
-                              
-                            </div>
-                            <div>
-                                <img  className="slider-img img-fluid" src={man} alt=''/>
-                            
-                            </div>
-                            <div>
-                                <img  className="slider-img img-fluid" src={man} alt=''/>
-                            
-                            </div>
-                          </Slider>
-                        </div>
-                      </Col>
-                  </Row>
+                    </div>
+                  </Slider>
+                </div>
+              </Col>
+            </Row>
                        
             {/* </Row> */}
         </Container>

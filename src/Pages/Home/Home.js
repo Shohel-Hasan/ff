@@ -3,11 +3,14 @@ import { Col, Container, Form, Row, Modal,Button, Collapse, FormControl, InputGr
 import Slider from 'react-slick';
 import './Home.css';
 import man from '../../Images/saddam.jpg';
+import { useNavigate } from 'react-router-dom';
 
 
 const Home = () => {
     const [show, setShow] = useState(false);
     const [modal, setModal] = useState(false);
+
+    const navigate = useNavigate();
 
 
     //Local Storage Data State
@@ -25,7 +28,8 @@ const Home = () => {
     const [storeReference, setStoreReference] = useState('');
     const [storeAnnex, setStoreAnnex] = useState('');
     const [storeKeyword, setStoreKeyword] = useState('');
-    
+    const [file1, setFile1] = useState();
+    const [file2, setFile2] = useState();
   
     const handle = () => {
       localStorage.setItem('storeTitle', storeTitle);
@@ -42,6 +46,51 @@ const Home = () => {
       localStorage.setItem('storeAnnex', storeAnnex);
       localStorage.setItem('storeKeyword', storeKeyword);
    };
+
+
+   
+const handleSummaryPost = () => {
+  // e.preventDefault();
+  const newData = new FormData();
+
+  newData.append('title_of_research_article', storeTitle)
+  newData.append('objective_of_the_study', storeObjective);
+  newData.append('theoritical_Background', storeTheoretical);
+  newData.append('research_gap', storeGap,);
+  newData.append('uniqueness_of_the_study', storeUniqueness,);
+  newData.append("data_source_sample_information",storeData)
+  newData.append("research_methodology",storeMethodology)
+  newData.append('result_discussion',storeResult)
+  newData.append('validity_reliability_of_finding',storeValidity)
+  newData.append('usefulness_of_the_finding',storeUsefulness)
+  newData.append('reference',storeReference)
+  newData.append('annex',storeAnnex)
+  newData.append('file1', file1)
+  newData.append('file2', file2)
+  newData.append('keyword',storeKeyword)
+  newData.append('user', localStorage.getItem('id'))
+
+
+  console.log(newData)
+
+  fetch(`http://127.0.0.1:8000/post/${localStorage.getItem('id')}/user-summery-create/`, {
+    method: "POST",
+    headers: {
+      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+    },
+    body: newData
+  })
+    .then(res=> {
+              if (res.status===400) {
+                alert("please enter all the required field");
+              } else if(res.status===201) {
+                alert("summary post created")
+                navigate('/home')
+
+              }
+          })
+    .catch(error => console.log(error))
+ }
 
 
   const settings = {
@@ -89,7 +138,7 @@ const Home = () => {
     ]
   };
 
-  console.log(localStorage.getItem('storeTitle'))
+
     return (
         <Container fluid className='pt-5'>
             <Row className="justify-content-md-center pt-5">
@@ -439,10 +488,10 @@ const Home = () => {
                                         <Accordion.Body>
                                            <div id="example-collapse-text">
                                               <Form.Group controlId="formFileSm" className="mb-3">
-                                                <Form.Control type="file" size="sm" />
+                                                <Form.Control type="file" size="sm" onChange={e => setFile1(e.target.files[0])} />
                                               </Form.Group>
                                               <Form.Group controlId="formFileSm" className="mb-3">
-                                                <Form.Control type="file" size="sm" />
+                                                <Form.Control type="file" size="sm" onChange={e => setFile2(e.target.files[0])} />
                                               </Form.Group>
                                            </div>
                                           </Accordion.Body>
@@ -468,7 +517,7 @@ const Home = () => {
 
                                    {/*----------- Post Button --------------*/}
                                    <div className="text-end m-3">
-                                        <Button className="px-4" size="sm" variant="primary">Post</Button>
+                                        <Button className="px-4" onClick={()=> handleSummaryPost()} size="sm" variant="primary">Post</Button>
                                    </div>
                               </form>
                           </Accordion>

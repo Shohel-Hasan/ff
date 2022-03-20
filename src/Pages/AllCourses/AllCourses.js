@@ -16,9 +16,6 @@ const AllCourses = (props) => {
     const searchCoursePost = (e) =>{
         e.preventDefault();
         const searchText = e.target.value;
-        console.log("I am hitting.....", searchText);
-        console.log(localStorage.getItem('auth_token'))
-
 
         fetch(`http://127.0.0.1:8000/course/search-course?name=${searchText}`, {
             method: 'GET',
@@ -65,6 +62,7 @@ const AllCourses = (props) => {
             }
         })
     }, [])
+    
 const BASE_URL = "http://127.0.0.1:8000"
 
     return (
@@ -132,6 +130,7 @@ const BASE_URL = "http://127.0.0.1:8000"
 
 
             {/* Course Info. Section Start */}
+
             
             {searchCourses && searchCourses.map(course=> <Row key={course.id} className='mt-5'>
                 <Col md={4}>
@@ -181,13 +180,9 @@ const BASE_URL = "http://127.0.0.1:8000"
                         <small>Course Start date: {course.end_date} </small> <br/>
                         <small>Course Enroll Start date: {course.course_enroll_start_date} </small> <br/>
                         <small>Course Enroll Start date: {course.course_enroll_end_date} </small>
-
-
-
                     </div>
                 </Col>
-                <hr className='mt-5' style={{color: "#1877F2", backgroundColor: "#1877F2", height: "2px", margin: " auto", width: "90%" }}/>
-                                        
+                <hr className='mt-5' style={{color: "#1877F2", backgroundColor: "#1877F2", height: "2px", margin: " auto", width: "90%" }}/>              
             </Row>)}
 
 
@@ -235,12 +230,9 @@ const BASE_URL = "http://127.0.0.1:8000"
                                 </div>
                             </div>
                         </Col>
-                         </Row>
+                        </Row>
                     </Col> */}
                    
-
-
-            
         </Container>
     );
 };

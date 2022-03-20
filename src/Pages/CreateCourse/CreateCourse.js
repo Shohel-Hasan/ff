@@ -179,9 +179,9 @@ const CreateCourse = (props) => {
         })
           .then(res=> {
               if (res.status===400) {
-                  alert("please enter all the required field");
+                alert("please enter all the required field");
               } else if(res.status===201) {
-                  navigate(`/${groupId.groupId}/my-courses`)
+                navigate(`/${groupId.groupId}/my-courses`)
               }
           })
           .catch(error => console.log(error))
