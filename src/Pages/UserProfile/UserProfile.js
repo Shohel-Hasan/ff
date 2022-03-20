@@ -34,7 +34,7 @@ const UserProfile = (props) => {
         
         
         <Container fluid className='shadow profile_conatiner'>
-            <Row className='justify-content-center'>
+            <Row className='justify-content-center align-items-center'>
                    
                 {/* -------------Banner Image Section---------------- */}
 
@@ -46,8 +46,8 @@ const UserProfile = (props) => {
                           </label>
                     </div>
                 <img
-                    style={{ borderBottomRightRadius:'8px', borderBottomLeftRadius:'8px' }}
-                    className="img-fluid"
+                    style={{ borderBottomRightRadius:'8px', borderBottomLeftRadius:'8px', objectFit: 'cover' }}
+                    className="profile-cover img-fluid"
                     src={img}
                     alt=''
                 />
