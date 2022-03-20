@@ -1,12 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, Routes } from "react-router-dom";
-import About from "./Pages/About/About";
 import MainPost from "./Pages/Main Post/MainPost";
 import GroupProfile from "./Pages/GroupProfile/GroupProfile";
 import ThoughtPost from "./Pages/ThoughtPost/ThoughtPost";
 import SummaryPost from "./Pages/SummaryPost/SummaryPost";
 import UserAboutPost from "./Pages/UserAboutPost/UserAboutPost";
-import AboutUs from "./Pages/About Us/AboutUs";
 import SingleCourse from "./Pages/SingleCourse/SingleCourse";
 import Welcome from "./components/Welcome"
 import MyCourses from "./Pages/My Courses/MyCourses";
@@ -15,15 +13,15 @@ import CreateCourse from "./Pages/CreateCourse/CreateCourse";
 import UserProfile from "./Pages/UserProfile/UserProfile";
 import PageNotFound from "./Pages/PageNotFound/PageNotFound";
 import Navbar from "./components/Navbar";
-import useIsLoggedIn from "./hooks/useIsLoggedIn";
 import CrousePage from "./Pages/CrousePage/CrousePage";
+import { useState } from "react";
+import AllCourses from "./Pages/AllCourses/AllCourses";
+import Home from "./Pages/Home/Home";
+import AboutUs from "./Pages/About Us/AboutUs";
 import DataPolicy from "./Pages/DataPolicy/DataPolicy";
 import CookiePolicy from "./Pages/CookiePolicy/CookiePolicy";
 import PrivacyPolicy from "./Pages/PrivacyPolicy/PrivacyPolicy";
 import ProductPolicy from "./Pages/ProductPolicy/ProductPolicy";
-import { useState } from "react";
-import AllCourses from "./Pages/AllCourses/AllCourses";
-import Home from "./Pages/Home/Home";
 
 
 function App() {
@@ -94,14 +92,9 @@ function App() {
 
         {/* Terms & Condition start */}
 
-        <Route path="about-us" element={<AboutUs />} />
-        <Route path="data-policy" element={<DataPolicy/>}/>
-        <Route path="cookie-policy" element={<CookiePolicy/>}/>
-        <Route path="privacy-policy" element={<PrivacyPolicy/>}/>
-        <Route path="product-policy" element={<ProductPolicy/>}/>
-        <Route path="not-found" element={<PageNotFound />} />
+      
 
-        <Route path="aboutUs" element={<AboutUs triggerCheckLoggedIn={checkLoggedIn} />} />
+        <Route path="about-us" element={<AboutUs triggerCheckLoggedIn={checkLoggedIn} />} />
         <Route path="data-policy" element={<DataPolicy triggerCheckLoggedIn={checkLoggedIn}/>}/>
         <Route path="cookie-policy" element={<CookiePolicy triggerCheckLoggedIn={checkLoggedIn}/>}/>
         <Route path="privacy-policy" element={<PrivacyPolicy triggerCheckLoggedIn={checkLoggedIn}/>}/>
@@ -112,7 +105,6 @@ function App() {
 
         <Route path="/:groupId/my-courses" element={<MyCourses triggerCheckLoggedIn={checkLoggedIn} />} />
         <Route path="my-groups" element={<MyGroups triggerCheckLoggedIn={checkLoggedIn} />} />
-      
         <Route path="/:groupId/create-course" element={<CreateCourse triggerCheckLoggedIn={checkLoggedIn} />} />
         <Route path="user/:userId/user-profile-post" element={<UserAboutPost triggerCheckLoggedIn={checkLoggedIn} />} />
         <Route path="/all-courses" element={<AllCourses triggerCheckLoggedIn={checkLoggedIn} />} />
