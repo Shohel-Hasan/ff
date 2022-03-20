@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Col, Container, Form, Row, Modal,Button, Collapse, FormControl, InputGroup } from 'react-bootstrap';
+import { Col, Container, Form, Row, Modal,Button, Collapse, FormControl, InputGroup, Accordion } from 'react-bootstrap';
 import Slider from 'react-slick';
 import './Home.css';
 import man from '../../Images/saddam.jpg';
@@ -9,21 +9,6 @@ const Home = () => {
     const [show, setShow] = useState(false);
     const [modal, setModal] = useState(false);
 
-    // Summary Post States
-    const [title, setTitle] = useState(false);
-    const [objective, setObjective] = useState(false);
-    const [theoretical, setTheoretical] = useState(false);
-    const [gap, setGap] = useState(false);
-    const [uniqueness, setUniqueness] = useState(false);
-    const [data, setData] = useState(false);
-    const [methodology, setMethodology] = useState(false);
-    const [result, setResult] = useState(false);
-    const [validity, setValidity] = useState(false);
-    const [usefulness, setUsefulness] = useState(false);
-    const [reference, setReference] = useState(false);
-    const [annex, setAnnex] = useState(false);
-    const [upload, setUpload] = useState(false);
-    const [keyword, setKeyword] = useState(false);
 
     //Local Storage Data State
 
@@ -39,6 +24,7 @@ const Home = () => {
     const [storeUsefulness, setStoreUsefulness] = useState('');
     const [storeReference, setStoreReference] = useState('');
     const [storeAnnex, setStoreAnnex] = useState('');
+    const [storeKeyword, setStoreKeyword] = useState('');
     
   
     const handle = () => {
@@ -54,6 +40,7 @@ const Home = () => {
       localStorage.setItem('storeUsefulness', storeUsefulness);
       localStorage.setItem('storeReference', storeReference);
       localStorage.setItem('storeAnnex', storeAnnex);
+      localStorage.setItem('storeKeyword', storeKeyword);
    };
 
 
@@ -227,14 +214,16 @@ const Home = () => {
                               </Modal.Header>
                               <Modal.Body className="fb-box-shadow">
 
-                                 <form>
+                                 
                                      {/*-------- section-1------------ */}
-                                     <div>
-                                        <p onClick={() => setTitle(!title)} aria-expanded={title}>
-                                             Title of research article &nbsp;
-                                              <i style={{color: 'blue'}} className='fas fa-edit'></i>
-                                         </p>
-                                         <Collapse in={title}>
+                           <Accordion>
+                               <form>
+                                     <Accordion.Item eventKey="0">
+                                     <Accordion.Header>
+                                             Title of research article   
+                                               
+                                    </Accordion.Header>
+                                         <Accordion.Body>
                                            <div id="example-collapse-text">
                                               <InputGroup className="mb-3"  onChange={(e) =>setStoreTitle(e.target.value)}>
                                                 <FormControl defaultValue={localStorage.getItem('storeTitle')} placeholder="Title of research article" />
@@ -243,15 +232,16 @@ const Home = () => {
                                                       <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
                                               </div>
                                            </div>
-                                        </Collapse>
-                                     </div>
+                                          </Accordion.Body>
+                                      </Accordion.Item>
+                                   
                                       {/* section-2 */}
-                                      <div>
-                                        <p onClick={() => setObjective(!objective)} aria-expanded={objective}>
-                                             Objective of the study &nbsp;
-                                              <i style={{color: 'blue'}} className='fas fa-edit'></i>
-                                         </p>
-                                         <Collapse in={objective}>
+                                      <Accordion.Item eventKey="1">
+                                       <Accordion.Header>
+                                             Objective of the study   
+                                               
+                                        </Accordion.Header>
+                                          <Accordion.Body>
                                            <div id="example-collapse-text">
                                               <Form.Group  onChange={(e) =>setStoreObjective(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
                                                 <Form.Control defaultValue={localStorage.getItem('storeObjective')}  as="textarea" rows={6} placeholder='Objective of the study' />
@@ -260,15 +250,15 @@ const Home = () => {
                                                       <Button size="sm" onClick={handle} variant="primary">Save as a draft</Button>
                                               </div>
                                            </div>
-                                        </Collapse>
-                                     </div>
+                                         </Accordion.Body>
+                                      </Accordion.Item>
                                       {/* section-3 */}
-                                      <div>
-                                        <p onClick={() => setTheoretical(!theoretical)} aria-expanded={theoretical}>
-                                          Theoretical Background &nbsp;
-                                              <i style={{color: 'blue'}} className='fas fa-edit'></i>
-                                         </p>
-                                         <Collapse in={theoretical}>
+                                      <Accordion.Item eventKey="2">
+                                         <Accordion.Header>
+                                          Theoretical Background   
+                                               
+                                          </Accordion.Header>
+                                          <Accordion.Body>
                                            <div id="example-collapse-text">
                                               <Form.Group onChange={(e) =>setStoreTheoretical(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
                                                 <Form.Control defaultValue={localStorage.getItem('storeTheoretical')} as="textarea" rows={6} placeholder='Theoretical Background' />
@@ -277,15 +267,15 @@ const Home = () => {
                                                       <Button onClick={handle} size="sm"  variant="primary">Save as a draft</Button>
                                               </div>
                                            </div>
-                                        </Collapse>
-                                     </div>
+                                          </Accordion.Body>
+                                      </Accordion.Item>
                                       {/* section-4 */}
-                                      <div>
-                                        <p onClick={() => setGap(!gap)} aria-expanded={gap}>
-                                          Research Gap &nbsp;
-                                              <i style={{color: 'blue'}} className='fas fa-edit'></i>
-                                         </p>
-                                         <Collapse in={gap}>
+                                      <Accordion.Item eventKey="3">
+                                       <Accordion.Header>
+                                          Research Gap   
+                                               
+                                        </Accordion.Header>
+                                          <Accordion.Body>
                                            <div id="example-collapse-text">
                                               <Form.Group onChange={(e) =>setStoreGap(e.target.value)}  className="mb-3" controlId="exampleForm.ControlTextarea1">
                                                 <Form.Control defaultValue={localStorage.getItem('storeGap')}  as="textarea" rows={6} placeholder='Research Gap' />
@@ -294,16 +284,16 @@ const Home = () => {
                                                       <Button onClick={handle} size="sm"  variant="primary">Save as a draft</Button>
                                               </div>
                                            </div>
-                                        </Collapse>
-                                     </div>
+                                         </Accordion.Body>
+                                      </Accordion.Item>
                         
                                        {/* section-5 */}
-                                       <div>
-                                        <p onClick={() => setUniqueness(!uniqueness)} aria-expanded={uniqueness}>
-                                          Uniqueness of the study &nbsp;
-                                              <i style={{color: 'blue'}} className='fas fa-edit'></i>
-                                         </p>
-                                         <Collapse in={uniqueness}>
+                                       <Accordion.Item eventKey="4">
+                                         <Accordion.Header>
+                                          Uniqueness of the study   
+                                               
+                                          </Accordion.Header>
+                                          <Accordion.Body>
                                            <div id="example-collapse-text">
                                               <Form.Group onChange={(e) =>setStoreUniqueness(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
                                                 <Form.Control defaultValue={localStorage.getItem('storeUniqueness')} as="textarea" rows={6} placeholder='Uniqueness of the study' />
@@ -312,16 +302,16 @@ const Home = () => {
                                                       <Button onClick={handle} size="sm"  variant="primary">Save as a draft</Button>
                                               </div>
                                            </div>
-                                        </Collapse>
-                                     </div>
+                                          </Accordion.Body>
+                                       </Accordion.Item>
                         
                                      {/* section-6 */}
-                                     <div>
-                                        <p onClick={() => setData(!data)} aria-expanded={data}>
-                                          Data source/sample Information &nbsp;
-                                              <i style={{color: 'blue'}} className='fas fa-edit'></i>
-                                         </p>
-                                         <Collapse in={data}>
+                                     <Accordion.Item eventKey="5">
+                                        <Accordion.Header>
+                                             Data source/sample Information   
+                                                  
+                                        </Accordion.Header>
+                                        <Accordion.Body>
                                            <div id="example-collapse-text">
                                               <Form.Group onChange={(e) =>setStoreData(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
                                                  <Form.Control defaultValue={localStorage.getItem('storeData')} as="textarea" rows={6} placeholder='Data source/sample Information' />
@@ -330,16 +320,16 @@ const Home = () => {
                                                       <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
                                               </div>
                                            </div>
-                                        </Collapse>
-                                     </div>
+                                        </Accordion.Body>
+                                      </Accordion.Item>
                         
                                       {/* section-7 */}
-                                      <div>
-                                        <p onClick={() => setMethodology(!methodology)} aria-expanded={methodology}>
-                                          Research methodology &nbsp;
-                                              <i style={{color: 'blue'}} className='fas fa-edit'></i>
-                                         </p>
-                                         <Collapse in={methodology}>
+                                      <Accordion.Item eventKey="6">
+                                        <Accordion.Header>
+                                          Research methodology   
+                                               
+                                        </Accordion.Header>
+                                        <Accordion.Body>
                                            <div id="example-collapse-text">
                                               <Form.Group onChange={(e) =>setStoreMethodology(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
                                                  <Form.Control defaultValue={localStorage.getItem('storeMethodology')} as="textarea" rows={6} placeholder='Research methodology' />
@@ -348,16 +338,16 @@ const Home = () => {
                                                       <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
                                               </div>
                                            </div>
-                                        </Collapse>
-                                     </div>
+                                        </Accordion.Body>
+                                      </Accordion.Item>
                         
                                       {/* section-8 */}
-                                      <div>
-                                        <p onClick={() => setResult(!result)} aria-expanded={result}>
-                                          Result & discussion &nbsp;
-                                              <i style={{color: 'blue'}} className='fas fa-edit'></i>
-                                         </p>
-                                         <Collapse in={result}>
+                                      <Accordion.Item eventKey="7">
+                                       <Accordion.Header>
+                                          Result & discussion   
+                                               
+                                        </Accordion.Header>
+                                         <Accordion.Body>
                                            <div id="example-collapse-text">
                                               <Form.Group onChange={(e) =>setStoreResult(e.target.value)}  className="mb-3" controlId="exampleForm.ControlTextarea1">
                                                  <Form.Control defaultValue={localStorage.getItem('storeResult')} as="textarea" rows={6} placeholder='Result & discussion' />
@@ -366,16 +356,16 @@ const Home = () => {
                                                       <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
                                               </div>
                                            </div>
-                                        </Collapse>
-                                     </div>
+                                          </Accordion.Body>
+                                      </Accordion.Item>
                         
                                        {/* section-9 */}
-                                       <div>
-                                        <p onClick={() => setValidity(!validity)} aria-expanded={validity}>
-                                          Validity & reliability of finding &nbsp;
-                                              <i style={{color: 'blue'}} className='fas fa-edit'></i>
-                                         </p>
-                                         <Collapse in={validity}>
+                                       <Accordion.Item eventKey="8">
+                                         <Accordion.Header>
+                                          Validity & reliability of finding   
+                                               
+                                         </Accordion.Header>
+                                          <Accordion.Body>
                                            <div id="example-collapse-text">
                                               <Form.Group onChange={(e) =>setStoreValidity(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
                                                  <Form.Control defaultValue={localStorage.getItem('storeValidity')} as="textarea" rows={6} placeholder='Validity & reliability of finding' />
@@ -384,16 +374,16 @@ const Home = () => {
                                                       <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
                                               </div>
                                            </div>
-                                        </Collapse>
-                                     </div>
+                                          </Accordion.Body>
+                                        </Accordion.Item>
                         
                                       {/* section-10 */}
-                                      <div>
-                                        <p onClick={() => setUsefulness(!usefulness)} aria-expanded={usefulness}>
-                                          Usefulness of the finding &nbsp;
-                                              <i style={{color: 'blue'}} className='fas fa-edit'></i>
-                                         </p>
-                                         <Collapse in={usefulness}>
+                                      <Accordion.Item eventKey="9">
+                                           <Accordion.Header>
+                                               Usefulness of the finding   
+                                               
+                                          </Accordion.Header>
+                                          <Accordion.Body>
                                            <div id="example-collapse-text">
                                               <Form.Group onChange={(e) =>setStoreUsefulness(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
                                                  <Form.Control defaultValue={localStorage.getItem('storeUsefulness')}  as="textarea" rows={6} placeholder='Usefulness of the finding' />
@@ -402,16 +392,16 @@ const Home = () => {
                                                       <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
                                               </div>
                                            </div>
-                                        </Collapse>
-                                     </div>
+                                           </Accordion.Body>
+                                      </Accordion.Item>
                         
                                      {/* section-11 */}
-                                     <div>
-                                        <p onClick={() => setReference(!reference)} aria-expanded={reference}>
-                                          Reference &nbsp;
-                                              <i style={{color: 'blue'}} className='fas fa-edit'></i>
-                                         </p>
-                                         <Collapse in={reference}>
+                                     <Accordion.Item eventKey="10">
+                                       <Accordion.Header>
+                                          Reference   
+                                               
+                                        </Accordion.Header>
+                                        <Accordion.Body>
                                            <div id="example-collapse-text">
                                               <Form.Group onChange={(e) =>setStoreReference(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
                                                  <Form.Control defaultValue={localStorage.getItem('storeReference')}  as="textarea" rows={6} placeholder='Reference' />
@@ -420,16 +410,16 @@ const Home = () => {
                                                       <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
                                               </div>
                                            </div>
-                                        </Collapse>
-                                     </div>
+                                        </Accordion.Body>
+                                        </Accordion.Item>
                         
                                         {/* section-12 */}
-                                        <div>
-                                        <p onClick={() => setAnnex(!annex)} aria-expanded={annex}>
-                                          Annex &nbsp;
-                                              <i style={{color: 'blue'}} className='fas fa-edit'></i>
-                                         </p>
-                                         <Collapse in={annex}>
+                                        <Accordion.Item eventKey="11">
+                                        <Accordion.Header>
+                                          Annex   
+                                               
+                                        </Accordion.Header>
+                                        <Accordion.Body>
                                            <div id="example-collapse-text">
                                               <Form.Group  onChange={(e) =>setStoreAnnex(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
                                                  <Form.Control defaultValue={localStorage.getItem('storeAnnex')} as="textarea" rows={6} placeholder='Annex' />
@@ -438,15 +428,15 @@ const Home = () => {
                                                       <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
                                               </div>
                                            </div>
-                                        </Collapse>
-                                     </div>
+                                           </Accordion.Body>
+                                        </Accordion.Item>
                         
                                      {/* section-13 */}
-                                     <div>
-                                        <p onClick={() => setUpload(!upload)} aria-expanded={upload}>
-                                          Uploaded File &nbsp;
-                                        </p>
-                                         <Collapse in={upload}>
+                                     <Accordion.Item eventKey="12">
+                                        <Accordion.Header>
+                                          Uploaded File   
+                                        </Accordion.Header>
+                                        <Accordion.Body>
                                            <div id="example-collapse-text">
                                               <Form.Group controlId="formFileSm" className="mb-3">
                                                 <Form.Control type="file" size="sm" />
@@ -455,32 +445,33 @@ const Home = () => {
                                                 <Form.Control type="file" size="sm" />
                                               </Form.Group>
                                            </div>
-                                        </Collapse>
-                                     </div>
+                                          </Accordion.Body>
+                                      </Accordion.Item>
                         
                                       {/* section-14 */}
-                                      <div>
-                                        <p onClick={() => setKeyword(!keyword)} aria-expanded={keyword}>
-                                          Keyword &nbsp;
-                                              <i style={{color: 'blue'}} className='fas fa-edit'></i>
-                                         </p>
-                                         <Collapse in={keyword}>
+                                      <Accordion.Item eventKey="13">
+                                      <Accordion.Header>
+                                          Keyword   
+                                               
+                                      </Accordion.Header>
+                                      <Accordion.Body>
                                            <div id="example-collapse-text">
-                                              <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                 <Form.Control as="textarea" rows={6} placeholder='Keyword without space' />
+                                              <Form.Group onChange={(e) =>setStoreKeyword(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                 <Form.Control defaultValue={localStorage.getItem('storeKeyword')} as="textarea" rows={6} placeholder='Keyword without space' />
                                               </Form.Group>
                                               <div className="text-end">
-                                                      <Button size="sm" variant="primary">Save</Button>
+                                                      <Button onClick={handle} size="sm" variant="primary">Save</Button>
                                               </div>
                                            </div>
-                                        </Collapse>
-                                     </div>
+                                           </Accordion.Body>
+                                           </Accordion.Item>
 
                                    {/*----------- Post Button --------------*/}
                                    <div className="text-end m-3">
                                         <Button className="px-4" size="sm" variant="primary">Post</Button>
                                    </div>
                               </form>
+                          </Accordion>
                               </Modal.Body>
                             </Modal>
                     </Col>
