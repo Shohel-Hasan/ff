@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Container, Form, Row, Modal,Button, Collapse, FormControl, InputGroup, Accordion } from 'react-bootstrap';
 import Slider from 'react-slick';
 import './Home.css';
@@ -9,12 +9,13 @@ import { useNavigate } from 'react-router-dom';
 const Home = () => {
     const [show, setShow] = useState(false);
     const [modal, setModal] = useState(false);
+    const [summaryPosts, setSummaryPosts] = useState([]);
+    const [noSummaryPosts, setNoSummaryPosts] = useState([]);
 
     const navigate = useNavigate();
 
 
     //Local Storage Data State
-
     const [storeTitle, setStoreTitle] = useState('');
     const [storeObjective, setStoreObjective] = useState('');
     const [storeTheoretical, setStoreTheoretical] = useState('');
@@ -28,8 +29,11 @@ const Home = () => {
     const [storeReference, setStoreReference] = useState('');
     const [storeAnnex, setStoreAnnex] = useState('');
     const [storeKeyword, setStoreKeyword] = useState('');
+
     const [file1, setFile1] = useState();
     const [file2, setFile2] = useState();
+
+    const [description, setDescription] = useState("")
   
     const handle = () => {
       localStorage.setItem('storeTitle', storeTitle);
@@ -53,7 +57,7 @@ const handleSummaryPost = () => {
   // e.preventDefault();
   const newData = new FormData();
 
-  newData.append('title_of_research_article', storeTitle)
+  newData.append('title_of_research_article', storeTitle);
   newData.append('objective_of_the_study', storeObjective);
   newData.append('theoritical_Background', storeTheoretical);
   newData.append('research_gap', storeGap,);
@@ -86,11 +90,64 @@ const handleSummaryPost = () => {
               } else if(res.status===201) {
                 alert("summary post created")
                 navigate('/home')
-
               }
           })
     .catch(error => console.log(error))
  }
+
+
+  
+const handleThoughtPost = () => {
+  // e.preventDefault();
+  const newData = new FormData();
+
+  newData.append('description', description)
+  newData.append('user', localStorage.getItem('id'))
+  console.log(newData)
+
+  fetch(`http://127.0.0.1:8000/post/${localStorage.getItem('id')}/user-thought-create/`, {
+    method: "POST",
+    headers: {
+      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+    },
+    body: newData
+  })
+    .then(res=> {
+              if (res.status===400) {
+                alert("please enter all the required field");
+              } else if(res.status===201) {
+                alert("Thought post created")
+                navigate('/home')
+              }
+          })
+    .catch(error => console.log(error))
+ }
+
+
+// getting summary posts
+useEffect(() => {
+  fetch(`http://127.0.0.1:8000/post/summerypost/all/`, {
+  method: 'GET',
+  headers: {
+      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+  }})
+  .then(res =>{
+    return res.json()
+  })
+  .then(data => {
+      if (data.message) {
+        setNoSummaryPosts([{data: data.message}]
+        )
+      } else {
+        setSummaryPosts(data)
+        console.log("asdfsa", data)
+      }
+     
+  })
+}, [])
+
 
 
   const settings = {
@@ -137,7 +194,7 @@ const handleSummaryPost = () => {
       }
     ]
   };
-
+  const BASE_URL = "http://127.0.0.1:8000"
 
     return (
         <Container fluid className='pt-5'>
@@ -235,11 +292,11 @@ const handleSummaryPost = () => {
                                       </div>
                                   </div>
                                    <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                     <Form.Control as="textarea" rows={3}  placeholder="Share a thought that you like"/>
+                                     <Form.Control onChange={(e) =>setDescription(e.target.value)} as="textarea" rows={3}  placeholder="Share a thought that you like"/>
                                    </Form.Group>
                                    
                                    <div className="d-grid gap-2">
-                                    <Button variant="primary" size="sm">
+                                    <Button variant="primary" size="sm" onClick={()=> handleThoughtPost()} >
                                       Post
                                     </Button>
                                     </div>
@@ -247,8 +304,6 @@ const handleSummaryPost = () => {
                               </Modal.Body>
                             </Modal>
                           </div>
-
-                       
                             <Modal
                               show={modal}
                               onHide={() => setModal(false)}
@@ -265,7 +320,7 @@ const handleSummaryPost = () => {
 
                                  
                                      {/*-------- section-1------------ */}
-                           <Accordion>
+                            <Accordion>
                                <form>
                                      <Accordion.Item eventKey="0">
                                      <Accordion.Header>
@@ -528,73 +583,88 @@ const handleSummaryPost = () => {
 
                 {/* Course Information Start */}
                 <Row>
-                    <Col className='my-3'>
-                       <div className="fb-cards-designs">
-                          <div className="fb-clone-card">
-                              <div className="fb-card-main-content">
-                                    <div className="fb-card-header">
-                                        <div className="user-post-info">
-                                                <div className="user-thumb">
-                                                    <img src="https://i.ibb.co/St6QD00/DSC-0003.jpg" className="img-responsive" alt=''/>
-                                                </div>
-                                                <div className="user-information">
-                                                          <p>Nazirul Islam</p>
-                                                          <small>1 hr</small>
-                                                  </div>
-                                                  </div>
-                                                  <div className="post-action">
-                                                      <i class="fa fa-ellipsis-h"></i>
-                                                  </div>
-                                              </div>
-                                              <div className="fb-card-body simple-text-card simple-image-card">
-                                                  <p className='p-3'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                              </div>
-                                          </div>
+                  {summaryPosts && summaryPosts.map((summaryPost, index) => <Col   key={index} className='my-3'>
+                      <div className="fb-cards-designs">
+                        <div className="fb-clone-card">
+                          <div className="fb-card-main-content">
+                            <div className="fb-card-header">
+                              <div className="user-post-info">
+                                <div className="user-thumb">
+                                { !summaryPost.group_name &&  <img  src={`${BASE_URL}${summaryPost.group_profile_pic}`} className="img-responsive" alt='user profile not found'/>}
+                                {summaryPost.group_name &&  <img  src={`${BASE_URL}${summaryPost.user_profile_pic}`} className="img-responsive" alt='group profile not found'/>}
 
-                                          <div className="fb-card-like-comment-holder">
-                                              <div className="fb-card-like-comment">
-                                                  <div className="likes-emoji-holder">
-                                                      <span className='emoji-holder'>14 Likes</span>
-                                                  </div>
-                                                  <div className="like-comment-holder">
-                                                      <span  className='emoji-holder'>10 Comments</span>
-                                                  </div>
-                                              </div>
-                                          </div>
+                                </div>
+                                <div className="user-information">
+                                 {!summaryPost.group_name && <p>{summaryPost.user_first_name}</p>}
+                                 {summaryPost.group_name && <p>{summaryPost.group_name}</p>}
 
-                                          <div className="fb-card-actions-holder">
-                                              <div className="fb-card-actions">
-                                                  <div className="fb-btn-holder">
-                                                      <a href="/"><i className="fa hom-icon fa-thumbs-up"></i> Like</a>
-                                                  </div>
-                                                  <div className="fb-btn-holder">
-                                                      <a href="/"><i className="far hom-icon fa-comment-alt"></i> Comment</a>
-                                                  </div>
-                                                  <div className="fb-btn-holder">
-                                                      <a href="/"><i className="fa hom-icon fa-share-square"></i> Share</a>
-                                                  </div>
-                                              </div>
-                                          </div>
+                                  {/* <small>{summaryPost.created}</small> */}
+                                </div>
+                              </div>
+                              <div className="post-action">
+                                  <i class="fa fa-ellipsis-h"></i>
+                              </div>
+                            </div>
+                            <div className="fb-card-body simple-text-card simple-image-card">
+                                <p className='p-3'>{summaryPost.objective_of_the_study}</p>
+                                <p className='p-3'>{summaryPost.theoritical_Background}</p>
+                                <p className='p-3'>{summaryPost.research_gap}</p>
+                                <p className='p-3'>{summaryPost.uniqueness_of_the_study}</p>
+                                <p className='p-3'>{summaryPost.data_source_sample_information}</p>
+                                <p className='p-3'>{summaryPost.research_methodology}</p>
+                                <p className='p-3'>{summaryPost.result_discussion}</p>
+                                <p className='p-3'>{summaryPost.validity_reliability_of_finding}</p>
+                                <p className='p-3'>{summaryPost.usefulness_of_the_finding}</p>
+                                <p className='p-3'>{summaryPost.reference}</p>
+                                <p className='p-3'>{summaryPost.annex}</p>
+                                <p className='p-3'>{summaryPost.keyword}</p>
+                            </div>
+                          </div>
 
-                                          <div className="fb-card-comments">
-                                              <div className="comment-input-holder">
-                                                  <div className="user-thumb">
-                                                      <img src="https://i.ibb.co/St6QD00/DSC-0003.jpg" className="img-responsive" alt=''/>
-                                                  </div>
-                                                  <div className="comment-input">
-                                                     
-                                                      <Form.Control
-                                                        className="comment-box rounded-pill "
-                                                        type="text"
-                                                        placeholder="Write a comment..."
-                                                      />
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
+                            <div className="fb-card-like-comment-holder">
+                              <div className="fb-card-like-comment">
+                                <div className="likes-emoji-holder">
+                                    <span className='emoji-holder'>14 Likes</span>
+                                </div>
+                                <div className="like-comment-holder">
+                                    <span  className='emoji-holder'>10 Comments</span>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="fb-card-actions-holder">
+                              <div className="fb-card-actions">
+                                  <div className="fb-btn-holder">
+                                      <a href="/"><i className="fa hom-icon fa-thumbs-up"></i> Like</a>
                                   </div>
-                            </Col>
-                         </Row>
+                                  <div className="fb-btn-holder">
+                                      <a href="/"><i className="far hom-icon fa-comment-alt"></i> Comment</a>
+                                  </div>
+                                  <div className="fb-btn-holder">
+                                      <a href="/"><i className="fa hom-icon fa-share-square"></i> Share</a>
+                                  </div>
+                              </div>
+                            </div>
+
+                            <div className="fb-card-comments">
+                                <div className="comment-input-holder">
+                                  <div className="user-thumb">
+                                      <img src="https://i.ibb.co/St6QD00/DSC-0003.jpg" className="img-responsive" alt=''/>
+                                  </div>
+                                  <div className="comment-input"> 
+                                      <Form.Control
+                                        className="comment-box rounded-pill "
+                                        type="text"
+                                        placeholder="Write a comment..."
+                                      />
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                  </Col>)
+                  }
+                </Row>
 
               </Col>
                {/* Middle col section end */}
