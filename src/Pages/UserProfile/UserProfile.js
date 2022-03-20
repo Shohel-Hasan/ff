@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Col, Container, Nav, NavDropdown, Row } from 'react-bootstrap';
 import './UserProfile.css'
 import man from '../../Images/man.jpg'
-import img from '../../Images/banner.jpg'
+import img from '../../assets/re/cover_photo.svg'
 import { Link, useParams } from 'react-router-dom';
 import camera from '../../Images/camera.svg'
 
