@@ -16,7 +16,7 @@ import notification_icon_filled from '../assets/re/Notice.svg';
 import style from '../styles/Navbar.module.css';
 import { useNavigate } from 'react-router-dom';
 
-
+import groupVisitedIcon from '../assets/re/Group_Clicked.svg'
 
 
 export default function Navbar(props) {
@@ -28,6 +28,14 @@ export default function Navbar(props) {
 
   const sideNavPosition = "-100%";
 
+  const [groupLogo, setGroupLogo] = useState(false); 
+
+  const changeGroupLogo1 = () => {
+    setGroupLogo(true)
+  }
+  const changeGroupLogo2 = () => {
+    setGroupLogo(false)
+  }
 
   const toggleSideNav = () => {
     if (!toggle1) {
@@ -55,13 +63,14 @@ export default function Navbar(props) {
             setToggle(false)
         }
     }
-
+    //--------------------------------------------------------//
+ 
 
   return (
     <div className={`${style.navbar_main_container} ${style.fb_box_shadow} d-flex flex-row justify-content-between`}>
       <div className={`${style.branding} d-flex flex-row justify-content-center align-items-center`}>
         <div className={`${style.logo} mx-2`}>
-          <img style={{ObjectFit: 'cover'}} src={logo} alt='logo' />
+          <img style={{objectFit: 'cover'}} src={logo} alt='logo' />
         </div>
         <div className={`${style.nav__search}`}>
           <i className="material-icons">search</i>
@@ -72,7 +81,9 @@ export default function Navbar(props) {
       <div className={`${style.mid_section} d-flex flex-row justify-content-center align-items-center`}>
         <img src={home_icon} className={`material-icons ${style.icons}`} alt='home' />
         <img src={group_icon} className={`material-icons ${style.icons}`} alt='home' />
-        <Link to="all-courses"><img src={class_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
+       {!groupLogo && <Link to="all-courses" onClick={changeGroupLogo1}><img src={class_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>}
+       {groupLogo && <Link to="/home" onClick={changeGroupLogo2}><img src={groupVisitedIcon} className={`material-icons ${style.icons}`} alt='home' /></Link>}
+
         {/* <img src={notification_icon} className={`material-icons ${style.icons}`} alt='home' /> */}
       </div>
       
