@@ -20,6 +20,11 @@ const GroupProfile = (props) => {
   const [groupCourses, setGroupCourses] = useState([]);
   const [noGroupCourses, setNoGroupCourses] = useState([]);
 
+  const [GroupSummaryPosts, setGroupSummaryPosts] = useState([]);
+  const [GroupNoSummaryPosts, setGroupNoSummaryPosts] = useState([]);
+
+  const [GroupThoughtPosts, setGroupThoughtPosts] = useState([]);
+  const [GroupNoThoughtPosts, setGroupNoThoughtPosts] = useState([]);
 
   //Local Storage Data State
   const [storeTitleGroup, setStoreTitleGroup] = useState('');
@@ -137,7 +142,29 @@ const handleGroupSummaryPost = () => {
     .catch(error => console.log(error))
  }
 
-
+// getting individual group summary posts 
+// useEffect(() => {
+//   fetch(`http://127.0.0.1:8000/post/summerypost/all/`, {
+//   method: 'GET',
+//   headers: {
+//       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+//       "Accept": "application/json",
+//       "Content-Type": "application/json"
+//   }})
+//   .then(res =>{
+//     return res.json()
+//   })
+//   .then(data => {
+//       if (data.message) {
+//         setNoSummaryPosts([{data: data.message}]
+//         )
+//       } else {
+//         setSummaryPosts(data)
+//         // console.log("asdfsa", data)
+//       }
+     
+//   })
+// }, [])
 
   // getting group details
   useEffect(() => {
