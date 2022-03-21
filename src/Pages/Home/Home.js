@@ -638,18 +638,58 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                                   </div>
                                 </div>
                                {post.title_of_research_article &&  <div className="fb-card-body simple-text-card simple-image-card">
-                                    <p className='p-3'>{post.objective_of_the_study}</p>
-                                    <p className='p-3'>{post.theoritical_Background}</p>
-                                    <p className='p-3'>{post.research_gap}</p>
-                                    <p className='p-3'>{post.uniqueness_of_the_study}</p>
-                                    <p className='p-3'>{post.data_source_sample_information}</p>
-                                    <p className='p-3'>{post.research_methodology}</p>
-                                    <p className='p-3'>{post.result_discussion}</p>
-                                    <p className='p-3'>{post.validity_reliability_of_finding}</p>
-                                    <p className='p-3'>{post.usefulness_of_the_finding}</p>
-                                    <p className='p-3'>{post.reference}</p>
-                                    <p className='p-3'>{post.annex}</p>
-                                    <p className='p-3'>{post.keyword}</p>
+                                    <div>
+                                     <p className='p-3'><b>Title of research article</b></p>
+                                     <small className='p-3'>{post.objective_of_the_study}</small>
+                                    </div> 
+                                    <div>
+                                     <p className='p-3'><b>Objective of the study</b></p>
+                                     <small className='p-3'>{post.objective_of_the_study}</small>
+                                    </div> 
+                                    <div>
+                                     <p className='p-3'><b>Theoretical background</b></p>
+                                     <small className='p-3'>{post.theoritical_Background}</small>
+                                    </div> 
+                                   <div>
+                                     <p className='p-3'><b>Research gap</b></p>
+                                     <small className='p-3'>{post.research_gap}</small>
+                                    </div> 
+                                   <div>
+                                     <p className='p-3'><b>Uniqueness of the study</b></p>
+                                     <small className='p-3'>{post.uniqueness_of_the_study}</small>
+                                    </div> 
+                                   <div>
+                                     <p className='p-3'><b>Data source/sample information</b></p>
+                                     <small className='p-3'>{post.data_source_sample_information}</small>
+                                    </div> 
+                                   <div>
+                                     <p className='p-3'><b>Research methodology</b></p>
+                                     <small className='p-3'>{post.research_methodology}</small>
+                                    </div> 
+                                   <div>
+                                     <p className='p-3'><b>Result & discussion</b></p>
+                                     <small className='p-3'>{post.result_discussion}</small>
+                                    </div> 
+                                   <div>
+                                     <p className='p-3'><b>Validity & reliability of finding</b></p>
+                                     <small className='p-3'>{post.validity_reliability_of_finding}</small>
+                                    </div> 
+                                   <div>
+                                     <p className='p-3'><b>Usefulness of the finding</b></p>
+                                     <small className='p-3'>{post.usefulness_of_the_finding}</small>
+                                    </div> 
+                                   <div>
+                                     <p className='p-3'><b>Reference</b></p>
+                                     <small className='p-3'>{post.reference}</small>
+                                    </div> 
+                                   <div>
+                                     <p className='p-3'><b>Annex</b></p>
+                                     <small className='p-3'>{post.annex}</small>
+                                    </div> 
+                                   <div>
+                                     <p className='p-3'><b>Keyword</b></p>
+                                     <small className='p-3'>{post.keyword}</small>
+                                    </div> 
                                 </div>}
 
                                 {!post.title_of_research_article &&  <div className="fb-card-body simple-text-card simple-image-card">
