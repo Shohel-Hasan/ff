@@ -12,23 +12,31 @@ import camera from '../../Images/camera.svg'
 const UserProfile = (props) => {
 
     const [users, setUsers] =useState([]);
+    const [userGeneralInfo, setUserGeneralInfo] = useState({});
     const param = useParams();
     console.log(param.userId);
 
 
 
-//   ------ For API Integration --------  //
+    useEffect(() => {
+        fetch(`http://127.0.0.1:8000/user/user-general-info/${localStorage.getItem('id')}`, {
+        method: 'GET',
+        headers: {
+            "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        }})
+        .then(res =>{
+        return res.json()
+        })
+        .then(data => setUserGeneralInfo(data))
+    }, [localStorage.getItem('id')])
 
-    useEffect(() =>{
-        fetch('')
-        .then((res) => res.json())
-        .then((data) =>setUsers(data))
-    },[]);
-
-    // console.log(users);
+    console.log(userGeneralInfo);
 
     props.triggerCheckLoggedIn();
 
+    const BASE_URL = "http://127.0.0.1:8000"
 
     return (
         
@@ -48,7 +56,7 @@ const UserProfile = (props) => {
                 <img
                     style={{ borderBottomRightRadius:'8px', borderBottomLeftRadius:'8px', objectFit: 'cover' }}
                     className="profile-cover img-fluid"
-                    src={img}
+                    src={`${BASE_URL}${userGeneralInfo.cover_pic}`}
                     alt=''
                 />
                 </div>
@@ -56,7 +64,7 @@ const UserProfile = (props) => {
                         <img
                            style={{backgroundColor: "#ced0d4", marginTop: '-50px', objectFit: 'cover' }}
                            className="rounded-circle p-1"
-                           src={man}
+                           src={`${BASE_URL}${userGeneralInfo.profile_pic}`}
                            width="150px"
                            height="150px"
                            alt=''
