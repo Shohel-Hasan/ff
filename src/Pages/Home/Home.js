@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 const Home = () => {
     const [show, setShow] = useState(false);
     const [modal, setModal] = useState(false);
+    const [userGeneralInfo, setUserGeneralInfo] = useState({});
+
     const [summaryPosts, setSummaryPosts] = useState([]);
     const [noSummaryPosts, setNoSummaryPosts] = useState([]);
 
@@ -176,6 +178,21 @@ useEffect(() => {
   })
 }, [])
 
+// getting user general Info
+useEffect(() => {
+  fetch(`http://127.0.0.1:8000/user/user-general-info/${localStorage.getItem('id')}`, {
+  method: 'GET',
+  headers: {
+      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+  }})
+  .then(res =>{
+  return res.json()
+  })
+  .then(data => setUserGeneralInfo(data))
+}, [localStorage.getItem('id')])
+
 const allPosts = [...summaryPosts , ...thoughtPosts ]
 // const randomPosts = allPosts[Math.floor(Math.random()*allPosts.length)];
 const randomPosts = allPosts.sort(() => Math.random() - 0.5)
@@ -274,7 +291,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                                     <img
                                     className="rounded-circle"
                                     style={{ width: "56px", height: "56px", 'objectFit': 'cover' }} 
-                                    src={man}
+                                    src={`${BASE_URL}${userGeneralInfo.profile_pic}`}
                                     alt=''
                                     />
                                 </div>

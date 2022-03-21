@@ -14,10 +14,10 @@ const UserProfile = (props) => {
     const [users, setUsers] =useState([]);
     const [userGeneralInfo, setUserGeneralInfo] = useState({});
     const param = useParams();
-    console.log(param.userId);
 
 
 
+    // getting user general Info
     useEffect(() => {
         fetch(`http://127.0.0.1:8000/user/user-general-info/${localStorage.getItem('id')}`, {
         method: 'GET',
@@ -32,7 +32,22 @@ const UserProfile = (props) => {
         .then(data => setUserGeneralInfo(data))
     }, [localStorage.getItem('id')])
 
-    console.log(userGeneralInfo);
+    // getting user Info
+    useEffect(() => {
+        fetch(`http://127.0.0.1:8000/user/${localStorage.getItem('id')}`, {
+        method: 'GET',
+        headers: {
+            "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        }})
+        .then(res =>{
+        return res.json()
+        })
+        .then(data => setUsers(data))
+    }, [localStorage.getItem('id')])
+
+    console.log(users);
 
     props.triggerCheckLoggedIn();
 
@@ -78,8 +93,8 @@ const UserProfile = (props) => {
                         </div>
                         <div style={{marginTop:'-50px'}}>
                             <h1 className="name" style={{ color: "#1877f2" }}> {localStorage.getItem('first_name')} </h1>
-                            <h6 className="fw-bold" style={{ color: "#1877f2" }}>Dept. of Economics</h6>
-                            <h6 className="fw-bold" style={{ color: "#1877f2" }}>BUBT</h6>
+                            <h6 className="fw-bold" style={{ color: "#1877f2" }}>{users.profession}</h6>
+                            {/* <h6 className="fw-bold" style={{ color: "#1877f2" }}>BUBT</h6> */}
                             <button  
                                 className="bg-primary rounded-pill btn-sm btn text-white"
                             >Follow <span><i className="plus-icon fa fa-plus"></i></span></button>
