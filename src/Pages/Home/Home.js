@@ -53,100 +53,100 @@ const Home = () => {
 
 
    
-const handleSummaryPost = () => {
-  // e.preventDefault();
-  const newData = new FormData();
+// const handleSummaryPost = () => {
+//   // e.preventDefault();
+//   const newData = new FormData();
 
-  newData.append('title_of_research_article', storeTitle);
-  newData.append('objective_of_the_study', storeObjective);
-  newData.append('theoritical_Background', storeTheoretical);
-  newData.append('research_gap', storeGap,);
-  newData.append('uniqueness_of_the_study', storeUniqueness,);
-  newData.append("data_source_sample_information",storeData)
-  newData.append("research_methodology",storeMethodology)
-  newData.append('result_discussion',storeResult)
-  newData.append('validity_reliability_of_finding',storeValidity)
-  newData.append('usefulness_of_the_finding',storeUsefulness)
-  newData.append('reference',storeReference)
-  newData.append('annex',storeAnnex)
-  newData.append('file1', file1)
-  newData.append('file2', file2)
-  newData.append('keyword',storeKeyword)
-  newData.append('user', localStorage.getItem('id'))
+//   newData.append('title_of_research_article', storeTitle);
+//   newData.append('objective_of_the_study', storeObjective);
+//   newData.append('theoritical_Background', storeTheoretical);
+//   newData.append('research_gap', storeGap,);
+//   newData.append('uniqueness_of_the_study', storeUniqueness,);
+//   newData.append("data_source_sample_information",storeData)
+//   newData.append("research_methodology",storeMethodology)
+//   newData.append('result_discussion',storeResult)
+//   newData.append('validity_reliability_of_finding',storeValidity)
+//   newData.append('usefulness_of_the_finding',storeUsefulness)
+//   newData.append('reference',storeReference)
+//   newData.append('annex',storeAnnex)
+//   newData.append('file1', file1)
+//   newData.append('file2', file2)
+//   newData.append('keyword',storeKeyword)
+//   newData.append('user', localStorage.getItem('id'))
 
 
-  console.log(newData)
+//   console.log(newData)
 
-  fetch(`http://127.0.0.1:8000/post/${localStorage.getItem('id')}/user-summery-create/`, {
-    method: "POST",
-    headers: {
-      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
-    },
-    body: newData
-  })
-    .then(res=> {
-              if (res.status===400) {
-                alert("please enter all the required field");
-              } else if(res.status===201) {
-                alert("summary post created")
-                navigate('/home')
-              }
-          })
-    .catch(error => console.log(error))
- }
+//   fetch(`http://127.0.0.1:8000/post/${localStorage.getItem('id')}/user-summery-create/`, {
+//     method: "POST",
+//     headers: {
+//       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+//     },
+//     body: newData
+//   })
+//     .then(res=> {
+//               if (res.status===400) {
+//                 alert("please enter all the required field");
+//               } else if(res.status===201) {
+//                 alert("summary post created")
+//                 navigate('/home')
+//               }
+//           })
+//     .catch(error => console.log(error))
+//  }
 
 
   
-const handleThoughtPost = () => {
-  // e.preventDefault();
-  const newData = new FormData();
+// const handleThoughtPost = () => {
+//   // e.preventDefault();
+//   const newData = new FormData();
 
-  newData.append('description', description)
-  newData.append('user', localStorage.getItem('id'))
-  console.log(newData)
+//   newData.append('description', description)
+//   newData.append('user', localStorage.getItem('id'))
+//   console.log(newData)
 
-  fetch(`http://127.0.0.1:8000/post/${localStorage.getItem('id')}/user-thought-create/`, {
-    method: "POST",
-    headers: {
-      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
-    },
-    body: newData
-  })
-    .then(res=> {
-              if (res.status===400) {
-                alert("please enter all the required field");
-              } else if(res.status===201) {
-                alert("Thought post created")
-                navigate('/home')
-              }
-          })
-    .catch(error => console.log(error))
- }
+//   fetch(`http://127.0.0.1:8000/post/${localStorage.getItem('id')}/user-thought-create/`, {
+//     method: "POST",
+//     headers: {
+//       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+//     },
+//     body: newData
+//   })
+//     .then(res=> {
+//               if (res.status===400) {
+//                 alert("please enter all the required field");
+//               } else if(res.status===201) {
+//                 alert("Thought post created")
+//                 navigate('/home')
+//               }
+//           })
+//     .catch(error => console.log(error))
+//  }
 
 
-// getting summary posts
-useEffect(() => {
-  fetch(`http://127.0.0.1:8000/post/summerypost/all/`, {
-  method: 'GET',
-  headers: {
-      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
-      "Accept": "application/json",
-      "Content-Type": "application/json"
-  }})
-  .then(res =>{
-    return res.json()
-  })
-  .then(data => {
-      if (data.message) {
-        setNoSummaryPosts([{data: data.message}]
-        )
-      } else {
-        setSummaryPosts(data)
-        console.log("asdfsa", data)
-      }
+// // getting summary posts
+// useEffect(() => {
+//   fetch(`http://127.0.0.1:8000/post/summerypost/all/`, {
+//   method: 'GET',
+//   headers: {
+//       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+//       "Accept": "application/json",
+//       "Content-Type": "application/json"
+//   }})
+//   .then(res =>{
+//     return res.json()
+//   })
+//   .then(data => {
+//       if (data.message) {
+//         setNoSummaryPosts([{data: data.message}]
+//         )
+//       } else {
+//         setSummaryPosts(data)
+//         console.log("asdfsa", data)
+//       }
      
-  })
-}, [])
+//   })
+// }, [])
 
 
 
@@ -197,481 +197,481 @@ useEffect(() => {
   const BASE_URL = "http://127.0.0.1:8000"
 
     return (
-        <Container fluid className='pt-5'>
-            <Row className="justify-content-md-center pt-5">
+        <Container fluid className='home-container'>
+            <Row className="justify-content--center">
                 {/* Left col section start */}
-                <Col xs={3} className=''>
+                <Col xs={3} className='left-col'>
                     Left col section 
                 </Col>
                 {/* Left col section End */}
 
                 {/* Middle col section start */}
-                <Col xs={7}>
-                    <Row className='justify-content-center align-items-center'>
+                <Col xs={6} className='mid-col'>
+                        <Row className='justify-content-center align-items-center'>
+                            <Col>
+                                <Slider {...settings}>
+                                    <div>
+                                        <img style={{'objectFit': 'cover' }} className="home-slider img-fluid" src={man} alt=''/>
+                                        
+                                    </div>
+                                    <div>
+                                        <img style={{'objectFit': 'cover' }} className="home-slider img-fluid" src={man} alt=''/>
+                                        
+                                    </div>
+                                    <div>
+                                        <img style={{'objectFit': 'cover' }} className="home-slider img-fluid" src={man} alt=''/>
+                                        
+                                    </div>
+                                    <div>
+                                        <img style={{'objectFit': 'cover' }} className="home-slider img-fluid" src={man} alt=''/>
+                                    
+                                    </div>
+                                    <div>
+                                        <img style={{'objectFit': 'cover' }} className="home-slider img-fluid" src={man} alt=''/>
+                                    
+                                    </div>
+                                </Slider>
+                            </Col>
+                        </Row>
+
+                    {/* Post Section */}
+                    <Row className='justify-content-center my-4'>
                         <Col>
-                            <Slider {...settings}>
-                                <div>
-                                    <img style={{'objectFit': 'cover' }} className="home-slider img-fluid" src={man} alt=''/>
+                            <div className="p-3 shadow-effect d-flex align-items-center  ">
+                                <div className='w-25'>
+                                    <img
+                                    className="rounded-circle"
+                                    style={{ width: "56px", height: "56px", 'objectFit': 'cover' }} 
+                                    src={man}
+                                    alt=''
+                                    />
+                                </div>
+                                <div className='w-75'>
+                                    <Form.Control
+                                    onClick={() => setShow(true)}
+                                    className="rounded-pill post-filed mb-2 "
+                                    type="text"
+                                    placeholder="Share a thought that you like"
+                                    />
+                        
+                                    <Form.Control
+                                    onClick={() => setModal(true)}
+                                    className="rounded-pill my-1 post-filed"
+                                    type="text"
+                                    placeholder="Share a research summary that you like"
+                                    /> 
+                                </div>
+                            </div>
+
+                              {/* Modal Section */}
+                              <div>
+                                <Modal
+                                  show={show}
+                                  onHide={() => setShow(false)}
+                                  dialogClassName="modal-90w"
+                                  aria-labelledby="contained-modal-title-vcenter"
+                                  centered
+                                >
+                                  <Modal.Header closeButton >
+                                      <div className=''>
+                                          <p className='title'>Thought Post </p>
+                                      </div>
+                                  </Modal.Header>
+                                  <Modal.Body className="fb-box-shadow">
+                                      <div className='d-flex mb-2'>
+                                          <div>
+                                              <img
+                                                className="rounded-circle mx-2"
+                                                style={{ width: "35px", height: "35px", 'objectFit': 'cover' }} 
+                                                src={man}
+                                                alt=''
+                                            />
+                                          </div>
+                                          <div>
+                                              <h6>Md. Saddam Hossain</h6>
+                                          </div>
+                                      </div>
+                                      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                        <Form.Control onChange={(e) =>setDescription(e.target.value)} as="textarea" rows={3}  placeholder="Share a thought that you like"/>
+                                      </Form.Group>
+                                      
+                                      <div className="d-grid gap-2">
+                                        <Button variant="primary" size="sm"  >
+                                          Post
+                                        </Button>
+                                        </div>
+                                      
+                                  </Modal.Body>
+                                </Modal>
+                              </div>
+                                <Modal
+                                  show={modal}
+                                  onHide={() => setModal(false)}
+                                  dialogClassName="modal-90w"
+                                  aria-labelledby="contained-modal-title-vcenter"
+                                  centered
+                                >
+                                  <Modal.Header closeButton>
+                                      <div className=''>
+                                          <p className='fw-bold title'>Research Summary</p>
+                                      </div>
+                                  </Modal.Header>
+                                  <Modal.Body className="fb-box-shadow">
+
                                     
-                                </div>
-                                <div>
-                                    <img style={{'objectFit': 'cover' }} className="home-slider img-fluid" src={man} alt=''/>
-                                    
-                                </div>
-                                <div>
-                                    <img style={{'objectFit': 'cover' }} className="home-slider img-fluid" src={man} alt=''/>
-                                    
-                                </div>
-                                <div>
-                                    <img style={{'objectFit': 'cover' }} className="home-slider img-fluid" src={man} alt=''/>
-                                
-                                </div>
-                                <div>
-                                    <img style={{'objectFit': 'cover' }} className="home-slider img-fluid" src={man} alt=''/>
-                                
-                                </div>
-                            </Slider>
+                                        {/*-------- section-1------------ */}
+                                <Accordion>
+                                  <form>
+                                        <Accordion.Item eventKey="0">
+                                        <Accordion.Header>
+                                                Title of research article   
+                                                  
+                                        </Accordion.Header>
+                                            <Accordion.Body>
+                                              <div id="example-collapse-text">
+                                                  <InputGroup className="mb-3"  onChange={(e) =>setStoreTitle(e.target.value)}>
+                                                    <FormControl defaultValue={localStorage.getItem('storeTitle')} placeholder="Title of research article" />
+                                                  </InputGroup> 
+                                                  <div className="text-end">
+                                                          <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
+                                                  </div>
+                                              </div>
+                                              </Accordion.Body>
+                                          </Accordion.Item>
+                                      
+                                          {/* section-2 */}
+                                          <Accordion.Item eventKey="1">
+                                          <Accordion.Header>
+                                                Objective of the study   
+                                                  
+                                            </Accordion.Header>
+                                              <Accordion.Body>
+                                              <div id="example-collapse-text">
+                                                  <Form.Group  onChange={(e) =>setStoreObjective(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                    <Form.Control defaultValue={localStorage.getItem('storeObjective')}  as="textarea" rows={6} placeholder='Objective of the study' />
+                                                </Form.Group>
+                                                  <div className="text-end">
+                                                          <Button size="sm" onClick={handle} variant="primary">Save as a draft</Button>
+                                                  </div>
+                                              </div>
+                                            </Accordion.Body>
+                                          </Accordion.Item>
+                                          {/* section-3 */}
+                                          <Accordion.Item eventKey="2">
+                                            <Accordion.Header>
+                                              Theoretical Background   
+                                                  
+                                              </Accordion.Header>
+                                              <Accordion.Body>
+                                              <div id="example-collapse-text">
+                                                  <Form.Group onChange={(e) =>setStoreTheoretical(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                    <Form.Control defaultValue={localStorage.getItem('storeTheoretical')} as="textarea" rows={6} placeholder='Theoretical Background' />
+                                                </Form.Group>
+                                                  <div className="text-end">
+                                                          <Button onClick={handle} size="sm"  variant="primary">Save as a draft</Button>
+                                                  </div>
+                                              </div>
+                                              </Accordion.Body>
+                                          </Accordion.Item>
+                                          {/* section-4 */}
+                                          <Accordion.Item eventKey="3">
+                                          <Accordion.Header>
+                                              Research Gap   
+                                                  
+                                            </Accordion.Header>
+                                              <Accordion.Body>
+                                              <div id="example-collapse-text">
+                                                  <Form.Group onChange={(e) =>setStoreGap(e.target.value)}  className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                    <Form.Control defaultValue={localStorage.getItem('storeGap')}  as="textarea" rows={6} placeholder='Research Gap' />
+                                                </Form.Group>
+                                                  <div className="text-end">
+                                                          <Button onClick={handle} size="sm"  variant="primary">Save as a draft</Button>
+                                                  </div>
+                                              </div>
+                                            </Accordion.Body>
+                                          </Accordion.Item>
+                            
+                                          {/* section-5 */}
+                                          <Accordion.Item eventKey="4">
+                                            <Accordion.Header>
+                                              Uniqueness of the study   
+                                                  
+                                              </Accordion.Header>
+                                              <Accordion.Body>
+                                              <div id="example-collapse-text">
+                                                  <Form.Group onChange={(e) =>setStoreUniqueness(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                    <Form.Control defaultValue={localStorage.getItem('storeUniqueness')} as="textarea" rows={6} placeholder='Uniqueness of the study' />
+                                                </Form.Group>
+                                                  <div className="text-end">
+                                                          <Button onClick={handle} size="sm"  variant="primary">Save as a draft</Button>
+                                                  </div>
+                                              </div>
+                                              </Accordion.Body>
+                                          </Accordion.Item>
+                            
+                                        {/* section-6 */}
+                                        <Accordion.Item eventKey="5">
+                                            <Accordion.Header>
+                                                Data source/sample Information   
+                                                      
+                                            </Accordion.Header>
+                                            <Accordion.Body>
+                                              <div id="example-collapse-text">
+                                                  <Form.Group onChange={(e) =>setStoreData(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                    <Form.Control defaultValue={localStorage.getItem('storeData')} as="textarea" rows={6} placeholder='Data source/sample Information' />
+                                                  </Form.Group>
+                                                  <div className="text-end">
+                                                          <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
+                                                  </div>
+                                              </div>
+                                            </Accordion.Body>
+                                          </Accordion.Item>
+                            
+                                          {/* section-7 */}
+                                          <Accordion.Item eventKey="6">
+                                            <Accordion.Header>
+                                              Research methodology   
+                                                  
+                                            </Accordion.Header>
+                                            <Accordion.Body>
+                                              <div id="example-collapse-text">
+                                                  <Form.Group onChange={(e) =>setStoreMethodology(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                    <Form.Control defaultValue={localStorage.getItem('storeMethodology')} as="textarea" rows={6} placeholder='Research methodology' />
+                                                  </Form.Group>
+                                                  <div className="text-end">
+                                                          <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
+                                                  </div>
+                                              </div>
+                                            </Accordion.Body>
+                                          </Accordion.Item>
+                            
+                                          {/* section-8 */}
+                                          <Accordion.Item eventKey="7">
+                                          <Accordion.Header>
+                                              Result & discussion   
+                                                  
+                                            </Accordion.Header>
+                                            <Accordion.Body>
+                                              <div id="example-collapse-text">
+                                                  <Form.Group onChange={(e) =>setStoreResult(e.target.value)}  className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                    <Form.Control defaultValue={localStorage.getItem('storeResult')} as="textarea" rows={6} placeholder='Result & discussion' />
+                                                  </Form.Group>
+                                                  <div className="text-end">
+                                                          <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
+                                                  </div>
+                                              </div>
+                                              </Accordion.Body>
+                                          </Accordion.Item>
+                            
+                                          {/* section-9 */}
+                                          <Accordion.Item eventKey="8">
+                                            <Accordion.Header>
+                                              Validity & reliability of finding   
+                                                  
+                                            </Accordion.Header>
+                                              <Accordion.Body>
+                                              <div id="example-collapse-text">
+                                                  <Form.Group onChange={(e) =>setStoreValidity(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                    <Form.Control defaultValue={localStorage.getItem('storeValidity')} as="textarea" rows={6} placeholder='Validity & reliability of finding' />
+                                                  </Form.Group>
+                                                  <div className="text-end">
+                                                          <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
+                                                  </div>
+                                              </div>
+                                              </Accordion.Body>
+                                            </Accordion.Item>
+                            
+                                          {/* section-10 */}
+                                          <Accordion.Item eventKey="9">
+                                              <Accordion.Header>
+                                                  Usefulness of the finding   
+                                                  
+                                              </Accordion.Header>
+                                              <Accordion.Body>
+                                              <div id="example-collapse-text">
+                                                  <Form.Group onChange={(e) =>setStoreUsefulness(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                    <Form.Control defaultValue={localStorage.getItem('storeUsefulness')}  as="textarea" rows={6} placeholder='Usefulness of the finding' />
+                                                  </Form.Group>
+                                                  <div className="text-end">
+                                                          <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
+                                                  </div>
+                                              </div>
+                                              </Accordion.Body>
+                                          </Accordion.Item>
+                            
+                                        {/* section-11 */}
+                                        <Accordion.Item eventKey="10">
+                                          <Accordion.Header>
+                                              Reference   
+                                                  
+                                            </Accordion.Header>
+                                            <Accordion.Body>
+                                              <div id="example-collapse-text">
+                                                  <Form.Group onChange={(e) =>setStoreReference(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                    <Form.Control defaultValue={localStorage.getItem('storeReference')}  as="textarea" rows={6} placeholder='Reference' />
+                                                  </Form.Group>
+                                                  <div className="text-end">
+                                                          <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
+                                                  </div>
+                                              </div>
+                                            </Accordion.Body>
+                                            </Accordion.Item>
+                            
+                                            {/* section-12 */}
+                                            <Accordion.Item eventKey="11">
+                                            <Accordion.Header>
+                                              Annex   
+                                                  
+                                            </Accordion.Header>
+                                            <Accordion.Body>
+                                              <div id="example-collapse-text">
+                                                  <Form.Group  onChange={(e) =>setStoreAnnex(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                    <Form.Control defaultValue={localStorage.getItem('storeAnnex')} as="textarea" rows={6} placeholder='Annex' />
+                                                  </Form.Group>
+                                                  <div className="text-end">
+                                                          <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
+                                                  </div>
+                                              </div>
+                                              </Accordion.Body>
+                                            </Accordion.Item>
+                            
+                                        {/* section-13 */}
+                                        <Accordion.Item eventKey="12">
+                                            <Accordion.Header>
+                                              Uploaded File   
+                                            </Accordion.Header>
+                                            <Accordion.Body>
+                                              <div id="example-collapse-text">
+                                                  <Form.Group controlId="formFileSm" className="mb-3">
+                                                    <Form.Control type="file" size="sm" onChange={e => setFile1(e.target.files[0])} />
+                                                  </Form.Group>
+                                                  <Form.Group controlId="formFileSm" className="mb-3">
+                                                    <Form.Control type="file" size="sm" onChange={e => setFile2(e.target.files[0])} />
+                                                  </Form.Group>
+                                              </div>
+                                              </Accordion.Body>
+                                          </Accordion.Item>
+                            
+                                          {/* section-14 */}
+                                          <Accordion.Item eventKey="13">
+                                          <Accordion.Header>
+                                              Keyword   
+                                                  
+                                          </Accordion.Header>
+                                          <Accordion.Body>
+                                              <div id="example-collapse-text">
+                                                  <Form.Group onChange={(e) =>setStoreKeyword(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                    <Form.Control defaultValue={localStorage.getItem('storeKeyword')} as="textarea" rows={6} placeholder='Keyword without space' />
+                                                  </Form.Group>
+                                                  <div className="text-end">
+                                                          <Button onClick={handle} size="sm" variant="primary">Save</Button>
+                                                  </div>
+                                              </div>
+                                              </Accordion.Body>
+                                              </Accordion.Item>
+
+                                      {/*----------- Post Button --------------*/}
+                                      <div className="text-end m-3">
+                                            <Button className="px-4"  size="sm" variant="primary">Post</Button>
+                                      </div>
+                                  </form>
+                              </Accordion>
+                                  </Modal.Body>
+                                </Modal>
                         </Col>
                     </Row>
 
-                {/* Post Section */}
-                <Row className='justify-content-center my-4'>
-                    <Col md={9}>
-                        <div className="p-3 shadow-effect d-flex align-items-center  ">
-                            <div className='w-25'>
-                                <img
-                                className="rounded-circle"
-                                style={{ width: "56px", height: "56px", 'objectFit': 'cover' }} 
-                                src={man}
-                                alt=''
-                                />
-                            </div>
-                            <div className='w-75'>
-                                <Form.Control
-                                onClick={() => setShow(true)}
-                                className="rounded-pill post-filed mb-2 "
-                                type="text"
-                                placeholder="Share a thought that you like"
-                                />
-                    
-                                <Form.Control
-                                onClick={() => setModal(true)}
-                                className="rounded-pill my-1 post-filed"
-                                type="text"
-                                placeholder="Share a research summary that you like"
-                                /> 
-                            </div>
-                        </div>
+                    {/* Course Information Start */}
+                    <Row>
+                      {summaryPosts && summaryPosts.map((summaryPost, index) => <Col   key={index} className='my-3'>
+                          <div className="fb-cards-designs">
+                            <div className="fb-clone-card">
+                              <div className="fb-card-main-content">
+                                <div className="fb-card-header">
+                                  <div className="user-post-info">
+                                    <div className="user-thumb">
+                                    { !summaryPost.group_name &&  <img  src={`${BASE_URL}${summaryPost.group_profile_pic}`} className="img-responsive" alt='user profile not found'/>}
+                                    {summaryPost.group_name &&  <img  src={`${BASE_URL}${summaryPost.user_profile_pic}`} className="img-responsive" alt='group profile not found'/>}
 
-                           {/* Modal Section */}
-                          <div>
-                            <Modal
-                              show={show}
-                              onHide={() => setShow(false)}
-                              dialogClassName="modal-90w"
-                              aria-labelledby="contained-modal-title-vcenter"
-                              centered
-                            >
-                              <Modal.Header closeButton >
-                                   <div className=''>
-                                       <p className='title'>Thought Post </p>
-                                   </div>
-                              </Modal.Header>
-                              <Modal.Body className="fb-box-shadow">
-                                  <div className='d-flex mb-2'>
-                                      <div>
-                                          <img
-                                             className="rounded-circle mx-2"
-                                             style={{ width: "35px", height: "35px", 'objectFit': 'cover' }} 
-                                             src={man}
-                                             alt=''
-                                         />
-                                      </div>
-                                      <div>
-                                           <h6>Md. Saddam Hossain</h6>
-                                      </div>
-                                  </div>
-                                   <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                     <Form.Control onChange={(e) =>setDescription(e.target.value)} as="textarea" rows={3}  placeholder="Share a thought that you like"/>
-                                   </Form.Group>
-                                   
-                                   <div className="d-grid gap-2">
-                                    <Button variant="primary" size="sm" onClick={()=> handleThoughtPost()} >
-                                      Post
-                                    </Button>
                                     </div>
-                                   
-                              </Modal.Body>
-                            </Modal>
-                          </div>
-                            <Modal
-                              show={modal}
-                              onHide={() => setModal(false)}
-                              dialogClassName="modal-90w"
-                              aria-labelledby="contained-modal-title-vcenter"
-                              centered
-                            >
-                              <Modal.Header closeButton>
-                                   <div className=''>
-                                       <p className='fw-bold title'>Research Summary</p>
-                                   </div>
-                              </Modal.Header>
-                              <Modal.Body className="fb-box-shadow">
+                                    <div className="user-information">
+                                    {!summaryPost.group_name && <p>{summaryPost.user_first_name}</p>}
+                                    {summaryPost.group_name && <p>{summaryPost.group_name}</p>}
 
-                                 
-                                     {/*-------- section-1------------ */}
-                            <Accordion>
-                               <form>
-                                     <Accordion.Item eventKey="0">
-                                     <Accordion.Header>
-                                             Title of research article   
-                                               
-                                    </Accordion.Header>
-                                         <Accordion.Body>
-                                           <div id="example-collapse-text">
-                                              <InputGroup className="mb-3"  onChange={(e) =>setStoreTitle(e.target.value)}>
-                                                <FormControl defaultValue={localStorage.getItem('storeTitle')} placeholder="Title of research article" />
-                                              </InputGroup> 
-                                              <div className="text-end">
-                                                      <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
-                                              </div>
-                                           </div>
-                                          </Accordion.Body>
-                                      </Accordion.Item>
-                                   
-                                      {/* section-2 */}
-                                      <Accordion.Item eventKey="1">
-                                       <Accordion.Header>
-                                             Objective of the study   
-                                               
-                                        </Accordion.Header>
-                                          <Accordion.Body>
-                                           <div id="example-collapse-text">
-                                              <Form.Group  onChange={(e) =>setStoreObjective(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                <Form.Control defaultValue={localStorage.getItem('storeObjective')}  as="textarea" rows={6} placeholder='Objective of the study' />
-                                             </Form.Group>
-                                              <div className="text-end">
-                                                      <Button size="sm" onClick={handle} variant="primary">Save as a draft</Button>
-                                              </div>
-                                           </div>
-                                         </Accordion.Body>
-                                      </Accordion.Item>
-                                      {/* section-3 */}
-                                      <Accordion.Item eventKey="2">
-                                         <Accordion.Header>
-                                          Theoretical Background   
-                                               
-                                          </Accordion.Header>
-                                          <Accordion.Body>
-                                           <div id="example-collapse-text">
-                                              <Form.Group onChange={(e) =>setStoreTheoretical(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                <Form.Control defaultValue={localStorage.getItem('storeTheoretical')} as="textarea" rows={6} placeholder='Theoretical Background' />
-                                             </Form.Group>
-                                              <div className="text-end">
-                                                      <Button onClick={handle} size="sm"  variant="primary">Save as a draft</Button>
-                                              </div>
-                                           </div>
-                                          </Accordion.Body>
-                                      </Accordion.Item>
-                                      {/* section-4 */}
-                                      <Accordion.Item eventKey="3">
-                                       <Accordion.Header>
-                                          Research Gap   
-                                               
-                                        </Accordion.Header>
-                                          <Accordion.Body>
-                                           <div id="example-collapse-text">
-                                              <Form.Group onChange={(e) =>setStoreGap(e.target.value)}  className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                <Form.Control defaultValue={localStorage.getItem('storeGap')}  as="textarea" rows={6} placeholder='Research Gap' />
-                                             </Form.Group>
-                                              <div className="text-end">
-                                                      <Button onClick={handle} size="sm"  variant="primary">Save as a draft</Button>
-                                              </div>
-                                           </div>
-                                         </Accordion.Body>
-                                      </Accordion.Item>
-                        
-                                       {/* section-5 */}
-                                       <Accordion.Item eventKey="4">
-                                         <Accordion.Header>
-                                          Uniqueness of the study   
-                                               
-                                          </Accordion.Header>
-                                          <Accordion.Body>
-                                           <div id="example-collapse-text">
-                                              <Form.Group onChange={(e) =>setStoreUniqueness(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                <Form.Control defaultValue={localStorage.getItem('storeUniqueness')} as="textarea" rows={6} placeholder='Uniqueness of the study' />
-                                             </Form.Group>
-                                              <div className="text-end">
-                                                      <Button onClick={handle} size="sm"  variant="primary">Save as a draft</Button>
-                                              </div>
-                                           </div>
-                                          </Accordion.Body>
-                                       </Accordion.Item>
-                        
-                                     {/* section-6 */}
-                                     <Accordion.Item eventKey="5">
-                                        <Accordion.Header>
-                                             Data source/sample Information   
-                                                  
-                                        </Accordion.Header>
-                                        <Accordion.Body>
-                                           <div id="example-collapse-text">
-                                              <Form.Group onChange={(e) =>setStoreData(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                 <Form.Control defaultValue={localStorage.getItem('storeData')} as="textarea" rows={6} placeholder='Data source/sample Information' />
-                                              </Form.Group>
-                                              <div className="text-end">
-                                                      <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
-                                              </div>
-                                           </div>
-                                        </Accordion.Body>
-                                      </Accordion.Item>
-                        
-                                      {/* section-7 */}
-                                      <Accordion.Item eventKey="6">
-                                        <Accordion.Header>
-                                          Research methodology   
-                                               
-                                        </Accordion.Header>
-                                        <Accordion.Body>
-                                           <div id="example-collapse-text">
-                                              <Form.Group onChange={(e) =>setStoreMethodology(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                 <Form.Control defaultValue={localStorage.getItem('storeMethodology')} as="textarea" rows={6} placeholder='Research methodology' />
-                                              </Form.Group>
-                                              <div className="text-end">
-                                                      <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
-                                              </div>
-                                           </div>
-                                        </Accordion.Body>
-                                      </Accordion.Item>
-                        
-                                      {/* section-8 */}
-                                      <Accordion.Item eventKey="7">
-                                       <Accordion.Header>
-                                          Result & discussion   
-                                               
-                                        </Accordion.Header>
-                                         <Accordion.Body>
-                                           <div id="example-collapse-text">
-                                              <Form.Group onChange={(e) =>setStoreResult(e.target.value)}  className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                 <Form.Control defaultValue={localStorage.getItem('storeResult')} as="textarea" rows={6} placeholder='Result & discussion' />
-                                              </Form.Group>
-                                              <div className="text-end">
-                                                      <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
-                                              </div>
-                                           </div>
-                                          </Accordion.Body>
-                                      </Accordion.Item>
-                        
-                                       {/* section-9 */}
-                                       <Accordion.Item eventKey="8">
-                                         <Accordion.Header>
-                                          Validity & reliability of finding   
-                                               
-                                         </Accordion.Header>
-                                          <Accordion.Body>
-                                           <div id="example-collapse-text">
-                                              <Form.Group onChange={(e) =>setStoreValidity(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                 <Form.Control defaultValue={localStorage.getItem('storeValidity')} as="textarea" rows={6} placeholder='Validity & reliability of finding' />
-                                              </Form.Group>
-                                              <div className="text-end">
-                                                      <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
-                                              </div>
-                                           </div>
-                                          </Accordion.Body>
-                                        </Accordion.Item>
-                        
-                                      {/* section-10 */}
-                                      <Accordion.Item eventKey="9">
-                                           <Accordion.Header>
-                                               Usefulness of the finding   
-                                               
-                                          </Accordion.Header>
-                                          <Accordion.Body>
-                                           <div id="example-collapse-text">
-                                              <Form.Group onChange={(e) =>setStoreUsefulness(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                 <Form.Control defaultValue={localStorage.getItem('storeUsefulness')}  as="textarea" rows={6} placeholder='Usefulness of the finding' />
-                                              </Form.Group>
-                                              <div className="text-end">
-                                                      <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
-                                              </div>
-                                           </div>
-                                           </Accordion.Body>
-                                      </Accordion.Item>
-                        
-                                     {/* section-11 */}
-                                     <Accordion.Item eventKey="10">
-                                       <Accordion.Header>
-                                          Reference   
-                                               
-                                        </Accordion.Header>
-                                        <Accordion.Body>
-                                           <div id="example-collapse-text">
-                                              <Form.Group onChange={(e) =>setStoreReference(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                 <Form.Control defaultValue={localStorage.getItem('storeReference')}  as="textarea" rows={6} placeholder='Reference' />
-                                              </Form.Group>
-                                              <div className="text-end">
-                                                      <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
-                                              </div>
-                                           </div>
-                                        </Accordion.Body>
-                                        </Accordion.Item>
-                        
-                                        {/* section-12 */}
-                                        <Accordion.Item eventKey="11">
-                                        <Accordion.Header>
-                                          Annex   
-                                               
-                                        </Accordion.Header>
-                                        <Accordion.Body>
-                                           <div id="example-collapse-text">
-                                              <Form.Group  onChange={(e) =>setStoreAnnex(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                 <Form.Control defaultValue={localStorage.getItem('storeAnnex')} as="textarea" rows={6} placeholder='Annex' />
-                                              </Form.Group>
-                                              <div className="text-end">
-                                                      <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
-                                              </div>
-                                           </div>
-                                           </Accordion.Body>
-                                        </Accordion.Item>
-                        
-                                     {/* section-13 */}
-                                     <Accordion.Item eventKey="12">
-                                        <Accordion.Header>
-                                          Uploaded File   
-                                        </Accordion.Header>
-                                        <Accordion.Body>
-                                           <div id="example-collapse-text">
-                                              <Form.Group controlId="formFileSm" className="mb-3">
-                                                <Form.Control type="file" size="sm" onChange={e => setFile1(e.target.files[0])} />
-                                              </Form.Group>
-                                              <Form.Group controlId="formFileSm" className="mb-3">
-                                                <Form.Control type="file" size="sm" onChange={e => setFile2(e.target.files[0])} />
-                                              </Form.Group>
-                                           </div>
-                                          </Accordion.Body>
-                                      </Accordion.Item>
-                        
-                                      {/* section-14 */}
-                                      <Accordion.Item eventKey="13">
-                                      <Accordion.Header>
-                                          Keyword   
-                                               
-                                      </Accordion.Header>
-                                      <Accordion.Body>
-                                           <div id="example-collapse-text">
-                                              <Form.Group onChange={(e) =>setStoreKeyword(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                 <Form.Control defaultValue={localStorage.getItem('storeKeyword')} as="textarea" rows={6} placeholder='Keyword without space' />
-                                              </Form.Group>
-                                              <div className="text-end">
-                                                      <Button onClick={handle} size="sm" variant="primary">Save</Button>
-                                              </div>
-                                           </div>
-                                           </Accordion.Body>
-                                           </Accordion.Item>
-
-                                   {/*----------- Post Button --------------*/}
-                                   <div className="text-end m-3">
-                                        <Button className="px-4" onClick={()=> handleSummaryPost()} size="sm" variant="primary">Post</Button>
-                                   </div>
-                              </form>
-                          </Accordion>
-                              </Modal.Body>
-                            </Modal>
-                    </Col>
-                </Row>
-
-                {/* Course Information Start */}
-                <Row>
-                  {summaryPosts && summaryPosts.map((summaryPost, index) => <Col   key={index} className='my-3'>
-                      <div className="fb-cards-designs">
-                        <div className="fb-clone-card">
-                          <div className="fb-card-main-content">
-                            <div className="fb-card-header">
-                              <div className="user-post-info">
-                                <div className="user-thumb">
-                                { !summaryPost.group_name &&  <img  src={`${BASE_URL}${summaryPost.group_profile_pic}`} className="img-responsive" alt='user profile not found'/>}
-                                {summaryPost.group_name &&  <img  src={`${BASE_URL}${summaryPost.user_profile_pic}`} className="img-responsive" alt='group profile not found'/>}
-
+                                      {/* <small>{summaryPost.created}</small> */}
+                                    </div>
+                                  </div>
+                                  <div className="post-action">
+                                      <i class="fa fa-ellipsis-h"></i>
+                                  </div>
                                 </div>
-                                <div className="user-information">
-                                 {!summaryPost.group_name && <p>{summaryPost.user_first_name}</p>}
-                                 {summaryPost.group_name && <p>{summaryPost.group_name}</p>}
-
-                                  {/* <small>{summaryPost.created}</small> */}
+                                <div className="fb-card-body simple-text-card simple-image-card">
+                                    <p className='p-3'>{summaryPost.objective_of_the_study}</p>
+                                    <p className='p-3'>{summaryPost.theoritical_Background}</p>
+                                    <p className='p-3'>{summaryPost.research_gap}</p>
+                                    <p className='p-3'>{summaryPost.uniqueness_of_the_study}</p>
+                                    <p className='p-3'>{summaryPost.data_source_sample_information}</p>
+                                    <p className='p-3'>{summaryPost.research_methodology}</p>
+                                    <p className='p-3'>{summaryPost.result_discussion}</p>
+                                    <p className='p-3'>{summaryPost.validity_reliability_of_finding}</p>
+                                    <p className='p-3'>{summaryPost.usefulness_of_the_finding}</p>
+                                    <p className='p-3'>{summaryPost.reference}</p>
+                                    <p className='p-3'>{summaryPost.annex}</p>
+                                    <p className='p-3'>{summaryPost.keyword}</p>
                                 </div>
                               </div>
-                              <div className="post-action">
-                                  <i class="fa fa-ellipsis-h"></i>
-                              </div>
-                            </div>
-                            <div className="fb-card-body simple-text-card simple-image-card">
-                                <p className='p-3'>{summaryPost.objective_of_the_study}</p>
-                                <p className='p-3'>{summaryPost.theoritical_Background}</p>
-                                <p className='p-3'>{summaryPost.research_gap}</p>
-                                <p className='p-3'>{summaryPost.uniqueness_of_the_study}</p>
-                                <p className='p-3'>{summaryPost.data_source_sample_information}</p>
-                                <p className='p-3'>{summaryPost.research_methodology}</p>
-                                <p className='p-3'>{summaryPost.result_discussion}</p>
-                                <p className='p-3'>{summaryPost.validity_reliability_of_finding}</p>
-                                <p className='p-3'>{summaryPost.usefulness_of_the_finding}</p>
-                                <p className='p-3'>{summaryPost.reference}</p>
-                                <p className='p-3'>{summaryPost.annex}</p>
-                                <p className='p-3'>{summaryPost.keyword}</p>
-                            </div>
-                          </div>
 
-                            <div className="fb-card-like-comment-holder">
-                              <div className="fb-card-like-comment">
-                                <div className="likes-emoji-holder">
-                                    <span className='emoji-holder'>14 Likes</span>
+                                <div className="fb-card-like-comment-holder">
+                                  <div className="fb-card-like-comment">
+                                    <div className="likes-emoji-holder">
+                                        <span className='emoji-holder'>14 Likes</span>
+                                    </div>
+                                    <div className="like-comment-holder">
+                                        <span  className='emoji-holder'>10 Comments</span>
+                                    </div>
+                                  </div>
                                 </div>
-                                <div className="like-comment-holder">
-                                    <span  className='emoji-holder'>10 Comments</span>
+
+                                <div className="fb-card-actions-holder">
+                                  <div className="d-flex justify-content-evenly">
+                                      <div className="fb-btn-holder">
+                                          <a className='text-decoration-none' href="/"><i className="fa hom-icon fa-thumbs-up"></i> Like</a>
+                                      </div>
+                                      <div className="fb-btn-holder">
+                                          <a className='text-decoration-none' href="/"><i className="far hom-icon fa-comment-alt"></i> Comment</a>
+                                      </div>
+                                      <div className="fb-btn-holder">
+                                          <a className='text-decoration-none' href="/"><i className="fa hom-icon fa-share-square"></i> Share</a>
+                                      </div>
+                                  </div>
+                                </div>
+
+                                <div className="fb-card-comments">
+                                    <div className="comment-input-holder">
+                                      <div className="user-thumb">
+                                          <img src="https://i.ibb.co/St6QD00/DSC-0003.jpg" className="img-responsive" alt=''/>
+                                      </div>
+                                      <div className="comment-input"> 
+                                          <Form.Control
+                                            className="comment-box rounded-pill "
+                                            type="text"
+                                            placeholder="Write a comment..."
+                                          />
+                                      </div>
+                                    </div>
                                 </div>
                               </div>
                             </div>
-
-                            <div className="fb-card-actions-holder">
-                              <div className="fb-card-actions">
-                                  <div className="fb-btn-holder">
-                                      <a href="/"><i className="fa hom-icon fa-thumbs-up"></i> Like</a>
-                                  </div>
-                                  <div className="fb-btn-holder">
-                                      <a href="/"><i className="far hom-icon fa-comment-alt"></i> Comment</a>
-                                  </div>
-                                  <div className="fb-btn-holder">
-                                      <a href="/"><i className="fa hom-icon fa-share-square"></i> Share</a>
-                                  </div>
-                              </div>
-                            </div>
-
-                            <div className="fb-card-comments">
-                                <div className="comment-input-holder">
-                                  <div className="user-thumb">
-                                      <img src="https://i.ibb.co/St6QD00/DSC-0003.jpg" className="img-responsive" alt=''/>
-                                  </div>
-                                  <div className="comment-input"> 
-                                      <Form.Control
-                                        className="comment-box rounded-pill "
-                                        type="text"
-                                        placeholder="Write a comment..."
-                                      />
-                                  </div>
-                                </div>
-                            </div>
-                          </div>
-                        </div>
-                  </Col>)
-                  }
-                </Row>
+                      </Col>)
+                      }
+                    </Row>
 
               </Col>
                {/* Middle col section end */}
 
 
                {/* Right Col section */}
-              <Col xs={2}  className=''>
+              <Col xs={3}  className='right-col'>
                 Right Col section
               </Col>
             </Row>
