@@ -12,6 +12,9 @@ const Home = () => {
     const [summaryPosts, setSummaryPosts] = useState([]);
     const [noSummaryPosts, setNoSummaryPosts] = useState([]);
 
+    const [thoughtPosts, setThoughtPosts] = useState([]);
+    const [noThoughtPosts, setNoThoughtPosts] = useState([]);
+
     const navigate = useNavigate();
 
 
@@ -53,101 +56,129 @@ const Home = () => {
 
 
    
-// const handleSummaryPost = () => {
-//   // e.preventDefault();
-//   const newData = new FormData();
+const handleSummaryPost = () => {
+  // e.preventDefault();
+  const newData = new FormData();
 
-//   newData.append('title_of_research_article', storeTitle);
-//   newData.append('objective_of_the_study', storeObjective);
-//   newData.append('theoritical_Background', storeTheoretical);
-//   newData.append('research_gap', storeGap,);
-//   newData.append('uniqueness_of_the_study', storeUniqueness,);
-//   newData.append("data_source_sample_information",storeData)
-//   newData.append("research_methodology",storeMethodology)
-//   newData.append('result_discussion',storeResult)
-//   newData.append('validity_reliability_of_finding',storeValidity)
-//   newData.append('usefulness_of_the_finding',storeUsefulness)
-//   newData.append('reference',storeReference)
-//   newData.append('annex',storeAnnex)
-//   newData.append('file1', file1)
-//   newData.append('file2', file2)
-//   newData.append('keyword',storeKeyword)
-//   newData.append('user', localStorage.getItem('id'))
+  newData.append('title_of_research_article', storeTitle);
+  newData.append('objective_of_the_study', storeObjective);
+  newData.append('theoritical_Background', storeTheoretical);
+  newData.append('research_gap', storeGap,);
+  newData.append('uniqueness_of_the_study', storeUniqueness,);
+  newData.append("data_source_sample_information",storeData)
+  newData.append("research_methodology",storeMethodology)
+  newData.append('result_discussion',storeResult)
+  newData.append('validity_reliability_of_finding',storeValidity)
+  newData.append('usefulness_of_the_finding',storeUsefulness)
+  newData.append('reference',storeReference)
+  newData.append('annex',storeAnnex)
+  newData.append('file1', file1)
+  newData.append('file2', file2)
+  newData.append('keyword',storeKeyword)
+  newData.append('user', localStorage.getItem('id'))
 
 
-//   console.log(newData)
+  console.log(newData)
 
-//   fetch(`http://127.0.0.1:8000/post/${localStorage.getItem('id')}/user-summery-create/`, {
-//     method: "POST",
-//     headers: {
-//       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
-//     },
-//     body: newData
-//   })
-//     .then(res=> {
-//               if (res.status===400) {
-//                 alert("please enter all the required field");
-//               } else if(res.status===201) {
-//                 alert("summary post created")
-//                 navigate('/home')
-//               }
-//           })
-//     .catch(error => console.log(error))
-//  }
+  fetch(`http://127.0.0.1:8000/post/${localStorage.getItem('id')}/user-summery-create/`, {
+    method: "POST",
+    headers: {
+      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+    },
+    body: newData
+  })
+    .then(res=> {
+              if (res.status===400) {
+                alert("please enter all the required field");
+              } else if(res.status===201) {
+                alert("summary post created")
+                navigate('/home')
+              }
+          })
+    .catch(error => console.log(error))
+ }
 
 
   
-// const handleThoughtPost = () => {
-//   // e.preventDefault();
-//   const newData = new FormData();
+const handleThoughtPost = () => {
+  // e.preventDefault();
+  const newData = new FormData();
 
-//   newData.append('description', description)
-//   newData.append('user', localStorage.getItem('id'))
-//   console.log(newData)
+  newData.append('description', description)
+  newData.append('user', localStorage.getItem('id'))
+  console.log(newData)
 
-//   fetch(`http://127.0.0.1:8000/post/${localStorage.getItem('id')}/user-thought-create/`, {
-//     method: "POST",
-//     headers: {
-//       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
-//     },
-//     body: newData
-//   })
-//     .then(res=> {
-//               if (res.status===400) {
-//                 alert("please enter all the required field");
-//               } else if(res.status===201) {
-//                 alert("Thought post created")
-//                 navigate('/home')
-//               }
-//           })
-//     .catch(error => console.log(error))
-//  }
+  fetch(`http://127.0.0.1:8000/post/${localStorage.getItem('id')}/user-thought-create/`, {
+    method: "POST",
+    headers: {
+      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+    },
+    body: newData
+  })
+    .then(res=> {
+              if (res.status===400) {
+                alert("please enter all the required field");
+              } else if(res.status===201) {
+                alert("Thought post created")
+                navigate('/home')
+              }
+          })
+    .catch(error => console.log(error))
+ }
 
 
-// // getting summary posts
-// useEffect(() => {
-//   fetch(`http://127.0.0.1:8000/post/summerypost/all/`, {
-//   method: 'GET',
-//   headers: {
-//       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
-//       "Accept": "application/json",
-//       "Content-Type": "application/json"
-//   }})
-//   .then(res =>{
-//     return res.json()
-//   })
-//   .then(data => {
-//       if (data.message) {
-//         setNoSummaryPosts([{data: data.message}]
-//         )
-//       } else {
-//         setSummaryPosts(data)
-//         console.log("asdfsa", data)
-//       }
+// getting summary posts
+useEffect(() => {
+  fetch(`http://127.0.0.1:8000/post/summerypost/all/`, {
+  method: 'GET',
+  headers: {
+      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+  }})
+  .then(res =>{
+    return res.json()
+  })
+  .then(data => {
+      if (data.message) {
+        setNoSummaryPosts([{data: data.message}]
+        )
+      } else {
+        setSummaryPosts(data)
+        // console.log("asdfsa", data)
+      }
      
-//   })
-// }, [])
+  })
+}, [])
 
+
+// getting thought posts
+useEffect(() => {
+  fetch(`http://127.0.0.1:8000/post/thoughtpost/all/`, {
+  method: 'GET',
+  headers: {
+      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+  }})
+  .then(res =>{
+    return res.json()
+  })
+  .then(data => {
+      if (data.message) {
+        setNoThoughtPosts([{data: data.message}]
+        )
+      } else {
+        setThoughtPosts(data)
+        console.log("asdfsa", data)
+      }
+     
+  })
+}, [])
+
+const allPosts = [...summaryPosts , ...thoughtPosts ]
+// const randomPosts = allPosts[Math.floor(Math.random()*allPosts.length)];
+const randomPosts = allPosts.sort(() => Math.random() - 0.5)
 
 
   const settings = {
@@ -195,6 +226,7 @@ const Home = () => {
     ]
   };
   const BASE_URL = "http://127.0.0.1:8000"
+  console.log("all posts", randomPosts)
 
     return (
         <Container fluid className='home-container'>
@@ -296,7 +328,7 @@ const Home = () => {
                                       </Form.Group>
                                       
                                       <div className="d-grid gap-2">
-                                        <Button variant="primary" size="sm"  >
+                                        <Button variant="primary" size="sm" onClick={()=> handleThoughtPost()} >
                                           Post
                                         </Button>
                                         </div>
@@ -572,7 +604,7 @@ const Home = () => {
 
                                       {/*----------- Post Button --------------*/}
                                       <div className="text-end m-3">
-                                            <Button className="px-4"  size="sm" variant="primary">Post</Button>
+                                            <Button className="px-4" onClick={()=> handleSummaryPost()} size="sm" variant="primary">Post</Button>
                                       </div>
                                   </form>
                               </Accordion>
@@ -583,20 +615,20 @@ const Home = () => {
 
                     {/* Course Information Start */}
                     <Row>
-                      {summaryPosts && summaryPosts.map((summaryPost, index) => <Col   key={index} className='my-3'>
+                      {allPosts && allPosts.map((post, index) => <div  key={index} className='my-3'>
                           <div className="fb-cards-designs">
                             <div className="fb-clone-card">
                               <div className="fb-card-main-content">
                                 <div className="fb-card-header">
                                   <div className="user-post-info">
                                     <div className="user-thumb">
-                                    { !summaryPost.group_name &&  <img  src={`${BASE_URL}${summaryPost.group_profile_pic}`} className="img-responsive" alt='user profile not found'/>}
-                                    {summaryPost.group_name &&  <img  src={`${BASE_URL}${summaryPost.user_profile_pic}`} className="img-responsive" alt='group profile not found'/>}
+                                    { !post.group_name &&  <img  src={`${BASE_URL}${post.group_profile_pic}`} className="img-responsive" alt='user profile not found'/>}
+                                    {post.group_name &&  <img  src={`${BASE_URL}${post.user_profile_pic}`} className="img-responsive" alt='group profile not found'/>}
 
                                     </div>
                                     <div className="user-information">
-                                    {!summaryPost.group_name && <p>{summaryPost.user_first_name}</p>}
-                                    {summaryPost.group_name && <p>{summaryPost.group_name}</p>}
+                                    {!post.group_name && <p>{post.user_first_name}</p>}
+                                    {post.group_name && <p>{post.group_name}</p>}
 
                                       {/* <small>{summaryPost.created}</small> */}
                                     </div>
@@ -605,20 +637,24 @@ const Home = () => {
                                       <i class="fa fa-ellipsis-h"></i>
                                   </div>
                                 </div>
-                                <div className="fb-card-body simple-text-card simple-image-card">
-                                    <p className='p-3'>{summaryPost.objective_of_the_study}</p>
-                                    <p className='p-3'>{summaryPost.theoritical_Background}</p>
-                                    <p className='p-3'>{summaryPost.research_gap}</p>
-                                    <p className='p-3'>{summaryPost.uniqueness_of_the_study}</p>
-                                    <p className='p-3'>{summaryPost.data_source_sample_information}</p>
-                                    <p className='p-3'>{summaryPost.research_methodology}</p>
-                                    <p className='p-3'>{summaryPost.result_discussion}</p>
-                                    <p className='p-3'>{summaryPost.validity_reliability_of_finding}</p>
-                                    <p className='p-3'>{summaryPost.usefulness_of_the_finding}</p>
-                                    <p className='p-3'>{summaryPost.reference}</p>
-                                    <p className='p-3'>{summaryPost.annex}</p>
-                                    <p className='p-3'>{summaryPost.keyword}</p>
-                                </div>
+                               {post.title_of_research_article &&  <div className="fb-card-body simple-text-card simple-image-card">
+                                    <p className='p-3'>{post.objective_of_the_study}</p>
+                                    <p className='p-3'>{post.theoritical_Background}</p>
+                                    <p className='p-3'>{post.research_gap}</p>
+                                    <p className='p-3'>{post.uniqueness_of_the_study}</p>
+                                    <p className='p-3'>{post.data_source_sample_information}</p>
+                                    <p className='p-3'>{post.research_methodology}</p>
+                                    <p className='p-3'>{post.result_discussion}</p>
+                                    <p className='p-3'>{post.validity_reliability_of_finding}</p>
+                                    <p className='p-3'>{post.usefulness_of_the_finding}</p>
+                                    <p className='p-3'>{post.reference}</p>
+                                    <p className='p-3'>{post.annex}</p>
+                                    <p className='p-3'>{post.keyword}</p>
+                                </div>}
+
+                                {!post.title_of_research_article &&  <div className="fb-card-body simple-text-card simple-image-card">
+                                    <p className='p-3'>{post.description}</p>
+                                </div>}
                               </div>
 
                                 <div className="fb-card-like-comment-holder">
@@ -662,7 +698,7 @@ const Home = () => {
                                 </div>
                               </div>
                             </div>
-                      </Col>)
+                      </div>)
                       }
                     </Row>
 
