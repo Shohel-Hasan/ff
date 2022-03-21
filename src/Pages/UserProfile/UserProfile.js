@@ -5,6 +5,7 @@ import man from '../../Images/man.jpg'
 import img from '../../assets/re/cover_photo.svg'
 import { Link, useParams } from 'react-router-dom';
 import camera from '../../Images/camera.svg'
+import { height } from '@mui/system';
 
 
 
@@ -62,46 +63,50 @@ const UserProfile = (props) => {
                 {/* -------------Banner Image Section---------------- */}
 
                 <Col md={8}>
-                <div className=''>
-                   <div class="container">
-                       <span class="wrapper">
-                           <input  type="file" name="image_src" id="image_filed" />
-                       </span>
-                   </div>
+                    
+                        <div class="container">
+                            <span class="wrapper">
+                                <input type="file" name="image_src" id="image_filed" />
+                            </span>
+                        </div>
 
-                <img
-                    style={{ borderBottomRightRadius:'8px', borderBottomLeftRadius:'8px', objectFit: 'cover' }}
-                    className="profile-cover img-fluid"
-                    src={`${BASE_URL}${userGeneralInfo.cover_pic}`}
-                    alt=''
-                />
-                </div>
+                       <div className='text-center'>
+                        <img
+                                style={{ borderBottomRightRadius:'8px', borderBottomLeftRadius:'8px', objectFit: 'cover', width:'850px', height:'320px' }}
+                                className="img-fluid"
+                                // src={`${BASE_URL}${userGeneralInfo.cover_pic}`}
+                                src={img}
+                                alt=''
+                            />
+                       </div>
+               
 
                     <div className='text-center'>
                         <img
                            style={{backgroundColor: "#ced0d4", marginTop: '-50px', objectFit: 'cover' }}
                            className="rounded-circle p-1"
-                           src={`${BASE_URL}${userGeneralInfo.profile_pic}`}
+                        //    src={`${BASE_URL}${userGeneralInfo.profile_pic}`}
+                        src={man}
                            width="150px"
                            height="150px"
                            alt=''
                        /> 
                         {/* Upolad image section */}
 
-                        <div class="container">
-                            <span class="user-profile-wrapper user-profile ">
-                                <input  type="file" name="image_src" id="user-profile-image_filed" />
-                            </span>
-                        </div>
+                            <div class="">
+                                <span class="user-profile ">
+                                    <input  type="file" name="image_src" id="user-profile-image_filed" />
+                                </span>
+                            </div>
                         
-                        <div>
-                            <h1 className="name" style={{ color: "#1877f2" }}> {localStorage.getItem('first_name')} </h1>
-                            <h6 className="fw-bold" style={{ color: "#1877f2" }}>{users.profession}</h6>
-                            {/* <h6 className="fw-bold" style={{ color: "#1877f2" }}>BUBT</h6> */}
-                            <button  
-                                className="bg-primary rounded-pill btn-sm btn text-white"
-                            >Follow <span><i className="plus-icon fa fa-plus"></i></span></button>
-                        </div>
+                            <div>
+                                <h1 className="name" style={{ color: "#1877f2" }}> {localStorage.getItem('first_name')} </h1>
+                                <h6 className="fw-bold" style={{ color: "#1877f2" }}>{users.profession}</h6>
+                                {/* <h6 className="fw-bold" style={{ color: "#1877f2" }}>BUBT</h6> */}
+                                <button  
+                                    className="bg-primary rounded-pill btn-sm btn text-white"
+                                >Follow <span><i className="plus-icon fa fa-plus"></i></span></button>
+                            </div>
                     </div>
 
        
