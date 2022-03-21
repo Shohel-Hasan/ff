@@ -116,7 +116,7 @@ const handleGroupSummaryPost = () => {
   const newData = new FormData();
 
   newData.append('description', description)
-  // newData.append('group', groupId.groupId)
+  newData.append('group', groupId.groupId)
   console.log(newData)
 
   fetch(`http://127.0.0.1:8000/post/${groupId.groupId}/group-thought-create/`, {
