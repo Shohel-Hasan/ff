@@ -383,7 +383,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                                                     <Form.Control defaultValue={localStorage.getItem('storeObjective')}  as="textarea" rows={6} placeholder='Objective of the study' />
                                                 </Form.Group>
                                                   <div className="text-end">
-                                                          <Button size="sm" onClick={handle} variant="primary">Save as a draft</Button>
+                                                    <Button size="sm" onClick={handle} variant="primary">Save as a draft</Button>
                                                   </div>
                                               </div>
                                             </Accordion.Body>
@@ -650,45 +650,51 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                                      <p className='p-3'><b>Theoretical background</b></p>
                                      <small className='p-3'>{post.theoritical_Background}</small>
                                     </div> 
-                                   <div>
+                                    <div>
                                      <p className='p-3'><b>Research gap</b></p>
                                      <small className='p-3'>{post.research_gap}</small>
                                     </div> 
-                                   <div>
+                                    <div>
                                      <p className='p-3'><b>Uniqueness of the study</b></p>
                                      <small className='p-3'>{post.uniqueness_of_the_study}</small>
                                     </div> 
-                                   <div>
+                                    <div>
                                      <p className='p-3'><b>Data source/sample information</b></p>
                                      <small className='p-3'>{post.data_source_sample_information}</small>
                                     </div> 
-                                   <div>
+                                    <div>
                                      <p className='p-3'><b>Research methodology</b></p>
                                      <small className='p-3'>{post.research_methodology}</small>
                                     </div> 
-                                   <div>
+                                    <div>
                                      <p className='p-3'><b>Result & discussion</b></p>
                                      <small className='p-3'>{post.result_discussion}</small>
                                     </div> 
-                                   <div>
+                                    <div>
                                      <p className='p-3'><b>Validity & reliability of finding</b></p>
                                      <small className='p-3'>{post.validity_reliability_of_finding}</small>
                                     </div> 
-                                   <div>
+                                    <div>
                                      <p className='p-3'><b>Usefulness of the finding</b></p>
                                      <small className='p-3'>{post.usefulness_of_the_finding}</small>
                                     </div> 
-                                   <div>
+                                    <div>
                                      <p className='p-3'><b>Reference</b></p>
                                      <small className='p-3'>{post.reference}</small>
                                     </div> 
-                                   <div>
+                                    <div>
                                      <p className='p-3'><b>Annex</b></p>
                                      <small className='p-3'>{post.annex}</small>
                                     </div> 
-                                   <div>
+                                    <div>
                                      <p className='p-3'><b>Keyword</b></p>
                                      <small className='p-3'>{post.keyword}</small>
+                                    </div> 
+                                    <div className='p-3'>
+                                      {/* <input type='file' defaultValue={post.file1} /> */}
+                                      <a href={`${BASE_URL}${post.file1}`} target="_blank">file1</a> <br />
+                                      <a href={`${BASE_URL}${post.file2}`} target="_blank">file2</a>
+
                                     </div> 
                                 </div>}
 
