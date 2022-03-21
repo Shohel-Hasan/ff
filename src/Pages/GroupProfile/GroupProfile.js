@@ -9,20 +9,8 @@ const GroupProfile = (props) => {
   const [show, setShow] = useState(false);
   const [modal, setModal] = useState(false);
   const [singleGroup, setSingleGroup] = useState({})
-  // const [title, setTitle] = useState(false);
-  // const [objective, setObjective] = useState(false);
-  // const [theoritical, setTheoritical] = useState(false);
-  // const [gap, setGap] = useState(false);
-  // const [unique, setUnique] = useState(false);
-  // const [data, setData] = useState(false);
-  // const [methodology, setMethodology] = useState(false);
-  // const [result, setResult] = useState(false);
-  // const [validity, setValidity] = useState(false);
-  // const [useful, setUseful] = useState(false);
-  // const [reference, setReference] = useState(false);
-  // const [annex, setAnnex] = useState(false);
-  // const [file, setFile] = useState(false);
-  // const [fileName, setFileName] = useState(false);
+
+  const [description, setDescription] = useState("")
 
 
   const [groupMember, setGroupMember] = useState({});
@@ -33,41 +21,39 @@ const GroupProfile = (props) => {
   const [noGroupCourses, setNoGroupCourses] = useState([]);
 
 
-
   //Local Storage Data State
-  const [storeTitle, setStoreTitle] = useState('');
-  const [storeObjective, setStoreObjective] = useState('');
-  const [storeTheoretical, setStoreTheoretical] = useState('');
-  const [storeGap, setStoreGap] = useState('');
-  const [storeUniqueness, setStoreUniqueness] = useState('');
-  const [storeData, setStoreData] = useState('');
-  const [storeMethodology, setStoreMethodology] = useState('');
-  const [storeResult, setStoreResult] = useState('');
-  const [storeValidity, setStoreValidity] = useState('');
-  const [storeUsefulness, setStoreUsefulness] = useState('');
-  const [storeReference, setStoreReference] = useState('');
-  const [storeAnnex, setStoreAnnex] = useState('');
-  const [storeKeyword, setStoreKeyword] = useState('');
+  const [storeTitleGroup, setStoreTitleGroup] = useState('');
+  const [storeObjectiveGroup, setStoreObjectiveGroup] = useState('');
+  const [storeTheoreticalGroup, setStoreTheoreticalGroup] = useState('');
+  const [storeGapGroup, setstoreGapGroup] = useState('');
+  const [storeUniquenessGroupGroup, setstoreUniquenessGroupGroup] = useState('');
+  const [storeDataGroup, setstoreDataGroup] = useState('');
+  const [storeMethodologyGroup, setstoreMethodologyGroup] = useState('');
+  const [storeResultGroup, setstoreResultGroup] = useState('');
+  const [storeValidityGroup, setstoreValidityGroup] = useState('');
+  const [storeUsefulnessGroup, setstoreUsefulnessGroup] = useState('');
+  const [storeReferenceGroup, setstoreReferenceGroup] = useState('');
+  const [storeAnnexGroup, setstoreAnnexGroup] = useState('');
+  const [storeKeywordGroup, setstoreKeywordGroup] = useState('');
 
   const [file1, setFile1] = useState();
   const [file2, setFile2] = useState();
 
-  const [description, setDescription] = useState("")
 
-  const handle = () => {
-    localStorage.setItem('storeTitle', storeTitle);
-    localStorage.setItem('storeObjective', storeObjective);
-    localStorage.setItem('storeTheoretical', storeTheoretical);
-    localStorage.setItem('storeUniqueness', storeUniqueness);
-    localStorage.setItem('storeData', storeData);
-    localStorage.setItem('storeMethodology', storeMethodology);
-    localStorage.setItem('storeResult', storeResult);
-    localStorage.setItem('storeValidity', storeValidity);
-    localStorage.setItem('storeGap', storeGap);
-    localStorage.setItem('storeUsefulness', storeUsefulness);
-    localStorage.setItem('storeReference', storeReference);
-    localStorage.setItem('storeAnnex', storeAnnex);
-    localStorage.setItem('storeKeyword', storeKeyword);
+  const handleGroup = () => {
+    localStorage.setItem('storeTitleGroup', storeTitleGroup);
+    localStorage.setItem('storeObjectiveGroup', storeObjectiveGroup);
+    localStorage.setItem('storeTheoreticalGroup', storeTheoreticalGroup);
+    localStorage.setItem('storeUniquenessGroupGroup', storeUniquenessGroupGroup);
+    localStorage.setItem('storeDataGroup', storeDataGroup);
+    localStorage.setItem('storeMethodologyGroup', storeMethodologyGroup);
+    localStorage.setItem('storeResultGroup', storeResultGroup);
+    localStorage.setItem('storeValidityGroup', storeValidityGroup);
+    localStorage.setItem('storeGapGroup', storeGapGroup);
+    localStorage.setItem('storeUsefulnessGroup', storeUsefulnessGroup);
+    localStorage.setItem('storeReferenceGroup', storeReferenceGroup);
+    localStorage.setItem('storeAnnexGroup', storeAnnexGroup);
+    localStorage.setItem('storeKeywordGroup', storeKeywordGroup);
  };
 
 
@@ -81,6 +67,77 @@ const GroupProfile = (props) => {
   console.log("group id: ", groupId);
 
   props.triggerCheckLoggedIn();
+
+
+  
+const handleGroupSummaryPost = () => {
+  // e.preventDefault();
+  const newData = new FormData();
+
+  newData.append('title_of_research_article', storeTitleGroup);
+  newData.append('objective_of_the_study', storeObjectiveGroup);
+  newData.append('theoritical_Background', storeTheoreticalGroup);
+  newData.append('research_gap', storeGapGroup,);
+  newData.append('uniqueness_of_the_study', storeUniquenessGroupGroup,);
+  newData.append("data_source_sample_information",storeDataGroup)
+  newData.append("research_methodology",storeMethodologyGroup)
+  newData.append('result_discussion',storeResultGroup)
+  newData.append('validity_reliability_of_finding',storeValidityGroup)
+  newData.append('usefulness_of_the_finding',storeUsefulnessGroup)
+  newData.append('reference',storeReferenceGroup)
+  newData.append('annex',storeAnnexGroup)
+  newData.append('file1', file1)
+  newData.append('file2', file2)
+  newData.append('keyword',storeKeywordGroup)
+  newData.append('user', localStorage.getItem('id'))
+  console.log(newData)
+
+  fetch(`http://127.0.0.1:8000/post/${groupId.groupId}/group-summery-create/`, {
+    method: "POST",
+    headers: {
+      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+    },
+    body: newData
+  })
+    .then(res=> {
+              if (res.status===400) {
+                alert("please enter all the required field");
+              } else if(res.status===201) {
+                alert("summary post created")
+              }
+          })
+    .catch(error => console.log(error))
+ }
+
+
+ // group thought post
+ const handleGroupThoughtPost = () => {
+  // e.preventDefault();
+  const newData = new FormData();
+
+  newData.append('description', description)
+  newData.append('group', groupId.groupId)
+  console.log(newData)
+
+  fetch(`http://127.0.0.1:8000/post/${groupId.groupId}/group-thought-create/`, {
+    method: "POST",
+    headers: {
+      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+    },
+    body: newData
+  })
+    .then(res=> {
+              if (res.status===400) {
+                alert("please enter all the required field");
+              } else if(res.status===201) {
+                alert("Thought post created")
+                // navigate('/home')
+              }
+          })
+    .catch(error => console.log(error))
+ }
+
+
 
   // getting group details
   useEffect(() => {
@@ -271,8 +328,8 @@ useEffect(() => {
                          <option value="2">UnFollow</option>
                          <option value="3">Joint as Content Creator</option>
                          <option value="4">Requested as Content Creator</option>
-                              <option value="5">Content Creator</option>
-                            </select>
+                         <option value="5">Content Creator</option>
+                        </select>
                       </div> 
                     }
                 </Col>
@@ -334,7 +391,7 @@ useEffect(() => {
                                             />
                                           </div>
                                           <div>
-                                              <h6>Md. Saddam Hossain</h6>
+                                              <h6>{singleGroup.name}</h6>
                                           </div>
                                       </div>
                                       <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
@@ -342,7 +399,7 @@ useEffect(() => {
                                       </Form.Group>
                                       
                                       <div className="d-grid gap-2">
-                                        <Button variant="primary" size="sm"  >
+                                        <Button variant="primary" size="sm" onClick={()=> handleGroupThoughtPost()} >
                                           Post
                                         </Button>
                                         </div>
@@ -375,11 +432,11 @@ useEffect(() => {
                                         </Accordion.Header>
                                             <Accordion.Body>
                                               <div id="example-collapse-text">
-                                                  <InputGroup className="mb-3"  onChange={(e) =>setStoreTitle(e.target.value)}>
-                                                    <FormControl defaultValue={localStorage.getItem('storeTitle')} placeholder="Title of research article" />
+                                                  <InputGroup className="mb-3"  onChange={(e) =>setStoreTitleGroup(e.target.value)}>
+                                                    <FormControl defaultValue={localStorage.getItem('storeTitleGroup')} placeholder="Title of research article" />
                                                   </InputGroup> 
                                                   <div className="text-end">
-                                                          <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
+                                                          <Button onClick={handleGroup} size="sm" variant="primary">Save as a draft</Button>
                                                   </div>
                                               </div>
                                               </Accordion.Body>
@@ -393,11 +450,11 @@ useEffect(() => {
                                             </Accordion.Header>
                                               <Accordion.Body>
                                               <div id="example-collapse-text">
-                                                  <Form.Group  onChange={(e) =>setStoreObjective(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                    <Form.Control defaultValue={localStorage.getItem('storeObjective')}  as="textarea" rows={6} placeholder='Objective of the study' />
+                                                  <Form.Group  onChange={(e) =>setStoreObjectiveGroup(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                    <Form.Control defaultValue={localStorage.getItem('storeObjectiveGroup')}  as="textarea" rows={6} placeholder='Objective of the study' />
                                                 </Form.Group>
                                                   <div className="text-end">
-                                                          <Button size="sm" onClick={handle} variant="primary">Save as a draft</Button>
+                                                          <Button size="sm" onClick={handleGroup} variant="primary">Save as a draft</Button>
                                                   </div>
                                               </div>
                                             </Accordion.Body>
@@ -410,11 +467,11 @@ useEffect(() => {
                                               </Accordion.Header>
                                               <Accordion.Body>
                                               <div id="example-collapse-text">
-                                                  <Form.Group onChange={(e) =>setStoreTheoretical(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                    <Form.Control defaultValue={localStorage.getItem('storeTheoretical')} as="textarea" rows={6} placeholder='Theoretical Background' />
+                                                  <Form.Group onChange={(e) =>setStoreTheoreticalGroup(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                    <Form.Control defaultValue={localStorage.getItem('storeObjectiveGroup')} as="textarea" rows={6} placeholder='Theoretical Background' />
                                                 </Form.Group>
                                                   <div className="text-end">
-                                                          <Button onClick={handle} size="sm"  variant="primary">Save as a draft</Button>
+                                                          <Button onClick={handleGroup} size="sm"  variant="primary">Save as a draft</Button>
                                                   </div>
                                               </div>
                                               </Accordion.Body>
@@ -427,11 +484,11 @@ useEffect(() => {
                                             </Accordion.Header>
                                               <Accordion.Body>
                                               <div id="example-collapse-text">
-                                                  <Form.Group onChange={(e) =>setStoreGap(e.target.value)}  className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                    <Form.Control defaultValue={localStorage.getItem('storeGap')}  as="textarea" rows={6} placeholder='Research Gap' />
+                                                  <Form.Group onChange={(e) =>setstoreGapGroup(e.target.value)}  className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                    <Form.Control defaultValue={localStorage.getItem('storeGapGroup')}  as="textarea" rows={6} placeholder='Research Gap' />
                                                 </Form.Group>
                                                   <div className="text-end">
-                                                          <Button onClick={handle} size="sm"  variant="primary">Save as a draft</Button>
+                                                          <Button onClick={handleGroup} size="sm"  variant="primary">Save as a draft</Button>
                                                   </div>
                                               </div>
                                             </Accordion.Body>
@@ -445,11 +502,11 @@ useEffect(() => {
                                               </Accordion.Header>
                                               <Accordion.Body>
                                               <div id="example-collapse-text">
-                                                  <Form.Group onChange={(e) =>setStoreUniqueness(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                    <Form.Control defaultValue={localStorage.getItem('storeUniqueness')} as="textarea" rows={6} placeholder='Uniqueness of the study' />
+                                                  <Form.Group onChange={(e) =>setstoreUniquenessGroupGroup(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                    <Form.Control defaultValue={localStorage.getItem('storeUniquenessGroupGroup')} as="textarea" rows={6} placeholder='Uniqueness of the study' />
                                                 </Form.Group>
                                                   <div className="text-end">
-                                                          <Button onClick={handle} size="sm"  variant="primary">Save as a draft</Button>
+                                                          <Button onClick={handleGroup} size="sm"  variant="primary">Save as a draft</Button>
                                                   </div>
                                               </div>
                                               </Accordion.Body>
@@ -463,11 +520,11 @@ useEffect(() => {
                                             </Accordion.Header>
                                             <Accordion.Body>
                                               <div id="example-collapse-text">
-                                                  <Form.Group onChange={(e) =>setStoreData(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                    <Form.Control defaultValue={localStorage.getItem('storeData')} as="textarea" rows={6} placeholder='Data source/sample Information' />
+                                                  <Form.Group onChange={(e) =>setstoreDataGroup(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                    <Form.Control defaultValue={localStorage.getItem('storeDataGroup')} as="textarea" rows={6} placeholder='Data source/sample Information' />
                                                   </Form.Group>
                                                   <div className="text-end">
-                                                          <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
+                                                          <Button onClick={handleGroup} size="sm" variant="primary">Save as a draft</Button>
                                                   </div>
                                               </div>
                                             </Accordion.Body>
@@ -481,11 +538,11 @@ useEffect(() => {
                                             </Accordion.Header>
                                             <Accordion.Body>
                                               <div id="example-collapse-text">
-                                                  <Form.Group onChange={(e) =>setStoreMethodology(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                    <Form.Control defaultValue={localStorage.getItem('storeMethodology')} as="textarea" rows={6} placeholder='Research methodology' />
+                                                  <Form.Group onChange={(e) =>setstoreMethodologyGroup(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                    <Form.Control defaultValue={localStorage.getItem('storeMethodologyGroup')} as="textarea" rows={6} placeholder='Research methodology' />
                                                   </Form.Group>
                                                   <div className="text-end">
-                                                          <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
+                                                          <Button onClick={handleGroup} size="sm" variant="primary">Save as a draft</Button>
                                                   </div>
                                               </div>
                                             </Accordion.Body>
@@ -499,11 +556,11 @@ useEffect(() => {
                                             </Accordion.Header>
                                             <Accordion.Body>
                                               <div id="example-collapse-text">
-                                                  <Form.Group onChange={(e) =>setStoreResult(e.target.value)}  className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                    <Form.Control defaultValue={localStorage.getItem('storeResult')} as="textarea" rows={6} placeholder='Result & discussion' />
+                                                  <Form.Group onChange={(e) =>setstoreResultGroup(e.target.value)}  className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                    <Form.Control defaultValue={localStorage.getItem('storeResultGroup')} as="textarea" rows={6} placeholder='Result & discussion' />
                                                   </Form.Group>
                                                   <div className="text-end">
-                                                          <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
+                                                          <Button onClick={handleGroup} size="sm" variant="primary">Save as a draft</Button>
                                                   </div>
                                               </div>
                                               </Accordion.Body>
@@ -517,11 +574,11 @@ useEffect(() => {
                                             </Accordion.Header>
                                               <Accordion.Body>
                                               <div id="example-collapse-text">
-                                                  <Form.Group onChange={(e) =>setStoreValidity(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                    <Form.Control defaultValue={localStorage.getItem('storeValidity')} as="textarea" rows={6} placeholder='Validity & reliability of finding' />
+                                                  <Form.Group onChange={(e) =>setstoreValidityGroup(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                    <Form.Control defaultValue={localStorage.getItem('storeValidityGroup')} as="textarea" rows={6} placeholder='Validity & reliability of finding' />
                                                   </Form.Group>
                                                   <div className="text-end">
-                                                          <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
+                                                          <Button onClick={handleGroup} size="sm" variant="primary">Save as a draft</Button>
                                                   </div>
                                               </div>
                                               </Accordion.Body>
@@ -535,11 +592,11 @@ useEffect(() => {
                                               </Accordion.Header>
                                               <Accordion.Body>
                                               <div id="example-collapse-text">
-                                                  <Form.Group onChange={(e) =>setStoreUsefulness(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                    <Form.Control defaultValue={localStorage.getItem('storeUsefulness')}  as="textarea" rows={6} placeholder='Usefulness of the finding' />
+                                                  <Form.Group onChange={(e) =>setstoreUsefulnessGroup(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                    <Form.Control defaultValue={localStorage.getItem('storeUsefulnessGroup')}  as="textarea" rows={6} placeholder='Usefulness of the finding' />
                                                   </Form.Group>
                                                   <div className="text-end">
-                                                          <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
+                                                          <Button onClick={handleGroup} size="sm" variant="primary">Save as a draft</Button>
                                                   </div>
                                               </div>
                                               </Accordion.Body>
@@ -553,11 +610,11 @@ useEffect(() => {
                                             </Accordion.Header>
                                             <Accordion.Body>
                                               <div id="example-collapse-text">
-                                                  <Form.Group onChange={(e) =>setStoreReference(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                    <Form.Control defaultValue={localStorage.getItem('storeReference')}  as="textarea" rows={6} placeholder='Reference' />
+                                                  <Form.Group onChange={(e) =>setstoreReferenceGroup(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                    <Form.Control defaultValue={localStorage.getItem('storeReferenceGroup')}  as="textarea" rows={6} placeholder='Reference' />
                                                   </Form.Group>
                                                   <div className="text-end">
-                                                          <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
+                                                          <Button onClick={handleGroup} size="sm" variant="primary">Save as a draft</Button>
                                                   </div>
                                               </div>
                                             </Accordion.Body>
@@ -571,11 +628,11 @@ useEffect(() => {
                                             </Accordion.Header>
                                             <Accordion.Body>
                                               <div id="example-collapse-text">
-                                                  <Form.Group  onChange={(e) =>setStoreAnnex(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                    <Form.Control defaultValue={localStorage.getItem('storeAnnex')} as="textarea" rows={6} placeholder='Annex' />
+                                                  <Form.Group  onChange={(e) =>setstoreAnnexGroup(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                    <Form.Control defaultValue={localStorage.getItem('storeAnnexGroup')} as="textarea" rows={6} placeholder='Annex' />
                                                   </Form.Group>
                                                   <div className="text-end">
-                                                          <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
+                                                          <Button onClick={handleGroup} size="sm" variant="primary">Save as a draft</Button>
                                                   </div>
                                               </div>
                                               </Accordion.Body>
@@ -606,11 +663,11 @@ useEffect(() => {
                                           </Accordion.Header>
                                           <Accordion.Body>
                                               <div id="example-collapse-text">
-                                                  <Form.Group onChange={(e) =>setStoreKeyword(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                    <Form.Control defaultValue={localStorage.getItem('storeKeyword')} as="textarea" rows={6} placeholder='Keyword without space' />
+                                                  <Form.Group onChange={(e) =>setstoreKeywordGroup(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                    <Form.Control defaultValue={localStorage.getItem('storeKeywordGroup')} as="textarea" rows={6} placeholder='Keyword without space' />
                                                   </Form.Group>
                                                   <div className="text-end">
-                                                          <Button onClick={handle} size="sm" variant="primary">Save</Button>
+                                                          <Button onClick={handleGroup} size="sm" variant="primary">Save</Button>
                                                   </div>
                                               </div>
                                               </Accordion.Body>
@@ -618,7 +675,7 @@ useEffect(() => {
 
                                       {/*----------- Post Button --------------*/}
                                       <div className="text-end m-3">
-                                            <Button className="px-4"  size="sm" variant="primary">Post</Button>
+                                            <Button className="px-4" onClick={()=> handleGroupSummaryPost()}  size="sm" variant="primary">Post</Button>
                                       </div>
                                   </form>
                               </Accordion>
