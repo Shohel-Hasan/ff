@@ -63,11 +63,12 @@ const UserProfile = (props) => {
 
                 <Col md={8}>
                 <div className=''>
-                    <div className='text-end cover-edit'>
-                         <label for="file-input">
-                             <img src={camera} alt=''/>
-                          </label>
-                    </div>
+                   <div class="container">
+                       <span class="wrapper">
+                           <input  type="file" name="image_src" id="image_filed" />
+                       </span>
+                   </div>
+
                 <img
                     style={{ borderBottomRightRadius:'8px', borderBottomLeftRadius:'8px', objectFit: 'cover' }}
                     className="profile-cover img-fluid"
@@ -75,7 +76,8 @@ const UserProfile = (props) => {
                     alt=''
                 />
                 </div>
-                    <div className='text-center icon-container'>
+
+                    <div className='text-center'>
                         <img
                            style={{backgroundColor: "#ced0d4", marginTop: '-50px', objectFit: 'cover' }}
                            className="rounded-circle p-1"
@@ -84,14 +86,15 @@ const UserProfile = (props) => {
                            height="150px"
                            alt=''
                        /> 
+                        {/* Upolad image section */}
 
-                       <div className="image-upload">
-                            <label for="file-input">
-                               <img src={camera} alt=''/>
-                            </label>
-                            <input id="file-input" type="file"/>
+                        <div class="container">
+                            <span class="user-profile-wrapper user-profile ">
+                                <input  type="file" name="image_src" id="user-profile-image_filed" />
+                            </span>
                         </div>
-                        <div style={{marginTop:'-50px'}}>
+                        
+                        <div>
                             <h1 className="name" style={{ color: "#1877f2" }}> {localStorage.getItem('first_name')} </h1>
                             <h6 className="fw-bold" style={{ color: "#1877f2" }}>{users.profession}</h6>
                             {/* <h6 className="fw-bold" style={{ color: "#1877f2" }}>BUBT</h6> */}
