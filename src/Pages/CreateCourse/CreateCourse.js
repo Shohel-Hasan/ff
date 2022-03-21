@@ -51,7 +51,7 @@ const CreateCourse = (props) => {
     const [paymentProcedure ,setPaymentProcedure] = useState("");
     const [expectedStudent, setExpectedStudent] = useState("");
     const [disclaimer, setDisclaimer] = useState("");
-    const [courseTeacher, setCourseTeacher] = useState("");
+    // const [courseTeacher, setCourseTeacher] = useState("");
 
     const [singleGroup, setSingleGroup] = useState({})
 
@@ -404,15 +404,13 @@ const BASE_URL = "http://127.0.0.1:8000"
                        {/* Group name & information start  */}
                        <Row className='justify-content-center'>
                             <Col md={8}>
-                             <div className='text-end edit-cover'>
-                               <label  for="file-input">
-                               <input 
-                                   type="file"     
-                                   onChange={e => setCoverPic(e.target.files[0])}
-                               />
-                                      <i className="fa fa-pencil"> Edit</i>
-                                </label>
-                             </div>
+                             
+                                 <div class="container">
+                                    <span class="select-wrapper">
+                                        <input onChange={e => setCoverPic(e.target.files[0])} type="file" name="image_src" id="image_src" />
+                                    </span>
+                                </div>
+                           
                          
                              <img className='course-img img-fluid rounded' src={man} alt=""/>
                              
