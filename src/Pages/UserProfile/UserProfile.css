@@ -76,31 +76,20 @@
   position: relative;
   width: 25px;
   height: 25px;
-  left: 98%;
+  left: 96%;
   top: 30px;
 }
 #image_filed {
   width: 26px;
   height: 26px;
-  margin-right: 100px;
   opacity: 0;
   filter: alpha(opacity=0); /* IE 5-7 */
 }
 
-/* .user-profile-wrapper {
-  background: url('../../Images/camera.svg') no-repeat;
-  background-size: cover;
-  display: block;
-  position: relative;
-  width: 25px;
-  height: 25px;
-  left: 57%;
-  bottom: 53px;
-} */
+
 #user-profile-image_filed {
   width: 26px;
   height: 26px;
-  margin-right: 100px;
   opacity: 0;
   filter: alpha(opacity=0); /* IE 5-7 */
 }
@@ -113,12 +102,12 @@
   position: relative;
   width: 25px;
   height: 25px;
-  left: 70%;
+  left: 66%;
   bottom: 50px;
 }
 }
 
-@media (min-width: px){
+@media (min-width: 375px){
   .user-profile {
     background: url('../../Images/camera.svg') no-repeat;
     background-size: cover;
@@ -126,8 +115,57 @@
     position: relative;
     width: 25px;
     height: 25px;
-    left: 57%;
+    left: 63%;
     bottom: 50px;
   }
   }
-
+ 
+    @media (min-width: 425px){
+      .user-profile {
+        background: url('../../Images/camera.svg') no-repeat;
+        background-size: cover;
+        display: block;
+        position: relative;
+        width: 25px;
+        height: 25px;
+        left: 62%;
+        bottom: 50px;
+      }
+      }
+      @media (min-width: 768px){
+        .user-profile {
+          background: url('../../Images/camera.svg') no-repeat;
+          background-size: cover;
+          display: block;
+          position: relative;
+          width: 25px;
+          height: 25px;
+          left: 60%;
+          bottom: 50px;
+        }
+        }
+        @media (min-width: 1024px){
+          .user-profile {
+            background: url('../../Images/camera.svg') no-repeat;
+            background-size: cover;
+            display: block;
+            position: relative;
+            width: 25px;
+            height: 25px;
+            left: 56%;
+            bottom: 52px;
+          }
+          }
+          @media (min-width: 1440px){
+            .user-profile {
+              background: url('../../Images/camera.svg') no-repeat;
+              background-size: cover;
+              display: block;
+              position: relative;
+              width: 25px;
+              height: 25px;
+              left: 55%;
+              bottom: 50px;
+            }
+            }
+  
