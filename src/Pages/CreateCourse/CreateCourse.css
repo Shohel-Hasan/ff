@@ -100,12 +100,30 @@
       }
       
 
-      .edit-cover  i{
+      /* .edit-cover  i{
         position: relative;
         top: 25px;
         left: -5px;
         color: white;
         
+      } */
+
+      .select-wrapper {
+        background: url('../../Images/camera.svg') no-repeat;
+        background-size: cover;
+        display: block;
+        position: relative;
+        width: 25px;
+        height: 25px;
+        left: 98%;
+        top: 30px;
+      }
+      #image_src {
+        width: 26px;
+        height: 26px;
+        margin-right: 100px;
+        opacity: 0;
+        filter: alpha(opacity=0); /* IE 5-7 */
       }
       
     
