@@ -1,5 +1,5 @@
 .custom {
-  padding-top: 90px;
+  padding-top: 63px;
 }
 
 @media screen and (max-width: 575px) {
@@ -11,9 +11,14 @@
   color: blue
 }
 .group-cover{
-  
     width: 850px;
     height: 312px;
   
   
+}
+
+@media(max-width: 767px) {
+  .group-post-input{
+    width: 100%;
+  }
 }

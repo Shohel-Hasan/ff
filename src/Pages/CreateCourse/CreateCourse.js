@@ -3,7 +3,7 @@ import { Button, Col, Collapse, Container, Form, Row } from 'react-bootstrap';
 import './CreateCourse.css'
 import img from '../../Images/Layer 1.png'
 import man from '../../Images/man.jpg'
-import { fontWeight } from '@mui/system';
+import { fontWeight, margin } from '@mui/system';
 import { useNavigate, useParams } from 'react-router-dom';
 
 
@@ -422,7 +422,7 @@ const BASE_URL = "http://127.0.0.1:8000"
                       
                        <Row  className='mt-2'>
                             <Col md={{ span: 3, offset: 2 }}>
-                                <div className='icon-container'>
+                                <div className='icon-container d-flex align-items-center'>
                                      <img className='group-pic'  src={`${BASE_URL}${singleGroup.cover_pic}`} alt='' />
                                      <div className="image-load mt-4">
                                     
@@ -432,8 +432,8 @@ const BASE_URL = "http://127.0.0.1:8000"
                                            
                                         </label>
                                         <input className='d-none' id="file-input" type="file"/> */}
-                                        <h6 style={{ color: "#1877f2", fontSize:'20px', marginTop: '-27px' }} > {singleGroup.name}</h6>
                                     </div>
+                                    <div><h6 style={{ color: "#1877f2", fontSize:'20px', marginLeft: '15px'}} > {singleGroup.name}</h6></div>
                                 </div>
                                 <div>
                                 </div>

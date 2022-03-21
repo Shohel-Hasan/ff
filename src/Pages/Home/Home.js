@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Col, Container, Form, Row, Modal,Button, Collapse, FormControl, InputGroup, Accordion } from 'react-bootstrap';
+import { Col, Container, Form, Row, Modal,Button, FormControl, InputGroup, Accordion } from 'react-bootstrap';
 import Slider from 'react-slick';
 import './Home.css';
 import man from '../../Images/saddam.jpg';
