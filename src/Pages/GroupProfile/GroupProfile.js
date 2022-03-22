@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col, Container, Form, Row, Modal,Button, FormControl,  InputGroup, Accordion } from 'react-bootstrap';
+import { Col, Container, Form, Row, Modal,Button, FormControl,  InputGroup, Accordion, Badge } from 'react-bootstrap';
 import { Link, useParams } from "react-router-dom";
 import "./GroupProfile.css";
 import man from '../../Images/man.jpg';
@@ -8,6 +8,7 @@ const GroupProfile = (props) => {
 
   const [show, setShow] = useState(false);
   const [modal, setModal] = useState(false);
+  const [setting, setSetting] = useState(false);
   const [singleGroup, setSingleGroup] = useState({})
 
   const [description, setDescription] = useState("")
@@ -344,11 +345,12 @@ useEffect(() => {
                 </div>
                 </div>
           </Col>
-          <Col className="d-flex align-items-center justify-content-center my-2 ">
+          <Col className="d-flex align-items-center justify-content-center " 
+          >
                     {
-                       groupMember.role==="Creator" ? <div className="d-flex justify-content-center"> <Link to={`/${groupId.groupId}/create-course`}>Create Course</Link> </div> : <div>
+                       groupMember.role==="Creator" ? <div className="d-flex justify-content-center"> <Link to={`/${groupId.groupId}/create-course`}><Badge className="p-2" bg="primary">Create Course </Badge></Link> </div> : <div className="w-50 ">
                        <select
-                         className="form-select form-select-lg mb-3 w-25 mx-auto"
+                         className="form-select form-select-sm  mx-auto"
                          aria-label="form-select-lg example"
                        >
                          <option value="1">Follow</option>
@@ -359,7 +361,12 @@ useEffect(() => {
                         </select>
                       </div> 
                     }
-                </Col>
+                    <button   onClick={() => setSetting(true)} type="button" className="btn btn-outline-primary mx-5"><i className="fa fa-gear"></i></button>
+            </Col>
+
+            {/* <Col className="d-flex align-items-center justify-content-between ">
+                     
+            </Col> */}
             
         </Row>
 
@@ -711,108 +718,118 @@ useEffect(() => {
                         </Col>
                     </Row>
 
-
-      <Accordion
-        className=" container shadow-lg p-3 mb-5 bg-white rounded"
-        alwaysOpen >
-        <Accordion.Item eventKey="0">
-          <Accordion.Header>
-            About Us <br />
-            <i style={{color: 'blue'}} className="fas fa-edit p-2 "></i>
-          </Accordion.Header>
-          <Accordion.Body>
-            <div class="mb-3">
-              <form onSubmit={updateGroup}>
-                <div class="input-group">
-                  <div class="input-group-prepend"></div>
-                  <textarea
-                    class="form-control"
-                    aria-label="With textarea"
-                    placeholder="About Us" 
-                    onChange= {e=> setGroupAboutText(e.target.value)}
-                    required
-                    defaultValue={singleGroup.about}
-                  ></textarea>
-                </div>
-                <div className="text-end mt-3">
-                  {
-                    groupMember.role==="Creator" && 
-                    <Button type='submit' variant="primary justify ">Save</Button>
-                  }
-                </div>
-              </form>
-            </div>
-          
-          </Accordion.Body>
-        </Accordion.Item>
-        <Accordion.Item eventKey="1">
-          <Accordion.Header>Group Criteria</Accordion.Header>
-          <Accordion.Body>
-
-            { groupCriteria?.length!==0 && 
-              groupCriteria?.map(criteria => <div key={criteria.id}>
-                <h6>Title: {criteria.criteria_title}</h6>
-                <p>Description: {criteria.criteria_detail}</p>
-
-              </div>)
-            }
-
-
-            { groupMember.role==="Creator" && 
-              <form onSubmit={groupCriteriaPost}>
-              <div class="mb-3">
-                <p>
-                  Title <i style={{color: 'blue'}}  className="fas fa-edit p-2"></i>
-                </p>
-
-                <div class="input-group">
-                  <div class="input-group-prepend"></div>
-                  <textarea
-                    class="form-control"
-                    aria-label="With textarea"
-                    placeholder="Title"
-                    onChange={e=> setCriteriaTitle(e.target.value)}
-                  ></textarea>
-                </div>
-              </div>
-              <p>
-                Description <i className="fas fa-edit p-2 icon-clr"></i>
-              </p>
-              <div class="mb-3">
-                <div class="input-group">
-                  <div class="input-group-prepend"></div>
-                  <textarea
-                    class="form-control"
-                    aria-label="With textarea"
-                    placeholder="Description"
-                    onChange={e=> setCriteriaDetail(e.target.value)}
-                  ></textarea>
-                </div>
-              </div>
-              <div className="text-end mt-2">
-                <i className="fas fa-plus"></i>
-              </div>
-              <div className="text-end mt-3">
-                <Button type="submit" variant="primary justify ">Save</Button>
-              </div>
-              </form>
-            }
+                      {/*--------- Setting Modal Section---------  */}
+              <Modal show={setting}
+                       onHide={() => setSetting(false)}
+                       dialogClassName="modal-90w"
+                       aria-labelledby="contained-modal-title-vcenter"
+                       centered
+                >
+                  <Modal.Body className="">
+                    <Accordion
+                      className=" container shadow-lg bg-white rounded"
+                      alwaysOpen >
+                      <Accordion.Item eventKey="0">
+                        <Accordion.Header>
+                          About Us <br />
+                          <i style={{color: 'blue'}} className="fas fa-edit p-2 "></i>
+                        </Accordion.Header>
+                        <Accordion.Body>
+                          <div class="mb-3">
+                            <form onSubmit={updateGroup}>
+                              <div class="input-group">
+                                <div class="input-group-prepend"></div>
+                                <textarea
+                                  class="form-control"
+                                  aria-label="With textarea"
+                                  placeholder="About Us" 
+                                  onChange= {e=> setGroupAboutText(e.target.value)}
+                                  required
+                                  defaultValue={singleGroup.about}
+                                ></textarea>
+                              </div>
+                              <div className="text-end mt-3">
+                                {
+                                  groupMember.role==="Creator" && 
+                                  <Button type='submit' variant="primary justify ">Save</Button>
+                                }
+                              </div>
+                            </form>
+                          </div>
+                        
+                        </Accordion.Body>
+                      </Accordion.Item>
+                      <Accordion.Item eventKey="1">
+                        <Accordion.Header>Group Criteria</Accordion.Header>
+                        <Accordion.Body>
             
-          </Accordion.Body>
-        </Accordion.Item>
-        <Accordion.Item eventKey="2">
-          <Accordion.Header>Group Creator</Accordion.Header>
-          <Accordion.Body>
-           {singleGroup && <Link to={`/user/${localStorage.getItem('id')}`}><p className="Name"> { singleGroup['first_name']}  </p></Link>}
-          </Accordion.Body>
-        </Accordion.Item>
-
-        <Accordion.Item eventKey="3">
-          <Accordion.Header>Group Courses</Accordion.Header>
-          <Accordion.Body>
-           {groupCourses && groupCourses.map(gCourse => <Link to={`/course/${gCourse.id}/details`}><p className="Name"> { gCourse.name}  </p></Link>)}
-          </Accordion.Body>
-        </Accordion.Item>
+                          { groupCriteria?.length!==0 && 
+                            groupCriteria?.map(criteria => <div key={criteria.id}>
+                              <h6>Title: {criteria.criteria_title}</h6>
+                              <p>Description: {criteria.criteria_detail}</p>
+            
+                            </div>)
+                          }
+            
+            
+                          { groupMember.role==="Creator" && 
+                            <form onSubmit={groupCriteriaPost}>
+                            <div class="mb-3">
+                              <p>
+                                Title <i style={{color: 'blue'}}  className="fas fa-edit p-2"></i>
+                              </p>
+            
+                              <div class="input-group">
+                                <div class="input-group-prepend"></div>
+                                <textarea
+                                  class="form-control"
+                                  aria-label="With textarea"
+                                  placeholder="Title"
+                                  onChange={e=> setCriteriaTitle(e.target.value)}
+                                ></textarea>
+                              </div>
+                            </div>
+                            <p>
+                              Description <i className="fas fa-edit p-2 icon-clr"></i>
+                            </p>
+                            <div class="mb-3">
+                              <div class="input-group">
+                                <div class="input-group-prepend"></div>
+                                <textarea
+                                  class="form-control"
+                                  aria-label="With textarea"
+                                  placeholder="Description"
+                                  onChange={e=> setCriteriaDetail(e.target.value)}
+                                ></textarea>
+                              </div>
+                            </div>
+                            <div className="text-end mt-2">
+                              <i className="fas fa-plus"></i>
+                            </div>
+                            <div className="text-end mt-3">
+                              <Button type="submit" variant="primary justify ">Save</Button>
+                            </div>
+                            </form>
+                          }
+                          
+                        </Accordion.Body>
+                      </Accordion.Item>
+                      <Accordion.Item eventKey="2">
+                        <Accordion.Header>Group Creator</Accordion.Header>
+                        <Accordion.Body>
+                        {singleGroup && <Link to={`/user/${localStorage.getItem('id')}`}><p className="Name"> { singleGroup['first_name']}  </p></Link>}
+                        </Accordion.Body>
+                      </Accordion.Item>
+            
+                      <Accordion.Item eventKey="3">
+                        <Accordion.Header>Group Courses</Accordion.Header>
+                        <Accordion.Body>
+                        {groupCourses && groupCourses.map(gCourse => <Link to={`/course/${gCourse.id}/details`}><p className="Name"> { gCourse.name}  </p></Link>)}
+                        </Accordion.Body>
+                      </Accordion.Item>
+                    </Accordion>
+                  </Modal.Body>
+              </Modal>
         {/* <Accordion.Item eventKey="3">
           <Accordion.Header> Admin</Accordion.Header>
           <Accordion.Body>
@@ -1314,7 +1331,7 @@ useEffect(() => {
                   <Button variant="primary justify ">Post</Button>
                 </div> */}
                
-      </Accordion>
+    
     </Container>
   );
 };
