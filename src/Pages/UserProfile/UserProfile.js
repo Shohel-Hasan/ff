@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Col, Container, Nav, NavDropdown, Row } from 'react-bootstrap';
+import { Col, Container, Form, Nav, NavDropdown, Row } from 'react-bootstrap';
 import './UserProfile.css'
 import man from '../../Images/man.jpg'
 import img from '../../assets/re/cover_photo.svg'
@@ -15,6 +15,8 @@ const UserProfile = (props) => {
     const [users, setUsers] =useState([]);
     const [userGeneralInfo, setUserGeneralInfo] = useState({});
     const param = useParams();
+    const [coverPic, setCoverPic] = useState();
+    const [profilePic, setProfilePic] = useState();
 
 
 
@@ -32,6 +34,8 @@ const UserProfile = (props) => {
         })
         .then(data => setUserGeneralInfo(data))
     }, [localStorage.getItem('id')])
+
+    console.log(userGeneralInfo)
 
     // getting user Info
     useEffect(() => {
@@ -52,6 +56,33 @@ const UserProfile = (props) => {
 
     props.triggerCheckLoggedIn();
 
+
+    // update users cover pic 
+    const updateUserCoverPic = (e) => {
+        e.preventDefault();
+        const newData = new FormData();
+        console.log("i am here...", newData)
+        console.log("coverPic...", coverPic)
+
+        fetch(`http://127.0.0.1:8000/user/user-general-info-update/${localStorage.getItem('id')}`, {
+        method: "PATCH",
+        headers: {
+            "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        body: newData
+        })
+        .then(res=> {
+            if (res.status===200){
+            alert("cover pic uploaded")}
+            console.log("response: ", res)
+        })
+        // .then(data=> console.log(data))
+            
+        .catch(error => console.log(error))
+    }
+
     const BASE_URL = "http://127.0.0.1:8000"
 
     return (
@@ -66,31 +97,31 @@ const UserProfile = (props) => {
                     
                         <div class="container">
                             <span class="wrapper">
-                                <input type="file" name="image_src" id="image_filed" />
+                               <form onSubmit={updateUserCoverPic}>
+                                    <input onChange={e => setCoverPic(e.target.files[0])} type="file" name="image_src" id="image_filed" />
+                               </form>
                             </span>
                         </div>
 
-                       <div className='text-center'>
+                        <div className='text-center'>
                         <img
-                                style={{ borderBottomRightRadius:'8px', borderBottomLeftRadius:'8px', objectFit: 'cover', width:'850px', height:'320px' }}
-                                className="img-fluid"
-                                // src={`${BASE_URL}${userGeneralInfo.cover_pic}`}
-                                src={img}
-                                alt=''
-                            />
-                       </div>
+                            style={{ borderBottomRightRadius:'8px', borderBottomLeftRadius:'8px', objectFit: 'cover', width:'850px', height:'320px' }}
+                            className="img-fluid"
+                            src={ BASE_URL+userGeneralInfo.coverPic ? `${BASE_URL}${userGeneralInfo.cover_pic}` : `${img}`}
+                            alt=''
+                        />
+                        </div>
                
 
                     <div className='text-center'>
                         <img
                            style={{backgroundColor: "#ced0d4", marginTop: '-50px', objectFit: 'cover' }}
                            className="rounded-circle p-1"
-                        //    src={`${BASE_URL}${userGeneralInfo.profile_pic}`}
-                        src={man}
+                           src={ BASE_URL+userGeneralInfo.profile_pic ? `${BASE_URL}${userGeneralInfo.profile_pic}` : `${man}`}
                            width="150px"
                            height="150px"
                            alt=''
-                       /> 
+                        /> 
                         {/* Upolad image section */}
 
                             <div class="">
