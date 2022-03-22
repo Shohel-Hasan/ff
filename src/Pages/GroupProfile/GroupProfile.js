@@ -404,14 +404,14 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
       {/*-------------- Post Section----------------------- */}
 
        <Row className='justify-content-center my-3'>
-                  <Col xs={9} className='shadow-effect py-3'>
-                      <div className="d-flex align-items-center ">
-                          <div className='w-25'>
+                  <Col md={9} className='shadow-effect py-3'>
+                      <div className="d-flex align-items-center">
+                          <div className='w-25 text-center'>
                               <img
-                              className="rounded-circle"
-                              style={{ width: "56px", height: "56px", 'objectFit': 'cover' }} 
-                              src={`${BASE_URL}${singleGroup.cover_pic}`}
-                              alt=''
+                                className="rounded-circle"
+                                style={{ width: "56px", height: "56px", 'objectFit': 'cover' }} 
+                                src={`${BASE_URL}${singleGroup.cover_pic}`}
+                                alt=''
                               />
                           </div>
                           <div className='w-75'>

@@ -346,7 +346,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                                             />
                                           </div>
                                           <div>
-                                              <h6>Md. Saddam Hossain</h6>
+                                              {/* <h6>{userGeneralInfo.user_first_name}</h6> */}
                                           </div>
                                       </div>
                                       <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
