@@ -11,6 +11,8 @@ const MyGroups = (props) => {
 
   const [show, setShow] = useState(false);
   const [userInfo, setUserInfo] = useState({});
+  const [userGeneralInfo, setUserGeneralInfo] = useState({});
+
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -18,6 +20,22 @@ const MyGroups = (props) => {
   const [noGroup, setNoGroup] = useState([]);
 
   props.triggerCheckLoggedIn();
+
+      // getting user general Info
+      useEffect(() => {
+        fetch(`http://127.0.0.1:8000/user/user-general-info/${localStorage.getItem('id')}`, {
+        method: 'GET',
+        headers: {
+            "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        }})
+        .then(res =>{
+        return res.json()
+        })
+        .then(data => setUserGeneralInfo(data))
+    }, [localStorage.getItem('id')])
+
 
   useEffect(() => {
     fetch(`http://127.0.0.1:8000/group/${localStorage.getItem('id')}/my-groups/`, {
@@ -119,10 +137,9 @@ const handleGroup = () => {
 const BASE_URL = "http://127.0.0.1:8000"
   return (
       <Container>
-        <Row>
-          <img className="rounded-circle w-25  mx-auto mt-5" alt="profile_img" src={profile} />
+        <Row className="pt-5">
+          <img style={{"height": "320px", "width": "850px"}} className="mx-auto mt-5" alt="profile_img" src={`${BASE_URL}${userGeneralInfo.cover_pic}`} />
           <h4 style={{ color: "blue" }} className="text-center mt-4 mb-3">
-            
             {userInfo.first_name}
           </h4>
 

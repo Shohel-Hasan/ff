@@ -176,7 +176,7 @@ const UserProfile = (props) => {
                         {userGeneralInfo.profile_pic!==null && <img
                            style={{backgroundColor: "#ced0d4", marginTop: '-50px', objectFit: 'cover' }}
                            className="rounded-circle p-1"
-                           src={BASE_URL+userGeneralInfo.profile_pic ? `${BASE_URL}${userGeneralInfo.profile_pic}` : `${man}`}
+                           src={`${BASE_URL}${userGeneralInfo.profile_pic}`}
                            width="150px"
                            height="150px"
                            alt='upload your profile pic'
