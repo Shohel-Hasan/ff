@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Col, Container, Form, Nav, NavDropdown, Row } from 'react-bootstrap';
+import { Col, Container, Form, Nav, NavDropdown, Row, Modal, Button } from 'react-bootstrap';
 import './UserProfile.css'
 import man from '../../Images/man.jpg'
 import img from '../../assets/re/cover_photo.svg'
@@ -17,6 +17,10 @@ const UserProfile = (props) => {
     const param = useParams();
     const [coverPic, setCoverPic] = useState();
     const [profilePic, setProfilePic] = useState();
+
+    const [show, setShow] = useState(false);
+    const [modal, setModal] = useState(false);
+    const handleClose = () => setShow(false);
 
 
 
@@ -58,18 +62,18 @@ const UserProfile = (props) => {
 
 
     // update users cover pic 
-    const updateUserCoverPic = (e) => {
-        e.preventDefault();
+    const updateUserCoverPic = () => {
+        // e.preventDefault();
         const newData = new FormData();
+        newData.append('cover_pic', coverPic)
         console.log("i am here...", newData)
         console.log("coverPic...", coverPic)
 
         fetch(`http://127.0.0.1:8000/user/user-general-info-update/${localStorage.getItem('id')}`, {
+        // mode: 'cors',
         method: "PATCH",
         headers: {
-            "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
-            "Accept": "application/json",
-            "Content-Type": "application/json"
+            "Authorization" : `Token ${localStorage.getItem('auth_token')}`, 
         },
         body: newData
         })
@@ -83,11 +87,33 @@ const UserProfile = (props) => {
         .catch(error => console.log(error))
     }
 
+    
+    // update users cover pic 
+    const updateUserProfilePic = () => {
+        // e.preventDefault();
+        const newData = new FormData();
+        newData.append('profile_pic', profilePic)
+        console.log("i am here...", newData)
+        console.log("profilePic...", profilePic)
+
+        fetch(`http://127.0.0.1:8000/user/user-general-info-update/${localStorage.getItem('id')}`, {
+        method: "PATCH",
+        headers: {
+            "Authorization" : `Token ${localStorage.getItem('auth_token')}`, 
+        },
+        body: newData
+        })
+        .then(res=> {
+            if (res.status===200){
+            alert("profile pic uploaded")}
+        })
+        .catch(error => console.log(error))
+    }
+
     const BASE_URL = "http://127.0.0.1:8000"
 
     return (
-        
-        
+
         <Container fluid className='shadow profile_conatiner'>
             <Row className='justify-content-center align-items-center'>
                    
@@ -97,11 +123,38 @@ const UserProfile = (props) => {
                     
                     <div class="container">
                         <span class="wrapper">
-                            <form onSubmit={updateUserCoverPic}>
-                                <input onChange={e => setCoverPic(e.target.files[0])} type="file" name="image_src" id="image_filed" />
-                            </form>
+                            <input name="image_src" id="image_filed" onClick={() => setShow(true)}/>
                         </span>
                     </div>
+
+                    <Modal
+                        show={show}
+                        onHide={() => setShow(false)}
+                        dialogClassName="modal-90w"
+                        aria-labelledby="contained-modal-title-vcenter"
+                        centered
+                    >
+                    <Modal.Header closeButton >
+                        <div className=''>
+                            <p className='title'>Upload Cover Picture</p>
+                        </div>
+                    </Modal.Header>
+                    <Modal.Body className="fb-box-shadow">
+                    <Form >
+                        <Form.Group controlId="formFile" className="mb-3">
+                            <Form.Label>Cover Picture</Form.Label>
+                            <Form.Control  onChange={e => setCoverPic(e.target.files[0])}  type="file" />
+                        </Form.Group>
+                        <Button className="mx-2" onClick={()=>updateUserCoverPic()} variant="primary">Upload</Button>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Close
+                        </Button>
+                    </Form>  
+                    
+                        
+                    </Modal.Body>
+                </Modal>
+
                     {userGeneralInfo.cover_pic!==null && <div className='text-center'>
                         <img
                             style={{ borderBottomRightRadius:'8px', borderBottomLeftRadius:'8px', objectFit: 'cover', width:'850px', height:'320px' }}
@@ -142,9 +195,35 @@ const UserProfile = (props) => {
 
                         <div class="">
                             <span class="user-profile ">
-                                <input  type="file" name="image_src" id="user-profile-image_filed" />
+                                <input onClick={() => setShow(true)} name="image_src" id="user-profile-image_filed" />
                             </span>
                         </div>
+
+                        <Modal
+                            show={show}
+                            onHide={() => setShow(false)}
+                            dialogClassName="modal-90w"
+                            aria-labelledby="contained-modal-title-vcenter"
+                            centered
+                        >
+                            <Modal.Header closeButton >
+                                <div className=''>
+                                    <p className='title'>Upload Profile Picture</p>
+                                </div>
+                            </Modal.Header>
+                            <Modal.Body className="fb-box-shadow">
+                            <Form >
+                                <Form.Group controlId="formFile" className="mb-3">
+                                    <Form.Label>Profile Picture</Form.Label>
+                                    <Form.Control  onChange={e => setProfilePic(e.target.files[0])}  type="file" />
+                                </Form.Group>
+                                <Button className="mx-2" onClick={()=>updateUserProfilePic()} variant="primary">Upload</Button>
+                                <Button variant="secondary" onClick={handleClose}>
+                                    Close
+                                </Button>
+                            </Form>
+                            </Modal.Body>
+                        </Modal>
                     
                         <div>
                             <h1 className="name" style={{ color: "#1877f2" }}> {localStorage.getItem('first_name')} </h1>

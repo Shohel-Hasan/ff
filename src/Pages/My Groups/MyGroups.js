@@ -96,6 +96,7 @@ const handleGroup = () => {
   newData.append('about', about);
   newData.append('cover_pic', coverPic,);
   newData.append('profile_pic', profilePic,);
+  console.log(coverPic)
 
   console.log(newData)
 
