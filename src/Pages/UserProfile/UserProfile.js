@@ -102,24 +102,42 @@ const UserProfile = (props) => {
                             </form>
                         </span>
                     </div>
-                    <div className='text-center'>
+                    {userGeneralInfo.cover_pic!==null && <div className='text-center'>
                         <img
                             style={{ borderBottomRightRadius:'8px', borderBottomLeftRadius:'8px', objectFit: 'cover', width:'850px', height:'320px' }}
                             className="img-fluid"
-                            src={ BASE_URL+userGeneralInfo.coverPic ? `${BASE_URL}${userGeneralInfo.cover_pic}` : `${img}`}
+                            src={`${BASE_URL}${userGeneralInfo.cover_pic}`}
                             alt='upload your cover pic'
                         />
-                    </div>
+                    </div>}
+                    {userGeneralInfo.cover_pic===null && <div className='text-center'>
+                        <img
+                            style={{ borderBottomRightRadius:'8px', borderBottomLeftRadius:'8px', objectFit: 'cover', width:'850px', height:'320px' }}
+                            className="img-fluid"
+                            src={img}
+                            alt='upload your cover pic'
+                        />
+                    </div>}
 
                     <div className='text-center'>
-                        <img
+                        {userGeneralInfo.profile_pic!==null && <img
                            style={{backgroundColor: "#ced0d4", marginTop: '-50px', objectFit: 'cover' }}
                            className="rounded-circle p-1"
-                           src={ BASE_URL+userGeneralInfo.profile_pic ? `${BASE_URL}${userGeneralInfo.profile_pic}` : `${man}`}
+                           src={BASE_URL+userGeneralInfo.profile_pic ? `${BASE_URL}${userGeneralInfo.profile_pic}` : `${man}`}
                            width="150px"
                            height="150px"
                            alt='upload your profile pic'
-                        /> 
+                        /> }
+
+                         {userGeneralInfo.profile_pic===null && <img
+                           style={{backgroundColor: "#ced0d4", marginTop: '-50px', objectFit: 'cover' }}
+                           className="rounded-circle p-1"
+                           src={man}
+                           width="150px"
+                           height="150px"
+                           alt='upload your profile pic'
+                        /> }
+
                         {/* Upolad image section */}
 
                         <div class="">

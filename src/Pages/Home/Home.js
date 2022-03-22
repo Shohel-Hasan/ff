@@ -242,6 +242,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
     ]
   };
   const BASE_URL = "http://127.0.0.1:8000"
+  console.log(userGeneralInfo)
 
     return (
         <Container fluid className='home-container'>
@@ -285,14 +286,24 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                     <Row className='justify-content-center my-4'>
                         <Col>
                             <div className="p-3 shadow-effect d-flex align-items-center  ">
-                                <div className='w-25'>
+                               {userGeneralInfo.cover_pic!==null && <div className='w-25'>
                                     <img
                                     className="rounded-circle"
                                     style={{ width: "56px", height: "56px", 'objectFit': 'cover' }} 
                                     src={`${BASE_URL}${userGeneralInfo.profile_pic}`}
                                     alt=''
                                     />
-                                </div>
+                                </div>}
+
+                                {userGeneralInfo.cover_pic===null && <div className='w-25'>
+                                    <img
+                                    className="rounded-circle"
+                                    style={{ width: "56px", height: "56px", 'objectFit': 'cover' }} 
+                                    src={man}
+                                    alt=''
+                                    />
+                                </div>}
+
                                 <div className='w-75'>
                                     <Form.Control
                                     onClick={() => setShow(true)}

@@ -410,7 +410,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                               <img
                               className="rounded-circle"
                               style={{ width: "56px", height: "56px", 'objectFit': 'cover' }} 
-                              src={man}
+                              src={`${BASE_URL}${singleGroup.cover_pic}`}
                               alt=''
                               />
                           </div>
@@ -469,7 +469,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                                   <Button variant="primary" size="sm" onClick={()=> handleGroupThoughtPost()} >
                                     Post
                                   </Button>
-                                </div>
+                                  </div>
                                 
                             </Modal.Body>
                           </Modal>
