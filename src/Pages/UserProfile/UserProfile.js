@@ -274,7 +274,7 @@ const UserProfile = (props) => {
                         </li>
                         <li className="nav-item">
                         <Link
-                            to="name/about"
+                            to="/user-profile-post"
                             className="nav-link NavLink"
                             data-toggle="tab"
                         >
@@ -283,7 +283,7 @@ const UserProfile = (props) => {
                         </li>
                         <li className="nav-item">
                         <Link
-                            to="/"
+                            to=""
                             className="nav-link NavLink"
                             data-toggle="tab"
                         >

@@ -16,10 +16,6 @@ import notification_icon_filled from '../assets/re/Notice.svg';
 import style from '../styles/Navbar.module.css';
 import { useNavigate } from 'react-router-dom';
 
-import classVisitedIcon from '../assets/re/Classroom_Clicked.svg'
-import homeVisitedIcon from '../assets/re/Home_Clicked.svg'
-import groupVisitedIcon from '../assets/re/Group_Clicked.svg'
-import notificationVisitedIcon from '../assets/re/Notice_Clicked.svg'
 
 
 export default function Navbar(props) {
@@ -31,45 +27,7 @@ export default function Navbar(props) {
 
   const sideNavPosition = "-100%";
 
-  // icon image-1 toggle
-  const [classLogo, setClassLogo] = useState(false); 
 
-  const changeClassLogo1 = () => {
-    setClassLogo(true)
-  }
-  const changeClassLogo2 = () => {
-    setClassLogo(false)
-  }
-
-  // icon image-2 toggle
-  const [homeLogo, setHomeLogo] = useState(false); 
-
-  const changeHomeLogo1 = () => {
-    setHomeLogo(true)
-  }
-  const changeHomeLogo2 = () => {
-    setHomeLogo(false)
-  }
-
-  // icon image-3 toggle
-  const [groupLogo, setGroupLogo] = useState(false); 
-
-  const changeGroupLogo1 = () => {
-    setGroupLogo(true)
-  }
-  const changeGroupLogo2 = () => {
-    setGroupLogo(false)
-  }
-// Notice icon toggle
-
-const [noticeLogo, setNotice] = useState(false); 
-
-const changeNoticeLogo1 = () => {
-  setNotice(true)
-}
-const changeNoticeLogo2 = () => {
-  setNotice(false)
-}
 
 
   const toggleSideNav = () => {
@@ -114,23 +72,18 @@ const changeNoticeLogo2 = () => {
       </div>
 
       <div className={`${style.mid_section} d-flex flex-row justify-content-center align-items-center`}>
-       {! homeLogo &&  <Link onClick={changeHomeLogo1} to='/'><img src={home_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>}
-       {homeLogo &&  <Link onClick={changeHomeLogo2} to='/'><img src={homeVisitedIcon} className={`material-icons ${style.icons}`} alt='home' /></Link>}
+        
+         <Link className='navLink' to='/home'><img src={home_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
+         <Link className='navLink' to='/'><img src={group_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
+         <Link className='navLink' to="all-courses" ><img src={class_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
        
-        {!groupLogo && <Link onClick={changeGroupLogo1} to=''><img src={group_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>}
-        {groupLogo && <Link onClick={changeGroupLogo2} to=''><img src={groupVisitedIcon} className={`material-icons ${style.icons}`} alt='home' /></Link>}
-
-
-       {!classLogo && <Link to="all-courses" onClick={changeClassLogo1}><img src={class_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>}
-       {classLogo && <Link to="/home" onClick={changeClassLogo2}><img src={classVisitedIcon} className={`material-icons ${style.icons}`} alt='home' /></Link>}
 
         {/* <img src={notification_icon} className={`material-icons ${style.icons}`} alt='home' /> */}
       </div>
       
       <div className={`${style.profile_section} d-flex flex-row justify-content-center align-items-center`}>
         <img src={avatar} className={`${style.avatar}`} alt='home' />
-            {! noticeLogo && <img onClick={changeNoticeLogo1} src={notification_icon_filled} className={`${style.end_icons} ${style.notification_icon}`} alt='home' />}
-            { noticeLogo && <img onClick={changeNoticeLogo2} src={notificationVisitedIcon} className={`${style.end_icons} ${style.notification_icon}`} alt='home' />}
+        <img  src={notification_icon_filled} className={`${style.end_icons} ${style.notification_icon}`} alt='home' />
         <img ref={hamburger} src={bar_horizontal} onClick={toggleSideNav} className={`${style.end_icons} ${style.hamburger}`} alt='home' />
       </div>
 

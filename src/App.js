@@ -24,6 +24,7 @@ import PrivacyPolicy from "./Pages/PrivacyPolicy/PrivacyPolicy";
 import ProductPolicy from "./Pages/ProductPolicy/ProductPolicy";
 
 
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -111,6 +112,7 @@ function App() {
 
         {/* Route not added in navbar*/}
         <Route path="/course-page" element={<CrousePage triggerCheckLoggedIn={checkLoggedIn} />} />
+    
 
       </Routes>
 

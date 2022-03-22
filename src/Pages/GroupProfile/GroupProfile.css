@@ -22,3 +22,9 @@
     width: 100%;
   }
 }
+
+@media(max-width: 767px) {
+  .setting-section{
+    margin-top: 15px;
+  }
+}
