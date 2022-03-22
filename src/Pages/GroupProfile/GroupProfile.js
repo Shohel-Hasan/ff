@@ -345,7 +345,7 @@ useEffect(() => {
                 </div>
                 </div>
           </Col>
-          <Col className="d-flex align-items-center justify-content-center " 
+          <Col className="d-flex align-items-center justify-content-center setting-section " 
           >
                     {
                        groupMember.role==="Creator" ? <div className="d-flex justify-content-center"> <Link to={`/${groupId.groupId}/create-course`}><Badge className="p-2" bg="primary">Create Course </Badge></Link> </div> : <div className="w-50 ">
@@ -364,9 +364,7 @@ useEffect(() => {
                     <button   onClick={() => setSetting(true)} type="button" className="btn btn-outline-primary mx-5"><i className="fa fa-gear"></i></button>
             </Col>
 
-            {/* <Col className="d-flex align-items-center justify-content-between ">
-                     
-            </Col> */}
+          
             
         </Row>
 

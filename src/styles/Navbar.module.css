@@ -41,17 +41,21 @@
     height: 55px;
     width: auto;
     padding: 10px 28px;
-    border-radius: 5px;
-    color: #66676c;
+   
+   
+}
+
+/*------- Icon active / visited---------- */
+
+.icons:hover:not(.active){
+     border-bottom: 2px solid #1876f2;
 }
 
 
-/* .mid_section img {
-    height: 80px;
-} */
+.icons:visited img{
 
-.icons:hover {
-    background-color: #F1F2F6;
+   /* background-color: #1876f2; */
+   border-bottom: 2px solid #1876f2;
 }
 
 .avatar {
