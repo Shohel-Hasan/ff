@@ -194,7 +194,6 @@ useEffect(() => {
 }, [localStorage.getItem('id')])
 
 const allPosts = [...summaryPosts , ...thoughtPosts ]
-// const randomPosts = allPosts[Math.floor(Math.random()*allPosts.length)];
 const randomPosts = allPosts.sort(() => Math.random() - 0.5)
 
 
@@ -605,7 +604,6 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                                           <Accordion.Item eventKey="13">
                                           <Accordion.Header>
                                               Keyword   
-                                                  
                                           </Accordion.Header>
                                           <Accordion.Body>
                                               <div id="example-collapse-text">
@@ -731,7 +729,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                                 </div>
 
                                 <div className="fb-card-actions-holder">
-                                  <div className="d-flex justify-content-evenly">
+                                  <div className="d-flex justify-content-between">
                                       <div className="fb-btn-holder">
                                           <a className='text-decoration-none' href="/"><i className="fa hom-icon fa-thumbs-up"></i> Like</a>
                                       </div>
