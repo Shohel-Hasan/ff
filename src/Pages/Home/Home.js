@@ -211,7 +211,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
         breakpoint: 1024,
         settings: {
           slidesToShow: 2,
-          
+        
         }
       },
       {
@@ -249,13 +249,13 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
         <Container fluid className='home-container'>
             <Row className="justify-content--center">
                 {/* Left col section start */}
-                <Col xs={3} className='left-col'>
+                <Col xs={2} className='left-col'>
                     Left col section 
                 </Col>
                 {/* Left col section End */}
 
                 {/* Middle col section start */}
-                <Col xs={6} className='mid-col'>
+                <Col xs={8} className='mid-col'>
                         <Row className='justify-content-center align-items-center'>
                             <Col>
                                 <Slider {...settings}>
@@ -378,9 +378,9 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                                         </Accordion.Header>
                                             <Accordion.Body>
                                               <div id="example-collapse-text">
-                                                  <InputGroup className="mb-3"  onChange={(e) =>setStoreTitle(e.target.value)}>
-                                                    <FormControl defaultValue={localStorage.getItem('storeTitle')} placeholder="Title of research article" />
-                                                  </InputGroup> 
+                                                  <Form.Group  onChange={(e) =>setStoreTitle(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                    <Form.Control defaultValue={localStorage.getItem('storeTitle')}  as="textarea" rows={2} placeholder='Objective of the study' />
+                                                 </Form.Group>
                                                   <div className="text-end">
                                                           <Button onClick={handle} size="sm" variant="primary">Save as a draft</Button>
                                                   </div>
@@ -769,7 +769,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
 
 
                {/* Right Col section */}
-              <Col xs={3}  className='right-col'>
+              <Col xs={2}  className='right-col'>
                 Right Col section
               </Col>
             </Row>
