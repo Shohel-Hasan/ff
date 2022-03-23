@@ -90,9 +90,15 @@ export default function Navbar(props) {
 
       <div className={`${style.mid_section} d-flex flex-row justify-content-center align-items-center`}>
         
+
          <Link className='navLink' to='/home'><img src={home_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
          <Link className='navLink' to='/my-groups'><img src={group_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
          <Link className='navLink' to="all-courses" ><img src={class_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
+
+         <Link  to='/home'><img src={home_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
+         <Link  to='/my-groups'><img src={group_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
+         <Link  to="all-courses" ><img src={class_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
+
        
 
         {/* <img src={notification_icon} className={`material-icons ${style.icons}`} alt='home' /> */}
