@@ -398,13 +398,13 @@ const updateGroupNameFunction = () =>{
           </Col>
         </Row>
 
-        <Row  className='mt-2'>
-          <Col md={{ span: 4, offset: 2 }}> 
-              <div className='icon-container d-flex align-items-center'>
+        <Row  className='mt-2 align-items-center justify-content-center'>
+          <Col md={8} className="d-flex justify-content-start"> 
+              <div className='d-flex align-items-center'>
                 <img style={{'objectFit': 'cover' }} className='group-pic'  src={`${BASE_URL}${singleGroup.profile_pic}`} alt='' />
                 <div className="image-load m-2">
                   <small style={{ color: "#1877f2", fontSize:'20px', marginLeft: '10px' }} > {singleGroup.name}</small>
-                  { groupMember.role==="Creator" && <i style={{color: 'blue'}} className="fas fa-edit mx-2" onClick={() => setNameModal(true)}></i>} 
+                  { groupMember.role==="Creator" && <i style={{color: '#1876f2'}} className="fas fa-edit mx-2" onClick={() => setNameModal(true)}></i>} 
                   <Modal  show={nameModal}  onHide={() => setNameModal(false)} dialogClassName="modal-90w" aria-labelledby="contained-modal-title-vcenter" centered>
                     <Modal.Header closeButton >
                       <div className=''>
@@ -427,25 +427,24 @@ const updateGroupNameFunction = () =>{
                 </div>
                 </div>
           </Col>
-          <Col className="d-flex align-items-center justify-content-center setting-section ">
-            {groupMember.role==="Creator" ? <div className="d-flex justify-content-center"> <Link to={`/${groupId.groupId}/create-course`}><Badge className="p-2" bg="primary">Create Course </Badge></Link> </div> : <div className="w-50 ">
-              <select
-                className="form-select form-select-sm  mx-auto"
-                aria-label="form-select-lg example"
-              >
-                <option value="1">Follow</option>
-                <option value="2">UnFollow</option>
-                <option value="3">Joint as Content Creator</option>
-                <option value="4">Requested as Content Creator</option>
-                <option value="5">Content Creator</option>
-              </select>
-              </div> 
-            }
-            <button   onClick={() => setSetting(true)} type="button" className="btn btn-outline-primary mx-5"><i className="fa fa-gear"></i></button>
-          </Col>
-
-          
-            
+        </Row>
+        <Row className='justify-content-center'>
+          <Col md={8} className=" setting-section d-flex justify-content-end" >
+              {groupMember.role==="Creator" ? <div className="mx-2"> <Link to={`/${groupId.groupId}/create-course`}><Button size='sm' bg="primary">Create Course </Button></Link> </div> : <div>
+                <select
+                  className="form-select form-select-sm  mx-auto"
+                  aria-label="form-select-lg example"
+                >
+                  <option value="1">Follow</option>
+                  <option value="2">UnFollow</option>
+                  <option value="3">Joint as Content Creator</option>
+                  <option value="4">Requested as Content Creator</option>
+                  <option value="5">Content Creator</option>
+                </select>
+                </div> 
+              }
+              <Button onClick={() => setSetting(true)} variant="outline-primary" size="sm"><i className="fa fa-gear"></i></Button>
+            </Col>
         </Row>
 
       {/*-------------- Post Section----------------------- */}
@@ -487,10 +486,8 @@ const updateGroupNameFunction = () =>{
                             aria-labelledby="contained-modal-title-vcenter"
                             centered
                           >
-                            <Modal.Header closeButton >
-                                <div className=''>
-                                    <p className='title'>Thought Post </p>
-                                </div>
+                            <Modal.Header closeButton >   
+                                    <p className='title p-2 mx-1'>Thought Post </p>
                             </Modal.Header>
                             <Modal.Body className="fb-box-shadow">
                                 <div className='d-flex mb-2'>
@@ -508,7 +505,7 @@ const updateGroupNameFunction = () =>{
                                 </div>
                                 <Form>
                                   <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                    <Form.Control onChange={(e) =>setDescription(e.target.value)} as="textarea" rows={3}  placeholder="Share a thought that you like"/>
+                                    <Form.Control onChange={(e) =>setDescription(e.target.value)} as="textarea" rows={8}  placeholder="Share a thought that you like"/>
                                   </Form.Group>
                                 </Form>
                                 
@@ -529,9 +526,8 @@ const updateGroupNameFunction = () =>{
                             centered size="lg"
                           >
                             <Modal.Header closeButton>
-                                <div className=''>
-                                    <p className='fw-bold title'>Research Summary</p>
-                                </div>
+                                    <p className='title p-2 mx-1'>Research Summary</p>
+
                             </Modal.Header>
                             <Modal.Body className="fb-box-shadow">
 
@@ -939,7 +935,7 @@ const updateGroupNameFunction = () =>{
                 >
                   <Modal.Body className="">
                     <Accordion
-                      className=" container shadow-lg bg-white rounded"
+                      className="container rounded"
                       alwaysOpen >
                       <Accordion.Item eventKey="0">
                         <Accordion.Header>
@@ -963,7 +959,7 @@ const updateGroupNameFunction = () =>{
                               <div className="text-end mt-3">
                                 {
                                   groupMember.role==="Creator" && 
-                                  <Button type='submit' variant="primary justify ">Save</Button>
+                                  <Button size="sm" type='submit' variant="primary justify ">Save</Button>
                                 }
                               </div>
                             </form>
@@ -1019,7 +1015,7 @@ const updateGroupNameFunction = () =>{
                               <i className="fas fa-plus"></i>
                             </div>
                             <div className="text-end mt-3">
-                              <Button type="submit" variant="primary justify ">Save</Button>
+                              <Button size="sm" type="submit" variant="primary justify ">Save</Button>
                             </div>
                             </form>
                           }

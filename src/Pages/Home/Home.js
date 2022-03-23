@@ -335,9 +335,9 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                                   centered
                                 >
                                   <Modal.Header closeButton >
-                                      <div className=''>
-                                          <p className='title'>Thought Post </p>
-                                      </div>
+                                      
+                                          <p className='title p-2 mx-1'>Thought Post </p>
+                                      
                                   </Modal.Header>
                                   <Modal.Body className="fb-box-shadow">
                                       <div className='d-flex mb-2'>
@@ -354,7 +354,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                                           </div>
                                       </div>
                                       <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                        <Form.Control onChange={(e) =>setDescription(e.target.value)} as="textarea" rows={3}  placeholder="Share a thought that you like"/>
+                                        <Form.Control onChange={(e) =>setDescription(e.target.value)} as="textarea" rows={8}  placeholder="Share a thought that you like"/>
                                       </Form.Group>
                                       
                                       <div className="d-grid gap-2">
@@ -376,7 +376,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                                 >
                                   <Modal.Header closeButton>
                                       <div className=''>
-                                          <p className='fw-bold title'>Research Summary</p>
+                                          <p className='fw-bold title p-2 mx-1'>Research Summary</p>
                                       </div>
                                   </Modal.Header>
                                   <Modal.Body className="fb-box-shadow">
