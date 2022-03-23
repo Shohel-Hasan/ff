@@ -19,6 +19,7 @@ const UserProfile = (props) => {
     const [profilePic, setProfilePic] = useState();
 
     const [show, setShow] = useState(false);
+    const [coverPicModal, setCoverPicModal] = useState(false);
     const [modal, setModal] = useState(false);
     const handleClose = () => setShow(false);
 
@@ -68,6 +69,7 @@ const UserProfile = (props) => {
         newData.append('cover_pic', coverPic)
         console.log("i am here...", newData)
         console.log("coverPic...", coverPic)
+        setCoverPicModal(false)
 
         fetch(`http://127.0.0.1:8000/user/user-general-info-update/${localStorage.getItem('id')}`, {
         // mode: 'cors',
@@ -95,6 +97,7 @@ const UserProfile = (props) => {
         newData.append('profile_pic', profilePic)
         console.log("i am here...", newData)
         console.log("profilePic...", profilePic)
+        setShow(false)
 
         fetch(`http://127.0.0.1:8000/user/user-general-info-update/${localStorage.getItem('id')}`, {
         method: "PATCH",
@@ -121,15 +124,15 @@ const UserProfile = (props) => {
 
                 <Col md={8}>
                     
-                    <div class="container">
-                        <span class="wrapper">
-                            <input name="image_src" id="image_filed" onClick={() => setShow(true)}/>
+                    <div className="container">
+                        <span className="wrapper">
+                            <input name="image_src" id="image_filed" onClick={() => setCoverPicModal(true)}/>
                         </span>
                     </div>
 
                     <Modal
-                        show={show}
-                        onHide={() => setShow(false)}
+                        show={coverPicModal}
+                        onHide={() => setCoverPicModal(false)}
                         dialogClassName="modal-90w"
                         aria-labelledby="contained-modal-title-vcenter"
                         centered
@@ -193,8 +196,8 @@ const UserProfile = (props) => {
 
                         {/* Upolad image section */}
 
-                        <div class="">
-                            <span class="user-profile ">
+                        <div className="">
+                            <span className="user-profile ">
                                 <input onClick={() => setShow(true)} name="image_src" id="user-profile-image_filed" />
                             </span>
                         </div>

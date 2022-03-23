@@ -74,8 +74,8 @@ const handleSummaryPost = () => {
   newData.append('usefulness_of_the_finding',storeUsefulness)
   newData.append('reference',storeReference)
   newData.append('annex',storeAnnex)
-  newData.append('file1', file1)
-  newData.append('file2', file2)
+  newData.append('file1', file1? file1 : "")
+  newData.append('file2', file2? file2 : "")
   newData.append('keyword',storeKeyword)
   newData.append('user', localStorage.getItem('id'))
 
@@ -172,7 +172,6 @@ useEffect(() => {
         )
       } else {
         setThoughtPosts(data)
-        console.log("asdfsa", data)
       }
      
   })

@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import MainPost from "./Pages/Main Post/MainPost";
 import GroupProfile from "./Pages/GroupProfile/GroupProfile";
 import ThoughtPost from "./Pages/ThoughtPost/ThoughtPost";
@@ -23,11 +23,15 @@ import CookiePolicy from "./Pages/CookiePolicy/CookiePolicy";
 import PrivacyPolicy from "./Pages/PrivacyPolicy/PrivacyPolicy";
 import ProductPolicy from "./Pages/ProductPolicy/ProductPolicy";
 import GroupsHome from "./Pages/GroupsHome/GroupsHome";
+import { useNavigate } from 'react-router-dom';
 
 
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
+  
 
   function checkLoggedIn() {
     let token = '';
@@ -57,9 +61,9 @@ function App() {
             if (data.message) {
                 setIsLoggedIn(true);
             } else {
-                setIsLoggedIn(false)
+              navigate('/')
+              setIsLoggedIn(false)
             }
-
             // console.log(isLoggedIn);
         })
         .catch(error => console.log(error))
