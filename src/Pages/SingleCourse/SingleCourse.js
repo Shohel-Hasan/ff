@@ -381,7 +381,8 @@ const BASE_URL = "http://127.0.0.1:8000"
           <div className='bg-white pb-3' style={{borderBottom: "1px solid #ced0d4"}}>
             <Row className='justify-content-center'>
                 <Col md={8} className='text-center'>
-                    <img className='course-img img-fluid rounded' src={`${BASE_URL}${course.cover_pic}`} alt=""/>
+                  <img className='course-img img-fluid rounded' src={`${BASE_URL}${course.cover_pic}`} alt=""/>
+
                 </Col>
             </Row>
 
@@ -448,17 +449,17 @@ const BASE_URL = "http://127.0.0.1:8000"
                       {!isCourseStaff &&  <Button  className='m-4 badge badge-pill mt-2'>Follow +</Button>}
                         </div>
                         <div>
-                        <div className="fb-card-actions d-flex justify-content-around">
-                                <div className="fb-btn-holder text-center mt-3">
-                                    <a  className='text-decoration-none' href='/' ><i className="far fa-thumbs-up "></i> Like</a>
-                                </div>
-                                <div className="fb-btn-holder text-center mt-3">
-                                    <a className='text-decoration-none' href='/'><i className="far fa-comment"></i> Comment</a>
-                                </div>
-                                <div className="fb-btn-holder text-center mt-3">
-                                    <a className='text-decoration-none' href='/'><i className="far fa-share-square"></i> Share</a>
-                                </div>
+                          <div className="fb-card-actions d-flex justify-content-around">
+                            <div className="fb-btn-holder text-center mt-3">
+                                <a  className='text-decoration-none' href='/' ><i className="far fa-thumbs-up "></i> Like</a>
                             </div>
+                            <div className="fb-btn-holder text-center mt-3">
+                                <a className='text-decoration-none' href='/'><i className="far fa-comment"></i> Comment</a>
+                            </div>
+                            <div className="fb-btn-holder text-center mt-3">
+                                <a className='text-decoration-none' href='/'><i className="far fa-share-square"></i> Share</a>
+                            </div>
+                          </div>
                         </div>
                     </div>
                   </Col>
