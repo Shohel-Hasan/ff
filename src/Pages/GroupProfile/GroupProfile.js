@@ -401,7 +401,10 @@ const updateGroupNameFunction = () =>{
         <Row  className='mt-2 align-items-center justify-content-center'>
           <Col md={8} className="d-flex justify-content-start"> 
               <div className='d-flex align-items-center'>
-                <img style={{'objectFit': 'cover' }} className='group-pic'  src={`${BASE_URL}${singleGroup.profile_pic}`} alt='' />
+                <img style={{'objectFit': 'cover' }} className='group-pic'  src={`${BASE_URL}${singleGroup.profile_pic}`} alt=''/>
+               <div className="">
+                       <span class="badge-wrapper"></span>
+               </div>
                 <div className="image-load m-2">
                   <small style={{ color: "#1877f2", fontSize:'20px', marginLeft: '10px' }} > {singleGroup.name}</small>
                   { groupMember.role==="Creator" && <i style={{color: '#1876f2'}} className="fas fa-edit mx-2" onClick={() => setNameModal(true)}></i>} 
