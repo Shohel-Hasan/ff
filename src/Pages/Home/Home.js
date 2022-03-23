@@ -61,7 +61,7 @@ const Home = () => {
 const handleSummaryPost = () => {
   // e.preventDefault();
   const newData = new FormData();
-
+  setModal(false)
   newData.append('title_of_research_article', storeTitle);
   newData.append('objective_of_the_study', storeObjective);
   newData.append('theoritical_Background', storeTheoretical);
@@ -108,7 +108,7 @@ const handleThoughtPost = () => {
 
   newData.append('description', description)
   newData.append('user', localStorage.getItem('id'))
-  console.log(newData)
+  setShow(false)
 
   fetch(`http://127.0.0.1:8000/post/${localStorage.getItem('id')}/user-thought-create/`, {
     method: "POST",
@@ -372,6 +372,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                                   dialogClassName="modal-90w"
                                   aria-labelledby="contained-modal-title-vcenter"
                                   centered
+                                  size='lg'
                                 >
                                   <Modal.Header closeButton>
                                       <div className=''>

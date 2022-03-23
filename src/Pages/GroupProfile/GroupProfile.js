@@ -79,9 +79,10 @@ const GroupProfile = (props) => {
 
 
   
-const handleGroupSummaryPost = (e) => {
-  e.preventDefault();
+const handleGroupSummaryPost = () => {
+  // e.preventDefault();
   const newData = new FormData();
+  setModal(false)
 
   newData.append('title_of_research_article', storeTitleGroup);
   newData.append('objective_of_the_study', storeObjectiveGroup);
@@ -120,9 +121,10 @@ const handleGroupSummaryPost = (e) => {
 
 
  // group thought post
- const handleGroupThoughtPost = (e) => {
-  e.preventDefault();
+ const handleGroupThoughtPost = () => {
+  // e.preventDefault();
   const newData = new FormData();
+  setShow(false)
 
   newData.append('description', description)
   newData.append('group', groupId.groupId)
@@ -291,21 +293,18 @@ useEffect(() => {
 
     const updateGroup = (e) =>{
         e.preventDefault();
-        console.log("I am hitting.....");
         console.log(localStorage.getItem('auth_token'))
-
-        console.log(updateGroupHeader.body)
         e.preventDefault();
         console.log(updateGroupHeader.body)
+        setSetting(false)
 
         fetch(`http://127.0.0.1:8000/group/${groupId.groupId}/group-update/`, updateGroupHeader)
-            .then(response => {response.json()
-                              if (response.status===200) {
-                                alert("group about info updated")
-                              }
-            })
-            .catch(error => console.log(error))
-        
+          .then(response => {response.json()
+              if (response.status===200) {
+                alert("group about info updated")
+              }
+          })
+          .catch(error => console.log(error))
     }
 
     
@@ -327,19 +326,16 @@ useEffect(() => {
 
   const groupCriteriaPost = (e) =>{
       e.preventDefault();
-      console.log("I am hitting.....");
       console.log(localStorage.getItem('auth_token'))
-
-      console.log(updateGroupHeader.body)
       e.preventDefault();
-      console.log(updateGroupHeader.body)
+      setSetting(false)
 
       fetch(`http://127.0.0.1:8000/group/${groupId.groupId}/add-criteria/`, groupCriteriaPostHeader)
           .then(response => {response.json()
-                            console.log(response)
-                            if (response.status===201) {
-                              alert("group criteria data inserted")
-                            }
+            console.log(response)
+            if (response.status===201) {
+              alert("group criteria data inserted")
+            }
           })
           .then(data => {
               console.log(data)
