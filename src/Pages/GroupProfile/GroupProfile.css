@@ -3,9 +3,9 @@
 }
 
 .badge-wrapper {
-  background: url('../../Images/badge.png') no-repeat;
+  
   background-size: cover;
-  display: block;
+  /* display: block; */
   position: relative;
   width: 30px;
   height: 30px;
