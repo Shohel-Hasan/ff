@@ -46,16 +46,9 @@
 }
 
 /*------- Icon active / visited---------- */
-
-.icons:hover:not(.active){
-     border-bottom: 2px solid #1876f2;
-}
-
-
-.icons:visited img{
-
-   /* background-color: #1876f2; */
-   border-bottom: 2px solid #1876f2;
+a:focus,
+a:visited{
+    border-bottom: 2px solid #1876f2;
 }
 
 .avatar {
