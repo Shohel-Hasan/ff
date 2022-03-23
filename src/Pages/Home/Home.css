@@ -11,6 +11,7 @@
 .title{
   font-size: 1.25rem;
   font-weight: 700;
+  
 }
 
 .shadow-effect{
@@ -285,3 +286,15 @@
   }
 }
 
+.modal-header{
+  padding: 2px !important;
+  
+}
+
+.modal-header .btn-close {
+  margin: -0.5rem 0.5rem 0.5rem auto !important;
+}
+
+.modal{
+  padding-left: 0px !important;
+}

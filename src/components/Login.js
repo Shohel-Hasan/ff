@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import image from '../assets/banner_logo.svg';
+import image from '../assets/re/Logo_update.svg';
 import style from '../styles/Login.module.css';
 import Overlay from './Overlay';
 import Registration from './Registration';
