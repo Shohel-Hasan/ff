@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Accordion, Button, Col, Container, Row, Table, Modal } from 'react-bootstrap';
 import './SingleCourse.css'
-import img from '../../Images/Layer 1.png'
+import badge from '../../Images/badge.svg'
 import man from '../../Images/man.jpg'
 import Slider from 'react-slick';
 import { Link, useParams } from 'react-router-dom';
@@ -397,10 +397,17 @@ const BASE_URL = "http://127.0.0.1:8000"
                   <Col md={8}>
                     <Row>
                     <Col md={4} > 
-                    <div className=' text-center'>
-                        <img className='group-img rounded-circle' style={{"objectFit": "cover"}} src={`${BASE_URL}${course.group_profile_pic}`} alt=""/>
-                        <h6 style={{ color: "#1877f2", fontSize: '20px'}}>{course.group_name}</h6>
+                    <div className='text-center'>
+                        
+                        <img className='group-img ' style={{"objectFit": "cover"}} src={`${BASE_URL}${course.group_profile_pic}`} alt=""/>
+                        <div className='text-center'><small style={{ color: "#1877f2", fontSize: '20px'}}>{course.group_name}</small></div>
                     </div>
+                    <div className='text-center'>
+                       <img className="verified-badge" src={badge} alt=''/>
+                    </div>
+                   
+                      
+                    
                   </Col>
                   <Col md={8} className='d-flex align-items-center mt-4'>
                     <div className='mx-auto'>

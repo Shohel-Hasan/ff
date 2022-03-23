@@ -403,7 +403,7 @@ const updateGroupNameFunction = () =>{
           <Col md={8} className="d-flex justify-content-start"> 
               <div className='d-flex align-items-center'>
                 <img style={{'objectFit': 'cover' }} className='group-pic'  src={`${BASE_URL}${singleGroup.profile_pic}`} alt=''/>
-               <div className="">
+               <div>
                       {singleGroup.is_verified && <img className="badge-wrapper" src={badge} alt=''/>}
                </div>
                 <div className="image-load m-2">
