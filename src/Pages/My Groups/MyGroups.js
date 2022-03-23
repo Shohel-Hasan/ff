@@ -115,7 +115,7 @@ const handleGroup = () => {
   newData.append('cover_pic', coverPic,);
   newData.append('profile_pic', profilePic,);
   console.log(coverPic)
-
+  setShow(false)
   console.log(newData)
 
   fetch('http://127.0.0.1:8000/group/create/', {
@@ -207,17 +207,16 @@ const BASE_URL = "http://127.0.0.1:8000"
                     }
 
         { myGroups &&
-                 myGroups.map(group=>  <Row key={group.id} className="d-flex justify-content-center my-3">
-                 <Col md={8} style={{ background: "#fff" }} className="fb-box-shadow d-flex align-items-center py-3 Python Bangladesh">
-                   <img style={{ height: "60px", width: "60px" }} alt="s" className="rounded-circle" src={`${BASE_URL}${group.cover_pic}`} />
-                   <div  className="d-flex flex-column justify-content-center mx-4">
-                     <p className="m-0 p-0"> <b> <Link to={`/group/${group.id}/details`}>  {group.name}</Link>  </b> </p>
-                     <small> {group.created_date} </small> 
-                   </div>
-                 </Col>
-               </Row>)
-              }
-        
+            myGroups.map(group=>  <Row key={group.id} className="d-flex justify-content-center my-3">
+            <Col md={8} style={{ background: "#fff" }} className="fb-box-shadow d-flex align-items-center py-3 Python Bangladesh">
+              <img style={{ height: "60px", width: "60px" }} alt="s" className="rounded-circle" src={`${BASE_URL}${group.cover_pic}`} />
+              <div  className="d-flex flex-column justify-content-center mx-4">
+                <p className="m-0 p-0"> <b> <Link to={`/group/${group.id}/details`}>  {group.name}</Link>  </b> </p>
+                <small> {group.created_date} </small> 
+              </div>
+            </Col>
+          </Row>)
+        }
        {/* { noGroup ? noGroup.map(no => <Row className="d-flex justify-content-center my-3"><Col md={8} style={{ background: "#fff" }} className="fb-box-shadow d-flex align-items-center justify-content-center py-3"><div  className="d-flex flex-column justify-content-center mx-4">
              <p className="m-0 p-0"> {no.data} </p></div></Col></Row> ) :  myGroups.map(group=>  <Row key={group.id} className="d-flex justify-content-center my-3">
          <Col md={8} style={{ background: "#fff" }} className="fb-box-shadow d-flex align-items-center py-3 Python Bangladesh">
