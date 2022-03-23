@@ -1,5 +1,5 @@
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import bar_horizontal from '../assets/bar_horizontal_icon.svg';
 // import class_icon from '../assets/class_icon.svg';
@@ -24,6 +24,8 @@ export default function Navbar(props) {
 
   const hamburger = useRef(null);
   const [toggle1, setToggle1] = useState(false);
+  const [userGeneralInfo, setUserGeneralInfo] = useState({});
+
 
   const sideNavPosition = "-100%";
 
@@ -58,6 +60,21 @@ export default function Navbar(props) {
     }
     //--------------------------------------------------------//
  
+        // getting user general Info
+        useEffect(() => {
+          fetch(`http://127.0.0.1:8000/user/user-general-info/${localStorage.getItem('id')}`, {
+          method: 'GET',
+          headers: {
+              "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+              "Accept": "application/json",
+              "Content-Type": "application/json"
+          }})
+          .then(res =>{
+          return res.json()
+          })
+          .then(data => setUserGeneralInfo(data))
+      }, [localStorage.getItem('id')])
+      const BASE_URL = "http://127.0.0.1:8000"
 
   return (
     <div className={`${style.navbar_main_container} ${style.fb_box_shadow} d-flex flex-row justify-content-between`}>
@@ -73,16 +90,24 @@ export default function Navbar(props) {
 
       <div className={`${style.mid_section} d-flex flex-row justify-content-center align-items-center`}>
         
+
+         <Link className='navLink' to='/home'><img src={home_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
+         <Link className='navLink' to='/my-groups'><img src={group_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
+         <Link className='navLink' to="all-courses" ><img src={class_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
+
          <Link  to='/home'><img src={home_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
          <Link  to='/my-groups'><img src={group_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
          <Link  to="all-courses" ><img src={class_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
+
        
 
         {/* <img src={notification_icon} className={`material-icons ${style.icons}`} alt='home' /> */}
       </div>
       
       <div className={`${style.profile_section} d-flex flex-row justify-content-center align-items-center`}>
-        <img src={avatar} className={`${style.avatar}`} alt='home' />
+       {userGeneralInfo.profile_pic && <img src={`${BASE_URL}${userGeneralInfo.profile_pic}`} className={`${style.avatar}`} alt='home' />}
+       {userGeneralInfo.profile_pic===null &&  <img src={avatar} className={`${style.avatar}`} alt='home' />}
+
         <img  src={notification_icon_filled} className={`${style.end_icons} ${style.notification_icon}`} alt='home' />
         <img ref={hamburger} src={bar_horizontal} onClick={toggleSideNav} className={`${style.end_icons} ${style.hamburger}`} alt='home' />
       </div>

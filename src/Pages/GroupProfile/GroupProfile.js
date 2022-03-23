@@ -402,7 +402,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
       {/*-------------- Post Section----------------------- */}
 
        <Row className='justify-content-center my-3'>
-                  <Col md={9} className='shadow-effect py-3'>
+                  <Col md={8} className='shadow-effect py-3'>
                       <div className="d-flex align-items-center">
                           <div className='w-25 text-center'>
                               <img

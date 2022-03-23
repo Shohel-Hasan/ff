@@ -51,6 +51,7 @@
 
 
 .img-responsive {
+  height: 100%;
   width: 100%;
   margin: auto;
 }
@@ -154,8 +155,8 @@
   margin: 0;
 }
 .fb-clone-card .fb-card-actions-holder {
-  display: flex;
-  margin: 0 12px;
+ 
+  margin: 0 35px;
   min-height: 32px;
   padding: 4px 0;
 }
