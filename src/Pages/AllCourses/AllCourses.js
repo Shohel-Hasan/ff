@@ -41,6 +41,7 @@ const AllCourses = (props) => {
     
 
 
+    
     useEffect(() => {
         fetch(`http://127.0.0.1:8000/course/all`, {
         method: 'GET',
