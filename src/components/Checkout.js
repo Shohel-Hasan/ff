@@ -14,9 +14,6 @@ export default function Checkout(props) {
 
     const submitHandler = (event) => {
         event.preventDefault();
-        console.log(paymentMethod);
-        console.log(phoneNumber);
-        console.log(transactionId);
 
         const header = {
             mode: 'cors',
@@ -56,15 +53,19 @@ export default function Checkout(props) {
 
             <div className={`${style.bar}`}></div>
 
-            <div className='my-3'>Checkout here to enroll into this course</div>
+            <div className='my-3'>
+                <p>Checkout here to enroll into this course</p>
+                <p>Please send money in the given number and put the tranxaction number and your phone number</p>
+                <p>0164654565</p>
+            </div>
 
             <form action="" className={`form-group`} onSubmit={submitHandler}>
                 {/* <input type="password" className={`form-control my-2`} required placeholder='Old Password'/> */}
-                <select name="method" id="" className='form-control my-1' onChange={event => setPaymentMethod(event.target.value)} required required>
+                <select name="method" id="" className='form-control my-1' onChange={event => setPaymentMethod(event.target.value)} required>
                     <option value="" selected disabled>Select payment method</option>
                     <option value="bkash">Bkash</option>
                     <option value="bkash">Rocket</option>
-                    <option value="bkash">Nogod</option>
+                    {/* <option value="bkash">Nogod</option> */}
                 </select>
 
                 <input className='form-control my-1' type="number" required placeholder="Phone Number" onChange={event => setPhoneNumber(event.target.value)}/>
