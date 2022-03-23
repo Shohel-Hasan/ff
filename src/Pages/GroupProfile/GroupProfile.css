@@ -3,7 +3,8 @@
 }
 
 .badge-wrapper {
-  
+  border-radius: 50%;
+  border: 2px solid #ced0d4; 
   background-size: cover;
   /* display: block; */
   position: relative;

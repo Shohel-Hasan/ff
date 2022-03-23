@@ -410,15 +410,15 @@ const updateGroupNameFunction = () =>{
                   <small style={{ color: "#1877f2", fontSize:'20px', marginLeft: '10px' }} > {singleGroup.name}</small>
                   { groupMember.role==="Creator" && <i style={{color: '#1876f2'}} className="fas fa-edit mx-2" onClick={() => setNameModal(true)}></i>} 
                   <Modal  show={nameModal}  onHide={() => setNameModal(false)} dialogClassName="modal-90w" aria-labelledby="contained-modal-title-vcenter" centered>
-                    <Modal.Header closeButton >
-                      <div className=''>
+                    <Modal.Header  closeButton >
+                      <div >
                         <p className='title'>Update your group name </p>
                       </div>
                     </Modal.Header>
                     <Modal.Body className="fb-box-shadow">
                         <Form>
                           <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                            <Form.Control onChange={(e) =>setUpdateGroupName(e.target.value)} as="textarea" rows={3}  placeholder="Edit your group name"/>
+                            <Form.Control onChange={(e) =>setUpdateGroupName(e.target.value)} as="textarea" rows={2}  placeholder="Edit your group name"/>
                           </Form.Group>
                         </Form>
                         <div className="d-grid gap-2">
