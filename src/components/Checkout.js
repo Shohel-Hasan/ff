@@ -56,7 +56,7 @@ export default function Checkout(props) {
             <div className='my-3'>
                 <p>Checkout here to enroll into this course</p>
                 <p>Please send money in the given number and put the tranxaction number and your phone number</p>
-                <p>0164654565</p>
+                <p>01841779449</p>
             </div>
 
             <form action="" className={`form-group`} onSubmit={submitHandler}>

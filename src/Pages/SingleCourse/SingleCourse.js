@@ -1,20 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { Accordion, Button, Col, Container, Row, Table } from 'react-bootstrap';
+import { Accordion, Button, Col, Container, Row, Table, Modal } from 'react-bootstrap';
 import './SingleCourse.css'
 import img from '../../Images/Layer 1.png'
 import man from '../../Images/man.jpg'
 import Slider from 'react-slick';
 import { Link, useParams } from 'react-router-dom';
-import Checkout from '../../components/Checkout';
+// import Checkout from '../../components/Checkout';
 import Overlay from '../../components/Overlay';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const SingleCourse = (props) => {
     props.triggerCheckLoggedIn();
     const courseId = useParams();
+    const [paymentMethod, setPaymentMethod] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [transactionId, setTransactionId] = useState('');
+    const navigate = useNavigate();
     
     const [showCheckout, setShowCheckout] = useState(false);
+    const [checkoutModal, setCheckoutModalShow] = useState(false);
 
 
     const [course, setCourse] =useState([]);
@@ -37,6 +43,40 @@ const SingleCourse = (props) => {
 
 
     const [isEnrolledAndPaid, setIsEnrolledAndPaid] = useState(false);
+
+    const submitHandler = (event) => {
+      event.preventDefault();
+
+      const header = {
+          mode: 'cors',
+          method: 'POST',
+          headers: {
+              "Accept": "application/json",
+              "Content-Type": "application/json",
+              "Authorization": `Token ${localStorage.getItem('auth_token')}`
+          },
+          body: JSON.stringify({
+              payment_method: paymentMethod,
+              number: phoneNumber,
+              transaction_id: transactionId
+
+          })
+      };
+  
+      fetch(`http://127.0.0.1:8000/course/${courseId.courseId}/enrollment/course-enrollment-payment/`, header)
+          .then(response => response.json())
+          .then(data => {
+              if (data.message) {
+                  alert(`${data.message},  "Please pay the enrollment fee"`)
+                  setCheckoutModalShow(false)
+                  navigate(`/course/${courseId.courseId}/details`)
+              } else{
+                  navigate(`/user/${localStorage.getItem('id')}`)
+                  setCheckoutModalShow(false)
+                  console.log(data)
+              } 
+             })
+  }
 
     //   ------ Course Admin check --------  //
     useEffect(() =>{
@@ -173,7 +213,6 @@ const SingleCourse = (props) => {
       
     }
 
-    
     // course notice create
     const courseNoticeHeader = {
       // mode: 'no-cors',
@@ -337,8 +376,8 @@ const BASE_URL = "http://127.0.0.1:8000"
 
     return (
         <Container className='single_course'>
-          {showCheckout && <Overlay />}
-          {showCheckout && <Checkout toggleCheckout={toggleCheckout} courseId={courseId.courseId}/>}
+          {/* {showCheckout && <Overlay />}
+          {showCheckout && <Checkout toggleCheckout={toggleCheckout} courseId={courseId.courseId}/>} */}
           <div className='bg-white pb-3' style={{borderBottom: "1px solid #ced0d4"}}>
             <Row className='justify-content-center'>
                 <Col md={8} className='text-center'>
@@ -369,8 +408,41 @@ const BASE_URL = "http://127.0.0.1:8000"
 
                       {course.course_availability &&  <Button  className='m-4 badge badge-pill mt-2'>Ongoing</Button>}
 
-                      {!isCourseStaff && !isEnrolledAndPaid &&  <Button onClick={toggleCheckout} className='m-4 badge badge-pill mt-2'>Enroll</Button>}
-                      {/* {isEnrolledAndPaid &&  <Button onClick={toggleCheckout} className='m-4 badge badge-pill mt-2'>Enrolled</Button>} */}
+                      {!isCourseStaff && !isEnrolledAndPaid &&  <Button onClick={() => setCheckoutModalShow(true)}  className='m-4 badge badge-pill mt-2'>Enroll</Button>}
+                      {isEnrolledAndPaid &&  <Button onClick={toggleCheckout} className='m-4 badge badge-pill mt-2'>Enrolled</Button>}
+
+
+                      <Modal show={checkoutModal} onHide={() => setCheckoutModalShow(false)} dialogClassName="modal-90w" aria-labelledby="contained-modal-title-vcenter" centered>
+                        <Modal.Header closeButton >
+                          <p className='title p-2 mx-1'>Checkout</p>
+                            
+                        </Modal.Header>
+                        <Modal.Body className="fb-box-shadow">
+                        <div className='my-3'>
+                            <p>Checkout here to enroll into this course</p>
+                            <p>Please send money in the given number and put the tranxaction number and your phone number</p>
+                            <p>01841779449</p>
+                        </div>
+
+                        <form action="" className={`form-group`} onSubmit={submitHandler}>
+                            {/* <input type="password" className={`form-control my-2`} required placeholder='Old Password'/> */}
+                            <select name="method" id="" className='form-control my-1' onChange={event => setPaymentMethod(event.target.value)} required>
+                                <option value="" selected disabled>Select payment method</option>
+                                <option value="bkash">Bkash</option>
+                                <option value="bkash">Rocket</option>
+                                {/* <option value="bkash">Nogod</option> */}
+                            </select>
+
+                            <input className='form-control my-1' type="number" required placeholder="Phone Number" onChange={event => setPhoneNumber(event.target.value)}/>
+                            <input className='form-control my-1' type="text" required placeholder="Transaction ID" onChange={event => setTransactionId(event.target.value)}/>
+
+                            <div className='d-flex justify-content-center align-items-center my-3'>
+                                <input type="submit"  />
+                            </div>
+                        </form>
+                            
+                        </Modal.Body>
+                      </Modal>
 
 
                       {!isCourseStaff &&  <Button  className='m-4 badge badge-pill mt-2'>Follow +</Button>}
