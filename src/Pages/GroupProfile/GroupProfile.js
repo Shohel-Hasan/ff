@@ -9,6 +9,9 @@ const GroupProfile = (props) => {
   const [show, setShow] = useState(false);
   const [modal, setModal] = useState(false);
   const [setting, setSetting] = useState(false);
+  const [nameModal, setNameModal] =useState(false);
+  const [updateGroupName, setUpdateGroupName] = useState("");
+
   const [singleGroup, setSingleGroup] = useState({})
 
   const [description, setDescription] = useState("")
@@ -272,7 +275,7 @@ useEffect(() => {
   })
 }, [])
 
-// course data function
+    // group about update 
     const updateGroupHeader = {
         // mode: 'no-cors',
         method: 'PATCH',
@@ -304,6 +307,8 @@ useEffect(() => {
             .catch(error => console.log(error))
         
     }
+
+    
 
     // group criteria post header
     const groupCriteriaPostHeader = {
@@ -355,6 +360,36 @@ const allPosts = [...GroupSummaryPosts , ...GroupThoughtPosts ]
 const randomPosts = allPosts.sort(() => Math.random() - 0.5)
 
 
+// update group name header
+const updateGroupNameHeader = {
+  // mode: 'no-cors',
+  method: 'PATCH',
+  headers: {
+      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+      name : updateGroupName,
+  })
+};
+
+const updateGroupNameFunction = () =>{
+  // e.preventDefault();
+  console.log("I am update.....");
+  console.log(localStorage.getItem('auth_token'))
+
+  fetch(`http://127.0.0.1:8000/group/${groupId.groupId}/group-update/`, updateGroupNameHeader)
+      .then(response => {response.json()
+            if (response.status===200) {
+              alert("group name updated")
+              setNameModal(false)
+              window.location.href=`/group/${groupId.groupId}/details`
+            }
+      })
+      .catch(error => console.log(error))
+}
+
   return (
     <Container className="custom">
         {/* Group Profile */}
@@ -368,32 +403,50 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
         </Row>
 
         <Row  className='mt-2'>
-          <Col md={{ span: 3, offset: 2 }}> 
+          <Col md={{ span: 4, offset: 2 }}> 
               <div className='icon-container d-flex align-items-center'>
                 <img style={{'objectFit': 'cover' }} className='group-pic'  src={`${BASE_URL}${singleGroup.profile_pic}`} alt='' />
                 <div className="image-load m-2">
                   <small style={{ color: "#1877f2", fontSize:'20px', marginLeft: '10px' }} > {singleGroup.name}</small>
+                  { groupMember.role==="Creator" && <i style={{color: 'blue'}} className="fas fa-edit mx-2" onClick={() => setNameModal(true)}></i>} 
+                  <Modal  show={nameModal}  onHide={() => setNameModal(false)} dialogClassName="modal-90w" aria-labelledby="contained-modal-title-vcenter" centered>
+                    <Modal.Header closeButton >
+                      <div className=''>
+                        <p className='title'>Update your group name </p>
+                      </div>
+                    </Modal.Header>
+                    <Modal.Body className="fb-box-shadow">
+                        <Form>
+                          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                            <Form.Control onChange={(e) =>setUpdateGroupName(e.target.value)} as="textarea" rows={3}  placeholder="Edit your group name"/>
+                          </Form.Group>
+                        </Form>
+                        <div className="d-grid gap-2">
+                          <Button variant="primary" size="sm" onClick={()=> updateGroupNameFunction()} >
+                            Update
+                          </Button>
+                        </div>
+                    </Modal.Body>
+                  </Modal>
                 </div>
                 </div>
           </Col>
-          <Col className="d-flex align-items-center justify-content-center setting-section " 
-          >
-                    {
-                       groupMember.role==="Creator" ? <div className="d-flex justify-content-center"> <Link to={`/${groupId.groupId}/create-course`}><Badge className="p-2" bg="primary">Create Course </Badge></Link> </div> : <div className="w-50 ">
-                       <select
-                         className="form-select form-select-sm  mx-auto"
-                         aria-label="form-select-lg example"
-                       >
-                         <option value="1">Follow</option>
-                         <option value="2">UnFollow</option>
-                         <option value="3">Joint as Content Creator</option>
-                         <option value="4">Requested as Content Creator</option>
-                         <option value="5">Content Creator</option>
-                        </select>
-                      </div> 
-                    }
-                    <button   onClick={() => setSetting(true)} type="button" className="btn btn-outline-primary mx-5"><i className="fa fa-gear"></i></button>
-            </Col>
+          <Col className="d-flex align-items-center justify-content-center setting-section ">
+            {groupMember.role==="Creator" ? <div className="d-flex justify-content-center"> <Link to={`/${groupId.groupId}/create-course`}><Badge className="p-2" bg="primary">Create Course </Badge></Link> </div> : <div className="w-50 ">
+              <select
+                className="form-select form-select-sm  mx-auto"
+                aria-label="form-select-lg example"
+              >
+                <option value="1">Follow</option>
+                <option value="2">UnFollow</option>
+                <option value="3">Joint as Content Creator</option>
+                <option value="4">Requested as Content Creator</option>
+                <option value="5">Content Creator</option>
+              </select>
+              </div> 
+            }
+            <button   onClick={() => setSetting(true)} type="button" className="btn btn-outline-primary mx-5"><i className="fa fa-gear"></i></button>
+          </Col>
 
           
             
@@ -402,8 +455,8 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
       {/*-------------- Post Section----------------------- */}
 
        <Row className='justify-content-center my-3'>
-                  <Col md={8} className='shadow-effect py-3'>
-                      <div className="d-flex align-items-center">
+       { groupMember.role==="Creator" &&   <Col md={8} className='shadow-effect py-3'>
+                     <div className="d-flex align-items-center">
                           <div className='w-25 text-center'>
                               <img
                                 className="rounded-circle"
@@ -477,7 +530,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                             onHide={() => setModal(false)}
                             dialogClassName="modal-90w"
                             aria-labelledby="contained-modal-title-vcenter"
-                            centered
+                            centered size="lg"
                           >
                             <Modal.Header closeButton>
                                 <div className=''>
@@ -722,21 +775,20 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                       
                                     {/* section-14 */}
                                     <Accordion.Item eventKey="13">
-                                    <Accordion.Header>
-                                        Keyword   
-                                            
-                                    </Accordion.Header>
-                                    <Accordion.Body>
+                                      <Accordion.Header>
+                                          Keyword   
+                                      </Accordion.Header>
+                                      <Accordion.Body>
                                         <div id="example-collapse-text">
-                                            <Form.Group onChange={(e) =>setstoreKeywordGroup(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                              <Form.Control defaultValue={localStorage.getItem('storeKeywordGroup')} as="textarea" rows={6} placeholder='Keyword without space' />
-                                            </Form.Group>
-                                            <div className="text-end">
-                                                    <Button onClick={handleGroup} size="sm" variant="primary">Save</Button>
-                                            </div>
+                                          <Form.Group onChange={(e) =>setstoreKeywordGroup(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                            <Form.Control defaultValue={localStorage.getItem('storeKeywordGroup')} as="textarea" rows={6} placeholder='Keyword without space' />
+                                          </Form.Group>
+                                          <div className="text-end">
+                                            <Button onClick={handleGroup} size="sm" variant="primary">Save</Button>
+                                          </div>
                                         </div>
-                                        </Accordion.Body>
-                                        </Accordion.Item>
+                                      </Accordion.Body>
+                                    </Accordion.Item>
 
                                 {/*----------- Post Button --------------*/}
                                 <div className="text-end m-3">
@@ -746,7 +798,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                         </Accordion>
                             </Modal.Body>
                           </Modal>
-                  </Col>
+                  </Col>}
               </Row>
 
               <Row className="d-flex justify-content-center">
@@ -895,8 +947,8 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                       alwaysOpen >
                       <Accordion.Item eventKey="0">
                         <Accordion.Header>
-                          About Us <br />
-                          <i style={{color: 'blue'}} className="fas fa-edit p-2 "></i>
+                          About Us
+                          
                         </Accordion.Header>
                         <Accordion.Body>
                           <div class="mb-3">
