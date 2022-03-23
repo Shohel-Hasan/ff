@@ -3,6 +3,7 @@ import { Col, Container, Form, Row, Modal,Button, FormControl,  InputGroup, Acco
 import { Link, useParams } from "react-router-dom";
 import "./GroupProfile.css";
 import man from '../../Images/man.jpg';
+import badge from '../../Images/badge.png'
 
 const GroupProfile = (props) => {
 
@@ -403,7 +404,7 @@ const updateGroupNameFunction = () =>{
               <div className='d-flex align-items-center'>
                 <img style={{'objectFit': 'cover' }} className='group-pic'  src={`${BASE_URL}${singleGroup.profile_pic}`} alt=''/>
                <div className="">
-                       <span class="badge-wrapper"></span>
+                       <img className="badge-wrapper" src={badge} alt=''/>
                </div>
                 <div className="image-load m-2">
                   <small style={{ color: "#1877f2", fontSize:'20px', marginLeft: '10px' }} > {singleGroup.name}</small>
