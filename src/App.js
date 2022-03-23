@@ -109,7 +109,7 @@ function App() {
 
         {/* Terms & Condition end */}
 
-        <Route path="/:groupId/my-courses" element={<MyCourses triggerCheckLoggedIn={checkLoggedIn} />} />
+        <Route path="/my-courses" element={<MyCourses triggerCheckLoggedIn={checkLoggedIn} />} />
         <Route path="my-groups" element={<MyGroups triggerCheckLoggedIn={checkLoggedIn} />} />
         <Route path="groups-home" element={<GroupsHome triggerCheckLoggedIn={checkLoggedIn} />} />
         <Route path="/:groupId/create-course" element={<CreateCourse triggerCheckLoggedIn={checkLoggedIn} />} />

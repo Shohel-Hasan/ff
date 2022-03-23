@@ -14,8 +14,10 @@ const MyCourses = (props) => {
 
   const [myCourses, setMyCourses] = useState([]);
   const [noCourses, setNoCourses] = useState([]);
+  const [users, setUsers] =useState([]);
+  const [userGeneralInfo, setUserGeneralInfo] = useState({});
 
-  console.log("nocourses: ", noCourses)
+  console.log("nocourses: ", userGeneralInfo)
 
 
 
@@ -23,10 +25,41 @@ const MyCourses = (props) => {
   const groupId = useParams();
 
   console.log(userId)
+// getting user general Info
+    useEffect(() => {
+        fetch(`http://127.0.0.1:8000/user/user-general-info/${localStorage.getItem('id')}`, {
+        method: 'GET',
+        headers: {
+            "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        }})
+        .then(res =>{
+        return res.json()
+        })
+        .then(data => setUserGeneralInfo(data))
+    }, [localStorage.getItem('id')])
+
+
+
+    // getting user Info
+    useEffect(() => {
+      fetch(`http://127.0.0.1:8000/user/${localStorage.getItem('id')}`, {
+      method: 'GET',
+      headers: {
+          "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+      }})
+      .then(res =>{
+      return res.json()
+      })
+      .then(data => setUsers(data))
+  }, [localStorage.getItem('id')])
 
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/course/group/${groupId.groupId}/group-courses/`, {
+    fetch(`http://127.0.0.1:8000/course/enrollment/all/`, {
     method: 'GET',
     headers: {
         "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -41,101 +74,45 @@ const MyCourses = (props) => {
           setNoCourses([{data: data.message}]
           )
         } else {
-          setMyCourses(data)
-          console.log(data)
+          setMyCourses(data.filter(d => d.student=== +localStorage.getItem('id')))
+          console.log(myCourses)
         }
-       
     })
-}, [groupId.groupId])
+}, [localStorage.getItem('id')])
+
 const BASE_URL = "http://127.0.0.1:8000"
 
 
   return (
     <div>
-      <Container>
-       <Row>
-
-         <img  className='rounded-circle w-25  mx-auto mt-5' src={profile}/>
-            <h4 style={{color:"blue"}} className='text-center mt-4'> Name: Md. Saddam Hossain</h4>
-            <h4 style={{color:"blue"}} className='text-center mt-2'> Designation: Teacher</h4>
+      <Container className='my_course_container'>
+       <Row className='justify-content-center align-items-center'>
+          <img style={{ borderBottomRightRadius:'8px', borderBottomLeftRadius:'8px', objectFit: 'cover', width:'850px', height:'320px' }} className='' src={`${BASE_URL}${userGeneralInfo.cover_pic}`}/>
+          <h4 style={{color:"blue"}} className='text-center mt-4'> {users.first_name}</h4>
+          <h4 style={{color:"blue"}} className='text-center mt-2'> {users.profession}</h4>
        </Row>
 
-       { noCourses && noCourses.map((noCourse, index) => <Row key={index} className="justify-content-center my-4" >
+       { myCourses.length===0 && 
            <Col md={8} className="d-flex justify-content-center my-4" >
-            <h4>Courses not created yet</h4>
+            <h4>you don't enroll any course yet</h4>
            </Col>
-         </Row>)
-         
        }
 
       { myCourses.map(course => <Row key={course.id} className='d-flex justify-content-center'>
           <Col md={8} >
             <Row className='mt-4 shadow border custom-radius bg-white'>
               <Col sm={3} className="d-flex justify-content-center align-items-center my-2">
-              <img style={{"height": "80px", "width": "80px", "border-radius": "50%"}}  src={`${BASE_URL}${course.cover_pic}`} />
+              <img style={{"height": "80px", "width": "80px", "borderRadius": "50%"}}  src={`${BASE_URL}${course.course_cover_pic}`} />
 
               </Col>
-              <Col  sm={9}> 
-                <h6 style={{color:"blue"}} className='my-3'> <Link to={`/course/${course.id}/details`}>{course.name}</Link> </h6>
-                <small>{course.created_date}</small>
+              <Col  sm={9} className="d-flex align-items-center my-2"> 
+                <h6 style={{color:"blue"}} className='my-3'> <Link to={`/course/${course.id}/details`}>{course.course_name}</Link> </h6>
               </Col>
             </Row>
           
           </Col>
        </Row>
        ) }
-
-
-
-       {/* <Row style={{background : "#ffff"}} className='mt-5 shadow custom-radius '>
-          <Col sm={4}>
-            <img className='w-75 mx-5 mt-5' src={course_2}/>
-           
-
-            </Col>
-            <Col sm={8}> 
-              <h2 style={{color:"blue"}}  className=' mt-5'>Course Title :</h2>
-              <h5><b>Civil Engineering</b> </h5>
-              <h3 style={{color:"blue"}}>Other Description :</h3>
-              <p>As part of the group creation process, you must assign courses to the group. When a course is assigned to a group, any user who is in the group will automatically get enrolled into the associated course(s).</p>
-              <h3 style={{color:"blue"}}>Course Title :</h3>
-              <h5><b> Media Studies </b> </h5>
-              <h3 style={{color:"blue"}}>Other Description :</h3>
-              <p>As part of the group creation process, you must assign courses to the group. When a course is assigned to a group, any user who is in the group will automatically get enrolled into the associated course(s).</p>
-              <h3 style={{color:"blue"}}>Course Title :</h3>
-              <h5 ><b> Business Studies </b> </h5>
-              <h3 style={{color:"blue"}}>Other Description :</h3>
-              <p className='mb-5'>As part of the group creation process, you must assign courses to the group. When a course is assigned to a group, any user who is in the group will automatically get enrolled into the associated course(s).</p>
-              
-
-            </Col>
-       </Row>
-       
-       <Row style={{background : "#ffff"}} className='mt-5 shadow custom-radius '>
-          <Col sm={4}>
-            <img className='w-75 mx-5 mt-5' src={course_3}/>
-
-
-            </Col>
-            <Col sm={8}> 
-              <h3 style={{color:"blue"}}  className=' mt-5'>Course Title :</h3>
-              <h5><b>Social Works</b></h5>
-              <h3 style={{color:"blue"}}>Other Description :</h3>
-              <p>As part of the group creation process, you must assign courses to the group. When a course is assigned to a group, any user who is in the group will automatically get enrolled into the associated course(s).</p>
-              <h3 style={{color:"blue"}}>Course Title :</h3>
-              <h5><b>Mechanical Engineering</b></h5>
-              <h3 style={{color:"blue"}}>Other Description :</h3>
-              <p>As part of the group creation process, you must assign courses to the group. When a course is assigned to a group, any user who is in the group will automatically get enrolled into the associated course(s).</p>
-              <h3 style={{color:"blue"}}>Course Title :</h3>
-              <h5><b>Robotics And Automation</b></h5>
-              <h3 style={{color:"blue "}}>Other Description :</h3>
-              <p className='mb-5'>As part of the group creation process, you must assign courses to the group. When a course is assigned to a group, any user who is in the group will automatically get enrolled into the associated course(s).</p>
-              
-
-            </Col>
-       </Row> */}
-       
-          
 
         
       </Container>

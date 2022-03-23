@@ -3,7 +3,7 @@ import { Col, Container, Form, Row, Modal,Button, FormControl,  InputGroup, Acco
 import { Link, useParams } from "react-router-dom";
 import "./GroupProfile.css";
 import man from '../../Images/man.jpg';
-import badge from '../../Images/badge.png'
+import badge from '../../Images/badge.svg'
 
 const GroupProfile = (props) => {
 
