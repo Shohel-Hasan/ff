@@ -22,6 +22,7 @@ import DataPolicy from "./Pages/DataPolicy/DataPolicy";
 import CookiePolicy from "./Pages/CookiePolicy/CookiePolicy";
 import PrivacyPolicy from "./Pages/PrivacyPolicy/PrivacyPolicy";
 import ProductPolicy from "./Pages/ProductPolicy/ProductPolicy";
+import GroupsHome from "./Pages/GroupsHome/GroupsHome";
 
 
 
@@ -106,6 +107,7 @@ function App() {
 
         <Route path="/:groupId/my-courses" element={<MyCourses triggerCheckLoggedIn={checkLoggedIn} />} />
         <Route path="my-groups" element={<MyGroups triggerCheckLoggedIn={checkLoggedIn} />} />
+        <Route path="groups-home" element={<GroupsHome triggerCheckLoggedIn={checkLoggedIn} />} />
         <Route path="/:groupId/create-course" element={<CreateCourse triggerCheckLoggedIn={checkLoggedIn} />} />
         <Route path="user/:userId/user-profile-post" element={<UserAboutPost triggerCheckLoggedIn={checkLoggedIn} />} />
         <Route path="/all-courses" element={<AllCourses triggerCheckLoggedIn={checkLoggedIn} />} />

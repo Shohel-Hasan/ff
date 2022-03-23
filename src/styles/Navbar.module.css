@@ -47,6 +47,7 @@
 
 /*------- Icon active / visited---------- */
 a:focus,
+a:active,
 a:visited{
     border-bottom: 2px solid #1876f2;
 }
