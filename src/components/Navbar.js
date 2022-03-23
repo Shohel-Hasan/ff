@@ -119,7 +119,7 @@ export default function Navbar(props) {
             <div className={`${style.container} d-flex align-items-center flex-column`}>
                 <img className='my-3' src={logo} alt="" />
                 <div className={`${style.links} d-flex flex-column justify-content-center align-items-center`}>
-                    <Link style={{textDecoration:'none'}} to="/" onClick={toggleNav}><p className='d-flex justify-content-center align-items-center text-decoration-none'>Home</p></Link>
+                    <Link style={{textDecoration:'none'}} to="/home" onClick={toggleNav}><p className='d-flex justify-content-center align-items-center text-decoration-none'>Home</p></Link>
                     <Link style={{textDecoration:'none'}} to={`/user/${localStorage.getItem('id')}`} ><p className='d-flex justify-content-center align-items-center text-decoration-none'>Dashboard </p></Link>
                     <Link style={{textDecoration:'none'}} to="my-groups" ><p className='d-flex justify-content-center align-items-center text-decoration-none'>My-Groups</p></Link>
                     <Link style={{textDecoration:'none'}} to={`user/${localStorage.getItem('id')}/user-profile-post`}><p className='d-flex justify-content-center align-items-center text-decoration-none'>Profile Post</p></Link>
