@@ -287,21 +287,25 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                         <Col>
                             <div className="p-3 shadow-effect d-flex align-items-center  ">
                                {userGeneralInfo.cover_pic!==null && <div className='w-25'>
-                                    <img
-                                    className="rounded-circle"
-                                    style={{ width: "56px", height: "56px", 'objectFit': 'cover' }} 
-                                    src={`${BASE_URL}${userGeneralInfo.profile_pic}`}
-                                    alt=''
-                                    />
+                                    <div className='text-center'>
+                                      <img
+                                      className="rounded-circle"
+                                      style={{ width: "56px", height: "56px", 'objectFit': 'cover' }} 
+                                      src={`${BASE_URL}${userGeneralInfo.profile_pic}`}
+                                      alt=''
+                                      />
+                                    </div>
                                 </div>}
 
                                 {userGeneralInfo.cover_pic===null && <div className='w-25'>
-                                    <img
-                                    className="rounded-circle"
-                                    style={{ width: "56px", height: "56px", 'objectFit': 'cover' }} 
-                                    src={man}
-                                    alt=''
-                                    />
+                                    <div className='text-center'>
+                                      <img
+                                      className="rounded-circle"
+                                      style={{ width: "56px", height: "56px", 'objectFit': 'cover' }} 
+                                      src={man}
+                                      alt=''
+                                      />
+                                    </div>
                                 </div>}
 
                                 <div className='w-75'>
