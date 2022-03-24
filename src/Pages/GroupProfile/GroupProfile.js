@@ -406,8 +406,8 @@ const updateGroupNameFunction = () =>{
                <div>
                       {singleGroup.is_verified && <img className="badge-wrapper" src={badge} alt=''/>}
                </div>
-                <div className="image-load m-2">
-                  <small style={{ color: "#1877f2", fontSize:'20px', marginLeft: '10px' }} > {singleGroup.name}</small>
+                <div className="image-load">
+                  <small style={{ color: "#1877f2", fontSize:'20px' }} > {singleGroup.name}</small>
                   { groupMember.role==="Creator" && <i style={{color: '#1876f2'}} className="fas fa-edit mx-2" onClick={() => setNameModal(true)}></i>} 
                   <Modal  show={nameModal}  onHide={() => setNameModal(false)} dialogClassName="modal-90w" aria-labelledby="contained-modal-title-vcenter" centered>
                     <Modal.Header  closeButton >
