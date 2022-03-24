@@ -1,5 +1,5 @@
 .single_course {
-  padding-top: 70px;
+  padding-top: 67px;
 }
 
 .box{
@@ -60,5 +60,9 @@
   height: 30px;
   left: 47px;
   top: -75px;
+}
+
+div[className*='special-label'], .form-control {
+  width: 100% !important;
 }
 

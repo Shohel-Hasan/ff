@@ -15,6 +15,8 @@ import avatar from '../assets/man.jpg';
 import notification_icon_filled from '../assets/re/Notice.svg';
 import style from '../styles/Navbar.module.css';
 import { useNavigate } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+
 
 
 
@@ -79,12 +81,12 @@ export default function Navbar(props) {
   return (
     <div className={`${style.navbar_main_container} ${style.fb_box_shadow} d-flex flex-row justify-content-between`}>
       <div className={`${style.branding} d-flex flex-row justify-content-center align-items-center`}>
-        <div className={`${style.logo} mx-2`}>
-          <img style={{objectFit: 'cover'}} src={logo} alt='logo' />
+        <div className={`${style.logo} mx-1`}>
+          <Link to='/home'><img style={{objectFit: 'cover', width:'45px', height:'45px'}} src={logo} alt='logo' /></Link>
         </div>
-        <div className={`${style.nav__search}`}>
+        <div style={{backgroundColor: 'rgb(213 228 251)', marginLeft:'15px'}} className={`${style.nav__search}`}>
           <i className="material-icons">search</i>
-          <input type="text" placeholder="Search Research Rider" />
+          <input  type="text" placeholder="Search Research Rider" />
         </div>
       </div>
 
@@ -115,18 +117,18 @@ export default function Navbar(props) {
 
       {/* sideNavbar */}
 
-      <div ref={sideNav} className={`${style.main} ${style.fb_box_shadow} d-flex`}>
+      <div ref={sideNav} className={`${style.main} ${style.sideNav_shadow} d-flex`}>
             <div className={`${style.container} d-flex align-items-center flex-column`}>
                 <img className='my-3' src={logo} alt="" />
-                <div className={`${style.links} d-flex flex-column justify-content-center align-items-center`}>
-                    <Link style={{textDecoration:'none'}} to="/home" onClick={toggleNav}><p className='d-flex justify-content-center align-items-center text-decoration-none'>Home</p></Link>
-                    <Link style={{textDecoration:'none'}} to={`/user/${localStorage.getItem('id')}`} ><p className='d-flex justify-content-center align-items-center text-decoration-none'>Dashboard </p></Link>
-                    <Link style={{textDecoration:'none'}} to="my-groups" ><p className='d-flex justify-content-center align-items-center text-decoration-none'>My-Groups</p></Link>
-                    <Link style={{textDecoration:'none'}} to={`user/${localStorage.getItem('id')}/user-profile-post`}><p className='d-flex justify-content-center align-items-center text-decoration-none'>Profile Post</p></Link>
+                <div className={`${style.links} d-flex flex-column justify-content-center align-items-center pb-3`}>
+                    <Link style={{textDecoration:'none'}} to="/home" onClick={toggleNav}><p className='d-flex justify-content-center align-items-center '>Home</p></Link>
+                    <Link style={{textDecoration:'none'}} to={`/user/${localStorage.getItem('id')}`} ><p className='d-flex justify-content-center align-items-center '>Dashboard </p></Link>
+                    <Link style={{textDecoration:'none'}} to="my-groups" ><p className='d-flex justify-content-center align-items-center '>My-Groups</p></Link>
+                    <Link style={{textDecoration:'none'}} to={`user/${localStorage.getItem('id')}/user-profile-post`}><p className='d-flex justify-content-center align-items-center'>Profile Post</p></Link>
                     {/* <Link style={{textDecoration:'none'}} to="create-course" ><p className='d-flex justify-content-center align-items-center text-decoration-none'>Create Course</p></Link> */}
                     {/* <Link style={{textDecoration:'none'}} to='course/:courseId/details'><p className='d-flex justify-content-center align-items-center text-decoration-none'>Single Course</p></Link> */}
                     {/* <Link style={{textDecoration:'none'}} to="user/:userId" ><p className='d-flex justify-content-center align-items-center text-decoration-none'>Update User Profile</p></Link> */}
-                    <button onClick={() => {localStorage.clear(); navigate('/')}}>Logout </button>
+                    <Button size='sm' onClick={() => {localStorage.clear(); navigate('/')}}>Logout </Button>
                 </div>
             </div>
         </div>
