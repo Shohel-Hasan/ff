@@ -78,32 +78,23 @@ export default function Navbar(props) {
       }, [localStorage.getItem('id')])
       const BASE_URL = "http://127.0.0.1:8000"
 
+      
   return (
     <div className={`${style.navbar_main_container} ${style.fb_box_shadow} d-flex flex-row justify-content-between`}>
       <div className={`${style.branding} d-flex flex-row justify-content-center align-items-center`}>
         <div className={`${style.logo} mx-1`}>
           <Link to='/home'><img style={{objectFit: 'cover', width:'45px', height:'45px'}} src={logo} alt='logo' /></Link>
         </div>
-        <div style={{backgroundColor: 'rgb(213 228 251)', marginLeft:'15px'}} className={`${style.nav__search}`}>
+        <div style={{backgroundColor: 'rgb(213 228 251)'}} className={`${style.nav__search}`}>
           <i className="material-icons">search</i>
           <input  type="text" placeholder="Search Research Rider" />
         </div>
       </div>
 
       <div className={`${style.mid_section} d-flex flex-row justify-content-center align-items-center`}>
-        
-
-         {/* <Link className='navLink' to='/home'><img src={home_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
-         <Link className='navLink' to='/my-groups'><img src={group_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
-         <Link className='navLink' to="all-courses" ><img src={class_icon} className={`material-icons ${style.icons}`} alt='home' /></Link> */}
-
          <Link  to='/home'><img src={home_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
          <Link  to='/groups-home'><img src={group_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
          <Link  to="all-courses" ><img src={class_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
-
-       
-
-        {/* <img src={notification_icon} className={`material-icons ${style.icons}`} alt='home' /> */}
       </div>
       
       <div className={`${style.profile_section} d-flex flex-row justify-content-center align-items-center`}>

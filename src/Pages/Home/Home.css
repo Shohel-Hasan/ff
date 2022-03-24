@@ -8,11 +8,7 @@
   border-radius: 8px;
 }
 
-.title{
-  font-size: 1.25rem;
-  font-weight: 700;
-  
-}
+
 
 .shadow-effect{
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
@@ -286,15 +282,4 @@
   }
 }
 
-/* .modal-header{
-  padding: 2px !important;
-  
-}
 
-.modal-header .btn-close {
-  margin: -0.5rem 0.5rem 0.5rem auto !important;
-}
-
-.modal{
-  padding-left: 0px !important;
-} */

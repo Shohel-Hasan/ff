@@ -12,7 +12,7 @@
 }
  
 .create_course_container {
-  padding-top: 90px;
+  padding-top: 58px;
 }
   
   .wrapper{
@@ -121,7 +121,6 @@
       #image_src {
         width: 26px;
         height: 26px;
-        margin-right: 100px;
         opacity: 0;
         filter: alpha(opacity=0); /* IE 5-7 */
       }
