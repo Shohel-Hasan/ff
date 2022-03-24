@@ -346,7 +346,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                                 >
                                   <Modal.Header closeButton >
                                       
-                                          <p className='title p-2 mx-1'>Thought Post </p>
+                                          <p className='fw-bolder fs-6'>Thought Post </p>
                                       
                                   </Modal.Header>
                                   <Modal.Body className="fb-box-shadow">
@@ -386,7 +386,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                                 >
                                   <Modal.Header closeButton>
                                       <div className=''>
-                                          <p className='fw-bold title p-2 mx-1'>Research Summary</p>
+                                          <p className='fw-bolder fs-6'>Research Summary</p>
                                       </div>
                                   </Modal.Header>
                                   <Modal.Body className="fb-box-shadow">

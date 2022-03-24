@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Col, Collapse, Container, Form, Row } from 'react-bootstrap';
 import './CreateCourse.css'
-import img from '../../Images/Layer 1.png'
 import man from '../../Images/man.jpg'
-import { fontWeight, margin } from '@mui/system';
 import { useNavigate, useParams } from 'react-router-dom';
 
 
@@ -394,10 +392,10 @@ const BASE_URL = "http://127.0.0.1:8000"
    
 
     return (
-        <Container className='create_course_container'>
-            <Row>
+        <Container className='create_course_container' >
+           
                 <Form >
-                    <Row>
+                    <Row className='justify-content-center align-items-center'>
                        
                       <div className='fb-box-shadow pb-3' style={{borderBottom: "1px solid #ced0d4"}}>
                       
@@ -441,7 +439,7 @@ const BASE_URL = "http://127.0.0.1:8000"
                         </Row>
 
 
-                      </div>
+                    </div>
 
 
                      
@@ -1166,13 +1164,13 @@ const BASE_URL = "http://127.0.0.1:8000"
                         </div> */}
 
 
-                    <div className='text-end mt-2'>
-                        <Button onClick={()=> handleCreateCourseFormData()} className='btn-success'>Submit</Button>
+                    <div className='text-end my-2'>
+                        <Button onClick={()=> handleCreateCourseFormData()} className='btn-primary'>Submit</Button>
                     </div>
                     </Row>
                    
                 </Form>
-            </Row> 
+          
         </Container>
     );
 };

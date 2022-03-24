@@ -412,7 +412,7 @@ const updateGroupNameFunction = () =>{
                   <Modal  show={nameModal}  onHide={() => setNameModal(false)} dialogClassName="modal-90w" aria-labelledby="contained-modal-title-vcenter" centered>
                     <Modal.Header  closeButton >
                       <div >
-                        <p className='title'>Update your group name </p>
+                        <p className='fw-bolder'>Update your group name </p>
                       </div>
                     </Modal.Header>
                     <Modal.Body className="fb-box-shadow">
@@ -491,7 +491,7 @@ const updateGroupNameFunction = () =>{
                             centered
                           >
                             <Modal.Header closeButton >   
-                                    <p className='title p-2 mx-1'>Thought Post </p>
+                                    <p className='fw-bolder'>Thought Post </p>
                             </Modal.Header>
                             <Modal.Body className="fb-box-shadow">
                                 <div className='d-flex mb-2'>
@@ -530,7 +530,7 @@ const updateGroupNameFunction = () =>{
                             centered size="lg"
                           >
                             <Modal.Header closeButton>
-                                    <p className='title p-2 mx-1'>Research Summary</p>
+                                    <p className='fw-bolder'>Research Summary</p>
 
                             </Modal.Header>
                             <Modal.Body className="fb-box-shadow">
