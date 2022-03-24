@@ -122,7 +122,7 @@ const BASE_URL = "http://127.0.0.1:8000"
         <Container fluid className='home-container'>
             <Row className=''>
                 <Col md={3}>
-                    <Accordion className='my-3 rounded' >
+                    <Accordion className='my-3 rounded' alwaysOpen>
                         <Accordion.Item eventKey="0">
                             <Accordion.Header>My-Groups</Accordion.Header>
                                 <Accordion.Body>
@@ -135,7 +135,7 @@ const BASE_URL = "http://127.0.0.1:8000"
                                     myGroups.map(group=>  <Row key={group.id} className="d-flex justify-content-center my-3">
                                     
                                     <div  className="d-flex flex-column justify-content-center mx-4">
-                                        <p className="m-0 p-0"> <b> <Link to={`/group/${group.id}/details`}>  {group.name}</Link>  </b> </p>
+                                        <p className="m-0 p-0"> <b> <Link className='text-decoration-none' to={`/group/${group.id}/details`}>  {group.name}</Link>  </b> </p>
                                     </div>
                                     </Row>)
                                     }
@@ -152,7 +152,7 @@ const BASE_URL = "http://127.0.0.1:8000"
                                 { otherGroups &&
                                     otherGroups.map(group=>  <Row key={group.id} className="d-flex justify-content-center my-3">
                                         <div className="d-flex flex-column justify-content-center mx-4">
-                                            <p className="m-0 p-0"> <b> <Link to={`/group/${group.id}/details`}>  {group.name}</Link>  </b> </p>
+                                            <p className="m-0 p-0"> <b> <Link className='text-decoration-none' to={`/group/${group.id}/details`}>  {group.name}</Link>  </b> </p>
                                         </div>
                                     </Row>)
                                     }

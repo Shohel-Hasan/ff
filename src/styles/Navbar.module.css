@@ -1,10 +1,12 @@
 .navbar_main_container {
-    height: 60px;
+    height: 50px;
     padding: 5px;
     width: 100%;
     position: fixed;
     z-index: 1000;
     background-color: white;
+    margin-top: 2px;
+   
 }
 
 .logo img {
@@ -16,9 +18,9 @@
     display: flex;
     align-items: center;
     background-color: #f1f2f6;
-    padding: 15px;
+    padding: 13px;
     border-radius: 50px;
-    height: 40px;
+    height: 38px;
 }
 
 .nav__search input {
@@ -32,13 +34,8 @@
     font-size: 14px;
 }
 
-.fb_box_shadow {
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    border-radius: 8px;
-}
-
 .icons {
-    height: 55px;
+    height: 48px;
     width: auto;
     padding: 10px 28px;
    
@@ -46,11 +43,16 @@
 }
 
 /*------- Icon active / visited---------- */
+
+.mid_section a:visited,
 .mid_section a:focus,
-.mid_section a:active,
-.mid_section a:visited{
+.mid_section a:active{
     border-bottom: 2px solid #1876f2;
+    transform: scale(1.08);
+
+   
 }
+
 
 .avatar {
     border-radius: 50% !important;
@@ -68,12 +70,12 @@
 }
 
 .notification_icon {
-    height: 52px !important;
+    height: 48px !important;
 }
 
 .hamburger {
     padding: 0px 15px;
-    height: 20px !important;
+    height: 17px !important;
 }
 
 @media(max-width: 767px) {
@@ -94,11 +96,11 @@
 .main {
     position: fixed;
     right: -100%;
-    top: 71px;
+    top: 58px;
     height: 350px;
     width: 300px;
     background-color: white;
-    padding: 50px 0px;
+    padding: 25px 0px;
     margin: 0 !important;
     transition: .5s ease;
     overflow-y: scroll;
@@ -126,7 +128,7 @@
 
 .fb_box_shadow {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    border-radius: 8px;
+    border-radius: 50px;
 }
 
 .container {
@@ -149,4 +151,8 @@
 .links p:hover {
     background-color: #F0F2F5;
     cursor: pointer;
+}
+.sideNav_shadow {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    border-radius: 8px;
 }

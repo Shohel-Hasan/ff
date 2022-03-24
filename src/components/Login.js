@@ -195,7 +195,6 @@ export default function Login() {
                 <div className={`${style.image} mx-3 d-flex flex-column justify-content-center align-items-center`}>
                     <img src={image} alt="" />
                     <h5 className={`${style.slogan}`}>Grow up being a researcher</h5>
-                    
                 </div>
 
                 <div className={`${style.side_bar}`}></div>
