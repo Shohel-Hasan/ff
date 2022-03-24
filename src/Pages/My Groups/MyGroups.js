@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, Modal, Container, Row, Form, Col } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import profile from "../../Images/user.jpg";
 import { upload } from "@testing-library/user-event/dist/upload";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -188,10 +187,12 @@ const BASE_URL = "http://127.0.0.1:8000"
                 <Form.Label>Profile Picture</Form.Label>
                 <Form.Control onChange={e => setProfilePic(e.target.files[0])} type="file" />
               </Form.Group>
-              <Button variant="secondary" onClick={handleClose}>
-                Close
-              </Button>
-              <Button className="mx-2" onClick={()=> handleGroup()} variant="primary">Save</Button>
+            
+                <Button variant="secondary" onClick={handleClose}>
+                    Close
+                  </Button>
+                  <Button className="mx-2" onClick={()=> handleGroup()} variant="primary">Save</Button>
+              
             </Form>
             
           </Modal.Body>

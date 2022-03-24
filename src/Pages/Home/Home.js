@@ -756,13 +756,14 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                               <div className="fb-card-actions-holder">
                                 <div className="d-flex justify-content-between">
                                     <div className="fb-btn-holder">
-                                        <a className='text-decoration-none' href="/"><i className="fa hom-icon fa-thumbs-up"></i> Like</a>
+                                        <Button variant="outline-light"><i className="fa hom-icon fa-thumbs-up"></i> Like</Button>
+                                      
                                     </div>
                                     <div className="fb-btn-holder">
-                                        <a className='text-decoration-none' href="/"><i className="far hom-icon fa-comment-alt"></i> Comment</a>
+                                        <Button variant="outline-light"><i className="far hom-icon fa-comment-alt"></i> Comment</Button>
                                     </div>
                                     <div className="fb-btn-holder">
-                                        <a className='text-decoration-none' href="/"><i className="fa hom-icon fa-share-square"></i> Share</a>
+                                        <Button variant="outline-light"><i className="fa hom-icon fa-share-square"></i> Share</Button>
                                     </div>
                                 </div>
                               </div>
