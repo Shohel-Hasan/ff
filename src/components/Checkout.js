@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import style from '../styles/ChangepassForm.module.css';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
 export default function Checkout(props) {
     const [paymentMethod, setPaymentMethod] = useState('');
@@ -68,7 +70,15 @@ export default function Checkout(props) {
                     {/* <option value="bkash">Nogod</option> */}
                 </select>
 
-                <input className='form-control my-1' type="number" required placeholder="Phone Number" onChange={event => setPhoneNumber(event.target.value)}/>
+             
+                <PhoneInput
+                  inputProps={{
+                    name: 'phone',
+                    required: true,
+                    autoFocus: true
+                  }}
+                  onBlur={event => setPhoneNumber(event.target.value)}
+                />
                 <input className='form-control my-1' type="text" required placeholder="Transaction ID" onChange={event => setTransactionId(event.target.value)}/>
 
                 <div className='d-flex justify-content-center align-items-center my-3'>
