@@ -78,6 +78,7 @@ export default function Navbar(props) {
       }, [localStorage.getItem('id')])
       const BASE_URL = "http://127.0.0.1:8000"
 
+      
   return (
     <div className={`${style.navbar_main_container} ${style.fb_box_shadow} d-flex flex-row justify-content-between`}>
       <div className={`${style.branding} d-flex flex-row justify-content-center align-items-center`}>
