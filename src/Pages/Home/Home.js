@@ -17,6 +17,9 @@ const Home = () => {
     const [thoughtPosts, setThoughtPosts] = useState([]);
     const [noThoughtPosts, setNoThoughtPosts] = useState([]);
 
+    const [allCourses, setAllCourses] = useState([]);
+    const [noCourses, setNoCourses] = useState([]);
+
     const navigate = useNavigate();
 
 
@@ -192,6 +195,29 @@ useEffect(() => {
   .then(data => setUserGeneralInfo(data))
 }, [localStorage.getItem('id')])
 
+
+useEffect(() => {
+  fetch(`http://127.0.0.1:8000/course/all`, {
+  method: 'GET',
+  headers: {
+      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+  }})
+  .then(res =>{
+  return res.json()
+  })
+  .then(data => {
+      if (data.message) {
+          setNoCourses([{data: data.message}]
+      )
+      } else {
+          setAllCourses(data)
+      console.log(data)
+      }
+  })
+}, [])
+
 const allPosts = [...summaryPosts , ...thoughtPosts ]
 const randomPosts = allPosts.sort(() => Math.random() - 0.5)
 
@@ -257,26 +283,11 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                         <Row className='justify-content-center align-items-center'>
                             <Col>
                                 <Slider {...settings}>
-                                    <div>
-                                        <img style={{'objectFit': 'cover' }} className="home-slider img-fluid" src={man} alt=''/>
-                                        
+                                 { allCourses.length!==0 && allCourses.map((course, index) => <div>
+                                        <img style={{'objectFit': 'cover' }} className="home-slider img-fluid" src={`${BASE_URL}${course.cover_pic}`} alt=''/>
                                     </div>
-                                    <div>
-                                        <img style={{'objectFit': 'cover' }} className="home-slider img-fluid" src={man} alt=''/>
-                                        
-                                    </div>
-                                    <div>
-                                        <img style={{'objectFit': 'cover' }} className="home-slider img-fluid" src={man} alt=''/>
-                                        
-                                    </div>
-                                    <div>
-                                        <img style={{'objectFit': 'cover' }} className="home-slider img-fluid" src={man} alt=''/>
-                                    
-                                    </div>
-                                    <div>
-                                        <img style={{'objectFit': 'cover' }} className="home-slider img-fluid" src={man} alt=''/>
-                                    
-                                    </div>
+                                     )  }
+                                  
                                 </Slider>
                             </Col>
                         </Row>
