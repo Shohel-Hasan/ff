@@ -8,6 +8,8 @@ import { Link, useParams } from 'react-router-dom';
 // import Checkout from '../../components/Checkout';
 import Overlay from '../../components/Overlay';
 import { useNavigate } from 'react-router-dom';
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
 
 
@@ -440,7 +442,15 @@ const BASE_URL = "http://127.0.0.1:8000"
                                 {/* <option value="bkash">Nogod</option> */}
                             </select>
 
-                            <input className='form-control my-1' type="number" required placeholder="Phone Number" onChange={event => setPhoneNumber(event.target.value)}/>
+                            
+                            <PhoneInput
+                              inputProps={{
+                                name: 'phone',
+                                required: true,
+                                autoFocus: true
+                              }}
+                              onBlur={event => setPhoneNumber(event.target.value)}
+                            />
                             <input className='form-control my-1' type="text" required placeholder="Transaction ID" onChange={event => setTransactionId(event.target.value)}/>
 
                             <div className='d-flex justify-content-center align-items-center my-3'>
