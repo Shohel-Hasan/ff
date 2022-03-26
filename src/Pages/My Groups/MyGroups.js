@@ -22,7 +22,7 @@ const MyGroups = (props) => {
 
       // getting user general Info
       useEffect(() => {
-        fetch(`https://research-rider.herokuapp.com/user/user-general-info/${localStorage.getItem('id')}`, {
+        fetch(`http://127.0.0.1:8000/user/user-general-info/${localStorage.getItem('id')}`, {
         method: 'GET',
         headers: {
             "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -35,7 +35,7 @@ const MyGroups = (props) => {
 
 
   useEffect(() => {
-    fetch(`https://research-rider.herokuapp.com/group/${localStorage.getItem('id')}/my-groups/`, {
+    fetch(`http://127.0.0.1:8000/group/${localStorage.getItem('id')}/my-groups/`, {
     method: 'GET',
     headers: {
         "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -57,7 +57,7 @@ const MyGroups = (props) => {
 
 // getting user info
 useEffect(() => {
-  fetch(`https://research-rider.herokuapp.com/user/${localStorage.getItem('id')}`, {
+  fetch(`http://127.0.0.1:8000/user/${localStorage.getItem('id')}`, {
   method: 'GET',
   headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -111,7 +111,7 @@ const handleGroup = () => {
   setShow(false)
   console.log(newData)
 
-  fetch('https://research-rider.herokuapp.com/group/create/', {
+  fetch('http://127.0.0.1:8000/group/create/', {
     method: "POST",
     headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -127,7 +127,7 @@ const handleGroup = () => {
     .catch(error => console.log(error))
 }
 
-const BASE_URL = "https://research-rider.herokuapp.com"
+const BASE_URL = "http://127.0.0.1:8000"
   return (
       <Container>
         <Row className="pt-5">

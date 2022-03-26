@@ -55,7 +55,7 @@ export default function Login() {
     useEffect(() => {
         // console.log(localStorage.getItem('auth_token'))
         if (localStorage.auth_token) {
-            fetch(`https://research-rider.herokuapp.com/user/token-check`, loginHeader2)
+            fetch(`http://127.0.0.1:8000/user/token-check`, loginHeader2)
                 .then(response => {
                     // console.log(`http://127.0.0.1:8000/user/token-check`)
                     return response.json();
@@ -73,7 +73,7 @@ export default function Login() {
 
         // fetch('http://127.0.0.1:8000/user/signin', loginHeader)
         // fetch(`${url}/user/signin`, loginHeader)
-        fetch(`https://research-rider.herokuapp.com/user/signin`, loginHeader)
+        fetch(`http://127.0.0.1:8000/user/signin`, loginHeader)
             .then(response => response.json())
             .then(data => {
                 console.log(data)
@@ -138,7 +138,7 @@ export default function Login() {
         }
 
         // **** process for mail verification request to server goes here **** //
-        fetch('https://research-rider.herokuapp.com/user/forget-password', forgetPassHeader)
+        fetch('http://127.0.0.1:8000/user/forget-password', forgetPassHeader)
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -171,7 +171,7 @@ export default function Login() {
         event.preventDefault();
 
         // **** process for changing password request to server goes here **** //
-        fetch('https://research-rider.herokuapp.com/user/reset-password', resetPassHeader)
+        fetch('http://127.0.0.1:8000/user/reset-password', resetPassHeader)
             .then(res => res.json())
             .then(data => {
                 console.log(data);

@@ -24,6 +24,7 @@ import PrivacyPolicy from "./Pages/PrivacyPolicy/PrivacyPolicy";
 import ProductPolicy from "./Pages/ProductPolicy/ProductPolicy";
 import GroupsHome from "./Pages/GroupsHome/GroupsHome";
 import { useNavigate } from 'react-router-dom';
+import Setting from "./Pages/Settings/Setting";
 
 
 
@@ -54,7 +55,7 @@ function App() {
         })
     };
 
-    fetch('https://research-rider.herokuapp.com/user/token-check', header)
+    fetch('http://127.0.0.1:8000/user/token-check', header)
         .then(response => response.json())
         .then(data => {
             // console.log(data.message)
@@ -84,10 +85,11 @@ function App() {
 
         {/* Nested Routing Start */}
         <Route path="user/:userId" element={<UserProfile triggerCheckLoggedIn={checkLoggedIn}/>}>
-          <Route path="thoughtPost" element={<ThoughtPost triggerCheckLoggedIn={checkLoggedIn} />} />
-          {/* <Route path="name/about" element={<About triggerCheckLoggedIn={checkLoggedIn} />} /> */}
+          <Route path="user-profile-post" element={<UserAboutPost triggerCheckLoggedIn={checkLoggedIn} />} />
+          {/* <Route path="thoughtPost" element={<ThoughtPost triggerCheckLoggedIn={checkLoggedIn} />} />
+          <Route path="name/about" element={<About triggerCheckLoggedIn={checkLoggedIn} />} /> 
           <Route path="mainPost" element={<MainPost triggerCheckLoggedIn={checkLoggedIn} />} />
-          <Route path="summaryPost" element={<SummaryPost triggerCheckLoggedIn={checkLoggedIn} />} />
+          <Route path="summaryPost" element={<SummaryPost triggerCheckLoggedIn={checkLoggedIn} />} /> */}
         </Route>
         {/* Nested Routing End */}
         
@@ -114,11 +116,13 @@ function App() {
         <Route path="my-groups" element={<MyGroups triggerCheckLoggedIn={checkLoggedIn} />} />
         <Route path="groups-home" element={<GroupsHome triggerCheckLoggedIn={checkLoggedIn} />} />
         <Route path="/:groupId/create-course" element={<CreateCourse triggerCheckLoggedIn={checkLoggedIn} />} />
-        <Route path="user/:userId/user-profile-post" element={<UserAboutPost triggerCheckLoggedIn={checkLoggedIn} />} />
+        {/* Nested Route */}
+        {/* <Route path="user/:userId/user-profile-post" element={<UserAboutPost triggerCheckLoggedIn={checkLoggedIn} />} /> */}
         <Route path="/all-courses" element={<AllCourses triggerCheckLoggedIn={checkLoggedIn} />} />
 
         {/* Route not added in navbar*/}
         <Route path="/course-page" element={<CrousePage triggerCheckLoggedIn={checkLoggedIn} />} />
+        <Route path="/settings" element={<Setting triggerCheckLoggedIn={checkLoggedIn} />} />
     
 
       </Routes>

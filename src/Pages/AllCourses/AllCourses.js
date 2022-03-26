@@ -17,7 +17,7 @@ const AllCourses = (props) => {
         e.preventDefault();
         const searchText = e.target.value;
 
-        fetch(`https://research-rider.herokuapp.com/course/search-course?name=${searchText}`, {
+        fetch(`http://127.0.0.1:8000/course/search-course?name=${searchText}`, {
             method: 'GET',
             headers: {
                 "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -43,7 +43,7 @@ const AllCourses = (props) => {
 
     
     useEffect(() => {
-        fetch(`https://research-rider.herokuapp.com/course/all`, {
+        fetch(`http://127.0.0.1:8000/course/all`, {
         method: 'GET',
         headers: {
             "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -64,7 +64,7 @@ const AllCourses = (props) => {
         })
     }, [])
     
-const BASE_URL = "https://research-rider.herokuapp.com"
+const BASE_URL = "http://127.0.0.1:8000"
 
     return (
         <Container className='all_courses'>
@@ -156,7 +156,26 @@ const BASE_URL = "https://research-rider.herokuapp.com"
                         <small>Course Enroll Start date: {course.course_enroll_end_date} </small>
                     </div>
                 </Col>
-                <hr className='mt-5' style={{color: "#1877F2", backgroundColor: "#1877F2", height: "2px", margin: " auto", width: "90%" }}/>
+               
+            {/*------ Like, Comment, Share------ */}
+                <hr className='mt-4' style={{color: "#1877F2", backgroundColor: "#1877F2", height: "1px", margin: " auto", width: "95%" }}/>
+                <Col >
+                         <div className="fb-card-actions-holder">
+                            <div className="fb-card-actions d-flex justify-content-around">
+                                <div className="fb-btn-holder">
+                                <Button className='text-primary' variant="outline-light"><i className="fa fa-thumbs-up"></i> Like</Button>
+                                </div>
+                                <div className="fb-btn-holder">
+                                <Button className='text-primary' variant="outline-light"><i className="far fa-comment-alt"></i> Comment</Button>
+                                </div>
+                                <div className="fb-btn-holder">
+                                <Button className='text-primary' variant="outline-light"><i className="fa fa-share-square"></i> Share</Button>
+                                </div>
+                            </div>
+                        </div>
+                    </Col>
+                <hr  style={{color: "#1877F2", backgroundColor: "#1877F2", height: "1px", margin: " auto", width: "95%" }}/>
+            {/*------------ Like, Comment, Share -----------*/}
                                         
             </Row>)}
 
@@ -183,7 +202,26 @@ const BASE_URL = "https://research-rider.herokuapp.com"
                         <small>Course Enroll Start date: {course.course_enroll_end_date} </small>
                     </div>
                 </Col>
-                <hr className='mt-5' style={{color: "#1877F2", backgroundColor: "#1877F2", height: "2px", margin: " auto", width: "90%" }}/>              
+                   
+            {/*------ Like, Comment, Share------ */}
+            <hr className='mt-4' style={{color: "#1877F2", backgroundColor: "#1877F2", height: "1px", margin: " auto", width: "95%" }}/>
+                <Col >
+                         <div className="fb-card-actions-holder">
+                            <div className="fb-card-actions d-flex justify-content-around">
+                                <div className="fb-btn-holder">
+                                <Button className='text-primary' variant="outline-light"><i className="fa fa-thumbs-up"></i> Like</Button>
+                                </div>
+                                <div className="fb-btn-holder">
+                                <Button className='text-primary' variant="outline-light"><i className="far fa-comment-alt"></i> Comment</Button>
+                                </div>
+                                <div className="fb-btn-holder">
+                                <Button className='text-primary' variant="outline-light"><i className="fa fa-share-square"></i> Share</Button>
+                                </div>
+                            </div>
+                        </div>
+                    </Col>
+                <hr  style={{color: "#1877F2", backgroundColor: "#1877F2", height: "1px", margin: " auto", width: "95%" }}/>
+            {/*------------ Like, Comment, Share -----------*/}          
             </Row>)}
 
 

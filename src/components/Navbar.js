@@ -64,7 +64,7 @@ export default function Navbar(props) {
  
         // getting user general Info
         useEffect(() => {
-          fetch(`https://research-rider.herokuapp.com/user/user-general-info/${localStorage.getItem('id')}`, {
+          fetch(`http://127.0.0.1:8000/user/user-general-info/${localStorage.getItem('id')}`, {
           method: 'GET',
           headers: {
               "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -76,7 +76,7 @@ export default function Navbar(props) {
           })
           .then(data => setUserGeneralInfo(data))
       }, [localStorage.getItem('id')])
-      const BASE_URL = "https://research-rider.herokuapp.com"
+      const BASE_URL = "http://127.0.0.1:8000"
 
       
   return (
@@ -106,27 +106,27 @@ export default function Navbar(props) {
       </div>
 
 
-      {/* sideNavbar */}
+     {/* sideNavbar */}
 
-      <div  ref={sideNav} className={`${style.main} ${style.sideNav_shadow}`}>
+     <div  ref={sideNav} className={`${style.main} ${style.sideNav_shadow}`}>
             <div className={`${style.container} `}>
               
                 <div className={`${style.links} d-flex align-items-center justify-content-between text-center`}>
                    <Link style={{textDecoration:'none'}} to="/home">
-                     <img src={home_icon} className={`material-icons ${style.icons}`} alt='home' />
+                     <img style={{height: '40px', width:'auto',display: 'block', padding: '0px 28px'}} src={home_icon} alt='home' />
                       Home
                   </Link> 
                   <Link style={{textDecoration:'none'}} to="/groups-home">
-                     <img src={home_icon} className={`material-icons ${style.icons}`} alt='home' />
+                     <img style={{height: '40px',width:'auto', display: 'block', padding: '0px 28px'}} src={group_icon} alt='home' />
                       Group
                   </Link> 
                   <Link style={{textDecoration:'none'}} to="/all-courses">
-                     <img src={home_icon} className={`material-icons ${style.icons}`} alt='home' />
+                     <img style={{height: '40px',width:'auto',display: 'block', padding: '0px 28px'}} src={class_icon} alt='home' />
                       Courses
                   </Link> 
                   
                 </div>
-                <div className='d-flex justify-content-evenly'>
+                <div className='d-flex justify-content-evenly mt-3'>
                 
                    <div><Button size='sm' onClick={() => {localStorage.clear(); navigate('/')}}>Logout </Button></div> 
                   
