@@ -327,7 +327,7 @@ const UserAboutPost = (props) => {
       console.log(random);
       console.log('use effect running')
 
-      fetch(`https://research-rider-app.herokuapp.com/user/user-general-info/${localStorage.getItem('id')}`, header)
+      fetch(`https://research-rider.herokuapp.com/user/user-general-info/${localStorage.getItem('id')}`, header)
       // fetch(urlObj[url], header)
         .then(response => response.json())
         .then(data => { setGeneralInfo(data);
@@ -338,7 +338,7 @@ const UserAboutPost = (props) => {
 
         
         // fetch for language
-        fetch(`https://research-rider-app.herokuapp.com/user/user-language-proficiency/${localStorage.getItem('id')}`, header)
+        fetch(`https://research-rider.herokuapp.com/user/user-language-proficiency/${localStorage.getItem('id')}`, header)
         .then(response => response.json())
         .then(data => { setLanguage(data);
           // data.map(item => {
@@ -349,7 +349,7 @@ const UserAboutPost = (props) => {
         })
         
         // fetch for language
-        fetch(`https://research-rider-app.herokuapp.com/user/user-language-score/${localStorage.getItem('id')}`, header)
+        fetch(`https://research-rider.herokuapp.com/user/user-language-score/${localStorage.getItem('id')}`, header)
         .then(response => response.json())
         .then(data => { setLanguageScore(data);
           // data.map(item => {
@@ -361,62 +361,62 @@ const UserAboutPost = (props) => {
         })
         
         // fetch for contact info
-        fetch(`https://research-rider-app.herokuapp.com/user/user-contact-info/${localStorage.getItem('id')}`, header)
+        fetch(`https://research-rider.herokuapp.com/user/user-contact-info/${localStorage.getItem('id')}`, header)
         .then(response => response.json())
         .then(data => { setContactInfo(data);})
         
         
         // fetch for research skill
-        fetch(`https://research-rider-app.herokuapp.com/user/user-research-skill/${localStorage.getItem('id')}`, header)
+        fetch(`https://research-rider.herokuapp.com/user/user-research-skill/${localStorage.getItem('id')}`, header)
         .then(response => response.json())
         .then(data => { setResearchSkill(data);})
         
         
         // fetch for research article
-        fetch(`https://research-rider-app.herokuapp.com/user/user-research-article/${localStorage.getItem('id')}`, header)
+        fetch(`https://research-rider.herokuapp.com/user/user-research-article/${localStorage.getItem('id')}`, header)
         .then(response => response.json())
         .then(data => { setResearchArticle(data);})
         
         
         // fetch for research work
-        fetch(`https://research-rider-app.herokuapp.com/user/user-research-work/${localStorage.getItem('id')}`, header)
+        fetch(`https://research-rider.herokuapp.com/user/user-research-work/${localStorage.getItem('id')}`, header)
         .then(response => response.json())
         .then(data => { setResearchWork(data);})
         
         
         // fetch for summary section
-        fetch(`https://research-rider-app.herokuapp.com/user/user-research-summary/${localStorage.getItem('id')}`, header)
+        fetch(`https://research-rider.herokuapp.com/user/user-research-summary/${localStorage.getItem('id')}`, header)
         .then(response => response.json())
         .then(data => { setSummarySection(data);})
         
         
         // fetch for thought section
-        fetch(`https://research-rider-app.herokuapp.com/user/user-research-thoughts/${localStorage.getItem('id')}`, header)
+        fetch(`https://research-rider.herokuapp.com/user/user-research-thoughts/${localStorage.getItem('id')}`, header)
         .then(response => response.json())
         .then(data => { setThoughtSection(data);})
         
         // fetch for working history
-        fetch(`https://research-rider-app.herokuapp.com/user/user-working-history/${localStorage.getItem('id')}`, header)
+        fetch(`https://research-rider.herokuapp.com/user/user-working-history/${localStorage.getItem('id')}`, header)
         .then(response => response.json())
         .then(data => { setWOrkingHistory(data);})
         
         // fetch for academic discipline
-        fetch(`https://research-rider-app.herokuapp.com/user/user-academic-discipline/${localStorage.getItem('id')}`, header)
+        fetch(`https://research-rider.herokuapp.com/user/user-academic-discipline/${localStorage.getItem('id')}`, header)
         .then(response => response.json())
         .then(data => { setAcademicDiscipline(data);})
         
         // fetch for academic degree
-        fetch(`https://research-rider-app.herokuapp.com/user/user-academic-degree/${localStorage.getItem('id')}`, header)
+        fetch(`https://research-rider.herokuapp.com/user/user-academic-degree/${localStorage.getItem('id')}`, header)
         .then(response => response.json())
         .then(data => { setAcademicDegreeInit(data);})
         
         // fetch for training
-        fetch(`https://research-rider-app.herokuapp.com/user/user-training/${localStorage.getItem('id')}`, header)
+        fetch(`https://research-rider.herokuapp.com/user/user-training/${localStorage.getItem('id')}`, header)
         .then(response => response.json())
         .then(data => { setTrainingInit(data);})
         
         // fetch for workshop
-        fetch(`https://research-rider-app.herokuapp.com/user/user-workshop-or-seminar/${localStorage.getItem('id')}`, header)
+        fetch(`https://research-rider.herokuapp.com/user/user-workshop-or-seminar/${localStorage.getItem('id')}`, header)
         .then(response => response.json())
         .then(data => { setWorkShopInit(data);})
 
@@ -561,7 +561,7 @@ const UserAboutPost = (props) => {
                 
                 <div className="text-end mt-3">
                   <Button onClick={() => {updateUserInfo(
-                    `https://research-rider-app.herokuapp.com/user/user-general-info-update/${localStorage.getItem('id')}`,
+                    `https://research-rider.herokuapp.com/user/user-general-info-update/${localStorage.getItem('id')}`,
                     {
                       fathers_name: fathersName,
                       mothers_name: mothersName,
@@ -611,7 +611,7 @@ const UserAboutPost = (props) => {
                   <span>Writing</span>
                   <input className="form-control mx-1" value={item.writing} disabled/>
                 </div>
-                <i onClick={() => updateUserInfo(`https://research-rider-app.herokuapp.com/user/user-language-proficiency-delete/${localStorage.getItem('id')}/${item.id}`, 'DELETE')} className="fa fa-close d-flex flex-row-reverse mt-2"></i>
+                <i onClick={() => updateUserInfo(`https://research-rider.herokuapp.com/user/user-language-proficiency-delete/${localStorage.getItem('id')}/${item.id}`, 'DELETE')} className="fa fa-close d-flex flex-row-reverse mt-2"></i>
               </div>)}
               
               <form>
@@ -678,8 +678,8 @@ const UserAboutPost = (props) => {
                 <div className="text-end mt-3">
                   <Button onClick={() => {
                     updateUserInfo(
-                      // `https://research-rider-app.herokuapp.com/user/user-language-proficiency-update/${localStorage.getItem('id')}/1`,
-                      `https://research-rider-app.herokuapp.com/user/user-language-proficiency`,
+                      // `https://research-rider.herokuapp.com/user/user-language-proficiency-update/${localStorage.getItem('id')}/1`,
+                      `https://research-rider.herokuapp.com/user/user-language-proficiency`,
                       'POST',
                       {
                         language_name: nativeLanguage,
@@ -749,8 +749,8 @@ const UserAboutPost = (props) => {
 
                 <div className="text-end mt-3">
                   <Button onClick={() => {updateUserInfo(
-                    // `https://research-rider-app.herokuapp.com/user/user-language-score-update/${localStorage.getItem('id')}/1`,
-                    `https://research-rider-app.herokuapp.com/user/user-language-score`,
+                    // `https://research-rider.herokuapp.com/user/user-language-score-update/${localStorage.getItem('id')}/1`,
+                    `https://research-rider.herokuapp.com/user/user-language-score`,
                     'POST',
                     {
                       ielts_toefl_score: JSON.stringify(score),
@@ -1053,8 +1053,8 @@ const UserAboutPost = (props) => {
                 <div className="text-end mt-3">
                 <Button onClick={() => {
                     updateUserInfo(
-                      // `https://research-rider-app.herokuapp.com/user/user-language-proficiency-update/${localStorage.getItem('id')}/1`,
-                      `https://research-rider-app.herokuapp.com/user/user-research-article`,
+                      // `https://research-rider.herokuapp.com/user/user-language-proficiency-update/${localStorage.getItem('id')}/1`,
+                      `https://research-rider.herokuapp.com/user/user-research-article`,
                       'POST',
                       {
                         url_link: urlLink,
@@ -1189,8 +1189,8 @@ const UserAboutPost = (props) => {
                   <div className="text-end mt-3">
                   <Button onClick={() => {
                     updateUserInfo(
-                      // `https://research-rider-app.herokuapp.com/user/user-language-proficiency-update/${localStorage.getItem('id')}/1`,
-                      `https://research-rider-app.herokuapp.com/user/user-research-summary`,
+                      // `https://research-rider.herokuapp.com/user/user-language-proficiency-update/${localStorage.getItem('id')}/1`,
+                      `https://research-rider.herokuapp.com/user/user-research-summary`,
                       'POST',
                       {
                         language_name: summary,
@@ -1542,8 +1542,8 @@ const UserAboutPost = (props) => {
                   <div className="text-end mt-3">
                   <Button onClick={() => {
                     updateUserInfo(
-                      // `https://research-rider-app.herokuapp.com/user/user-language-proficiency-update/${localStorage.getItem('id')}/1`,
-                      `https://research-rider-app.herokuapp.com/user/user-working-history`,
+                      // `https://research-rider.herokuapp.com/user/user-language-proficiency-update/${localStorage.getItem('id')}/1`,
+                      `https://research-rider.herokuapp.com/user/user-working-history`,
                       'POST',
                       {
                         designation: designation,
@@ -1648,8 +1648,8 @@ const UserAboutPost = (props) => {
                 <div className="text-end mt-3">
                 <Button onClick={() => {
                     updateUserInfo(
-                      // `https://research-rider-app.herokuapp.com/user/user-language-proficiency-update/${localStorage.getItem('id')}/1`,
-                      `https://research-rider-app.herokuapp.com/user/user-academic-discipline`,
+                      // `https://research-rider.herokuapp.com/user/user-language-proficiency-update/${localStorage.getItem('id')}/1`,
+                      `https://research-rider.herokuapp.com/user/user-academic-discipline`,
                       'POST',
                       {
                         academic_discipline: academicDesciplines,
@@ -1709,7 +1709,7 @@ const UserAboutPost = (props) => {
                   </div> */}
                 <div className="text-end mt-3">
                 <Button onClick={() => {updateUserInfo(
-                    `https://research-rider-app.herokuapp.com/user/user-general-info-update/${localStorage.getItem('id')}`,
+                    `https://research-rider.herokuapp.com/user/user-general-info-update/${localStorage.getItem('id')}`,
                     {
                       degree: academicDegrees,
                       department: educationDepartment,
@@ -1805,7 +1805,7 @@ const UserAboutPost = (props) => {
                   </div> */}
                 <div className="text-end mt-3">
                 <Button onClick={() => {updateUserInfo(
-                    `https://research-rider-app.herokuapp.com/user/user-academic-degree`,
+                    `https://research-rider.herokuapp.com/user/user-academic-degree`,
                     'POST',
                     {
                       degree: academicDegrees,
@@ -1930,7 +1930,7 @@ const UserAboutPost = (props) => {
                   
                   <div className="text-end mt-3">
                   <Button onClick={() => {updateUserInfo(
-                    `https://research-rider-app.herokuapp.com/user/user-training`,
+                    `https://research-rider.herokuapp.com/user/user-training`,
                     'POST',
                     {
                       training_name: trainingName,
@@ -2055,7 +2055,7 @@ const UserAboutPost = (props) => {
                   
                   <div className="text-end mt-3">
                   <Button onClick={() => {updateUserInfo(
-                    `https://research-rider-app.herokuapp.com/user/user-workshop-or-seminar`,
+                    `https://research-rider.herokuapp.com/user/user-workshop-or-seminar`,
                     'POST',
                     {
                       workshop_or_seminar_name: workShopName,

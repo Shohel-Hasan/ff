@@ -54,15 +54,16 @@ function App() {
         })
     };
 
-    fetch('http://127.0.0.1:8000/user/token-check', header)
+    fetch('https://research-rider.herokuapp.com/user/token-check', header)
         .then(response => response.json())
         .then(data => {
             // console.log(data.message)
             if (data.message) {
                 setIsLoggedIn(true);
             } else {
-              navigate('/')
               setIsLoggedIn(false)
+              // navigate('/')
+
             }
             // console.log(isLoggedIn);
         })
@@ -121,9 +122,6 @@ function App() {
     
 
       </Routes>
-
-     
-      
 
     </div>
   );

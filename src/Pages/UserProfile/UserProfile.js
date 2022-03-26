@@ -27,7 +27,7 @@ const UserProfile = (props) => {
 
     // getting user general Info
     useEffect(() => {
-        fetch(`http://127.0.0.1:8000/user/user-general-info/${localStorage.getItem('id')}`, {
+        fetch(`https://research-rider.herokuapp.com/user/user-general-info/${localStorage.getItem('id')}`, {
         method: 'GET',
         headers: {
             "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -44,7 +44,7 @@ const UserProfile = (props) => {
 
     // getting user Info
     useEffect(() => {
-        fetch(`http://127.0.0.1:8000/user/${localStorage.getItem('id')}`, {
+        fetch(`https://research-rider.herokuapp.com/user/${localStorage.getItem('id')}`, {
         method: 'GET',
         headers: {
             "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -71,7 +71,7 @@ const UserProfile = (props) => {
         console.log("coverPic...", coverPic)
         setCoverPicModal(false)
 
-        fetch(`http://127.0.0.1:8000/user/user-general-info-update/${localStorage.getItem('id')}`, {
+        fetch(`https://research-rider.herokuapp.com/user/user-general-info-update/${localStorage.getItem('id')}`, {
         // mode: 'cors',
         method: "PATCH",
         headers: {
@@ -83,6 +83,8 @@ const UserProfile = (props) => {
             if (res.status===200){
             alert("cover pic uploaded")}
             console.log("response: ", res)
+            window.location.reload();
+
         })
         // .then(data=> console.log(data))
             
@@ -99,7 +101,7 @@ const UserProfile = (props) => {
         console.log("profilePic...", profilePic)
         setShow(false)
 
-        fetch(`http://127.0.0.1:8000/user/user-general-info-update/${localStorage.getItem('id')}`, {
+        fetch(`https://research-rider.herokuapp.com/user/user-general-info-update/${localStorage.getItem('id')}`, {
         method: "PATCH",
         headers: {
             "Authorization" : `Token ${localStorage.getItem('auth_token')}`, 
@@ -109,11 +111,13 @@ const UserProfile = (props) => {
         .then(res=> {
             if (res.status===200){
             alert("profile pic uploaded")}
+            window.location.reload();
+
         })
         .catch(error => console.log(error))
     }
 
-    const BASE_URL = "http://127.0.0.1:8000"
+    const BASE_URL = "https://research-rider.herokuapp.com"
 
     return (
 
