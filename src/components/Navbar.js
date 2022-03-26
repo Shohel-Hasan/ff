@@ -108,21 +108,34 @@ export default function Navbar(props) {
 
       {/* sideNavbar */}
 
-      <div ref={sideNav} className={`${style.main} ${style.sideNav_shadow} d-flex`}>
-            <div className={`${style.container} d-flex align-items-center flex-column`}>
-                <img className='my-3' src={logo} alt="" />
-                <div className={`${style.links} d-flex flex-column justify-content-center align-items-center pb-3`}>
-                    <Link style={{textDecoration:'none'}} to="/home" onClick={toggleNav}><p className='d-flex justify-content-center align-items-center '>Home</p></Link>
-                    <Link style={{textDecoration:'none'}} to={`/user/${localStorage.getItem('id')}`} ><p className='d-flex justify-content-center align-items-center '>Dashboard </p></Link>
-                    <Link style={{textDecoration:'none'}} to="my-groups" ><p className='d-flex justify-content-center align-items-center '>My-Groups</p></Link>
-                    <Link style={{textDecoration:'none'}} to={`user/${localStorage.getItem('id')}/user-profile-post`}><p className='d-flex justify-content-center align-items-center'>Profile Post</p></Link>
-                    {/* <Link style={{textDecoration:'none'}} to="create-course" ><p className='d-flex justify-content-center align-items-center text-decoration-none'>Create Course</p></Link> */}
-                    {/* <Link style={{textDecoration:'none'}} to='course/:courseId/details'><p className='d-flex justify-content-center align-items-center text-decoration-none'>Single Course</p></Link> */}
-                    {/* <Link style={{textDecoration:'none'}} to="user/:userId" ><p className='d-flex justify-content-center align-items-center text-decoration-none'>Update User Profile</p></Link> */}
-                    <Button size='sm' onClick={() => {localStorage.clear(); navigate('/')}}>Logout </Button>
+      <div  ref={sideNav} className={`${style.main} ${style.sideNav_shadow}`}>
+            <div className={`${style.container} `}>
+              
+                <div className={`${style.links} d-flex align-items-center justify-content-between text-center`}>
+                   <Link style={{textDecoration:'none'}} to="/home">
+                     <img src={home_icon} className={`material-icons ${style.icons}`} alt='home' />
+                      Home
+                  </Link> 
+                  <Link style={{textDecoration:'none'}} to="/groups-home">
+                     <img src={home_icon} className={`material-icons ${style.icons}`} alt='home' />
+                      Group
+                  </Link> 
+                  <Link style={{textDecoration:'none'}} to="/all-courses">
+                     <img src={home_icon} className={`material-icons ${style.icons}`} alt='home' />
+                      Courses
+                  </Link> 
+                  
+                </div>
+                <div className='d-flex justify-content-evenly'>
+                
+                   <div><Button size='sm' onClick={() => {localStorage.clear(); navigate('/')}}>Logout </Button></div> 
+                  
                 </div>
             </div>
         </div>
     </div>
   )
 }
+
+
+// onClick={toggleNav} *sing for sideNav closing 
