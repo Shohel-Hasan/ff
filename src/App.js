@@ -101,7 +101,6 @@ function App() {
 
         {/* Terms & Condition start */}
 
-      
 
         <Route path="about-us" element={<AboutUs triggerCheckLoggedIn={checkLoggedIn} />} />
         <Route path="data-policy" element={<DataPolicy triggerCheckLoggedIn={checkLoggedIn}/>}/>
