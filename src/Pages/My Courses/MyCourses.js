@@ -27,7 +27,7 @@ const MyCourses = (props) => {
   console.log(userId)
 // getting user general Info
     useEffect(() => {
-        fetch(`http://18.211.204.106/user/user-general-info/${localStorage.getItem('id')}`, {
+        fetch(`https://research-rider.herokuapp.com/user/user-general-info/${localStorage.getItem('id')}`, {
         method: 'GET',
         headers: {
             "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -44,7 +44,7 @@ const MyCourses = (props) => {
 
     // getting user Info
     useEffect(() => {
-      fetch(`http://18.211.204.106/user/${localStorage.getItem('id')}`, {
+      fetch(`https://research-rider.herokuapp.com/user/${localStorage.getItem('id')}`, {
       method: 'GET',
       headers: {
           "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -59,7 +59,7 @@ const MyCourses = (props) => {
 
 
   useEffect(() => {
-    fetch(`http://18.211.204.106/course/enrollment/all/`, {
+    fetch(`https://research-rider.herokuapp.com/course/enrollment/all/`, {
     method: 'GET',
     headers: {
         "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -80,7 +80,7 @@ const MyCourses = (props) => {
     })
 }, [localStorage.getItem('id')])
 
-const BASE_URL = "http://18.211.204.106"
+const BASE_URL = "https://research-rider.herokuapp.com"
 
 
   return (

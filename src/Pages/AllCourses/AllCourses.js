@@ -17,7 +17,7 @@ const AllCourses = (props) => {
         e.preventDefault();
         const searchText = e.target.value;
 
-        fetch(`http://18.211.204.106/course/search-course?name=${searchText}`, {
+        fetch(`https://research-rider.herokuapp.com/course/search-course?name=${searchText}`, {
             method: 'GET',
             headers: {
                 "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -44,7 +44,7 @@ const AllCourses = (props) => {
     //getting all courses data
     
     useEffect(() => {
-        fetch(`http://18.211.204.106/course/all`, {
+        fetch(`https://research-rider.herokuapp.com/course/all`, {
         method: 'GET',
         headers: {
             "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -65,7 +65,7 @@ const AllCourses = (props) => {
         })
     }, [])
     
-const BASE_URL = "http://18.211.204.106"
+const BASE_URL = "https://research-rider.herokuapp.com"
 
     return (
         <Container className='all_courses'>

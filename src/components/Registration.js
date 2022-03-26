@@ -56,7 +56,7 @@ export default function Registration(props) {
         event.preventDefault();
         console.log(registrationHeader.body)
 
-        fetch('http://18.211.204.106/user/registration', registrationHeader)
+        fetch('https://research-rider.herokuapp.com/user/registration', registrationHeader)
             .then(response => response.json())
             .then(data => {
                 console.log(data)

@@ -85,7 +85,7 @@ const handleSummaryPost = () => {
 
   console.log(newData)
 
-  fetch(`http://18.211.204.106/post/${localStorage.getItem('id')}/user-summery-create/`, {
+  fetch(`https://research-rider.herokuapp.com/post/${localStorage.getItem('id')}/user-summery-create/`, {
     method: "POST",
     headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -113,7 +113,7 @@ const handleThoughtPost = () => {
   newData.append('user', localStorage.getItem('id'))
   setShow(false)
 
-  fetch(`http://18.211.204.106/post/${localStorage.getItem('id')}/user-thought-create/`, {
+  fetch(`https://research-rider.herokuapp.com/post/${localStorage.getItem('id')}/user-thought-create/`, {
     method: "POST",
     headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -134,7 +134,7 @@ const handleThoughtPost = () => {
 
 // getting summary posts
 useEffect(() => {
-  fetch(`http://18.211.204.106/post/summerypost/all/`, {
+  fetch(`https://research-rider.herokuapp.com/post/summerypost/all/`, {
   method: 'GET',
   headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -159,7 +159,7 @@ useEffect(() => {
 
 // getting thought posts
 useEffect(() => {
-  fetch(`http://18.211.204.106/post/thoughtpost/all/`, {
+  fetch(`https://research-rider.herokuapp.com/post/thoughtpost/all/`, {
   method: 'GET',
   headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -182,7 +182,7 @@ useEffect(() => {
 
 // getting user general Info
 useEffect(() => {
-  fetch(`http://18.211.204.106/user/user-general-info/${localStorage.getItem('id')}`, {
+  fetch(`https://research-rider.herokuapp.com/user/user-general-info/${localStorage.getItem('id')}`, {
   method: 'GET',
   headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -195,7 +195,7 @@ useEffect(() => {
 
 
 useEffect(() => {
-  fetch(`http://18.211.204.106/course/all`, {
+  fetch(`https://research-rider.herokuapp.com/course/all`, {
   method: 'GET',
   headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -262,7 +262,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
       }
     ]
   };
-  const BASE_URL = "http://18.211.204.106"
+  const BASE_URL = "https://research-rider.herokuapp.com"
   console.log(userGeneralInfo)
 
     return (
