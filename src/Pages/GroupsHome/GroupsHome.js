@@ -22,7 +22,7 @@ const GroupsHome = () => {
 
     // getting summary posts
     useEffect(() => {
-        fetch(`http://127.0.0.1:8000/post/summerypost/all/`, {
+        fetch(`http://18.211.204.106/post/summerypost/all/`, {
         method: 'GET',
         headers: {
             "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -46,7 +46,7 @@ const GroupsHome = () => {
 
   // getting summary posts
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/post/thoughtpost/all/`, {
+    fetch(`http://18.211.204.106/post/thoughtpost/all/`, {
     method: 'GET',
     headers: {
         "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -69,7 +69,7 @@ const GroupsHome = () => {
 
 
 useEffect(() => {
-    fetch(`http://127.0.0.1:8000/group/${localStorage.getItem('id')}/my-groups/`, {
+    fetch(`http://18.211.204.106/group/${localStorage.getItem('id')}/my-groups/`, {
     method: 'GET',
     headers: {
         "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -91,7 +91,7 @@ useEffect(() => {
 
 
 useEffect(() => {
-    fetch(`http://127.0.0.1:8000/group/all-groups/`, {
+    fetch(`http://18.211.204.106/group/all-groups/`, {
     method: 'GET',
     headers: {
         "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -116,7 +116,7 @@ useEffect(() => {
 const allGroupsPosts = [...groupsSummaryPosts , ...groupsThoughtPosts ]
 const randomPosts = allGroupsPosts.sort(() => Math.random() - 0.5)
 
-const BASE_URL = "http://127.0.0.1:8000"
+const BASE_URL = "http://18.211.204.106"
 
     return (
         <Container fluid className='home-container'>
@@ -173,8 +173,8 @@ const BASE_URL = "http://127.0.0.1:8000"
 
                                   </div>
                                   <div className="user-information">
-                                  {!post.group_name && <p>{post.user_first_name}</p>}
-                                  {post.group_name && <p>{post.group_name}</p>}
+                                  {!post.group_name && <p><Link to={`/user/${post.user}`}>{post.user_first_name}</Link></p>}
+                                  {post.group_name && <p><Link to={`/}`}>{post.group}</Link></p>}
 
                                     <small>{post.created_date}</small>
                                   </div>

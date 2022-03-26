@@ -22,7 +22,7 @@ export default function useIsLoggedIn() {
         })
     };
 
-    fetch('http://127.0.0.1:8000/user/token-check', header)
+    fetch('http://18.211.204.106/user/token-check', header)
         .then(response => response.json())
         .then(data => {
             // console.log(data.message)

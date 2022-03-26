@@ -26,7 +26,7 @@ export default function ChangepassForm(props) {
         // console.log(changePassHeader)
 
         // **** process for changing password request to server goes here **** //
-        fetch('http://127.0.0.1:8000/user/change-password', changePassHeader)
+        fetch('http://18.211.204.106/user/change-password', changePassHeader)
             .then(res =>{ res.json()
                         console.log(res.status)
                 if (res.status===200) {
