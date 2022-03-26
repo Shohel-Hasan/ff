@@ -22,7 +22,7 @@ const GroupsHome = () => {
 
     // getting summary posts
     useEffect(() => {
-        fetch(`http://127.0.0.1:8000/post/summerypost/all/`, {
+        fetch(`https://research-rider.herokuapp.com/post/summerypost/all/`, {
         method: 'GET',
         headers: {
             "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -46,7 +46,7 @@ const GroupsHome = () => {
 
   // getting summary posts
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/post/thoughtpost/all/`, {
+    fetch(`https://research-rider.herokuapp.com/post/thoughtpost/all/`, {
     method: 'GET',
     headers: {
         "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -69,7 +69,7 @@ const GroupsHome = () => {
 
 
 useEffect(() => {
-    fetch(`http://127.0.0.1:8000/group/${localStorage.getItem('id')}/my-groups/`, {
+    fetch(`https://research-rider.herokuapp.com/group/${localStorage.getItem('id')}/my-groups/`, {
     method: 'GET',
     headers: {
         "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -91,7 +91,7 @@ useEffect(() => {
 
 
 useEffect(() => {
-    fetch(`http://127.0.0.1:8000/group/all-groups/`, {
+    fetch(`https://research-rider.herokuapp.com/group/all-groups/`, {
     method: 'GET',
     headers: {
         "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -116,7 +116,7 @@ useEffect(() => {
 const allGroupsPosts = [...groupsSummaryPosts , ...groupsThoughtPosts ]
 const randomPosts = allGroupsPosts.sort(() => Math.random() - 0.5)
 
-const BASE_URL = "http://127.0.0.1:8000"
+const BASE_URL = "https://research-rider.herokuapp.com"
 
     return (
         <Container fluid className='home-container'>
