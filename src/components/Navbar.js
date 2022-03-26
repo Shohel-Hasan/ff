@@ -64,7 +64,7 @@ export default function Navbar(props) {
  
         // getting user general Info
         useEffect(() => {
-          fetch(`http://18.211.204.106/user/user-general-info/${localStorage.getItem('id')}`, {
+          fetch(`https://research-rider.herokuapp.com/user/user-general-info/${localStorage.getItem('id')}`, {
           method: 'GET',
           headers: {
               "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -76,7 +76,7 @@ export default function Navbar(props) {
           })
           .then(data => setUserGeneralInfo(data))
       }, [localStorage.getItem('id')])
-      const BASE_URL = "http://18.211.204.106"
+      const BASE_URL = "https://research-rider.herokuapp.com"
 
       
   return (

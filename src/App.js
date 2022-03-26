@@ -55,7 +55,7 @@ function App() {
         })
     };
 
-    fetch('http://18.211.204.106/user/token-check', header)
+    fetch('https://research-rider.herokuapp.com/user/token-check', header)
         .then(response => response.json())
         .then(data => {
             // console.log(data.message)

@@ -33,7 +33,7 @@ export default function Checkout(props) {
             })
         };
     
-        fetch(`http://18.211.204.106/course/${courseId}/enrollment/course-enrollment-payment/`, header)
+        fetch(`https://research-rider.herokuapp.com/course/${courseId}/enrollment/course-enrollment-payment/`, header)
             .then(response => response.json())
             .then(data => {
                 if (data.message) {
