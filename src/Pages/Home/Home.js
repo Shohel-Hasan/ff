@@ -85,7 +85,7 @@ const handleSummaryPost = () => {
 
   console.log(newData)
 
-  fetch(`https://research-rider.herokuapp.com/post/${localStorage.getItem('id')}/user-summery-create/`, {
+  fetch(`http://127.0.0.1:8000/post/${localStorage.getItem('id')}/user-summery-create/`, {
     method: "POST",
     headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -113,7 +113,7 @@ const handleThoughtPost = () => {
   newData.append('user', localStorage.getItem('id'))
   setShow(false)
 
-  fetch(`https://research-rider.herokuapp.com/post/${localStorage.getItem('id')}/user-thought-create/`, {
+  fetch(`http://127.0.0.1:8000/post/${localStorage.getItem('id')}/user-thought-create/`, {
     method: "POST",
     headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -134,7 +134,7 @@ const handleThoughtPost = () => {
 
 // getting summary posts
 useEffect(() => {
-  fetch(`https://research-rider.herokuapp.com/post/summerypost/all/`, {
+  fetch(`http://127.0.0.1:8000/post/summerypost/all/`, {
   method: 'GET',
   headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -159,7 +159,7 @@ useEffect(() => {
 
 // getting thought posts
 useEffect(() => {
-  fetch(`https://research-rider.herokuapp.com/post/thoughtpost/all/`, {
+  fetch(`http://127.0.0.1:8000/post/thoughtpost/all/`, {
   method: 'GET',
   headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -182,7 +182,7 @@ useEffect(() => {
 
 // getting user general Info
 useEffect(() => {
-  fetch(`https://research-rider.herokuapp.com/user/user-general-info/${localStorage.getItem('id')}`, {
+  fetch(`http://127.0.0.1:8000/user/user-general-info/${localStorage.getItem('id')}`, {
   method: 'GET',
   headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -195,7 +195,7 @@ useEffect(() => {
 
 
 useEffect(() => {
-  fetch(`https://research-rider.herokuapp.com/course/all`, {
+  fetch(`http://127.0.0.1:8000/course/all`, {
   method: 'GET',
   headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -262,7 +262,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
       }
     ]
   };
-  const BASE_URL = "https://research-rider.herokuapp.com"
+  const BASE_URL = "http://127.0.0.1:8000"
   console.log(userGeneralInfo)
 
     return (
@@ -752,26 +752,15 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                               <div className="fb-card-actions-holder">
                                 <div className="d-flex justify-content-between">
                                     <div className="fb-btn-holder">
-
-                                        <Button className='text-info' variant="outline-light"><i className="fa hom-icon fa-thumbs-up"></i> Like</Button>
-                                      
-                                    </div>
-                                    <div className="fb-btn-holder">
-                                        <Button className='text-info' variant="outline-light"><i className="far hom-icon fa-comment-alt"></i> Comment</Button>
-                                    </div>
-                                    <div className="fb-btn-holder">
-                                        <Button className='text-info' variant="outline-light"><i className="fa hom-icon fa-share-square"></i> Share</Button>
-
-                                        <Button className='text-primary' variant="outline-light"><i className="fa hom-icon fa-thumbs-up"></i> Like</Button>
-                                      
+                                        <Button className='text-primary' variant="outline-light"><i className="fa hom-icon fa-thumbs-up"></i> Like</Button>                     
                                     </div>
                                     <div className="fb-btn-holder">
                                         <Button className='text-primary' variant="outline-light"><i className="far hom-icon fa-comment-alt"></i> Comment</Button>
                                     </div>
                                     <div className="fb-btn-holder">
                                         <Button className='text-primary' variant="outline-light"><i className="fa hom-icon fa-share-square"></i> Share</Button>
-
                                     </div>
+                                  
                                 </div>
                               </div>
 

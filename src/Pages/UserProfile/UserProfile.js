@@ -3,7 +3,7 @@ import { Col, Container, Form, Nav, NavDropdown, Row, Modal, Button } from 'reac
 import './UserProfile.css'
 import man from '../../Images/man.jpg'
 import img from '../../assets/re/cover_photo.svg'
-import { Link, useParams } from 'react-router-dom';
+import { Link, Outlet, useParams } from 'react-router-dom';
 import camera from '../../Images/camera.svg'
 import { height } from '@mui/system';
 
@@ -27,7 +27,7 @@ const UserProfile = (props) => {
 
     // getting user general Info
     useEffect(() => {
-        fetch(`https://research-rider.herokuapp.com/user/user-general-info/${localStorage.getItem('id')}`, {
+        fetch(`http://127.0.0.1:8000/user/user-general-info/${localStorage.getItem('id')}`, {
         method: 'GET',
         headers: {
             "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -44,7 +44,7 @@ const UserProfile = (props) => {
 
     // getting user Info
     useEffect(() => {
-        fetch(`https://research-rider.herokuapp.com/user/${localStorage.getItem('id')}`, {
+        fetch(`http://127.0.0.1:8000/user/${localStorage.getItem('id')}`, {
         method: 'GET',
         headers: {
             "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -71,7 +71,7 @@ const UserProfile = (props) => {
         console.log("coverPic...", coverPic)
         setCoverPicModal(false)
 
-        fetch(`https://research-rider.herokuapp.com/user/user-general-info-update/${localStorage.getItem('id')}`, {
+        fetch(`http://127.0.0.1:8000/user/user-general-info-update/${localStorage.getItem('id')}`, {
         // mode: 'cors',
         method: "PATCH",
         headers: {
@@ -101,7 +101,7 @@ const UserProfile = (props) => {
         console.log("profilePic...", profilePic)
         setShow(false)
 
-        fetch(`https://research-rider.herokuapp.com/user/user-general-info-update/${localStorage.getItem('id')}`, {
+        fetch(`http://127.0.0.1:8000/user/user-general-info-update/${localStorage.getItem('id')}`, {
         method: "PATCH",
         headers: {
             "Authorization" : `Token ${localStorage.getItem('auth_token')}`, 
@@ -117,7 +117,7 @@ const UserProfile = (props) => {
         .catch(error => console.log(error))
     }
 
-    const BASE_URL = "https://research-rider.herokuapp.com"
+    const BASE_URL = "http://127.0.0.1:8000"
 
     return (
 
@@ -281,7 +281,7 @@ const UserProfile = (props) => {
                         </li>
                         <li className="nav-item">
                         <Link
-                            to="/user-profile-post"
+                            to="user-profile-post"
                             className="nav-link NavLink"
                             data-toggle="tab"
                         >
@@ -305,6 +305,7 @@ const UserProfile = (props) => {
             </Col>
       
         </Row>
+        <Outlet/>
     </Container>
     );
 };

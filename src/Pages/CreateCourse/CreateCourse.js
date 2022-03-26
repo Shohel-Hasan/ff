@@ -65,7 +65,7 @@ const CreateCourse = (props) => {
     
       // getting group details
     useEffect(() => {
-        fetch(`https://research-rider.herokuapp.com/group/${groupId.groupId}/group-detail/`, {
+        fetch(`http://127.0.0.1:8000/group/${groupId.groupId}/group-detail/`, {
         method: 'GET',
         headers: {
             "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -168,7 +168,7 @@ const CreateCourse = (props) => {
         console.log(newData)
         console.log("data: ", courseName, hourPerClass,classPerWeek ,totalClass ,totalClassHour , coverPic )
       
-        fetch(`https://research-rider.herokuapp.com/course/group/${groupId.groupId}/course-create/`, {
+        fetch(`http://127.0.0.1:8000/course/group/${groupId.groupId}/course-create/`, {
           method: "POST",
           headers: {
             "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -384,7 +384,7 @@ const friTime = (time) =>{
 }
 
 
-const BASE_URL = "https://research-rider.herokuapp.com"
+const BASE_URL = "http://127.0.0.1:8000"
 
      
     
