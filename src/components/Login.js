@@ -192,7 +192,7 @@ export default function Login() {
             {/* <ChangepassForm /> */}
             { overlay && <Overlay /> }
             <div className={`${style.login_box} d-flex justify-content-between align-items-center flex-wrap`}>
-                <div className={`${style.image} mx-3 d-flex flex-column justify-content-center align-items-center`}>
+                <div className={`${style.image} d-flex flex-column justify-content-center align-items-center`}>
                     <img src={image} alt="" />
                     <h5 className={`${style.slogan}`}>Grow up being a researcher</h5>
                 </div>
