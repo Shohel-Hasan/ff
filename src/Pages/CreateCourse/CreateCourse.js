@@ -63,9 +63,9 @@ const CreateCourse = (props) => {
     const [thu, setThu] = useState("");
     const [fri, setFri] = useState("");
     
-      // getting group details
+    // getting group details
     useEffect(() => {
-        fetch(`http://127.0.0.1:8000/group/${groupId.groupId}/group-detail/`, {
+        fetch(`http://18.211.204.106/group/${groupId.groupId}/group-detail/`, {
         method: 'GET',
         headers: {
             "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -129,6 +129,7 @@ const CreateCourse = (props) => {
         
     // }
 
+    // course create api 
     const handleCreateCourseFormData = () => {
         // e.preventDefault();
         const newData = new FormData();
@@ -168,7 +169,7 @@ const CreateCourse = (props) => {
         console.log(newData)
         console.log("data: ", courseName, hourPerClass,classPerWeek ,totalClass ,totalClassHour , coverPic )
       
-        fetch(`http://127.0.0.1:8000/course/group/${groupId.groupId}/course-create/`, {
+        fetch(`http://18.211.204.106/course/group/${groupId.groupId}/course-create/`, {
           method: "POST",
           headers: {
             "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -384,7 +385,7 @@ const friTime = (time) =>{
 }
 
 
-const BASE_URL = "http://127.0.0.1:8000"
+const BASE_URL = "http://18.211.204.106"
 
      
     
