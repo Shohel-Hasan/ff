@@ -65,7 +65,7 @@ const SingleCourse = (props) => {
           })
       };
   
-      fetch(`http://127.0.0.1:8000/course/${courseId.courseId}/enrollment/course-enrollment-payment/`, header)
+      fetch(`https://research-rider.herokuapp.com/course/${courseId.courseId}/enrollment/course-enrollment-payment/`, header)
           .then(response => response.json())
           .then(data => {
               if (data.message) {
@@ -82,7 +82,7 @@ const SingleCourse = (props) => {
 
     //   ------ Course Admin check --------  //
     useEffect(() =>{
-      fetch(`http://127.0.0.1:8000/course/${courseId.courseId}/staff/single-staff`, {
+      fetch(`https://research-rider.herokuapp.com/course/${courseId.courseId}/staff/single-staff`, {
         method: 'GET',
         headers: {
             "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -99,7 +99,7 @@ const SingleCourse = (props) => {
 
   //   ------ Student is enrolled check --------  //
   useEffect(() =>{
-    fetch(`http://127.0.0.1:8000/course/${courseId.courseId}/enrollment/${localStorage.getItem('id')}`, {
+    fetch(`https://research-rider.herokuapp.com/course/${courseId.courseId}/enrollment/${localStorage.getItem('id')}`, {
       method: 'GET',
       headers: {
           "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -117,7 +117,7 @@ const SingleCourse = (props) => {
 
   //   ------ Enrolled students--------  //
   useEffect(() =>{
-    fetch(`http://127.0.0.1:8000/course/${courseId.courseId}/enrollment/payment-all`, {
+    fetch(`https://research-rider.herokuapp.com/course/${courseId.courseId}/enrollment/payment-all`, {
       method: 'GET',
       headers: {
           "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -138,7 +138,7 @@ const SingleCourse = (props) => {
 },[courseId.courseId])
    //   ------ Course class link get--------  //
    useEffect(() =>{
-    fetch(`http://127.0.0.1:8000/course/${courseId.courseId}/class-link-detail`, {
+    fetch(`https://research-rider.herokuapp.com/course/${courseId.courseId}/class-link-detail`, {
       method: 'GET',
       headers: {
           "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -157,7 +157,7 @@ const SingleCourse = (props) => {
 
 //   ------ Single course details --------  //
     useEffect(() =>{
-        fetch(`http://127.0.0.1:8000/course/single-course/${courseId.courseId}`, {
+        fetch(`https://research-rider.herokuapp.com/course/single-course/${courseId.courseId}`, {
           method: 'GET',
           headers: {
               "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -170,7 +170,7 @@ const SingleCourse = (props) => {
 
     //   ------ Course Class Routine --------  //
     useEffect(() =>{
-      fetch(`http://127.0.0.1:8000/course/${courseId.courseId}/class-routine`, {
+      fetch(`https://research-rider.herokuapp.com/course/${courseId.courseId}/class-routine`, {
         method: 'GET',
         headers: {
             "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -203,7 +203,7 @@ const SingleCourse = (props) => {
 
       console.log(courseClassLinkHeader.body)
 
-      fetch(`http://127.0.0.1:8000/course/${courseId.courseId}/class-link-create/`, courseClassLinkHeader)
+      fetch(`https://research-rider.herokuapp.com/course/${courseId.courseId}/class-link-create/`, courseClassLinkHeader)
           .then(response => {response.json()
               if (response.status===201) {
                 alert("class link created")
@@ -236,7 +236,7 @@ const SingleCourse = (props) => {
 
       console.log(courseNoticeHeader.body)
 
-      fetch(`http://127.0.0.1:8000/course/${courseId.courseId}/notice/create/`, courseNoticeHeader)
+      fetch(`https://research-rider.herokuapp.com/course/${courseId.courseId}/notice/create/`, courseNoticeHeader)
           .then(response => {response.json()
               if (response.status===201) {
                 alert("class notice created")
@@ -249,7 +249,7 @@ const SingleCourse = (props) => {
 
       //   ------ get all course notices --------  //
   useEffect(() =>{
-    fetch(`http://127.0.0.1:8000/course/${courseId.courseId}/notice/all/`, {
+    fetch(`https://research-rider.herokuapp.com/course/${courseId.courseId}/notice/all/`, {
       method: 'GET',
       headers: {
           "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -285,7 +285,7 @@ const SingleCourse = (props) => {
 
       console.log(courseClassLinkHeader.body)
 
-      fetch(`http://127.0.0.1:8000/course/${courseId.courseId}/class-link-detail/`, courseClassLinkUpdateHeader)
+      fetch(`https://research-rider.herokuapp.com/course/${courseId.courseId}/class-link-detail/`, courseClassLinkUpdateHeader)
           .then(response => response.json())
           .then(data=>{
             console.log(data)
@@ -372,7 +372,7 @@ const SingleCourse = (props) => {
       ]
     };
 
-const BASE_URL = "http://127.0.0.1:8000"
+const BASE_URL = "https://research-rider.herokuapp.com"
 
      
 

@@ -103,7 +103,7 @@ const handleGroupSummaryPost = () => {
   newData.append('user', localStorage.getItem('id'))
   console.log(newData)
 
-  fetch(`http://127.0.0.1:8000/post/${groupId.groupId}/group-summery-create/`, {
+  fetch(`https://research-rider.herokuapp.com/post/${groupId.groupId}/group-summery-create/`, {
     method: "POST",
     headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -131,7 +131,7 @@ const handleGroupSummaryPost = () => {
   newData.append('group', groupId.groupId)
   console.log(newData)
 
-  fetch(`http://127.0.0.1:8000/post/${groupId.groupId}/group-thought-create/`, {
+  fetch(`https://research-rider.herokuapp.com/post/${groupId.groupId}/group-thought-create/`, {
     method: "POST",
     headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -151,7 +151,7 @@ const handleGroupSummaryPost = () => {
 
 // getting individual group summary posts 
 useEffect(() => {
-  fetch(`http://127.0.0.1:8000/post/${groupId.groupId}/group-summery-all`, {
+  fetch(`https://research-rider.herokuapp.com/post/${groupId.groupId}/group-summery-all`, {
   method: 'GET',
   headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -176,7 +176,7 @@ useEffect(() => {
 
 // getting individual group thought posts 
 useEffect(() => {
-  fetch(`http://127.0.0.1:8000/post/${groupId.groupId}/group-thought-all`, {
+  fetch(`https://research-rider.herokuapp.com/post/${groupId.groupId}/group-thought-all`, {
   method: 'GET',
   headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -200,7 +200,7 @@ useEffect(() => {
 
   // getting group details
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/group/${groupId.groupId}/group-detail/`, {
+    fetch(`https://research-rider.herokuapp.com/group/${groupId.groupId}/group-detail/`, {
     method: 'GET',
     headers: {
         "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -216,7 +216,7 @@ useEffect(() => {
   
 // getting group member info
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/group/${groupId.groupId}/${userId}/member-detail/`, {
+    fetch(`https://research-rider.herokuapp.com/group/${groupId.groupId}/${userId}/member-detail/`, {
     method: 'GET',
     headers: {
         "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -240,7 +240,7 @@ useEffect(() => {
 
   // getting group criteria all
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/group/${groupId.groupId}/all-criteria/`, {
+    fetch(`https://research-rider.herokuapp.com/group/${groupId.groupId}/all-criteria/`, {
     method: 'GET',
     headers: {
         "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -256,7 +256,7 @@ useEffect(() => {
 
 //getting group courses
 useEffect(() => {
-  fetch(`http://127.0.0.1:8000/course/group/${groupId.groupId}/group-courses/`, {
+  fetch(`https://research-rider.herokuapp.com/course/group/${groupId.groupId}/group-courses/`, {
   method: 'GET',
   headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -299,7 +299,7 @@ useEffect(() => {
         console.log(updateGroupHeader.body)
         setSetting(false)
 
-        fetch(`http://127.0.0.1:8000/group/${groupId.groupId}/group-update/`, updateGroupHeader)
+        fetch(`https://research-rider.herokuapp.com/group/${groupId.groupId}/group-update/`, updateGroupHeader)
           .then(response => {response.json()
               if (response.status===200) {
                 alert("group about info updated")
@@ -331,7 +331,7 @@ useEffect(() => {
       e.preventDefault();
       setSetting(false)
 
-      fetch(`http://127.0.0.1:8000/group/${groupId.groupId}/add-criteria/`, groupCriteriaPostHeader)
+      fetch(`https://research-rider.herokuapp.com/group/${groupId.groupId}/add-criteria/`, groupCriteriaPostHeader)
           .then(response => {response.json()
             console.log(response)
             if (response.status===201) {
@@ -349,7 +349,7 @@ useEffect(() => {
 
   console.log("single group info: ", singleGroup)
   console.log("group member info: ", groupMember)
-  const BASE_URL = "http://127.0.0.1:8000"
+  const BASE_URL = "https://research-rider.herokuapp.com"
 
 
   
@@ -376,7 +376,7 @@ const updateGroupNameFunction = () =>{
   console.log("I am update.....");
   console.log(localStorage.getItem('auth_token'))
 
-  fetch(`http://127.0.0.1:8000/group/${groupId.groupId}/group-update/`, updateGroupNameHeader)
+  fetch(`https://research-rider.herokuapp.com/group/${groupId.groupId}/group-update/`, updateGroupNameHeader)
       .then(response => {response.json()
             if (response.status===200) {
               alert("group name updated")

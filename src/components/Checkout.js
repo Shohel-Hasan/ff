@@ -33,7 +33,7 @@ export default function Checkout(props) {
             })
         };
     
-        fetch(`http://127.0.0.1:8000/course/${courseId}/enrollment/course-enrollment-payment/`, header)
+        fetch(`https://research-rider.herokuapp.com/course/${courseId}/enrollment/course-enrollment-payment/`, header)
             .then(response => response.json())
             .then(data => {
                 if (data.message) {
@@ -69,8 +69,6 @@ export default function Checkout(props) {
                     <option value="bkash">Rocket</option>
                     {/* <option value="bkash">Nogod</option> */}
                 </select>
-
-             
                 <PhoneInput
                   inputProps={{
                     name: 'phone',

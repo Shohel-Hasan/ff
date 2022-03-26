@@ -85,7 +85,7 @@ const handleSummaryPost = () => {
 
   console.log(newData)
 
-  fetch(`http://127.0.0.1:8000/post/${localStorage.getItem('id')}/user-summery-create/`, {
+  fetch(`https://research-rider.herokuapp.com/post/${localStorage.getItem('id')}/user-summery-create/`, {
     method: "POST",
     headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -97,7 +97,7 @@ const handleSummaryPost = () => {
                 alert("please enter all the required field");
               } else if(res.status===201) {
                 alert("summary post created")
-                navigate('/home')
+                window.location.reload();
               }
           })
     .catch(error => console.log(error))
@@ -113,7 +113,7 @@ const handleThoughtPost = () => {
   newData.append('user', localStorage.getItem('id'))
   setShow(false)
 
-  fetch(`http://127.0.0.1:8000/post/${localStorage.getItem('id')}/user-thought-create/`, {
+  fetch(`https://research-rider.herokuapp.com/post/${localStorage.getItem('id')}/user-thought-create/`, {
     method: "POST",
     headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -125,7 +125,7 @@ const handleThoughtPost = () => {
                 alert("please enter all the required field");
               } else if(res.status===201) {
                 alert("Thought post created")
-                navigate('/home')
+                window.location.reload();
               }
           })
     .catch(error => console.log(error))
@@ -134,7 +134,7 @@ const handleThoughtPost = () => {
 
 // getting summary posts
 useEffect(() => {
-  fetch(`http://127.0.0.1:8000/post/summerypost/all/`, {
+  fetch(`https://research-rider.herokuapp.com/post/summerypost/all/`, {
   method: 'GET',
   headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -159,7 +159,7 @@ useEffect(() => {
 
 // getting thought posts
 useEffect(() => {
-  fetch(`http://127.0.0.1:8000/post/thoughtpost/all/`, {
+  fetch(`https://research-rider.herokuapp.com/post/thoughtpost/all/`, {
   method: 'GET',
   headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -182,31 +182,27 @@ useEffect(() => {
 
 // getting user general Info
 useEffect(() => {
-  fetch(`http://127.0.0.1:8000/user/user-general-info/${localStorage.getItem('id')}`, {
+  fetch(`https://research-rider.herokuapp.com/user/user-general-info/${localStorage.getItem('id')}`, {
   method: 'GET',
   headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
       "Accept": "application/json",
       "Content-Type": "application/json"
   }})
-  .then(res =>{
-  return res.json()
-  })
+  .then(res =>res.json())
   .then(data => setUserGeneralInfo(data))
 }, [localStorage.getItem('id')])
 
 
 useEffect(() => {
-  fetch(`http://127.0.0.1:8000/course/all`, {
+  fetch(`https://research-rider.herokuapp.com/course/all`, {
   method: 'GET',
   headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
       "Accept": "application/json",
       "Content-Type": "application/json"
   }})
-  .then(res =>{
-  return res.json()
-  })
+  .then(res =>res.json())
   .then(data => {
       if (data.message) {
           setNoCourses([{data: data.message}]
@@ -266,7 +262,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
       }
     ]
   };
-  const BASE_URL = "http://127.0.0.1:8000"
+  const BASE_URL = "https://research-rider.herokuapp.com"
   console.log(userGeneralInfo)
 
     return (
@@ -756,6 +752,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                               <div className="fb-card-actions-holder">
                                 <div className="d-flex justify-content-between">
                                     <div className="fb-btn-holder">
+
                                         <Button className='text-info' variant="outline-light"><i className="fa hom-icon fa-thumbs-up"></i> Like</Button>
                                       
                                     </div>
@@ -764,6 +761,16 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                                     </div>
                                     <div className="fb-btn-holder">
                                         <Button className='text-info' variant="outline-light"><i className="fa hom-icon fa-share-square"></i> Share</Button>
+
+                                        <Button className='text-primary' variant="outline-light"><i className="fa hom-icon fa-thumbs-up"></i> Like</Button>
+                                      
+                                    </div>
+                                    <div className="fb-btn-holder">
+                                        <Button className='text-primary' variant="outline-light"><i className="far hom-icon fa-comment-alt"></i> Comment</Button>
+                                    </div>
+                                    <div className="fb-btn-holder">
+                                        <Button className='text-primary' variant="outline-light"><i className="fa hom-icon fa-share-square"></i> Share</Button>
+
                                     </div>
                                 </div>
                               </div>
