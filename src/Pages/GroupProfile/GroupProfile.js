@@ -100,7 +100,7 @@ const handleGroupSummaryPost = () => {
   newData.append('file1', file1? file1 : "")
   newData.append('file2', file2? file2 : "")
   newData.append('keyword',storeKeywordGroup)
-  newData.append('user', localStorage.getItem('id'))
+  newData.append('group', groupId.groupId)
   console.log(newData)
 
   fetch(`http://127.0.0.1:8000/post/${groupId.groupId}/group-summery-create/`, {
@@ -115,6 +115,16 @@ const handleGroupSummaryPost = () => {
                 alert("please enter all the required field");
               } else if(res.status===201) {
                 alert("summary post created")
+
+                fetch(`http://127.0.0.1:8000/post/${groupId.groupId}/group-summery-all`, {
+                  method: 'GET',
+                  headers: {
+                      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+                      "Accept": "application/json",
+                      "Content-Type": "application/json"
+                  }})
+                  .then(res =>res.json())
+                  .then(data => setGroupSummaryPosts(data))
               }
           })
     .catch(error => console.log(error))
@@ -143,7 +153,15 @@ const handleGroupSummaryPost = () => {
                 alert("please enter all the required field");
               } else if(res.status===201) {
                 alert("Thought post created")
-                setGroupSummaryPosts(GroupSummaryPosts)
+                fetch(`http://127.0.0.1:8000/post/${groupId.groupId}/group-thought-all`, {
+                  method: 'GET',
+                  headers: {
+                      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+                      "Accept": "application/json",
+                      "Content-Type": "application/json"
+                  }})
+                  .then(res =>res.json())
+                  .then(data => setGroupThoughtPosts(data))
               }
           })
     .catch(error => console.log(error))
@@ -167,11 +185,9 @@ useEffect(() => {
         )
       } else {
         setGroupSummaryPosts(data)
-        // console.log("asdfsa", data)
-      }
-     
+      } 
   })
-}, [])
+}, [groupId.groupId])
 
 
 // getting individual group thought posts 
@@ -194,9 +210,8 @@ useEffect(() => {
         setGroupThoughtPosts(data)
         // console.log("asdfsa", data)
       }
-     
   })
-}, [])
+}, [groupId.groupId])
 
   // getting group details
   useEffect(() => {
@@ -209,7 +224,6 @@ useEffect(() => {
     }})
     .then(res => res.json())
     .then(data => {setSingleGroup(data)
-        // console.log(data)
     })
 }, [groupId.groupId])
 
@@ -342,7 +356,6 @@ useEffect(() => {
               console.log(data)
           })
           .catch(error => console.log(error))
-      
   }
 
   console.log("groupCriteria: ", groupCriteria)
@@ -353,8 +366,8 @@ useEffect(() => {
 
 
   
-const allPosts = [...GroupSummaryPosts , ...GroupThoughtPosts ]
-const randomPosts = allPosts.sort(() => Math.random() - 0.5)
+const allGroupPosts = [...GroupSummaryPosts , ...GroupThoughtPosts ]
+const randomPosts = allGroupPosts.sort(() => Math.random() - 0.5)
 
 
 // update group name header
@@ -798,7 +811,7 @@ const updateGroupNameFunction = () =>{
               </Row>
 
               <Row className="d-flex justify-content-center">
-                      {allPosts && allPosts.map((post, index) => <Col md={9}  key={index} className='my-3'>
+                      {allGroupPosts && allGroupPosts.map((post, index) => <Col md={9}  key={index} className='my-3'>
                         <div className="fb-cards-designs">
                           <div className="fb-clone-card">
                             <div className="fb-card-main-content">
@@ -817,7 +830,7 @@ const updateGroupNameFunction = () =>{
                                   </div>
                                 </div>
                                 <div className="post-action">
-                                    <i class="fa fa-ellipsis-h"></i>
+                                    <i className="fa fa-ellipsis-h"></i>
                                 </div>
                               </div>
                               {post.title_of_research_article &&  <div className="fb-card-body simple-text-card simple-image-card">
@@ -947,12 +960,12 @@ const updateGroupNameFunction = () =>{
                           
                         </Accordion.Header>
                         <Accordion.Body>
-                          <div class="mb-3">
+                          <div className="mb-3">
                             <form onSubmit={updateGroup}>
-                              <div class="input-group">
-                                <div class="input-group-prepend"></div>
+                              <div className="input-group">
+                                <div className="input-group-prepend"></div>
                                 <textarea
-                                  class="form-control"
+                                  className="form-control"
                                   aria-label="With textarea"
                                   placeholder="About Us" 
                                   onChange= {e=> setGroupAboutText(e.target.value)}
@@ -986,15 +999,15 @@ const updateGroupNameFunction = () =>{
             
                           { groupMember.role==="Creator" && 
                             <form onSubmit={groupCriteriaPost}>
-                            <div class="mb-3">
+                            <div className="mb-3">
                               <p>
                                 Title <i style={{color: 'blue'}}  className="fas fa-edit p-2"></i>
                               </p>
             
-                              <div class="input-group">
-                                <div class="input-group-prepend"></div>
+                              <div className="input-group">
+                                <div className="input-group-prepend"></div>
                                 <textarea
-                                  class="form-control"
+                                  className="form-control"
                                   aria-label="With textarea"
                                   placeholder="Title"
                                   onChange={e=> setCriteriaTitle(e.target.value)}
@@ -1004,11 +1017,11 @@ const updateGroupNameFunction = () =>{
                             <p>
                               Description <i className="fas fa-edit p-2 icon-clr"></i>
                             </p>
-                            <div class="mb-3">
-                              <div class="input-group">
-                                <div class="input-group-prepend"></div>
+                            <div className="mb-3">
+                              <div className="input-group">
+                                <div className="input-group-prepend"></div>
                                 <textarea
-                                  class="form-control"
+                                  className="form-control"
                                   aria-label="With textarea"
                                   placeholder="Description"
                                   onChange={e=> setCriteriaDetail(e.target.value)}
@@ -1101,11 +1114,11 @@ const updateGroupNameFunction = () =>{
             <i style={{color: 'blue'}} className="fas fa-edit p-2"></i>
           </Accordion.Header>
           <Accordion.Body>
-            <div class="mb-3">
-              <div class="input-group">
-                <div class="input-group-prepend"></div>
+            <div className="mb-3">
+              <div className="input-group">
+                <div className="input-group-prepend"></div>
                 <textarea
-                  class="form-control"
+                  className="form-control"
                   aria-label="With textarea"
                   placeholder="Contact Us"
                 ></textarea>
@@ -1119,11 +1132,11 @@ const updateGroupNameFunction = () =>{
             <p>
               Name of folder<i style={{color: 'blue'}} className="fas fa-edit p-2"></i>
             </p>
-            <div class="">
-              <div class="input-group">
-                <div class="input-group-prepend"></div>
+            <div className="">
+              <div className="input-group">
+                <div className="input-group-prepend"></div>
                 <textarea
-                  class="form-control"
+                  className="form-control"
                   aria-label="With textarea"
                   Placeholder="Name of folder"
                 ></textarea>
@@ -1132,11 +1145,11 @@ const updateGroupNameFunction = () =>{
             <p className="mt-2">
               Keyword <i style={{color: 'blue'}} className="fas fa-edit p-2"></i>
             </p>
-            <div class="">
-              <div class="input-group">
-                <div class="input-group-prepend"></div>
+            <div className="">
+              <div className="input-group">
+                <div className="input-group-prepend"></div>
                 <textarea
-                  class="form-control"
+                  className="form-control"
                   aria-label="With textarea"
                   Placeholder="keyword without space"
                 ></textarea>
@@ -1175,10 +1188,10 @@ const updateGroupNameFunction = () =>{
         {/* <Accordion.Item eventKey="11">
           <Accordion.Header>Share research thought </Accordion.Header>
           <Accordion.Body>
-            <div class="input-group">
-              <div class="input-group-prepend"></div>
+            <div className="input-group">
+              <div className="input-group-prepend"></div>
               <textarea
-                class="form-control"
+                className="form-control"
                 aria-label="With textarea"
                 placeholder="Share your any research/logical thought"
               ></textarea>
@@ -1204,10 +1217,10 @@ const updateGroupNameFunction = () =>{
             </p>
             <Collapse in={title}>
               <div id="example-objective-text">
-                <div class="input-group">
-                  <div class="input-group-prepend"></div>
+                <div className="input-group">
+                  <div className="input-group-prepend"></div>
                   <textarea
-                    class="form-control"
+                    className="form-control"
                     aria-label="With textarea"
                     placeholder="Title of research article"
                   ></textarea>
@@ -1228,10 +1241,10 @@ const updateGroupNameFunction = () =>{
             </p>
             <Collapse in={objective}>
               <div id="example-title-text">
-                <div class="input-group">
-                  <div class="input-group-prepend"></div>
+                <div className="input-group">
+                  <div className="input-group-prepend"></div>
                   <textarea
-                    class="form-control"
+                    className="form-control"
                     aria-label="With textarea"
                     placeholder="Objective  of the study"
                   ></textarea>
@@ -1251,10 +1264,10 @@ const updateGroupNameFunction = () =>{
             </p>
             <Collapse in={theoritical}>
               <div id="example-theoritical-text">
-                <div class="input-group">
-                  <div class="input-group-prepend"></div>
+                <div className="input-group">
+                  <div className="input-group-prepend"></div>
                   <textarea
-                    class="form-control"
+                    className="form-control"
                     aria-label="With textarea"
                     placeholder="Theoritical background"
                   ></textarea>
@@ -1275,10 +1288,10 @@ const updateGroupNameFunction = () =>{
             </p>
             <Collapse in={gap}>
               <div id="example-theoritical-text">
-                <div class="input-group">
-                  <div class="input-group-prepend"></div>
+                <div className="input-group">
+                  <div className="input-group-prepend"></div>
                   <textarea
-                    class="form-control"
+                    className="form-control"
                     aria-label="With textarea"
                     placeholder="Research Gap"
                   ></textarea>
@@ -1299,10 +1312,10 @@ const updateGroupNameFunction = () =>{
             </p>
             <Collapse in={unique}>
               <div id="example-theoritical-text">
-                <div class="input-group">
-                  <div class="input-group-prepend"></div>
+                <div className="input-group">
+                  <div className="input-group-prepend"></div>
                   <textarea
-                    class="form-control"
+                    className="form-control"
                     aria-label="With textarea"
                     placeholder="Uniqueness of the study"
                   ></textarea>
@@ -1323,10 +1336,10 @@ const updateGroupNameFunction = () =>{
             </p>
             <Collapse in={data}>
               <div id="example-theoritical-text">
-                <div class="input-group">
-                  <div class="input-group-prepend"></div>
+                <div className="input-group">
+                  <div className="input-group-prepend"></div>
                   <textarea
-                    class="form-control"
+                    className="form-control"
                     aria-label="With textarea"
                     placeholder="Data source/ Sample information"
                   ></textarea>
@@ -1347,10 +1360,10 @@ const updateGroupNameFunction = () =>{
             </p>
             <Collapse in={methodology}>
               <div id="example-theoritical-text">
-                <div class="input-group">
-                  <div class="input-group-prepend"></div>
+                <div className="input-group">
+                  <div className="input-group-prepend"></div>
                   <textarea
-                    class="form-control"
+                    className="form-control"
                     aria-label="With textarea"
                     placeholder="Research methodology"
                   ></textarea>
@@ -1371,10 +1384,10 @@ const updateGroupNameFunction = () =>{
             </p>
             <Collapse in={result}>
               <div id="example-theoritical-text">
-                <div class="input-group">
-                  <div class="input-group-prepend"></div>
+                <div className="input-group">
+                  <div className="input-group-prepend"></div>
                   <textarea
-                    class="form-control"
+                    className="form-control"
                     aria-label="With textarea"
                     placeholder="Result & discussion"
                   ></textarea>
@@ -1396,10 +1409,10 @@ const updateGroupNameFunction = () =>{
             </p>
             <Collapse in={validity}>
               <div id="example-theoritical-text">
-                <div class="input-group">
-                  <div class="input-group-prepend"></div>
+                <div className="input-group">
+                  <div className="input-group-prepend"></div>
                   <textarea
-                    class="form-control"
+                    className="form-control"
                     aria-label="With textarea"
                     placeholder="Validity & reliability of finding"
                   ></textarea>
@@ -1420,10 +1433,10 @@ const updateGroupNameFunction = () =>{
             </p>
             <Collapse in={useful}>
               <div id="example-theoritical-text">
-                <div class="input-group">
-                  <div class="input-group-prepend"></div>
+                <div className="input-group">
+                  <div className="input-group-prepend"></div>
                   <textarea
-                    class="form-control"
+                    className="form-control"
                     aria-label="With textarea"
                     placeholder=" Usefulness of the finding"
                   ></textarea>
@@ -1444,10 +1457,10 @@ const updateGroupNameFunction = () =>{
             </p>
             <Collapse in={reference}>
               <div id="example-theoritical-text">
-                <div class="input-group">
-                  <div class="input-group-prepend"></div>
+                <div className="input-group">
+                  <div className="input-group-prepend"></div>
                   <textarea
-                    class="form-control"
+                    className="form-control"
                     aria-label="With textarea"
                     placeholder="Reference"
                   ></textarea>
@@ -1468,10 +1481,10 @@ const updateGroupNameFunction = () =>{
             </p>
             <Collapse in={annex}>
               <div id="example-theoritical-text">
-                <div class="input-group">
-                  <div class="input-group-prepend"></div>
+                <div className="input-group">
+                  <div className="input-group-prepend"></div>
                   <textarea
-                    class="form-control"
+                    className="form-control"
                     aria-label="With textarea"
                     placeholder="Annex"
                   ></textarea>
@@ -1515,10 +1528,10 @@ const updateGroupNameFunction = () =>{
             </p>
             <Collapse in={fileName }>
               <div id="example-theoritical-text">
-                <div class="input-group">
-                  <div class="input-group-prepend"></div>
+                <div className="input-group">
+                  <div className="input-group-prepend"></div>
                   <textarea
-                    class="form-control"
+                    className="form-control"
                     aria-label="With textarea"
                     placeholder="Keyword without space"
                   ></textarea>
