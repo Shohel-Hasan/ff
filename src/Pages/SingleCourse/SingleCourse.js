@@ -126,14 +126,11 @@ const SingleCourse = (props) => {
       }})
     .then((res) => res.json())
     .then((data) =>{
-
         if (data.message) {
           console.log("enrolled students: ", data.message)
           setNoEnrolledStudents([data.message])
         } else {setEnrolledStudents(data)
-          console.log("enrolled students ", data)}
-        
-                    
+          console.log("enrolled students ", data)}            
       });
 },[courseId.courseId])
    //   ------ Course class link get--------  //
@@ -155,7 +152,7 @@ const SingleCourse = (props) => {
       });
 },[courseId.courseId])
 
-//   ------ Single course details --------  //
+    //   ------ Single course details --------  //
     useEffect(() =>{
         fetch(`http://127.0.0.1:8000/course/single-course/${courseId.courseId}`, {
           method: 'GET',
@@ -214,7 +211,6 @@ const SingleCourse = (props) => {
           .catch(error => console.log(error))
       
     }
-
     // course notice create
     const courseNoticeHeader = {
       // mode: 'no-cors',
@@ -247,7 +243,7 @@ const SingleCourse = (props) => {
           .catch(error => console.log(error))
     }
 
-      //   ------ get all course notices --------  //
+  //   ------ get all course notices --------  //
   useEffect(() =>{
     fetch(`http://127.0.0.1:8000/course/${courseId.courseId}/notice/all/`, {
       method: 'GET',
