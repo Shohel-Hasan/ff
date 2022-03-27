@@ -27,7 +27,7 @@ const UserProfile = (props) => {
 
     // getting user general Info
     useEffect(() => {
-        fetch(`https://research-rider.herokuapp.com/user/user-general-info/${localStorage.getItem('id')}`, {
+        fetch(`http://127.0.0.1:8000/user/user-general-info/${localStorage.getItem('id')}`, {
         method: 'GET',
         headers: {
             "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -44,7 +44,7 @@ const UserProfile = (props) => {
 
     // getting user Info
     useEffect(() => {
-        fetch(`https://research-rider.herokuapp.com/user/${localStorage.getItem('id')}`, {
+        fetch(`http://127.0.0.1:8000/user/${localStorage.getItem('id')}`, {
         method: 'GET',
         headers: {
             "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -71,7 +71,7 @@ const UserProfile = (props) => {
         console.log("coverPic...", coverPic)
         setCoverPicModal(false)
 
-        fetch(`https://research-rider.herokuapp.com/user/user-general-info-update/${localStorage.getItem('id')}`, {
+        fetch(`http://127.0.0.1:8000/user/user-general-info-update/${localStorage.getItem('id')}`, {
         // mode: 'cors',
         method: "PATCH",
         headers: {
@@ -101,7 +101,7 @@ const UserProfile = (props) => {
         console.log("profilePic...", profilePic)
         setShow(false)
 
-        fetch(`https://research-rider.herokuapp.com/user/user-general-info-update/${localStorage.getItem('id')}`, {
+        fetch(`http://127.0.0.1:8000/user/user-general-info-update/${localStorage.getItem('id')}`, {
         method: "PATCH",
         headers: {
             "Authorization" : `Token ${localStorage.getItem('auth_token')}`, 
@@ -117,7 +117,7 @@ const UserProfile = (props) => {
         .catch(error => console.log(error))
     }
 
-    const BASE_URL = "https://research-rider.herokuapp.com"
+    const BASE_URL = "http://127.0.0.1:8000"
 
     return (
 

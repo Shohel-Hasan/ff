@@ -3,7 +3,7 @@ import { Col, Container, Form, Row, Modal,Button, FormControl, InputGroup, Accor
 import Slider from 'react-slick';
 import './Home.css';
 import man from '../../Images/saddam.jpg';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 
 const Home = () => {
@@ -85,7 +85,7 @@ const handleSummaryPost = () => {
 
   console.log(newData)
 
-  fetch(`https://research-rider.herokuapp.com/post/${localStorage.getItem('id')}/user-summery-create/`, {
+  fetch(`http://127.0.0.1:8000/post/${localStorage.getItem('id')}/user-summery-create/`, {
     method: "POST",
     headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -113,7 +113,7 @@ const handleThoughtPost = () => {
   newData.append('user', localStorage.getItem('id'))
   setShow(false)
 
-  fetch(`https://research-rider.herokuapp.com/post/${localStorage.getItem('id')}/user-thought-create/`, {
+  fetch(`http://127.0.0.1:8000/post/${localStorage.getItem('id')}/user-thought-create/`, {
     method: "POST",
     headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -134,7 +134,7 @@ const handleThoughtPost = () => {
 
 // getting summary posts
 useEffect(() => {
-  fetch(`https://research-rider.herokuapp.com/post/summerypost/all/`, {
+  fetch(`http://127.0.0.1:8000/post/summerypost/all/`, {
   method: 'GET',
   headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -159,22 +159,22 @@ useEffect(() => {
 
 // getting thought posts
 useEffect(() => {
-  fetch(`https://research-rider.herokuapp.com/post/thoughtpost/all/`, {
+  fetch(`http://127.0.0.1:8000/post/thoughtpost/all/`, {
   method: 'GET',
   headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
       "Accept": "application/json",
       "Content-Type": "application/json"
   }})
-  .then(res =>{
-    return res.json()
-  })
+  .then(res => res.json()
+  )
   .then(data => {
       if (data.message) {
         setNoThoughtPosts([{data: data.message}]
         )
       } else {
         setThoughtPosts(data)
+        console.log(data)
       }
      
   })
@@ -182,7 +182,7 @@ useEffect(() => {
 
 // getting user general Info
 useEffect(() => {
-  fetch(`https://research-rider.herokuapp.com/user/user-general-info/${localStorage.getItem('id')}`, {
+  fetch(`http://127.0.0.1:8000/user/user-general-info/${localStorage.getItem('id')}`, {
   method: 'GET',
   headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -195,7 +195,7 @@ useEffect(() => {
 
 
 useEffect(() => {
-  fetch(`https://research-rider.herokuapp.com/course/all`, {
+  fetch(`http://127.0.0.1:8000/course/all`, {
   method: 'GET',
   headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -215,6 +215,7 @@ useEffect(() => {
 }, [])
 
 const allPosts = [...summaryPosts , ...thoughtPosts ]
+console.log(summaryPosts, thoughtPosts, allPosts)
 const randomPosts = allPosts.sort(() => Math.random() - 0.5)
 
 
@@ -262,7 +263,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
       }
     ]
   };
-  const BASE_URL = "https://research-rider.herokuapp.com"
+  const BASE_URL = "http://127.0.0.1:8000"
   console.log(userGeneralInfo)
 
     return (
@@ -279,11 +280,11 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                         <Row className='justify-content-center align-items-center'>
                             <Col>
                                 <Slider {...settings}>
-                                 { allCourses.length!==0 && allCourses.map((course, index) => <div>
+                                 { allCourses.length!==0 && allCourses.map((course, index) => <div key={index}>
                                         <img style={{'objectFit': 'cover' }} className="home-slider img-fluid" src={`${BASE_URL}${course.cover_pic}`} alt=''/>
                                     </div>
-                                     )  }
-                                  
+                                     )}
+                                
                                 </Slider>
                             </Col>
                         </Row>
@@ -296,7 +297,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                                     <div className='text-center'>
                                       <img
                                       className="rounded-circle"
-                                      style={{ width: "56px", height: "56px", 'objectFit': 'cover' }} 
+                                      style={{ width: "80px", height: "80px", 'objectFit': 'cover' }} 
                                       src={`${BASE_URL}${userGeneralInfo.profile_pic}`}
                                       alt=''
                                       />
@@ -307,7 +308,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                                     <div className='text-center'>
                                       <img
                                       className="rounded-circle"
-                                      style={{ width: "56px", height: "56px", 'objectFit': 'cover' }} 
+                                      style={{ width: "80px", height: "80px", 'objectFit': 'cover' }} 
                                       src={man}
                                       alt=''
                                       />
@@ -658,19 +659,19 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                               <div className="fb-card-header">
                                 <div className="user-post-info">
                                   <div className="user-thumb">
-                                  { !post.group_name &&  <img  src={`${BASE_URL}${post.user_profile_pic}`} className="img-responsive" alt='user profile not found'/>}
-                                  {post.group_name &&  <img  src={`${BASE_URL}${post.group_profile_pic}`} className="img-responsive" alt='group profile not found'/>}
+                                    { !post.group_name &&  <img  src={`${BASE_URL}${post.user_profile_pic}`} className="img-responsive" alt='user profile not found'/>}
+                                    {post.group_name &&  <img  src={`${BASE_URL}${post.group_profile_pic}`} className="img-responsive" alt='group profile not found'/>}
 
                                   </div>
                                   <div className="user-information">
-                                  {!post.group_name && <p>{post.user_first_name}</p>}
-                                  {post.group_name && <p>{post.group_name}</p>}
+                                  {!post.group_name && <p><Link to={`/user/${post.user}`}>{post.user_first_name}</Link></p>}
+                                  {post.group_name && <p><Link to={`/group/${post.group}/details`}>{post.group_name}</Link></p>}
 
                                     <small>{post.created_date}</small>
                                   </div>
                                 </div>
                                 <div className="post-action">
-                                    <i class="fa fa-ellipsis-h"></i>
+                                    <i className="fa fa-ellipsis-h"></i>
                                 </div>
                               </div>
                               {post.title_of_research_article &&  <div className="fb-card-body simple-text-card simple-image-card">

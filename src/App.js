@@ -55,7 +55,7 @@ function App() {
         })
     };
 
-    fetch('https://research-rider.herokuapp.com/user/token-check', header)
+    fetch('http://127.0.0.1:8000/user/token-check', header)
         .then(response => response.json())
         .then(data => {
             // console.log(data.message)
@@ -122,8 +122,6 @@ function App() {
         {/* Route not added in navbar*/}
         <Route path="/course-page" element={<CrousePage triggerCheckLoggedIn={checkLoggedIn} />} />
         <Route path="/settings" element={<Setting triggerCheckLoggedIn={checkLoggedIn} />} />
-    
-
       </Routes>
 
     </div>
