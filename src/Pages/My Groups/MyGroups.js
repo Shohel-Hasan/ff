@@ -22,7 +22,7 @@ const MyGroups = (props) => {
 
       // getting user general Info
       useEffect(() => {
-        fetch(`https://research-rider.herokuapp.com/user/user-general-info/${localStorage.getItem('id')}`, {
+        fetch(`http://127.0.0.1:8000/user/user-general-info/${localStorage.getItem('id')}`, {
         method: 'GET',
         headers: {
             "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -35,7 +35,7 @@ const MyGroups = (props) => {
 
 
   useEffect(() => {
-    fetch(`https://research-rider.herokuapp.com/group/${localStorage.getItem('id')}/my-groups/`, {
+    fetch(`http://127.0.0.1:8000/group/${localStorage.getItem('id')}/my-groups/`, {
     method: 'GET',
     headers: {
         "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -51,13 +51,12 @@ const MyGroups = (props) => {
           setMyGroups(data)
           console.log(data)
         }
-       
     })
-}, [])
+}, [localStorage.getItem('id')])
 
 // getting user info
 useEffect(() => {
-  fetch(`https://research-rider.herokuapp.com/user/${localStorage.getItem('id')}`, {
+  fetch(`http://127.0.0.1:8000/user/${localStorage.getItem('id')}`, {
   method: 'GET',
   headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -83,21 +82,6 @@ console.log(myGroups.length)
   const [coverPic, setCoverPic] = useState();
   const [profilePic, setProfilePic] = useState();
 
-//   group create function
-//   const createGroupHeader = {
-//     // mode: 'no-cors',
-//     method: 'POST',
-//     headers: {
-//         "Accept": "application/json",
-//         "Content-Type": "application/json"
-//     },
-//     body: JSON.stringify({
-//         name : name,
-//         about: about,
-//         cover_pic : coverPic,
-//         profile_pic : profilePic
-//     })
-// };
 
 const handleGroup = () => {
   // e.preventDefault();
@@ -111,7 +95,7 @@ const handleGroup = () => {
   setShow(false)
   console.log(newData)
 
-  fetch('https://research-rider.herokuapp.com/group/create/', {
+  fetch('http://127.0.0.1:8000/group/create/', {
     method: "POST",
     headers: {
       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -119,15 +103,19 @@ const handleGroup = () => {
     body: newData
   })
     .then(res=> {
-      alert("group created successfully.")
-      console.log(res)
-      window.location.reload();
+      res.json()
+      if (res.status!==201){
+        return alert("all fileds required")
+      } else {
+        alert("group created successfully.")
+        window.location.reload();
+      }
     })
       
     .catch(error => console.log(error))
 }
 
-const BASE_URL = "https://research-rider.herokuapp.com"
+const BASE_URL = "http://127.0.0.1:8000"
   return (
       <Container>
         <Row className="pt-5">
