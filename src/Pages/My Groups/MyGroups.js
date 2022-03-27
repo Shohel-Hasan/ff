@@ -34,6 +34,7 @@ const MyGroups = (props) => {
     }, [localStorage.getItem('id')])
 
 
+    // getting my-groups data
   useEffect(() => {
     fetch(`http://127.0.0.1:8000/group/${localStorage.getItem('id')}/my-groups/`, {
     method: 'GET',
@@ -108,10 +109,22 @@ const handleGroup = () => {
         return alert("all fileds required")
       } else {
         alert("group created successfully.")
-        window.location.reload();
+
+        // getting my-groups again
+        fetch(`http://127.0.0.1:8000/group/${localStorage.getItem('id')}/my-groups/`, {
+          method: 'GET',
+          headers: {
+              "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+              "Accept": "application/json",
+              "Content-Type": "application/json"
+          }})
+          .then(res => res.json())
+          .then(data => {
+            setMyGroups(data)
+            setNoGroup([])
+          })
       }
     })
-      
     .catch(error => console.log(error))
 }
 
