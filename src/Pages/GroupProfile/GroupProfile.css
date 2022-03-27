@@ -13,6 +13,22 @@
   left: -25px;
   top: 30px;
 }
+.group-wrapper {
+  background: url('../../Images//camera.svg') no-repeat;
+  background-size: cover;
+  display: block;
+  position: relative;
+  width: 25px;
+  height: 25px;
+  left: 96%;
+  top: 30px;
+}
+#group_filed {
+  width: 26px;
+  height: 26px;
+  opacity: 0;
+  filter: alpha(opacity=0); /* IE 5-7 */
+}
 
 
 @media screen and (max-width: 575px) {

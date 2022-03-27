@@ -127,7 +127,7 @@ export default function Navbar(props) {
                 </div>
 
                 <div className={`${style.links} d-flex align-items-center justify-content-between text-center my-3`} >
-                   <Link style={{textDecoration:'none'}} to="/user/:userId">
+                   <Link style={{textDecoration:'none'}} to={`/user/${localStorage.getItem('id')}`}>
                      <img style={{height: '40px',width:'auto',display: 'block', padding: '0px 28px'}} src={class_icon} alt='home' />
                       Profile
                    </Link> 
