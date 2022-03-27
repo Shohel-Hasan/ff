@@ -1,5 +1,7 @@
 import { useRef, useState } from "react";
 import style from '../styles/Login.module.css';
+import Creatable, { useCreatable } from 'react-select/creatable';
+import '../styles/Registration.module.css';
 
 export default function Registration(props) {
     // states for registration
@@ -65,6 +67,29 @@ export default function Registration(props) {
             .catch(error => console.log(error))
     }
 
+    // Academic discipline select option 
+    const options = [
+        { value: 'Major in Hons.', label: 'Major in Hons.' },
+        { value: 'Masters', label: 'Masters' }
+        
+      ]
+
+      const handleValue = (value) =>{
+          console.log(value)
+          setAcademicDescipline(value.value)
+      }
+
+      const customStyles = {
+       
+       
+        singleValue: (provided, state) => {
+          const opacity = state.isDisabled ? 0.5 : 1;
+          const transition = 'opacity 300ms';
+      
+          return { ...provided, opacity, transition };
+        }
+      }
+
     return (
         <div className={`${style.reg_box} d-flex flex-column shadow` } ref={signupModal}>
                 <div className={`d-flex flex-row align-items-center justify-content-between`}>
@@ -82,28 +107,30 @@ export default function Registration(props) {
                         <input onChange={e => setFirstName(e.target.value)} value={first_name} type="text" className={`form-control my-2`} required placeholder='Full first_name'/>
                         <input onChange={e => setEmail(e.target.value)} value={email} type="email" className={`form-control my-2`} required placeholder='Your Email'/>
                         <div className={`d-flex justify-content-center align-items-center`}>
-                            <input onChange={e => setPassword(e.target.value)} value={password} type="password" className={`form-control mx-1 my-2`} required placeholder='Password'/>
-                            <input onChange={e => setConfirmPassword(e.target.value)} value={confirmPassword} type="password" className={`form-control my-2 mx-1`} required placeholder='Confirm Password'/>
+                            <input onChange={e => setPassword(e.target.value)} value={password} type="password" className={`form-control  my-2`} required placeholder='Password'/>
+                            <input onChange={e => setConfirmPassword(e.target.value)} value={confirmPassword} type="password" className={`form-control my-2 `} required placeholder='Confirm Password'/>
                         </div>
 
-                        <select onChange={e => setAcademicDescipline(e.target.value)} className="form-select my-2" aria-label="Default select example">
+                        {/* <select onChange={e => setAcademicDescipline(e.target.value)} className="form-select my-2" aria-label="Default select example">
                             <option selected disabled>Academic discipline</option>
                             <option value="Major in Hons.">Major in Hons.</option>
                             <option value="Masters">Masters</option>
                             <option value="Others">Others</option>
-                        </select>
+                        </select> */}
+                        <Creatable  className="my-2 discipline"  onChange={handleValue} options={options} required></Creatable>
                         
-                        <select onChange={e => setProfession(e.target.value)} className="form-select my-2" aria-label="Default select example">
+                        <select onChange={e => setProfession(e.target.value)} className="form-select my-2" aria-label="Default select example" required>
                             <option selected disabled>Profession</option>
                             <option value="Researcher">Researcher</option>
                             <option value="Teacher">Teacher</option>
                             <option value="Student">Student</option>
                         </select>
+                      
 
                         <p className='mb-2'>Date of Birth</p>
 
                         <div className='d-flex justify-content-center align-items-center'>
-                            <select onChange={e => setMonthOfBirth(e.target.value)} className="form-select mx-1" aria-label="Default select example">
+                            <select onChange={e => setMonthOfBirth(e.target.value)} className="form-select mx-1" aria-label="Default select example" required>
                                 <option selected disabled>month</option>
                                 <option value="01">Jan</option>
                                 <option value="02">Feb</option>
@@ -119,13 +146,13 @@ export default function Registration(props) {
                                 <option value="12">Dec</option>
                             </select>
                             
-                            <select onChange={e => setDateOfBirth(e.target.value)} className="form-select" aria-label="Default select example">
+                            <select onChange={e => setDateOfBirth(e.target.value)} className="form-select" aria-label="Default select example" required>
                                 <option selected disabled>date</option>
                                 {dateArray.map((item) => <option value={item}>{item}</option>)}
                                 
                             </select>
                             
-                            <select onChange={e => setYearOfBirth(e.target.value)} className="form-select mx-1" aria-label="Default select example">
+                            <select onChange={e => setYearOfBirth(e.target.value)} className="form-select mx-1" aria-label="Default select example" required>
                                 <option selected disabled>year</option>
                                 {yearArray.map((item) => <option value={item}>{item}</option>)}
                             </select>
@@ -135,18 +162,20 @@ export default function Registration(props) {
 
                         <div className="input-group d-flex justify-content-center align-items-center">
                             <div className=" p-2 mx-2 fb-box-shadow ">
-                                <label class="form-check-label mx-2" htmlFor="exampleRadios1">Male</label>
-                                <input onChange={e => setGender(e.target.value)} class="form-check-input" type="radio" first_name="radioNoLabel" id="radioNoLabel1" value="Male" aria-label="..." />
+                                <label class="form-check-label mx-2" for="flexRadioDefault1">Male</label>
+                                <input onChange={e => setGender(e.target.value)}  class="form-check-input" type="radio" value="Male" name="flexRadioDefault" id="flexRadioDefault1" required/>
                             </div>
                             
                             <div className=" p-2 mx-2 fb-box-shadow ">
-                                <label class="form-check-label mx-2" htmlFor="exampleRadios2">Female</label>
-                                <input onChange={e => setGender(e.target.value)} class="form-check-input" type="radio" first_name="radioNoLabel" id="radioNoLabel2" value="Female" aria-label="..." />
+
+                                <label class="form-check-label mx-2" for="flexRadioDefault2">Female</label>
+                                <input onChange={e => setGender(e.target.value)} class="form-check-input" type="radio" value="Female" name="flexRadioDefault" id="flexRadioDefault2" required />
+                               
                             </div>
                             
                             <div className=" p-2 mx-2 fb-box-shadow ">
-                                <label class="form-check-label mx-2" htmlFor="exampleRadios3">Common</label>
-                                <input onChange={e => setGender(e.target.value)} class="form-check-input" type="radio" first_name="radioNoLabel" id="radioNoLabel3" value="Common" aria-label="..." />
+                                <label class="form-check-label mx-2" for="flexRadioDefault3">Common</label>
+                                <input onChange={e => setGender(e.target.value)} class="form-check-input" type="radio" value="Common" name="flexRadioDefault" id="flexRadioDefault3" required />
                             </div>
                         </div>
 

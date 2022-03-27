@@ -1,0 +1,20 @@
+/* .css-tlfecz-indicatorContainer {
+    color:#212529 !important ;
+}
+
+.css-1s2u09g-control{
+    border-color:#0dcaf0 !important;
+
+}
+.css-2613qy-menu{
+    border-color:#0dcaf0 !important;
+} */
+.css-1s2u09g-control{
+    outline: none !important;
+    
+}
+.css-1s2u09g-control :focus{
+    border: none!important;
+    outline: none!important;
+
+}
