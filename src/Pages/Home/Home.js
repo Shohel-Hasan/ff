@@ -97,7 +97,17 @@ const handleSummaryPost = () => {
                 alert("please enter all the required field");
               } else if(res.status===201) {
                 alert("summary post created")
-                window.location.reload();
+                fetch(`http://127.0.0.1:8000/post/summerypost/all/`, {
+                  method: 'GET',
+                  headers: {
+                      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+                      "Accept": "application/json",
+                      "Content-Type": "application/json"
+                  }})
+                  .then(res =>{
+                    return res.json()
+                  })
+                  .then(data =>  setSummaryPosts(data))
               }
           })
     .catch(error => console.log(error))
@@ -125,7 +135,16 @@ const handleThoughtPost = () => {
                 alert("please enter all the required field");
               } else if(res.status===201) {
                 alert("Thought post created")
-                window.location.reload();
+                fetch(`http://127.0.0.1:8000/post/thoughtpost/all/`, {
+                  method: 'GET',
+                  headers: {
+                      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+                      "Accept": "application/json",
+                      "Content-Type": "application/json"
+                  }})
+                  .then(res => res.json()
+                  )
+                  .then(data => setThoughtPosts(data))
               }
           })
     .catch(error => console.log(error))
@@ -166,8 +185,7 @@ useEffect(() => {
       "Accept": "application/json",
       "Content-Type": "application/json"
   }})
-  .then(res => res.json()
-  )
+  .then(res => res.json())
   .then(data => {
       if (data.message) {
         setNoThoughtPosts([{data: data.message}]
@@ -176,7 +194,6 @@ useEffect(() => {
         setThoughtPosts(data)
         console.log(data)
       }
-     
   })
 }, [])
 
@@ -194,6 +211,7 @@ useEffect(() => {
 }, [localStorage.getItem('id')])
 
 
+// getting all courses data
 useEffect(() => {
   fetch(`http://127.0.0.1:8000/course/all`, {
   method: 'GET',
@@ -209,13 +227,11 @@ useEffect(() => {
       )
       } else {
           setAllCourses(data)
-      console.log(data)
       }
   })
 }, [])
 
 const allPosts = [...summaryPosts , ...thoughtPosts ]
-console.log(summaryPosts, thoughtPosts, allPosts)
 const randomPosts = allPosts.sort(() => Math.random() - 0.5)
 
 
@@ -263,7 +279,8 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
       }
     ]
   };
-  const BASE_URL = "http://127.0.0.1:8000"
+  const BASE_URL = "http://127.0.0.1:8000"; 
+
   console.log(userGeneralInfo)
 
     return (
@@ -293,43 +310,43 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                     <Row className='justify-content-center my-4'>
                         <Col>
                             <div className="p-3 shadow-effect d-flex align-items-center  ">
-                               {userGeneralInfo.cover_pic!==null && <div className='w-25'>
-                                    <div className='text-center'>
-                                      <img
-                                      className="rounded-circle"
-                                      style={{ width: "80px", height: "80px", 'objectFit': 'cover' }} 
-                                      src={`${BASE_URL}${userGeneralInfo.profile_pic}`}
-                                      alt=''
-                                      />
-                                    </div>
-                                </div>}
-
-                                {userGeneralInfo.cover_pic===null && <div className='w-25'>
-                                    <div className='text-center'>
-                                      <img
-                                      className="rounded-circle"
-                                      style={{ width: "80px", height: "80px", 'objectFit': 'cover' }} 
-                                      src={man}
-                                      alt=''
-                                      />
-                                    </div>
-                                </div>}
-
-                                <div className='w-75'>
-                                    <Form.Control
-                                    onClick={() => setShow(true)}
-                                    className="rounded-pill post-filed mb-2 "
-                                    type="text"
-                                    placeholder="Share a thought that you like"
+                              {userGeneralInfo.cover_pic!==null && <div className='w-25'>
+                                  <div className='text-center'>
+                                    <img
+                                    className="rounded-circle"
+                                    style={{ width: "80px", height: "80px", 'objectFit': 'cover' }} 
+                                    src={`${BASE_URL}${userGeneralInfo.profile_pic}`}
+                                    alt=''
                                     />
-                        
-                                    <Form.Control
-                                    onClick={() => setModal(true)}
-                                    className="rounded-pill my-1 post-filed"
-                                    type="text"
-                                    placeholder="Share a research summary that you like"
-                                    /> 
-                                </div>
+                                  </div>
+                              </div>}
+
+                              {userGeneralInfo.cover_pic===null && <div className='w-25'>
+                                  <div className='text-center'>
+                                    <img
+                                    className="rounded-circle"
+                                    style={{ width: "80px", height: "80px", 'objectFit': 'cover' }} 
+                                    src={man}
+                                    alt=''
+                                    />
+                                  </div>
+                              </div>}
+
+                              <div className='w-75'>
+                                  <Form.Control
+                                  onClick={() => setShow(true)}
+                                  className="rounded-pill post-filed mb-2 "
+                                  type="text"
+                                  placeholder="Share a thought that you like"
+                                  />
+                      
+                                  <Form.Control
+                                  onClick={() => setModal(true)}
+                                  className="rounded-pill my-1 post-filed"
+                                  type="text"
+                                  placeholder="Share a research summary that you like"
+                                  /> 
+                              </div>
                             </div>
 
                               {/* Modal Section */}
@@ -342,33 +359,39 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                                   centered
                                 >
                                   <Modal.Header closeButton >
-                                      
-                                          <p className='fw-bolder fs-6'>Thought Post </p>
-                                      
+                                    <p className='fw-bolder fs-6'>Thought Post </p>
                                   </Modal.Header>
                                   <Modal.Body className="fb-box-shadow">
-                                      <div className='d-flex mb-2'>
-                                          <div>
-                                              <img
-                                                className="rounded-circle mx-2"
-                                                style={{ width: "35px", height: "35px", 'objectFit': 'cover' }} 
-                                                src={man}
-                                                alt=''
-                                            />
-                                          </div>
-                                          <div>
-                                              {/* <h6>{userGeneralInfo.user_first_name}</h6> */}
-                                          </div>
-                                      </div>
-                                      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                        <Form.Control onChange={(e) =>setDescription(e.target.value)} as="textarea" rows={8}  placeholder="Share a thought that you like"/>
-                                      </Form.Group>
-                                      
-                                      <div className="d-grid gap-2">
-                                        <Button variant="primary" size="sm" onClick={()=> handleThoughtPost()} >
-                                          Post
-                                        </Button>
+                                    <div className='d-flex mb-2'>
+                                       {userGeneralInfo.cover_pic!==null && <div>
+                                            <img
+                                              className="rounded-circle mx-2"
+                                              style={{ width: "35px", height: "35px", 'objectFit': 'cover' }} 
+                                              src={`${BASE_URL}${userGeneralInfo.profile_pic}`}
+                                              alt=''
+                                          />
+                                        </div>}
+                                        {userGeneralInfo.cover_pic===null && <div>
+                                            <img
+                                              className="rounded-circle mx-2"
+                                              style={{ width: "35px", height: "35px", 'objectFit': 'cover' }} 
+                                              src={man}
+                                              alt=''
+                                          />
+                                        </div>}
+                                        <div>
+                                            {/* <h6>{userGeneralInfo.user_first_name}</h6> */}
                                         </div>
+                                    </div>
+                                    <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                      <Form.Control onChange={(e) =>setDescription(e.target.value)} as="textarea" rows={8}  placeholder="Share a thought that you like"/>
+                                    </Form.Group>
+                                      
+                                    <div className="d-grid gap-2">
+                                      <Button variant="primary" size="sm" onClick={()=> handleThoughtPost()} >
+                                        Post
+                                      </Button>
+                                    </div>
                                       
                                   </Modal.Body>
                                 </Modal>
