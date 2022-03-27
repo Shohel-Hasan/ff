@@ -15,21 +15,21 @@
   rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   border-radius: 8px;
 }
-.slick-next{
+ /* .slick-next{
   display: none !important;
-}
-.slick-slider{
+} */
+/* .slick-slider{
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
 
-}
+} */
 .slick-slide{
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
 
-}
+} 
 .post-filed{
   width: 100%;
 }
