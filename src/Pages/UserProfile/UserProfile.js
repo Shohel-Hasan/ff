@@ -238,7 +238,7 @@ const UserProfile = (props) => {
                             {/* <h6 className="fw-bold" style={{ color: "#1877f2" }}>BUBT</h6> */}
                             <button  
                                 className="bg-primary rounded-pill btn-sm btn text-white"
-                            >Follow <span><i className="plus-icon fa fa-plus"></i></span></button>
+                            >Follow <span>+</span></button>
                         </div>
                     </div>
 

@@ -3,9 +3,7 @@ import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import './MyCourses.css'
 import { Link, useParams } from 'react-router-dom';
 import profile from "../../Images/user.jpg";
-import course_1 from "../../Images/course-1.jpg";
-import course_2 from "../../Images/course-2.jpg";
-import course_3 from "../../Images/course-3.jpg";
+
 
 
 
@@ -87,14 +85,14 @@ const BASE_URL = "http://127.0.0.1:8000"
     <div>
       <Container className='my_course_container'>
        <Row className='justify-content-center align-items-center'>
-          <img style={{ borderBottomRightRadius:'8px', borderBottomLeftRadius:'8px', objectFit: 'cover', width:'850px', height:'320px' }} className='' src={`${BASE_URL}${userGeneralInfo.cover_pic}`}/>
-          <h4 style={{color:"blue"}} className='text-center mt-4'> {users.first_name}</h4>
-          <h4 style={{color:"blue"}} className='text-center mt-2'> {users.profession}</h4>
+          <img style={{ borderBottomRightRadius:'8px', borderBottomLeftRadius:'8px', objectFit: 'cover', width:'850px', height:'320px' }} className='' src={`${BASE_URL}${userGeneralInfo.cover_pic}`} alt='Cover'/>
+          <h1 style={{color:"#1877f2", fontSize: "25px"}} className='text-center mt-4 fw-bold'> {users.first_name}</h1>
+          <h6 style={{color:"#1877f2"}} className='text-center mt-2'> {users.profession}</h6>
        </Row>
 
        { myCourses.length===0 && 
-           <Col md={8} className="d-flex justify-content-center my-4" >
-            <h4>you don't enroll any course yet</h4>
+           <Col md={12} className="d-flex justify-content-center fb-box-shadow p-3 my-4" >
+            <h4 className='text-danger'>You Don't Enroll Any Course Yet</h4>
            </Col>
        }
 
@@ -102,7 +100,7 @@ const BASE_URL = "http://127.0.0.1:8000"
           <Col md={8} >
             <Row className='mt-4 shadow border custom-radius bg-white'>
               <Col sm={3} className="d-flex justify-content-center align-items-center my-2">
-              <img style={{"height": "80px", "width": "80px", "borderRadius": "50%"}}  src={`${BASE_URL}${course.course_cover_pic}`} />
+              <img style={{"height": "80px", "width": "80px", "borderRadius": "50%"}}  src={`${BASE_URL}${course.course_cover_pic}`} alt='course_cover_pic'/>
 
               </Col>
               <Col  sm={9} className="d-flex align-items-center my-2"> 
