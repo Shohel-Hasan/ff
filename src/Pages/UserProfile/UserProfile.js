@@ -81,10 +81,17 @@ const UserProfile = (props) => {
         })
         .then(res=> {
             if (res.status===200){
-            alert("cover pic uploaded")}
-            console.log("response: ", res)
-            window.location.reload();
-
+                fetch(`http://127.0.0.1:8000/user/user-general-info/${localStorage.getItem('id')}`, {
+                    method: 'GET',
+                    headers: {
+                        "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+                        "Accept": "application/json",
+                        "Content-Type": "application/json"
+                    }})
+                    .then(res => res.json()
+                    )
+                    .then(data => setUserGeneralInfo(data))
+            }
         })
         // .then(data=> console.log(data))
             
@@ -110,8 +117,18 @@ const UserProfile = (props) => {
         })
         .then(res=> {
             if (res.status===200){
-            alert("profile pic uploaded")}
-            window.location.reload();
+                fetch(`http://127.0.0.1:8000/user/user-general-info/${localStorage.getItem('id')}`, {
+                    method: 'GET',
+                    headers: {
+                        "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+                        "Accept": "application/json",
+                        "Content-Type": "application/json"
+                    }})
+                    .then(res =>{
+                    return res.json()
+                    })
+                    .then(data => setUserGeneralInfo(data))
+            }
 
         })
         .catch(error => console.log(error))

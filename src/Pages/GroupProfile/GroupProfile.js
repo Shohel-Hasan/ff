@@ -1049,7 +1049,7 @@ const updateGroupNameFunction = () =>{
                       <Accordion.Item eventKey="3">
                         <Accordion.Header>Group Courses</Accordion.Header>
                         <Accordion.Body>
-                        {groupCourses && groupCourses.map(gCourse => <Link to={`/course/${gCourse.id}/details`}><p className="Name"> { gCourse.name}  </p></Link>)}
+                        {groupCourses && groupCourses.map(gCourse => <Link key={gCourse.id} to={`/course/${gCourse.id}/details`}><p className="Name"> { gCourse.name}  </p></Link>)}
                         </Accordion.Body>
                       </Accordion.Item>
                     </Accordion>
