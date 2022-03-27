@@ -290,11 +290,20 @@ const UserProfile = (props) => {
                         </li>
                         <li className="nav-item">
                         <Link
-                            to=""
+                            to="/my-groups"
                             className="nav-link NavLink"
                             data-toggle="tab"
                         >
-                            Group
+                            My Group
+                        </Link>
+                        </li>
+                        <li className="nav-item">
+                        <Link
+                            to="/my-courses"
+                            className="nav-link NavLink"
+                            data-toggle="tab"
+                        >
+                            My Courses
                         </Link>
                         </li>
                     </ul>

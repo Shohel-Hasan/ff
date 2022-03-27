@@ -129,6 +129,7 @@ export default function Navbar(props) {
                 <div className='d-flex justify-content-evenly mt-3'>
                 
                    <div><Button size='sm' onClick={() => {localStorage.clear(); navigate('/')}}>Logout </Button></div> 
+                   
                   
                 </div>
             </div>
