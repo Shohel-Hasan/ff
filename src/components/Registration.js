@@ -2,8 +2,12 @@ import { useRef, useState } from "react";
 import style from '../styles/Login.module.css';
 import Creatable, { useCreatable } from 'react-select/creatable';
 import '../styles/Registration.module.css';
+import { Toast } from "react-bootstrap";
 
 export default function Registration(props) {
+    const [showA, setShowA] = useState(true);
+    const toggleShowA = () => setShowA(!showA);
+
     // states for registration
     const [first_name, setFirstName] = useState('');
     const [email, setEmail] = useState('');
@@ -90,6 +94,17 @@ export default function Registration(props) {
         }
       }
 
+    const handlePasswrd = () =>{
+        if ( password !== confirmPassword){
+            toggleShowA();
+         
+        }
+        else{
+            setShowA(false);
+        }
+
+    }
+
     return (
         <div className={`${style.reg_box} d-flex flex-column shadow` } ref={signupModal}>
                 <div className={`d-flex flex-row align-items-center justify-content-between`}>
@@ -108,9 +123,15 @@ export default function Registration(props) {
                         <input onChange={e => setEmail(e.target.value)} value={email} type="email" className={`form-control my-2`} required placeholder='Your Email'/>
                         <div className={`d-flex justify-content-center align-items-center`}>
                             <input onChange={e => setPassword(e.target.value)} value={password} type="password" className={`form-control  my-2`} required placeholder='Password'/>
-                            <input onChange={e => setConfirmPassword(e.target.value)} value={confirmPassword} type="password" className={`form-control my-2 `} required placeholder='Confirm Password'/>
+                            <input onBlur={handlePasswrd} onChange={e => setConfirmPassword(e.target.value)} value={confirmPassword} type="password" className={`form-control my-2 `} required placeholder='Confirm Password'/>
                         </div>
-
+                        <div className={`my-3`}>
+                                 {/* <Button onClick={toggleShowA} className="mb-2">Toggle Toast <strong>with</strong> Animation</Button> */}
+                                    <Toast show={showA}>
+                                        
+                                        <Toast.Body>Password did not matched...</Toast.Body>
+                                    </Toast>
+                        </div>
                         {/* <select onChange={e => setAcademicDescipline(e.target.value)} className="form-select my-2" aria-label="Default select example">
                             <option selected disabled>Academic discipline</option>
                             <option value="Major in Hons.">Major in Hons.</option>
