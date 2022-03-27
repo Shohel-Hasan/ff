@@ -316,7 +316,16 @@ useEffect(() => {
         fetch(`http://127.0.0.1:8000/group/${groupId.groupId}/group-update/`, updateGroupHeader)
           .then(response => {response.json()
               if (response.status===200) {
-                alert("group about info updated")
+                fetch(`http://127.0.0.1:8000/group/${groupId.groupId}/group-detail/`, {
+                  method: 'GET',
+                  headers: {
+                      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+                      "Accept": "application/json",
+                      "Content-Type": "application/json"
+                  }})
+                  .then(res => res.json())
+                  .then(data => {setSingleGroup(data)
+                  })
               }
           })
           .catch(error => console.log(error))
@@ -349,7 +358,17 @@ useEffect(() => {
           .then(response => {response.json()
             console.log(response)
             if (response.status===201) {
-              alert("group criteria data inserted")
+              fetch(`http://127.0.0.1:8000/group/${groupId.groupId}/all-criteria/`, {
+                method: 'GET',
+                headers: {
+                    "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                }})
+                .then(res => res.json())
+                .then(data => {setGroupCriteria(data)
+                    console.log(data)
+                })
             }
           })
           .then(data => {
@@ -392,9 +411,17 @@ const updateGroupNameFunction = () =>{
   fetch(`http://127.0.0.1:8000/group/${groupId.groupId}/group-update/`, updateGroupNameHeader)
       .then(response => {response.json()
             if (response.status===200) {
-              alert("group name updated")
               setNameModal(false)
-              window.location.href=`/group/${groupId.groupId}/details`
+              fetch(`http://127.0.0.1:8000/group/${groupId.groupId}/group-detail/`, {
+                method: 'GET',
+                headers: {
+                    "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                }})
+                .then(res => res.json())
+                .then(data => {setSingleGroup(data)
+                })
             }
       })
       .catch(error => console.log(error))
