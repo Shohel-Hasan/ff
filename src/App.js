@@ -114,7 +114,7 @@ function App() {
         <Route path="/my-groups" element={<MyGroups triggerCheckLoggedIn={checkLoggedIn} />} />
         <Route path="groups-home" element={<GroupsHome triggerCheckLoggedIn={checkLoggedIn} />} />
         <Route path="/:groupId/create-course" element={<CreateCourse triggerCheckLoggedIn={checkLoggedIn} />} />
-        {/* Nested Route */}
+      
         {/* <Route path="user/:userId/user-profile-post" element={<UserAboutPost triggerCheckLoggedIn={checkLoggedIn} />} /> */}
         <Route path="/all-courses" element={<AllCourses triggerCheckLoggedIn={checkLoggedIn} />} />
 

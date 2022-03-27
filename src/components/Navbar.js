@@ -124,14 +124,18 @@ export default function Navbar(props) {
                      <img style={{height: '40px',width:'auto',display: 'block', padding: '0px 28px'}} src={class_icon} alt='home' />
                       Courses
                   </Link> 
-                  
                 </div>
-                <div className='d-flex justify-content-evenly mt-3'>
-                
-                   <div><Button size='sm' onClick={() => {localStorage.clear(); navigate('/')}}>Logout </Button></div> 
-                   
-                  
+
+                <div className={`${style.links} d-flex align-items-center justify-content-between text-center my-3`} >
+                   <Link style={{textDecoration:'none'}} to="/user/:userId">
+                     <img style={{height: '40px',width:'auto',display: 'block', padding: '0px 28px'}} src={class_icon} alt='home' />
+                      Profile
+                   </Link> 
                 </div>
+
+                  <div className='d-flex justify-content-evenly mt-3'>
+                    <div><Button size='sm' onClick={() => {localStorage.clear(); navigate('/')}}>Logout </Button></div> 
+                  </div>
             </div>
         </div>
     </div>
