@@ -431,8 +431,8 @@ const UserAboutPost = (props) => {
     <Container className=" accordion_custom_div" style={{"padding-top": "69px"}}>
       {showChangepass && <ChangepassForm toggle={toggleShowChangePass} />}
       {showChangepass && <Overlay />}
-      <Accordion>
-        <Accordion.Item eventKey="0" className="my-1 Small accordion_custom_bg">
+      <Accordion alwaysOpen>
+        <Accordion.Item eventKey="0" className="my-1 Small accordion_custom_bg" > 
           <Accordion.Header>
             <Row>
               <div>
