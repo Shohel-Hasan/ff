@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Toast } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import image from '../assets/re/Logo_update.svg';
 import style from '../styles/Login.module.css';
@@ -7,10 +8,11 @@ import Registration from './Registration';
 
 export default function Login() {
     const navigate = useNavigate();
-
     const [overlay, setOverlay] = useState(false);
     const [mailVerification, setMailVerification] = useState(false);
     const [showSignup, setShowSignup] = useState(false);
+    const [showA, setShowA] = useState(false);
+   
 
     // state for forget password and reset password
     const [mailForVerification, setMailForVerification] = useState('');
@@ -84,8 +86,12 @@ export default function Login() {
                     window.localStorage.setItem('auth_token', data.data.token);
                     console.log("Logged in");
                     navigate(`/user/${localStorage.id}`);
+                   
                 } else {
                     alert("invalid credentials");
+                    setShowA(true);
+                    
+                    
                 }
             })
             .catch(error => console.log(error))
@@ -206,11 +212,11 @@ export default function Login() {
                         <form onSubmit={handleLogin} className={`form-group ${style.form_box}  d-flex flex-column align-items-center`}>
                             <input onChange={e => setUsername(e.target.value)} value={username} type="email" className='form-control' placeholder='Email address or Phone Number' required  />
                             <input onChange={e => setPassForLogin(e.target.value)} value={passForLogin} type="password" className='form-control' placeholder='Password'  required />
-
+                            <Toast show={showA}>
+                               <Toast.Body>Password did not matched...</Toast.Body>
+                            </Toast>
                             <input type="submit" value='Login' className={`${style.button}`} />
-
                             <span onClick={openForgotPass} className={`${style.forgot_pass}`}>Forgotten Password?</span>
-
                             <div className={`${style.bar}`}></div>
                         </form>
                         <button onClick={openModal} className={`${style.button} ${style.register}`}>Create New Account</button>

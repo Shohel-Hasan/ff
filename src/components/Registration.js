@@ -126,11 +126,10 @@ export default function Registration(props) {
                             <input onBlur={handlePasswrd} onChange={e => setConfirmPassword(e.target.value)} value={confirmPassword} type="password" className={`form-control my-2 `} required placeholder='Confirm Password'/>
                         </div>
                         <div className={`my-3`}>
-                                 {/* <Button onClick={toggleShowA} className="mb-2">Toggle Toast <strong>with</strong> Animation</Button> */}
-                                    <Toast show={showA}>
-                                        
-                                        <Toast.Body>Password did not matched...</Toast.Body>
-                                    </Toast>
+                            {/* <Button onClick={toggleShowA} className="mb-2">Toggle Toast <strong>with</strong> Animation</Button> */}
+                           <Toast show={showA}>
+                               <Toast.Body>Password did not matched...</Toast.Body>
+                           </Toast>
                         </div>
                         {/* <select onChange={e => setAcademicDescipline(e.target.value)} className="form-select my-2" aria-label="Default select example">
                             <option selected disabled>Academic discipline</option>

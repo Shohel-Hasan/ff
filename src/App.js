@@ -1,6 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, Routes } from "react-router-dom";
-import MainPost from "./Pages/Main Post/MainPost";
 import GroupProfile from "./Pages/GroupProfile/GroupProfile";
 import ThoughtPost from "./Pages/ThoughtPost/ThoughtPost";
 import SummaryPost from "./Pages/SummaryPost/SummaryPost";
