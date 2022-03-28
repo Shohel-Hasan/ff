@@ -380,7 +380,6 @@ const BASE_URL = "http://127.0.0.1:8000"
             <Row className='justify-content-center'>
                 <Col md={8} className='text-center'>
                   <img className='course-img img-fluid rounded' src={`${BASE_URL}${course.cover_pic}`} alt=""/>
-
                 </Col>
             </Row>
 
@@ -396,9 +395,8 @@ const BASE_URL = "http://127.0.0.1:8000"
                     <Row>
                     <Col md={4} > 
                     <div className='text-center'>
-                        
-                        <img className='group-img ' style={{"objectFit": "cover"}} src={`${BASE_URL}${course.group_profile_pic}`} alt=""/>
-                        <div className='text-center'><small style={{ color: "#1877f2", fontSize: '20px'}}>{course.group_name}</small></div>
+                      <img className='group-img ' style={{"objectFit": "cover"}} src={`${BASE_URL}${course.group_profile_pic}`} alt=""/>
+                      <div className='text-center'><small style={{ color: "#1877f2", fontSize: '20px'}}>{course.group_name}</small></div>
                     </div>
                     <div className='text-center'>
                        <img className="verified-badge" src={badge} alt=''/>

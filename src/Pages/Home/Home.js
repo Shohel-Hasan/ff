@@ -294,7 +294,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
 
                 {/* Middle col section start */}
                 <Col xs={8} className='mid-col'>
-                        <Row className='justify-content-center align-items-center'>
+                        {/* <Row className='justify-content-center align-items-center'>
                             <Col>
                                 <Slider {...settings}>
                                  { allCourses.length!==0 && allCourses.map((course, index) => <div key={index}>
@@ -304,7 +304,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                                 
                                 </Slider>
                             </Col>
-                        </Row>
+                        </Row> */}
 
                     {/* Post Section */}
                     <Row className='justify-content-center my-4'>

@@ -174,8 +174,7 @@ const BASE_URL = "http://127.0.0.1:8000"
                                   </div>
                                   <div className="user-information">
                                   {!post.group_name && <p><Link to={`/user/${post.user}`}>{post.user_first_name}</Link></p>}
-                                  {post.group_name && <p><Link to={`/}`}>{post.group}</Link></p>}
-
+                                  {post.group_name && <p><Link to={`/group/${post.group}/details`}>{post.group_name}</Link></p>}
                                     <small>{post.created_date}</small>
                                   </div>
                                 </div>
