@@ -70,9 +70,11 @@ const UserAboutPost = (props) => {
   const [reading, setReading] = useState('Excellent');
   const [writing, setWriting] = useState('Excellent');
 
-
+  // IELTS & others score state
   const [ielts_name, setIelts_name] = useState('');
   const [score, setScore] = useState('');
+
+
   const [location, setLoacation] = useState('');
   const [country, setCountry] = useState('');
   const [parmanentAddress, setParmanentAddress] = useState('');
@@ -371,7 +373,35 @@ const updateUserGeneralInfo = () =>{
         .catch(error => console.log(error))
   }
   
+  
+  // language proficiency header...
+  const ieltsScoreHeader = {
+    method: 'POST',
+    headers: {
+        "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      name:  ielts_name, 
+      ielts_toefl_score:  score,
+    })
+  }
 
+  const addIeltsScore = event => {
+    // event.preventDefault();
+    fetch('http://127.0.0.1:8000/user/user-language-score', ieltsScoreHeader)
+        .then(response => response.json())
+        .then(data => {
+          fetch(`http://127.0.0.1:8000/user/user-language-score/${userId.userId}`, header)
+            .then(response => response.json())
+            .then(data => { setLanguageScore(data);
+            })
+        })
+        .catch(error => console.log(error))
+  }
+  
+console.log(language)
   useEffect(() => {
       console.log(random);
       console.log('use effect running')
@@ -390,78 +420,70 @@ const updateUserGeneralInfo = () =>{
         })
         
         // fetch for language
-        fetch(`http://127.0.0.1:8000/user/user-language-score/${localStorage.getItem('id')}`, header)
+        fetch(`http://127.0.0.1:8000/user/user-language-score/${userId.userId}`, header)
         .then(response => response.json())
         .then(data => { setLanguageScore(data);
-          // data.map(item => {
-          //   // console.log(data)
-          //   for (var x in item) {
-          //     sessionStorage.setItem(x, item[x])
-          //   }
-          // })
         })
         
         // fetch for contact info
-        fetch(`http://127.0.0.1:8000/user/user-contact-info/${localStorage.getItem('id')}`, header)
+        fetch(`http://127.0.0.1:8000/user/user-contact-info/${userId.userId}`, header)
         .then(response => response.json())
         .then(data => { setContactInfo(data);})
         
         
         // fetch for research skill
-        fetch(`http://127.0.0.1:8000/user/user-research-skill/${localStorage.getItem('id')}`, header)
+        fetch(`http://127.0.0.1:8000/user/user-research-skill/${userId.userId}`, header)
         .then(response => response.json())
         .then(data => { setResearchSkill(data);})
         
         
         // fetch for research article
-        fetch(`http://127.0.0.1:8000/user/user-research-article/${localStorage.getItem('id')}`, header)
+        fetch(`http://127.0.0.1:8000/user/user-research-article/${userId.userId}`, header)
         .then(response => response.json())
         .then(data => { setResearchArticle(data);})
         
         
         // fetch for research work
-        fetch(`http://127.0.0.1:8000/user/user-research-work/${localStorage.getItem('id')}`, header)
+        fetch(`http://127.0.0.1:8000/user/user-research-work/${userId.userId}`, header)
         .then(response => response.json())
         .then(data => { setResearchWork(data);})
         
         
         // fetch for summary section
-        fetch(`http://127.0.0.1:8000/user/user-research-summary/${localStorage.getItem('id')}`, header)
+        fetch(`http://127.0.0.1:8000/user/user-research-summary/${userId.userId}`, header)
         .then(response => response.json())
         .then(data => { setSummarySection(data);})
         
         
         // fetch for thought section
-        fetch(`http://127.0.0.1:8000/user/user-research-thoughts/${localStorage.getItem('id')}`, header)
+        fetch(`http://127.0.0.1:8000/user/user-research-thoughts/${userId.userId}`, header)
         .then(response => response.json())
         .then(data => { setThoughtSection(data);})
         
         // fetch for working history
-        fetch(`http://127.0.0.1:8000/user/user-working-history/${localStorage.getItem('id')}`, header)
+        fetch(`http://127.0.0.1:8000/user/user-working-history/${userId.userId}`, header)
         .then(response => response.json())
         .then(data => { setWOrkingHistory(data);})
         
         // fetch for academic discipline
-        fetch(`http://127.0.0.1:8000/user/user-academic-discipline/${localStorage.getItem('id')}`, header)
+        fetch(`http://127.0.0.1:8000/user/user-academic-discipline/${userId.userId}`, header)
         .then(response => response.json())
         .then(data => { setAcademicDiscipline(data);})
         
         // fetch for academic degree
-        fetch(`http://127.0.0.1:8000/user/user-academic-degree/${localStorage.getItem('id')}`, header)
+        fetch(`http://127.0.0.1:8000/user/user-academic-degree/${userId.userId}`, header)
         .then(response => response.json())
         .then(data => { setAcademicDegreeInit(data);})
         
         // fetch for training
-        fetch(`http://127.0.0.1:8000/user/user-training/${localStorage.getItem('id')}`, header)
+        fetch(`http://127.0.0.1:8000/user/user-training/${userId.userId}`, header)
         .then(response => response.json())
         .then(data => { setTrainingInit(data);})
         
         // fetch for workshop
-        fetch(`http://127.0.0.1:8000/user/user-workshop-or-seminar/${localStorage.getItem('id')}`, header)
+        fetch(`http://127.0.0.1:8000/user/user-workshop-or-seminar/${userId.userId}`, header)
         .then(response => response.json())
         .then(data => { setWorkShopInit(data);})
-
-
 
   }, [random])
 
@@ -858,6 +880,81 @@ const updateUserGeneralInfo = () =>{
           </Accordion.Body>
         </Accordion.Item> 
         
+
+        {/* ielts score  */}
+        <Accordion.Item eventKey="2" className="my-1">
+          <Accordion.Header>
+            <Row>
+              <div>
+                <small className="">
+                  <b>IELTS/ TOFEL/ GRE/ Others</b>
+                </small>
+              </div>
+            </Row>
+          </Accordion.Header>
+          <Accordion.Body>
+          {languageScore.length !== 0 && languageScore.map(item => 
+          <Row className="my-2">
+
+                <div class="row mt-3">
+                  <div className="col-sm-2">
+                    <b>Name</b>
+                  </div>                  
+                  <div class="col-sm-10">
+                    <p>{item.name}</p>
+                  </div>
+                </div>
+                <div class="row mt-3">
+                  <div className="col-sm-2">
+                    <b>Score</b>
+                  </div>                  
+                  <div class="col-sm-10">
+                    <p>{item.ielts_toefl_score}</p>
+                  </div>
+                </div>  
+              </Row>)}
+
+            {localStorage.getItem('id')===userId.userId &&  <form>
+              <Row>
+                {ielts_score.map(item =><div> <div>
+                  <div id="example-collapse-text">
+                    <div class="form-group row mt-3">
+                      <label for="" class="col-sm-2 col-form-label">  Name </label>
+                      <div class="col-sm-10">
+                        <input onBlur={event => setIelts_name(event.target.value)} 
+                          type="text"
+                          readonly
+                          class="form-control"
+                          id=""
+                        />
+                      </div>
+                    </div>
+                    
+                    <div class="form-group row mt-3">
+                      <label for="" class="col-sm-2 col-form-label">Score</label>
+                      <div class="col-sm-10">
+                        <input onBlur={event => setScore(event.target.value)} type="number" readonly class="form-control" id="" min="1" max="9"/>
+                      </div>
+                    </div>          
+                  </div>
+
+                <div className="text-end mt-3">
+                  <Button onClick={()=> addIeltsScore()} variant="primary justify ">Save</Button>
+                </div>
+                </div>
+                <i onClick={() => removeInput(item, ielts_score, setIelts_score)} className="fa fa-close d-flex flex-row-reverse mt-2"></i></div>)}
+
+                <div className="text-end mt-2">
+                  <i onClick={addScore} className="fas fa-plus"></i>
+                  {/* <i className="fas fa-plus"></i> */}
+                </div>
+
+                
+              </Row>
+            </form>}
+          </Accordion.Body>
+        </Accordion.Item>
+
       </Accordion>
       
       <Row>
