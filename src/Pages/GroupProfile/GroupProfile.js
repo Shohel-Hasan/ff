@@ -462,7 +462,6 @@ useEffect(() => {
                         </Button>
                     </Form>  
                     
-                        
                     </Modal.Body>
                 </Modal>
               <div>
@@ -473,13 +472,13 @@ useEffect(() => {
 
         <Row  className='mt-2 align-items-center justify-content-center'>
           <Col md={8} className="d-flex justify-content-start"> 
-              <div className='d-flex align-items-center'>
+              <div className='d-flex align-items-center flex-wrap'>
                 <img style={{'objectFit': 'cover' }} className='group-pic'  src={`${BASE_URL}${singleGroup.profile_pic}`} alt=''/>
-               <div>     
+                   
                    <span className="upload-wrapper">
                      <input  name="image_src" id="group_filed"  />
                    </span>    
-               </div>
+              
                 <div className="d-flex align-items-center">
                   <small style={{ color: "#1877f2", fontSize:'20px' }} > {singleGroup.name}  </small>
                   <div>

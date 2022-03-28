@@ -9,7 +9,7 @@
   /* display: block; */
   position: relative;
   width: auto;
-  height: 30px;
+  height: 25px;
   left: -25px;
   top: 30px;
 }
@@ -18,15 +18,15 @@
   /* background-size: cover; */
   /* display: block; */
   position: relative;
-  width: 25px;
+  width: auto;
   height: 25px;
   left: 98%;
   top: 30px;
 }
 
 #group_filed {
-  width: 26px;
-  height: 26px;
+  width: 25px;
+  height: 25px;
   opacity: 0;
   filter: alpha(opacity=0); /* IE 5-7 */
 }
