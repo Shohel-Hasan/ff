@@ -14,7 +14,8 @@ const UserProfile = (props) => {
 
     const [users, setUsers] =useState([]);
     const [userGeneralInfo, setUserGeneralInfo] = useState({});
-    const param = useParams();
+    const userId = useParams();
+    console.log(userId.userId)
     const [coverPic, setCoverPic] = useState();
     const [profilePic, setProfilePic] = useState();
 
@@ -27,7 +28,7 @@ const UserProfile = (props) => {
 
     // getting user general Info
     useEffect(() => {
-        fetch(`http://127.0.0.1:8000/user/user-general-info/${localStorage.getItem('id')}`, {
+        fetch(`http://127.0.0.1:8000/user/user-general-info/${userId.userId}`, {
         method: 'GET',
         headers: {
             "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -38,13 +39,13 @@ const UserProfile = (props) => {
         return res.json()
         })
         .then(data => setUserGeneralInfo(data))
-    }, [localStorage.getItem('id')])
+    }, [userId.userId])
 
     console.log(userGeneralInfo)
 
     // getting user Info
     useEffect(() => {
-        fetch(`http://127.0.0.1:8000/user/${localStorage.getItem('id')}`, {
+        fetch(`http://127.0.0.1:8000/user/${userId.userId}`, {
         method: 'GET',
         headers: {
             "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -55,7 +56,7 @@ const UserProfile = (props) => {
         return res.json()
         })
         .then(data => setUsers(data))
-    }, [localStorage.getItem('id')])
+    }, [userId.userId])
 
     console.log(users);
 
@@ -137,19 +138,17 @@ const UserProfile = (props) => {
     const BASE_URL = "http://127.0.0.1:8000"
 
     return (
-
         <Container fluid className='shadow profile_conatiner'>
             <Row className='justify-content-center align-items-center'>
-                   
                 {/* -------------Banner Image Section---------------- */}
 
                 <Col md={8}>
                     
-                    <div className="container">
+                    { localStorage.getItem('id')===userId.userId &&  <div className="container">
                         <span className="wrapper">
                             <input name="image_src" id="image_filed" onClick={() => setCoverPicModal(true)}/>
                         </span>
-                    </div>
+                    </div>}
 
                     <Modal
                         show={coverPicModal}
@@ -217,11 +216,11 @@ const UserProfile = (props) => {
 
                         {/* Upolad image section */}
 
-                        <div className="">
+                        {localStorage.getItem('id')===userId.userId && <div className="">
                             <span className="user-profile ">
                                 <input onClick={() => setShow(true)} name="image_src" id="user-profile-image_filed" />
                             </span>
-                        </div>
+                        </div>}
 
                         <Modal
                             show={show}
@@ -297,12 +296,12 @@ const UserProfile = (props) => {
                         </Nav>
                         </li>
                         <li className="nav-item">
-                        <Link
-                            to="user-profile-post"
-                            className="nav-link NavLink"
-                            data-toggle="tab"
-                        >
-                            About
+                            <Link
+                                to="user-profile-post"
+                                className="nav-link NavLink"
+                                data-toggle="tab"
+                            >
+                                About
                         </Link>
                         </li>
                         <li className="nav-item">
