@@ -472,7 +472,7 @@ const updateUserGeneralInfo = () =>{
                   </label>
                   <div class="col-sm-10">
                     <p>{generalInfo.fathers_name}</p>
-                   </div>
+                  </div>
                 </div>
                 {/* <div class="form-group row mt-3">
                   <label for="staticEmail" class="col-sm-2 col-form-label">
