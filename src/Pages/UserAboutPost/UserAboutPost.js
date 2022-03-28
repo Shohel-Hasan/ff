@@ -9,7 +9,7 @@ import "./UserAboutPost.css";
 const UserAboutPost = (props) => {
 
   const userId = useParams()
-  // console.log(userId)
+  console.log(typeof userId.userId)
 
   props.triggerCheckLoggedIn();
 
@@ -301,18 +301,18 @@ const UserAboutPost = (props) => {
         "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      height_feet:  heightFeet, 
-      height_inch:  heightInch, 
-      weight_kg:  weightKg, 
-      weight_gm: weightGm,
-      blood_group:  bloodGroup,
-      marital_status: maritalStatus ,
-      nationality: nationality ,
-      nid_number:  nid,
-      fathers_name: fathersName ,
-      mothers_name:  mothersName,
-      religion:  religion,
-      native_language:  nativeLanguage
+      height_feet:  heightFeet? heightFeet :  generalInfo.height_feet, 
+      height_inch:  heightInch? heightInch :  generalInfo.height_inch, 
+      weight_kg:  weightKg? weightKg :  generalInfo.weight_kg, 
+      weight_gm: weightGm? weightGm :  generalInfo.weight_gm,
+      blood_group:  bloodGroup? bloodGroup :  generalInfo.blood_group,
+      marital_status: maritalStatus? maritalStatus :  generalInfo.marital_status ,
+      nationality: nationality? nationality :  generalInfo.nationality ,
+      nid_number:  nid? nid :  generalInfo.nid_number,
+      fathers_name: fathersName? fathersName :  generalInfo.fathers_name ,
+      mothers_name:  mothersName? mothersName :  generalInfo.mothers_name,
+      religion:  religion? religion :  generalInfo.religion,
+      native_language:  nativeLanguage? nativeLanguage :  generalInfo.native_language
     })
 };
 
@@ -465,14 +465,103 @@ const updateUserGeneralInfo = () =>{
           </Accordion.Header>
           <Accordion.Body>
             <Row>
-              <form>
+              
+            <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Father's Name
+                  </label>
+                  <div class="col-sm-10">
+                    <p>{generalInfo.fathers_name}</p>
+                   </div>
+                </div>
+                {/* <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Mother's Name
+                  </label>
+                  <div class="col-sm-10">
+                    <small>{generalInfo.mothers_name}</small>
+                  </div>
+                </div>
+                <div class="form-group row mt-3 ">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Height
+                  </label>
+                  <div class="col-sm-5 mb-2">
+                    <small>{generalInfo.height_feet} FT</small>
+                  </div>
+                  <div class="col-sm-5">
+                    <small>{generalInfo.height_inch} Inch</small>
+                  </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="number" class="col-sm-2 col-form-label">
+                    Weight
+                  </label>
+                  <div class="col-sm-5 mb-2">
+                    <small>{generalInfo.weight_kg} Kg</small>
+                  </div>
+                  <div class="col-sm-5">
+                    <small>{generalInfo.weight_gm} gm</small>
+                  </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="number" class="col-sm-2 col-form-label">
+                    Martial Status
+                  </label>
+                  <div class="col-sm-10">
+                    <small>{generalInfo.marital_status}</small>
+                  </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="number" class="col-sm-2 col-form-label">
+                    Blood Group
+                  </label>
+                  <div class="col-sm-10">
+                    <small>{generalInfo.blood_group}</small>
+                  </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Nationality
+                  </label>
+                  <div class="col-sm-10">
+                    <small>{generalInfo.nationality}</small>
+                  </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Religion
+                  </label>
+                  <div class="col-sm-10">
+                    <small>{generalInfo.religion}</small>
+                  </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Native Language
+                  </label>
+                  <div class="col-sm-10">
+                    <small>{generalInfo.native_language}</small>
+                  </div>
+                </div>
+                
+                <div class="form-group row mt-3"> 
+                  <label for="staticEmail" class="col-sm-2 col-form-label">NID/Birth-Certificate or Others National Identity Number</label>
+                  <div class="col-sm-10">
+                    <small>{generalInfo.nid_number}</small>
+                  </div>
+           
+                </div> */}
+              </Row>
+            
+              { userId.userId===localStorage.getItem('id')  && <Row> <form>
               <div class="form-group row mt-3">
                   <label for="staticEmail" class="col-sm-2 col-form-label">
                     Father's Name
                   </label>
                   <div class="col-sm-10">
                     {/* <input className="form-control" value={generalInfo.fathers_name} disabled /> */}
-                    <input onChange={event => setFathersName(event.target.value? event.target.value : generalInfo.fathersName)} defaultValue={generalInfo.fathers_name} type="text" readonly class="form-control" id="" />
+                    <input onBlur={event => setFathersName(event.target.value)} defaultValue={generalInfo.fathers_name} type="text" readonly class="form-control" id="" />
                     {/* <input onChange={event => setFathersName(event.target.value)} type="text" readonly class="form-control" id="" /> */}
                     {/* <input onChange={event => setFathersName(event.target.value)} value={sessionStorage.getItem('fathers_name')} type="text" readonly class="form-control" id="" /> */}
                   </div>
@@ -596,7 +685,7 @@ const updateUserGeneralInfo = () =>{
                 <label for="staticEmail" class="col-sm-2 col-form-label">NID/Birth-Certificate or Others National Identity Number</label>
                 <div class="col-sm-10">
                   {/* {firstTime ? <input name={item} onChange={event => {setNid(event.target.value);}} onBlur={() => {setFirstTime(false); console.log(nid)}} type="text" readonly class="form-control" id="" /> : <input onChange={(event) => {value = event.target.value;}} onBlur={event => handleMultipleInput(event)} type="text" readonly class="form-control" id="" />} */}
-                  <input name={item} onBlur={event => {handleMultipleInput(event, nid, setNid)}} type="text" readonly class="form-control" id="" />
+                  <input name={item} onBlur={event => {handleMultipleInput(event, nid, setNid)}} defaultValue={generalInfo.nid_number} type="text" readonly class="form-control" id="" />
                 </div>
                 <div className="text-end mt-2"><i onClick={() => removeInput(item, nidInputCount, setNidInputCount)} className="fa fa-close"></i>
                 </div>
@@ -608,8 +697,8 @@ const updateUserGeneralInfo = () =>{
                 <div className="text-end mt-3">
                   <Button onClick={()=> updateUserGeneralInfo()} variant="primary justify">Save</Button>
                 </div>
-              </form>
-            </Row>
+              </form> </Row>}
+            
           </Accordion.Body>
         </Accordion.Item>
         {/* <Accordion.Item eventKey="1" className="my-1">
