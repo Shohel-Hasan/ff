@@ -49,7 +49,7 @@ const UserAboutPost = (props) => {
   const [workshop, setWorkshop] = useState([randomText()]);
   const [otherWorkshop, setOtherWorkshop] = useState([randomText()]);
 
-  // states for form data input
+  // states for user general information
   const [fathersName, setFathersName] = useState('');
   const [mothersName, setMothersName] = useState('');
   const [heightFeet, setHeightFeet] = useState('');
@@ -62,10 +62,15 @@ const UserAboutPost = (props) => {
   const [nid, setNid] = useState({});
   const [religion, setReligion] = useState("");
   const [nativeLanguage, setNativeLanguage] = useState('');
+
+  // states for language proficiency...
+  const [languageName, setLanguageName] = useState('');
   const [listning, setListning] = useState('Excellent');
   const [speaking, setSpeaking] = useState('Excellent');
   const [reading, setReading] = useState('Excellent');
   const [writing, setWriting] = useState('Excellent');
+
+
   const [ielts_name, setIelts_name] = useState('');
   const [score, setScore] = useState('');
   const [location, setLoacation] = useState('');
@@ -336,8 +341,37 @@ const updateUserGeneralInfo = () =>{
 }
 
 
+  // language proficiency header...
+  const languageProficiencyHeader = {
+    method: 'POST',
+    headers: {
+        "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      language_name:  languageName, 
+      listening:  listning, 
+      speaking:  speaking, 
+      reading:  reading,
+      writing:   writing
+    })
+  }
 
+  const languageProficiencyAdd = event => {
+    // event.preventDefault();
+    fetch('http://127.0.0.1:8000/user/user-language-proficiency', languageProficiencyHeader)
+        .then(response => response.json())
+        .then(data => {
+          fetch(`http://127.0.0.1:8000/user/user-language-proficiency/${userId.userId}`, header)
+            .then(response => response.json())
+            .then(data => { setLanguage(data);
+            })
+        })
+        .catch(error => console.log(error))
+  }
   
+
   useEffect(() => {
       console.log(random);
       console.log('use effect running')
@@ -353,11 +387,6 @@ const updateUserGeneralInfo = () =>{
         fetch(`http://127.0.0.1:8000/user/user-language-proficiency/${userId.userId}`, header)
         .then(response => response.json())
         .then(data => { setLanguage(data);
-          // data.map(item => {
-          //   for (var x in item) {
-          //     sessionStorage.setItem(x, item[x])
-          //   }
-          // })
         })
         
         // fetch for language
@@ -444,6 +473,7 @@ const updateUserGeneralInfo = () =>{
       {showChangepass && <ChangepassForm toggle={toggleShowChangePass} />}
       {showChangepass && <Overlay />}
       <Accordion alwaysOpen className="mb-5">
+        {/* user general info part  */}
         <Accordion.Item eventKey="0" className="my-1 Small accordion_custom_bg" > 
           <Accordion.Header>
             <Row>
@@ -697,7 +727,9 @@ const updateUserGeneralInfo = () =>{
             
           </Accordion.Body>
         </Accordion.Item>
-        {/* <Accordion.Item eventKey="1" className="my-1">
+
+        {/* language proficiency part */}
+        <Accordion.Item eventKey="1" className="my-1">
           <Accordion.Header className="accordion_custom_bg">
             <Row>
               <div>
@@ -708,39 +740,62 @@ const updateUserGeneralInfo = () =>{
             </Row>
           </Accordion.Header>
           <Accordion.Body>
-            <Row>
-              {language.length !== 0 && language.map(item => <div className="my-2">
-                <input className="form-control" value={item.language_name} disabled/>
-                
-                <div className="d-flex align-items-center my-1">
-                  <span>Listening</span>
-                  <input className="form-control mx-1" value={item.listening} disabled/>
-                </div>
-                
-                <div className="d-flex align-items-center my-1">
-                  <span>Speaking</span>
-                  <input className="form-control mx-1" value={item.speaking} disabled/>
-                </div>
-                
-                <div className="d-flex align-items-center my-1">
-                  <span>Reading</span>
-                  <input className="form-control mx-1" value={item.reading} disabled/>
-                </div>
 
-                <div className="d-flex align-items-center my-1">
-                  <span>Writing</span>
-                  <input className="form-control mx-1" value={item.writing} disabled/>
-                </div>
-                <i onClick={() => updateUserInfo(`http://127.0.0.1:8000/user/user-language-proficiency-delete/${localStorage.getItem('id')}/${item.id}`, 'DELETE')} className="fa fa-close d-flex flex-row-reverse mt-2"></i>
-              </div>)}
+            {/* getting language information  */}
+              {language.length !== 0 && language.map(item => 
               
+              <Row key={item.id} className="my-2">
+                <div class="row mt-3">
+                  <div className="col-sm-2">
+                    <b>Language Name</b>
+                  </div>                  
+                  <div class="col-sm-10">
+                    <p>{item.language_name}</p>
+                  </div>
+                </div>
+                <div class="row mt-3">
+                  <div className="col-sm-2">
+                    <b>Listening</b>
+                  </div>                  
+                  <div class="col-sm-10">
+                    <p>{item.listening} </p>
+                  </div>
+                </div><div class="row mt-3">
+                  <div className="col-sm-2">
+                    <b>Speaking</b>
+                  </div>                  
+                  <div class="col-sm-10">
+                    <p>{item.speaking}</p>
+                  </div>
+                </div><div class="row mt-3">
+                  <div className="col-sm-2">
+                    <b>Reading</b>
+                  </div>                  
+                  <div class="col-sm-10">
+                    <p>{item.reading}</p>
+                  </div>
+                </div><div class="row mt-3">
+                  <div className="col-sm-2">
+                    <b>Writing</b>
+                  </div>                  
+                  <div class="col-sm-10">
+                    <p>{item.writing}</p>
+                  </div>
+                </div>
+                {/* delete option  */}
+                {/* <i className="fa fa-close d-flex flex-row-reverse mt-2"></i> */}
+              </Row>)}
+              
+              {localStorage.getItem('id')===userId.userId && <Row> 
               <form>
                 <div class="form-group row mt-3">
-                  <label for="staticEmail" class="col-sm-2 col-form-label">
-                    Native Lanuage
+                  <label for="number" class="col-sm-2 col-form-label">
+                    Language Name
                   </label>
                   <div class="col-sm-10">
-                    <input onChange={event => {setNativeLanguage(event.target.value)}} type="text" class="form-control" id="" />
+                    <Form.Control onChange={event => setLanguageName(event.target.value)}>
+                      
+                    </Form.Control>
                   </div>
                 </div>
                 <div class="form-group row mt-3">
@@ -796,25 +851,12 @@ const updateUserGeneralInfo = () =>{
                   </div>
                 </div>
                 <div className="text-end mt-3">
-                  <Button onClick={() => {
-                    updateUserInfo(
-                      // `http://127.0.0.1:8000/user/user-language-proficiency-update/${localStorage.getItem('id')}/1`,
-                      `http://127.0.0.1:8000/user/user-language-proficiency`,
-                      'POST',
-                      {
-                        language_name: nativeLanguage,
-                        listening: listning,
-                        speaking: speaking,
-                        reading: reading,
-                        writing: writing
-                      }
-                    )
-                  }} variant="primary justify ">Save</Button>
+                  <Button onClick={()=> languageProficiencyAdd()} variant="primary justify">Save</Button>
                 </div>
-              </form>
-            </Row>
+              </form> 
+              </Row>}
           </Accordion.Body>
-        </Accordion.Item> */}
+        </Accordion.Item> 
         
       </Accordion>
       
