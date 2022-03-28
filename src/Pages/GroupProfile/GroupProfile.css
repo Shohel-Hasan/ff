@@ -1,5 +1,5 @@
 .custom {
-  padding-top: 63px;
+  padding-top: 35px;
 }
 
 .upload-wrapper {
@@ -9,7 +9,7 @@
   /* display: block; */
   position: relative;
   width: auto;
-  height: 25px;
+  height: 23px;
   left: -25px;
   top: 30px;
 }
@@ -19,7 +19,7 @@
   /* display: block; */
   position: relative;
   width: auto;
-  height: 25px;
+  height: 23px;
   left: 98%;
   top: 30px;
 }

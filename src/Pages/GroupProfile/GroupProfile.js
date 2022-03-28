@@ -482,7 +482,7 @@ useEffect(() => {
                 <div className="d-flex align-items-center">
                   <small style={{ color: "#1877f2", fontSize:'20px' }} > {singleGroup.name}  </small>
                   <div>
-                      <img className="badge-tag" src={badge} alt=''/>
+                      <img style={{'objectFit': 'cover' }} className="badge-tag m-1" src={badge} alt=''/>
                   </div>
                   <Modal  show={nameModal}  onHide={() => setNameModal(false)} dialogClassName="modal-90w" aria-labelledby="contained-modal-title-vcenter" centered>
                     <Modal.Header  closeButton >
