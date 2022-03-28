@@ -466,6 +466,7 @@ const BASE_URL = "http://127.0.0.1:8000"
                             <div className="col-sm-8">
                                <input 
                                   type="number" 
+                                  min='1'
                                   className="form-control" 
                                   placeholder='Hour Per Class'
                                   onChange={(e)=> setHourPerClass(e.target.value)}
@@ -480,6 +481,7 @@ const BASE_URL = "http://127.0.0.1:8000"
                             <div className="col-sm-8">
                              <input 
                                 type="number"
+                                min='1'
                                 className="form-control" 
                                 placeholder="Class Per Week"
                                 name="ClassPerWeek" 
@@ -496,6 +498,7 @@ const BASE_URL = "http://127.0.0.1:8000"
                             <div className="col-sm-8">
                                  <input 
                                     type="number"
+                                    min='1'
                                     className="form-control" 
                                     placeholder="Total Class"
                                     onChange={(e)=> setTotalClass(e.target.value)}
@@ -512,6 +515,7 @@ const BASE_URL = "http://127.0.0.1:8000"
                             <div className="col-sm-8">
                                 <input 
                                     type="number"
+                                    min='1'
                                     className="form-control" 
                                     placeholder="Total Class Hour"
                                     onChange={(e)=> setTotalClassHour(e.target.value)}
@@ -1044,6 +1048,7 @@ const BASE_URL = "http://127.0.0.1:8000"
                             <div className="col-sm-8">
                             <input 
                               type="number" 
+                              min='1'
                               className="form-control"  
                               placeholder="Enrollment Fee"
                               onChange={(e)=> setEnrollmentFee(e.target.value)}
