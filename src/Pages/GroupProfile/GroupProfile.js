@@ -231,7 +231,7 @@ useEffect(() => {
 }, [groupId.groupId])
 
   
-// getting group member info
+  // getting group member info
   useEffect(() => {
     fetch(`http://127.0.0.1:8000/group/${groupId.groupId}/${userId}/member-detail/`, {
     method: 'GET',
@@ -240,9 +240,8 @@ useEffect(() => {
         "Accept": "application/json",
         "Content-Type": "application/json"
     }})
-    .then(res => res.json() )
+    .then(res => res.json())
     .then(data => {
-        // console.log("group member: ", data)
         if (data.message) {
           setGroupMember({
             role: "user"
@@ -250,7 +249,6 @@ useEffect(() => {
         }
         else {
           setGroupMember(data)
-          // console.log(data)
         }
     })
 }, [userId])
@@ -291,7 +289,6 @@ useEffect(() => {
         setGroupCourses(data)
         console.log(data)
       }
-     
   })
 }, [])
 
@@ -388,28 +385,28 @@ useEffect(() => {
 
 
   
-const allGroupPosts = [...GroupSummaryPosts , ...GroupThoughtPosts ]
-const randomPosts = allGroupPosts.sort(() => Math.random() - 0.5)
+  const allGroupPosts = [...GroupSummaryPosts , ...GroupThoughtPosts ]
+  const randomPosts = allGroupPosts.sort(() => Math.random() - 0.5)
 
 
-// update group name header
-const updateGroupNameHeader = {
-  // mode: 'no-cors',
-  method: 'PATCH',
-  headers: {
-      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
-      "Accept": "application/json",
-      "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-      name : updateGroupName,
-  })
-};
+  // update group name header
+  const updateGroupNameHeader = {
+    // mode: 'no-cors',
+    method: 'PATCH',
+    headers: {
+        "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        name : updateGroupName,
+    })
+  };
 
-const updateGroupNameFunction = () =>{
-  // e.preventDefault();
-  console.log("I am update.....");
-  console.log(localStorage.getItem('auth_token'))
+  const updateGroupNameFunction = () =>{
+    // e.preventDefault();
+    console.log("I am update.....");
+    console.log(localStorage.getItem('auth_token'))
 
   fetch(`http://127.0.0.1:8000/group/${groupId.groupId}/group-update/`, updateGroupNameHeader)
       .then(response => {response.json()
