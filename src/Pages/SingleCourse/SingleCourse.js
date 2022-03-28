@@ -379,7 +379,12 @@ const BASE_URL = "http://127.0.0.1:8000"
           <div className='bg-white pb-3' style={{borderBottom: "1px solid #ced0d4"}}>
             <Row className='justify-content-center'>
                 <Col md={8} className='text-center'>
-                  <img className='course-img img-fluid rounded' src={`${BASE_URL}${course.cover_pic}`} alt=""/>
+                   <div className="text-end">
+                       <span className="cover_up_wrapper">
+                       <input name="image_src" id="cover_up_filed"  />
+                      </span>
+                   </div>
+                  <div><img className='course-img img-fluid rounded' src={`${BASE_URL}${course.cover_pic}`} alt=""/></div>
                 </Col>
             </Row>
 

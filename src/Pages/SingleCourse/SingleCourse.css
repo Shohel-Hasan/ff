@@ -66,3 +66,20 @@ div[className*='special-label'], .form-control {
   width: 100% !important;
 }
 
+/* Cover Photo Upload  */
+.cover_up_wrapper {
+  background: url('../../Images/camera.svg') no-repeat;
+  /* background-size: cover; */
+  /* display: block; */
+  position: relative;
+  width: auto;
+  height: 23px;
+  top:25px;
+}
+
+#cover_up_filed {
+  width: 25px;
+  height: 25px;
+  opacity: 0;
+  filter: alpha(opacity=0); /* IE 5-7 */
+}
