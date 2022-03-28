@@ -216,7 +216,7 @@ const UserProfile = (props) => {
 
                         {/* Upolad image section */}
 
-                       {localStorage.getItem('id')===userId.userId && <div className="">
+                        {localStorage.getItem('id')===userId.userId && <div className="">
                             <span className="user-profile ">
                                 <input onClick={() => setShow(true)} name="image_src" id="user-profile-image_filed" />
                             </span>

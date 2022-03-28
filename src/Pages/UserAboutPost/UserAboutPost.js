@@ -326,16 +326,10 @@ const updateUserGeneralInfo = () =>{
       .then(response => {response.json()
           if (response.status===200) {
             console.log("okay")
-            // fetch(`http://127.0.0.1:8000/user/user-general-info-update/${localStorage.getItem('id')}`, {
-            //   method: 'GET',
-            //   headers: {
-            //       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
-            //       "Accept": "application/json",
-            //       "Content-Type": "application/json"
-            //   }})
-            //   .then(res => res.json())
-            //   .then(data => {setSingleGroup(data)
-            //   })
+            fetch(`http://127.0.0.1:8000/user/user-general-info/${userId.userId}`, header)
+            .then(response => response.json())
+            .then(data => { setGeneralInfo(data);
+            })
           }
       })
       .catch(error => console.log(error))
@@ -348,18 +342,15 @@ const updateUserGeneralInfo = () =>{
       console.log(random);
       console.log('use effect running')
 
-      fetch(`http://127.0.0.1:8000/user/user-general-info/${localStorage.getItem('id')}`, header)
+      fetch(`http://127.0.0.1:8000/user/user-general-info/${userId.userId}`, header)
       // fetch(urlObj[url], header)
         .then(response => response.json())
         .then(data => { setGeneralInfo(data);
-          // for (var item in data) {
-          //   sessionStorage.setItem(item, data[item]);
-          // }
         })
 
         
         // fetch for language
-        fetch(`http://127.0.0.1:8000/user/user-language-proficiency/${localStorage.getItem('id')}`, header)
+        fetch(`http://127.0.0.1:8000/user/user-language-proficiency/${userId.userId}`, header)
         .then(response => response.json())
         .then(data => { setLanguage(data);
           // data.map(item => {
@@ -464,28 +455,31 @@ const updateUserGeneralInfo = () =>{
             </Row>
           </Accordion.Header>
           <Accordion.Body>
-            <Row>
+          { userId.userId!==localStorage.getItem('id')  && <Row>
               
-            <div class="form-group row mt-3">
-                  <label for="staticEmail" class="col-sm-2 col-form-label">
-                    Father's Name
-                  </label>
+            <div class="row mt-3">
+                  
+                  <div className="col-sm-2">
+                    <b>Father's Name</b>
+                  </div>                  
                   <div class="col-sm-10">
                     <p>{generalInfo.fathers_name}</p>
                   </div>
                 </div>
-                {/* <div class="form-group row mt-3">
-                  <label for="staticEmail" class="col-sm-2 col-form-label">
-                    Mother's Name
-                  </label>
+                 <div class="row mt-3">
+                  
+                  <div className="col-sm-2">
+                    <b>Mother's Name</b>
+                  </div>                  
                   <div class="col-sm-10">
                     <small>{generalInfo.mothers_name}</small>
                   </div>
                 </div>
-                <div class="form-group row mt-3 ">
-                  <label for="staticEmail" class="col-sm-2 col-form-label">
-                    Height
-                  </label>
+                <div class="row mt-3 ">
+                  
+                  <div className="col-sm-2">
+                    <b>Height</b>
+                  </div>                 
                   <div class="col-sm-5 mb-2">
                     <small>{generalInfo.height_feet} FT</small>
                   </div>
@@ -493,10 +487,11 @@ const updateUserGeneralInfo = () =>{
                     <small>{generalInfo.height_inch} Inch</small>
                   </div>
                 </div>
-                <div class="form-group row mt-3">
-                  <label for="number" class="col-sm-2 col-form-label">
-                    Weight
-                  </label>
+               <div class="row mt-3">
+                  
+                  <div className="col-sm-2">
+                    <b>Weight</b>
+                  </div>                 
                   <div class="col-sm-5 mb-2">
                     <small>{generalInfo.weight_kg} Kg</small>
                   </div>
@@ -504,55 +499,59 @@ const updateUserGeneralInfo = () =>{
                     <small>{generalInfo.weight_gm} gm</small>
                   </div>
                 </div>
-                <div class="form-group row mt-3">
-                  <label for="number" class="col-sm-2 col-form-label">
-                    Martial Status
-                  </label>
+                <div class="row mt-3">
+                 
+                  <div className="col-sm-2">
+                    <b>Martial Status</b>
+                  </div>                 
                   <div class="col-sm-10">
                     <small>{generalInfo.marital_status}</small>
                   </div>
                 </div>
-                <div class="form-group row mt-3">
-                  <label for="number" class="col-sm-2 col-form-label">
-                    Blood Group
-                  </label>
+                <div class="row mt-3">
+                 
+                  <div className="col-sm-2">
+                    <b>Blood Group</b>
+                  </div>                 
                   <div class="col-sm-10">
                     <small>{generalInfo.blood_group}</small>
                   </div>
                 </div>
-                <div class="form-group row mt-3">
-                  <label for="staticEmail" class="col-sm-2 col-form-label">
-                    Nationality
-                  </label>
+                <div class="row mt-3">
+                
+                  <div className="col-sm-2">
+                    <b>Nationality</b>
+                  </div>                 
                   <div class="col-sm-10">
                     <small>{generalInfo.nationality}</small>
                   </div>
                 </div>
-                <div class="form-group row mt-3">
-                  <label for="staticEmail" class="col-sm-2 col-form-label">
-                    Religion
-                  </label>
+                 <div class="row mt-3">
+                  
+                  <div className="col-sm-2">
+                    <b>Religion</b>
+                  </div>                 
                   <div class="col-sm-10">
                     <small>{generalInfo.religion}</small>
                   </div>
                 </div>
-                <div class="form-group row mt-3">
-                  <label for="staticEmail" class="col-sm-2 col-form-label">
-                    Native Language
-                  </label>
+               <div class="row mt-3">
+                  <div className="col-sm-2">
+                    <b>Native Language</b>
+                  </div>                 
                   <div class="col-sm-10">
                     <small>{generalInfo.native_language}</small>
                   </div>
                 </div>
                 
-                <div class="form-group row mt-3"> 
+                 {/* <div class="form-group row mt-3"> 
                   <label for="staticEmail" class="col-sm-2 col-form-label">NID/Birth-Certificate or Others National Identity Number</label>
                   <div class="col-sm-10">
                     <small>{generalInfo.nid_number}</small>
                   </div>
            
-                </div> */}
-              </Row>
+                </div>  */}
+              </Row>}
             
               { userId.userId===localStorage.getItem('id')  && <Row> <form>
               <div class="form-group row mt-3">
@@ -560,10 +559,7 @@ const updateUserGeneralInfo = () =>{
                     Father's Name
                   </label>
                   <div class="col-sm-10">
-                    {/* <input className="form-control" value={generalInfo.fathers_name} disabled /> */}
                     <input onBlur={event => setFathersName(event.target.value)} defaultValue={generalInfo.fathers_name} type="text" readonly class="form-control" id="" />
-                    {/* <input onChange={event => setFathersName(event.target.value)} type="text" readonly class="form-control" id="" /> */}
-                    {/* <input onChange={event => setFathersName(event.target.value)} value={sessionStorage.getItem('fathers_name')} type="text" readonly class="form-control" id="" /> */}
                   </div>
                 </div>
                 <div class="form-group row mt-3">
@@ -572,7 +568,6 @@ const updateUserGeneralInfo = () =>{
                   </label>
                   <div class="col-sm-10">
                     <input defaultValue={generalInfo.mothers_name} onChange={event => setMothersName(event.target.value)} type="text" class="form-control" id="" />
-                    {/* <input onChange={event => setMothersName(event.target.value)} type="text" class="form-control" id="" /> */}
                   </div>
                 </div>
                 <div class="form-group row mt-3 ">
@@ -633,6 +628,8 @@ const updateUserGeneralInfo = () =>{
                   </label>
                   <div class="col-sm-10">
                     <Form.Select onChange={event => setMaritalStatus(event.target.value)} defaultValue={generalInfo.marital_status}>
+                      {generalInfo.marital_status===null && <option disabled>select marital status</option>}
+                      {generalInfo.marital_status!==null && <option selected>{generalInfo.marital_status}</option>}
                       <option>Married</option>
                       <option>Unmarried</option>
                     </Form.Select>
@@ -644,6 +641,8 @@ const updateUserGeneralInfo = () =>{
                   </label>
                   <div class="col-sm-10">
                     <Form.Select onChange={event => setBloodGroup(event.target.value)} defaultValue={generalInfo.blood_group}>
+                     {generalInfo.blood_group===null && <option disabled>selecet blood group</option>}
+                     {generalInfo.blood_group!==null &&  <option selected>{generalInfo.blood_group}</option>}
                       <option>A+</option>
                       <option>A-</option>
                       <option>B+</option>
@@ -680,20 +679,17 @@ const updateUserGeneralInfo = () =>{
                   </div>
                 </div>
                 
-                {/* { nidInputCount.map((item) => <div key={item} class="form-group row mt-3"> <label for="staticEmail" class="col-sm-2 col-form-label">NID/Birth-Certificate or Others National Identity Number</label><div class="col-sm-10"><input type="number" readonly class="form-control" id="" /></div><div className="text-end mt-2"><i onClick={removeInput} className="fa fa-close"></i></div></div>)} */}
-                { nidInputCount.map((item) => <div key={item} id={item} class="form-group row mt-3"> 
+                {/* { nidInputCount.map((item) => <div key={item} id={item} class="form-group row mt-3"> 
                 <label for="staticEmail" class="col-sm-2 col-form-label">NID/Birth-Certificate or Others National Identity Number</label>
                 <div class="col-sm-10">
-                  {/* {firstTime ? <input name={item} onChange={event => {setNid(event.target.value);}} onBlur={() => {setFirstTime(false); console.log(nid)}} type="text" readonly class="form-control" id="" /> : <input onChange={(event) => {value = event.target.value;}} onBlur={event => handleMultipleInput(event)} type="text" readonly class="form-control" id="" />} */}
                   <input name={item} onBlur={event => {handleMultipleInput(event, nid, setNid)}} defaultValue={generalInfo.nid_number} type="text" readonly class="form-control" id="" />
                 </div>
                 <div className="text-end mt-2"><i onClick={() => removeInput(item, nidInputCount, setNidInputCount)} className="fa fa-close"></i>
                 </div>
-                </div>)}
-                {/* <i onClick={() => removeInput(item, nidInputCount, setNidInputCount)} className="fa fa-close"></i>*/}
-                  <div className="text-end mt-2">
+                </div>)} */}
+                  {/* <div className="text-end mt-2">
                     <i onClick={addNidInput} className="fas fa-plus"></i>
-                  </div>
+                  </div> */}
                 <div className="text-end mt-3">
                   <Button onClick={()=> updateUserGeneralInfo()} variant="primary justify">Save</Button>
                 </div>
