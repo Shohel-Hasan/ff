@@ -1,31 +1,29 @@
-import React from 'react';
-import { Button, Container } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 import './Setting.css'
-import { useNavigate } from 'react-router-dom';
+import ChangepassForm from "../../components/ChangepassForm";
+import Overlay from '../../components/Overlay';
 
 
-const Setting = () => {
-    const navigate = useNavigate();
+const Setting = (props) => {
+
     
+  const [showChangepass, setShowChangepass] = useState(false);
+  
+  function toggleShowChangePass() {
+    setShowChangepass(!showChangepass);
+  }
    
     return (
-        <Container>
-            <div className='text-center'>
-                <h2>Setting Page</h2>
-                <Link to='/settings'><Button size='sm' onClick={() => {localStorage.clear(); navigate('/')}}>Logout </Button></Link>
-            </div>
-            <div>
-                <select class="form-control">
-                    <option selected="selected">orange</option>
-                    <option>white</option>
-                    <option>purple</option>
-                    <option><input type="text" className='form-control' placeholder='sam'/></option>
-                </select>
-               
-                
-            </div>
-            
+        <Container >
+            {showChangepass && <ChangepassForm toggle={toggleShowChangePass} />}
+            {showChangepass && <Overlay />}
+            <Row>
+                <Col className='text-center main_container'>
+                    <h4>User Privacy</h4>
+                    <Button size='sm' onClick={toggleShowChangePass}>Change password</Button>
+                </Col>
+            </Row>
         </Container>
     );
 };
