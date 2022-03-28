@@ -438,32 +438,6 @@ useEffect(() => {
                       <input name="image_src" id="group_filed"  />
                   </span>
               </div>
-              <Modal
-                     
-                       
-                        dialogClassName="modal-90w"
-                        aria-labelledby="contained-modal-title-vcenter"
-                        centered
-                    >
-                    <Modal.Header closeButton >
-                        <div className=''>
-                            <p className='title'>Upload Cover Picture</p>
-                        </div>
-                    </Modal.Header>
-                    <Modal.Body className="fb-box-shadow">
-                    <Form >
-                        <Form.Group controlId="formFile" className="mb-3">
-                            <Form.Label>Cover Picture</Form.Label>
-                            <Form.Control   type="file" />
-                        </Form.Group>
-                        <Button className="mx-2"  variant="primary">Upload</Button>
-                        <Button variant="secondary">
-                            Close
-                        </Button>
-                    </Form>  
-                    
-                    </Modal.Body>
-                </Modal>
               <div>
                 <img  className="rounded group-cover img-fluid" src={`${BASE_URL}${singleGroup.cover_pic}`} alt='/'/>
               </div>
