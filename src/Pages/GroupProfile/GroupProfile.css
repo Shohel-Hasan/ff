@@ -2,16 +2,38 @@
   padding-top: 63px;
 }
 
-.badge-wrapper {
-  border-radius: 50%;
-  border: 2px solid #ced0d4; 
-  background-size: cover;
+.upload-wrapper {
+ 
+  background: url('../../Images//camera.svg') no-repeat;
+  /* background-size: cover; */
   /* display: block; */
   position: relative;
   width: auto;
   height: 30px;
   left: -25px;
   top: 30px;
+}
+.group-wrapper {
+  background: url('../../Images//camera.svg') no-repeat;
+  /* background-size: cover; */
+  /* display: block; */
+  position: relative;
+  width: 25px;
+  height: 25px;
+  left: 98%;
+  top: 30px;
+}
+
+#group_filed {
+  width: 26px;
+  height: 26px;
+  opacity: 0;
+  filter: alpha(opacity=0); /* IE 5-7 */
+}
+.badge-tag{
+ height: 20px;
+ border-radius: 50%;
+ border: 3px solid #ced0d4;
 }
 
 

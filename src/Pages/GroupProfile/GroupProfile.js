@@ -17,6 +17,9 @@ const GroupProfile = (props) => {
 
   const [description, setDescription] = useState("")
 
+  //Upload modal states
+ 
+
 
   const [groupMember, setGroupMember] = useState({});
   const [criteriaTitle, setCriteriaTitle] = useState("");
@@ -430,6 +433,38 @@ useEffect(() => {
 
         <Row className="justify-content-center">
           <Col md={8}>
+               <div className="container">
+                  <span className="group-wrapper">
+                      <input name="image_src" id="group_filed"  />
+                  </span>
+              </div>
+              <Modal
+                     
+                       
+                        dialogClassName="modal-90w"
+                        aria-labelledby="contained-modal-title-vcenter"
+                        centered
+                    >
+                    <Modal.Header closeButton >
+                        <div className=''>
+                            <p className='title'>Upload Cover Picture</p>
+                        </div>
+                    </Modal.Header>
+                    <Modal.Body className="fb-box-shadow">
+                    <Form >
+                        <Form.Group controlId="formFile" className="mb-3">
+                            <Form.Label>Cover Picture</Form.Label>
+                            <Form.Control   type="file" />
+                        </Form.Group>
+                        <Button className="mx-2"  variant="primary">Upload</Button>
+                        <Button variant="secondary">
+                            Close
+                        </Button>
+                    </Form>  
+                    
+                        
+                    </Modal.Body>
+                </Modal>
               <div>
                 <img  className="rounded group-cover img-fluid" src={`${BASE_URL}${singleGroup.cover_pic}`} alt='/'/>
               </div>
@@ -440,12 +475,16 @@ useEffect(() => {
           <Col md={8} className="d-flex justify-content-start"> 
               <div className='d-flex align-items-center'>
                 <img style={{'objectFit': 'cover' }} className='group-pic'  src={`${BASE_URL}${singleGroup.profile_pic}`} alt=''/>
-               <div>
-                      {singleGroup.is_verified && <img className="badge-wrapper" src={badge} alt=''/>}
+               <div>     
+                   <span className="upload-wrapper">
+                     <input  name="image_src" id="group_filed"  />
+                   </span>    
                </div>
-                <div className="image-load">
-                  <small style={{ color: "#1877f2", fontSize:'20px' }} > {singleGroup.name}</small>
-                  { groupMember.role==="Creator" && <i style={{color: '#1876f2'}} className="fas fa-edit mx-2" onClick={() => setNameModal(true)}></i>} 
+                <div className="d-flex align-items-center">
+                  <small style={{ color: "#1877f2", fontSize:'20px' }} > {singleGroup.name}  </small>
+                  <div>
+                      <img className="badge-tag" src={badge} alt=''/>
+                  </div>
                   <Modal  show={nameModal}  onHide={() => setNameModal(false)} dialogClassName="modal-90w" aria-labelledby="contained-modal-title-vcenter" centered>
                     <Modal.Header  closeButton >
                       <div >
@@ -471,7 +510,7 @@ useEffect(() => {
         </Row>
         <Row className='justify-content-center'>
           <Col md={8} className=" setting-section d-flex justify-content-end" >
-              {groupMember.role==="Creator" ? <div className="mx-2"> <Link to={`/${groupId.groupId}/create-course`}><Button size='sm' bg="primary">Create Course </Button></Link> </div> : <div>
+              {groupMember.role==="Creator" ? <div className="mx-2"> <Link to={`/${groupId.groupId}/create-course`}><Button size='sm' bg="primary">Create Course </Button></Link> </div> : <div className="mx-2">
                 <select
                   className="form-select form-select-sm  mx-auto"
                   aria-label="form-select-lg example"
@@ -542,6 +581,7 @@ useEffect(() => {
                                     </div>
                                     <div>
                                         <h6>{singleGroup.name}</h6>
+                                        
                                     </div>
                                 </div>
                                 <Form>
@@ -970,15 +1010,25 @@ useEffect(() => {
                       {/*--------- Setting Modal Section---------  */}
               <Modal show={setting}
                        onHide={() => setSetting(false)}
-                       dialogClassName="modal-90w"
-                       aria-labelledby="contained-modal-title-vcenter"
-                       centered
+                       dialogClassName="modal-90w" aria-labelledby="contained-modal-title-vcenter" centered
                 >
-                  <Modal.Body className="">
+                  <Modal.Body>
                     <Accordion
                       className="container rounded"
                       alwaysOpen >
-                      <Accordion.Item eventKey="0">
+                      { groupMember.role==="Creator" &&  <Accordion.Item eventKey="0">
+                        <Accordion.Header>
+                          Update Group Name
+                          
+                        </Accordion.Header>
+                        <Accordion.Body>
+                          <div className="mb-3">
+                          <i style={{color: '#1876f2'}} className="fas fa-edit mx-2" onClick={() => setNameModal(true)}></i>
+                          </div>
+                        
+                        </Accordion.Body>
+                      </Accordion.Item>}
+                      <Accordion.Item eventKey="1">
                         <Accordion.Header>
                           About Us
                           
@@ -1008,7 +1058,7 @@ useEffect(() => {
                         
                         </Accordion.Body>
                       </Accordion.Item>
-                      <Accordion.Item eventKey="1">
+                      <Accordion.Item eventKey="2">
                         <Accordion.Header>Group Criteria</Accordion.Header>
                         <Accordion.Body>
             
@@ -1063,14 +1113,14 @@ useEffect(() => {
                           
                         </Accordion.Body>
                       </Accordion.Item>
-                      <Accordion.Item eventKey="2">
+                      <Accordion.Item eventKey="3">
                         <Accordion.Header>Group Creator</Accordion.Header>
                         <Accordion.Body>
                         {singleGroup && <Link to={`/user/${localStorage.getItem('id')}`}><p className="Name"> { singleGroup['first_name']}  </p></Link>}
                         </Accordion.Body>
                       </Accordion.Item>
             
-                      <Accordion.Item eventKey="3">
+                      <Accordion.Item eventKey="4">
                         <Accordion.Header>Group Courses</Accordion.Header>
                         <Accordion.Body>
                         {groupCourses && groupCourses.map(gCourse => <Link key={gCourse.id} to={`/course/${gCourse.id}/details`}><p className="Name"> { gCourse.name}  </p></Link>)}
