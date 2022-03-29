@@ -1,14 +1,4 @@
-/* .css-tlfecz-indicatorContainer {
-    color:#212529 !important ;
-}
 
-.css-1s2u09g-control{
-    border-color:#0dcaf0 !important;
-
-}
-.css-2613qy-menu{
-    border-color:#0dcaf0 !important;
-} */
 .css-1s2u09g-control{
     outline: none !important;
     
@@ -16,5 +6,18 @@
 .css-1s2u09g-control :focus{
     border: none!important;
     outline: none!important;
+}
+
+div>.css-14el2xx-placeholder::placeholder {
+    font-size: 12px;
+}
+
+@media (max-width: 320px) {
+  form input::placeholder {
+      font-size: 14px;
+  }
+  .m_font{
+      font-size: 14px;
+  }
 
 }
