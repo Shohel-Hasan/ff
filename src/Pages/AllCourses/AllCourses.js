@@ -161,13 +161,13 @@ const BASE_URL = "http://127.0.0.1:8000"
                          <div className="fb-card-actions-holder">
                             <div className="fb-card-actions d-flex justify-content-around">
                                 <div className="fb-btn-holder">
-                                <Button className='text-primary' variant="outline-light"><i className="fa fa-thumbs-up"></i> Like</Button>
+                                <Button className='text-primary' variant="outline-light"><i className="fa fa-thumbs-up"></i> <span>10</span> Like</Button>
                                 </div>
                                 <div className="fb-btn-holder">
-                                <Button className='text-primary' variant="outline-light"><i className="far fa-comment-alt"></i> Comment</Button>
+                                <Button className='text-primary' variant="outline-light"><i className="far fa-comment-alt"></i> <span>10</span> Comment</Button>
                                 </div>
                                 <div className="fb-btn-holder">
-                                <Button className='text-primary' variant="outline-light"><i className="fa fa-share-square"></i> Share</Button>
+                                <Button className='text-primary' variant="outline-light"><i className="fa fa-share-square"></i> <span>10</span> Share</Button>
                                 </div>
                             </div>
                         </div>
@@ -207,13 +207,13 @@ const BASE_URL = "http://127.0.0.1:8000"
                          <div className="fb-card-actions-holder">
                             <div className="fb-card-actions d-flex justify-content-around">
                                 <div className="fb-btn-holder">
-                                <Button className='text-primary' variant="outline-light"><i className="fa fa-thumbs-up"></i> Like</Button>
+                                <Button className='text-primary' variant="outline-light"><i className="fa fa-thumbs-up"></i> <span>10</span> Like</Button>
                                 </div>
                                 <div className="fb-btn-holder">
-                                <Button className='text-primary' variant="outline-light"><i className="far fa-comment-alt"></i> Comment</Button>
+                                <Button className='text-primary' variant="outline-light"><i className="far fa-comment-alt"></i> <span>10</span> Comment</Button>
                                 </div>
                                 <div className="fb-btn-holder">
-                                <Button className='text-primary' variant="outline-light"><i className="fa fa-share-square"></i> Share</Button>
+                                <Button className='text-primary' variant="outline-light"><i className="fa fa-share-square"></i> <span>10</span> Share</Button>
                                 </div>
                             </div>
                         </div>

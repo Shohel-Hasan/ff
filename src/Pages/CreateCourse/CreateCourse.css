@@ -110,15 +110,16 @@
 
       .select-wrapper {
         background: url('../../Images/camera.svg') no-repeat;
+        background-size: cover;
         position: relative;
-        width: 25px;
-        height: 25px;
+        width: auto;
+        height: 24px;
         left: 99%;
         top: 28px;
       }
       #image_src {
-        width: 26px;
-        height: 26px;
+        width: 24px;
+        height: 24px;
         opacity: 0;
         filter: alpha(opacity=0); /* IE 5-7 */
       }

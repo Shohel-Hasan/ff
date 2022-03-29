@@ -682,8 +682,8 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                               <div className="fb-card-header">
                                 <div className="user-post-info">
                                   <div className="user-thumb">
-                                    { !post.group_name &&  <img  src={`${BASE_URL}${post.user_profile_pic}`} className="img-responsive" alt='user profile not found'/>}
-                                    {post.group_name &&  <img  src={`${BASE_URL}${post.group_profile_pic}`} className="img-responsive" alt='group profile not found'/>}
+                                    { !post.group_name &&  <Link className='text-decoration-none' to={`/user/${post.user}`}><img  src={`${BASE_URL}${post.user_profile_pic}`} className="img-responsive" alt='user profile not found'/></Link>}
+                                    {post.group_name &&  <Link  className='text-decoration-none' to={`/user/${post.user}`}><img  src={`${BASE_URL}${post.group_profile_pic}`} className="img-responsive" alt='group profile not found'/></Link>}
 
                                   </div>
                                   <div className="user-information">
