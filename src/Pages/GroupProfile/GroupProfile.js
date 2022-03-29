@@ -589,7 +589,7 @@ const updateGroupProfilePic = () => {
                   </Modal>
               
                 <div className="d-flex align-items-center">
-                  <small style={{ color: "#1877f2", fontSize:'20px' }} > {singleGroup.name}  </small>
+                  <small style={{ color: "#1877f2", fontSize:'20px', fontWeight: 'bold' }} > {singleGroup.name}  </small>
                   <div>
                       <img style={{'objectFit': 'cover' }} className="badge-tag m-1" src={badge} alt=''/>
                   </div>
