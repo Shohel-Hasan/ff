@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col, Container, Form, Row, Modal,Button, FormControl,  InputGroup, Accordion, Badge } from 'react-bootstrap';
+import { Col, Container, Form, Row, Modal,Button, FormControl,  InputGroup, Accordion } from 'react-bootstrap';
 import { Link, useParams } from "react-router-dom";
 import "./GroupProfile.css";
 import man from '../../Images/man.jpg';
@@ -411,7 +411,7 @@ useEffect(() => {
   fetch(`http://127.0.0.1:8000/group/${groupId.groupId}/group-update/`, updateGroupNameHeader)
       .then(response => {response.json()
             if (response.status===200) {
-              setNameModal(false)
+              setSetting(false)
               fetch(`http://127.0.0.1:8000/group/${groupId.groupId}/group-detail/`, {
                 method: 'GET',
                 headers: {
@@ -458,7 +458,7 @@ useEffect(() => {
                   <div>
                       <img style={{'objectFit': 'cover' }} className="badge-tag m-1" src={badge} alt=''/>
                   </div>
-                  <Modal  show={nameModal}  onHide={() => setNameModal(false)} dialogClassName="modal-90w" aria-labelledby="contained-modal-title-vcenter" centered>
+                  {/* <Modal  show={nameModal}  onHide={() => setNameModal(false)} dialogClassName="modal-90w" aria-labelledby="contained-modal-title-vcenter" centered>
                     <Modal.Header  closeButton >
                       <div >
                         <p className='fw-bolder'>Update your group name </p>
@@ -476,7 +476,7 @@ useEffect(() => {
                           </Button>
                         </div>
                     </Modal.Body>
-                  </Modal>
+                  </Modal> */}
                 </div>
                 </div>
           </Col>
@@ -995,14 +995,15 @@ useEffect(() => {
                           
                         </Accordion.Header>
                         <Accordion.Body>
-                         
+                         <div>
                           <textarea
-                              onClick={() => setNameModal(true)}
-                              className="form-control"
-                              aria-label="With textarea"
-                              placeholder="Update Group Name" 
-                          ></textarea>
-                        
+                                onChange={(e) =>setUpdateGroupName(e.target.value)}
+                                className="form-control"
+                                aria-label="With textarea"
+                                placeholder="Edit your group name"
+                            ></textarea>
+                           <div className="text-end mt-3"><Button variant="primary" size="sm" onClick={()=> updateGroupNameFunction()} >Update Name</Button></div>
+                         </div>
                         </Accordion.Body>
                       </Accordion.Item>}
                       <Accordion.Item eventKey="1">
@@ -1027,7 +1028,7 @@ useEffect(() => {
                               <div className="text-end mt-3">
                                 {
                                   groupMember.role==="Creator" && 
-                                  <Button size="sm" type='submit' variant="primary justify ">Save</Button>
+                                  <Button size="sm" type='submit' variant="primary justify">Save</Button>
                                 }
                               </div>
                             </form>
