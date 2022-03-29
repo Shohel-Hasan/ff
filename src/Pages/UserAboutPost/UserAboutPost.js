@@ -997,8 +997,47 @@ const updateUserGeneralInfo = () =>{
             </Row>
           </Accordion.Header>
           <Accordion.Body>
-            
-            {<Row>
+          { userId.userId!==localStorage.getItem('id')  && <Row>
+              
+              <div class="row mt-3">
+                    
+                <div className="col-sm-2">
+                  <b>City</b>
+                </div>                  
+                <div class="col-sm-10">
+                  <p>{contactInfo.city}</p>
+                </div>
+              </div>
+              <div class="row mt-3">
+                    
+                <div className="col-sm-2">
+                  <b>Country</b>
+                </div>                  
+                <div class="col-sm-10">
+                  <small>{contactInfo.country}</small>
+                </div>
+              </div>
+              <div class="row mt-3 ">
+                    
+                <div className="col-sm-2">
+                  <b>Present Address</b>
+                </div>                 
+                <div class="col-sm-10 ">
+                  <small>{contactInfo.present_address}</small>
+                </div>
+              </div>
+              <div class="row mt-3">
+                    
+                <div className="col-sm-2">
+                  <b>Permanent Address</b>
+                </div>                 
+                <div class="col-sm-10 ">
+                  <small>{contactInfo.permanent_address} </small>
+                </div>
+              </div>
+            </Row>}
+
+            { localStorage.getItem('id')===userId.userId && <Row>
               <form>
                 <div class="form-group row mt-3">
                   <label for="staticEmail" class="col-sm-2 col-form-label">
