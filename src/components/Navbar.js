@@ -2,13 +2,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import bar_horizontal from '../assets/bar_horizontal_icon.svg';
-// import class_icon from '../assets/class_icon.svg';
-// import group_icon from '../assets/group_icon.svg';
-// import home_icon from '../assets/home_icon.svg';
 
 import class_icon from '../assets/re/Classroom.svg';
 import group_icon from '../assets/re/Group.svg';
 import home_icon from '../assets/re/Home.svg';
+import profile_icon from '../assets/re/Profile.svg';
+import setting_icon from '../assets/re/Settings.svg';
 
 import logo from '../assets/re/Navbar_Logo.svg';
 import avatar from '../assets/man.jpg';
@@ -117,19 +116,23 @@ export default function Navbar(props) {
                       Home
                   </Link> 
                   <Link style={{textDecoration:'none'}} to="/groups-home">
-                     <img style={{height: '40px',width:'auto', display: 'block', padding: '0px 28px'}} src={group_icon} alt='home' />
+                     <img style={{height: '40px',width:'auto', display: 'block', padding: '0px 28px'}} src={group_icon} alt='group' />
                       Group
                   </Link> 
                   <Link style={{textDecoration:'none'}} to="/all-courses">
-                     <img style={{height: '40px',width:'auto',display: 'block', padding: '0px 28px'}} src={class_icon} alt='home' />
+                     <img style={{height: '40px',width:'auto',display: 'block', padding: '0px 28px'}} src={class_icon} alt='courses' />
                       Courses
                   </Link> 
                 </div>
 
-                <div className={`${style.links} d-flex align-items-center justify-content-between text-center my-3`} >
+                <div className={`${style.links} d-flex align-items-center justify-content-start text-center my-3`} >
                    <Link style={{textDecoration:'none'}} to={`/user/${localStorage.getItem('id')}`}>
-                     <img style={{height: '40px',width:'auto',display: 'block', padding: '0px 28px'}} src={class_icon} alt='home' />
+                     <img style={{height: '40px',width:'auto',display: 'block', padding: '0px 28px'}} src={profile_icon} alt='profile' />
                       Profile
+                   </Link> 
+                   <Link style={{textDecoration:'none'}} to={`/settings`}>
+                     <img style={{height: '40px',width:'auto',display: 'block', padding: '0px 28px'}} src={setting_icon} alt='setting' />
+                      Setting
                    </Link> 
                 </div>
 

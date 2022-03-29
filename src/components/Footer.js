@@ -11,7 +11,6 @@ export default function Footer() {
 
                 <div className='d-flex flex-wrap'>
                     <Link className='mx-2 my-1 text-decoration-none text-muted' to="/">Login</Link>
-                    <Link className='mx-2 my-1 text-decoration-none text-muted' to="/user/:userId">Dashboard</Link>
                     <Link className='mx-2 my-1 text-decoration-none text-muted' to="privacy-policy">Privacy Policy</Link>
                     <Link className='mx-2 my-1 text-decoration-none text-muted' to="cookie-policy">Cookie Policy</Link>
                     <Link className='mx-2 my-1 text-decoration-none text-muted' to="product-policy">Product Policy</Link>

@@ -3,6 +3,7 @@ import style from '../styles/Login.module.css';
 import Creatable, { useCreatable } from 'react-select/creatable';
 import '../styles/Registration.module.css';
 import { Toast } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export default function Registration(props) {
     const [showA, setShowA] = useState(false);
@@ -199,7 +200,7 @@ export default function Registration(props) {
                             </div>
                         </div>
 
-                        <p className='my-3' style={{width: '95%', color: 'grey'}}>By clicking Sign Up, you agree to our Terms, Data Policy and Cookie Policy.</p>
+                        <p className='my-3' style={{width: '95%', color: 'grey'}}>By clicking Sign Up, you agree to our <Link to='/privacy-policy'>Privacy Policy</Link>, Data Policy and Cookie Policy.</p>
                         
                         <div className='d-flex justify-content-center align-items-center my-3'>
                             <input type="submit" className={`${style.register} ${style.button}`} />

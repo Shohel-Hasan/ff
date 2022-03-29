@@ -1,1 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M194.6 32H317.4C338.1 32 356.4 45.22 362.9 64.82L373.3 96H448C483.3 96 512 124.7 512 160V416C512 451.3 483.3 480 448 480H64C28.65 480 0 451.3 0 416V160C0 124.7 28.65 96 64 96H138.7L149.1 64.82C155.6 45.22 173.9 32 194.6 32H194.6zM256 384C309 384 352 341 352 288C352 234.1 309 192 256 192C202.1 192 160 234.1 160 288C160 341 202.1 384 256 384z"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="65" height="65" viewBox="0 0 65 65">
+  <g id="Group_362" data-name="Group 362" transform="translate(-529 -465)">
+    <circle id="Ellipse_14" data-name="Ellipse 14" cx="32.5" cy="32.5" r="32.5" transform="translate(529 465)" fill="#345beb"/>
+    <g id="Icon_ionic-ios-camera" data-name="Icon ionic-ios-camera" transform="translate(543.5 479.125)">
+      <path id="Path_28" data-name="Path 28" d="M22.043,19.336A4.043,4.043,0,1,1,18,15.293,4.043,4.043,0,0,1,22.043,19.336Z" fill="#fff"/>
+      <path id="Path_29" data-name="Path 29" d="M29.355,11.25H25.523a1.141,1.141,0,0,1-.844-.38c-2-2.236-2.749-3-3.565-3H15.1c-.823,0-1.631.759-3.635,3a1.119,1.119,0,0,1-.837.373h-.288v-.562a.564.564,0,0,0-.563-.562H7.952a.564.564,0,0,0-.562.563v.563H6.862A2.28,2.28,0,0,0,4.5,13.409V25.784a2.434,2.434,0,0,0,2.355,2.341h22.5A2.254,2.254,0,0,0,31.5,25.784V13.409A2.1,2.1,0,0,0,29.355,11.25ZM18.281,25.341A6.011,6.011,0,1,1,24,19.617,6.017,6.017,0,0,1,18.281,25.341ZM24.75,15.328a.914.914,0,1,1,.914-.914A.912.912,0,0,1,24.75,15.328Z" fill="#fff"/>
+    </g>
+  </g>
+</svg>

@@ -398,7 +398,7 @@ const BASE_URL = "http://127.0.0.1:8000"
                 <Form >
                     <Row className='justify-content-center align-items-center'>
                        
-                      <div className='fb-box-shadow pb-3' style={{borderBottom: "1px solid #ced0d4"}}>
+                      <div className='bg-white pb-3' style={{borderBottom: "1px solid #ced0d4"}}>
                       
                        {/* Group name & information start  */}
                        <Row className='justify-content-center'>
@@ -417,8 +417,8 @@ const BASE_URL = "http://127.0.0.1:8000"
                         </Row>
                       
                       
-                       <Row  className='mt-2'>
-                            <Col md={{ span: 3, offset: 2 }}>
+                       <Row  className='mt-2 justify-content-center'>
+                            <Col md={8}>
                                 <div className='icon-container d-flex align-items-center'>
                                      <img className='group-pic'  src={`${BASE_URL}${singleGroup.cover_pic}`} alt='' />
                                      <div className="image-load mt-4">
@@ -432,13 +432,8 @@ const BASE_URL = "http://127.0.0.1:8000"
                                     </div>
                                     <div><h6 style={{ color: "#1877f2", fontSize:'20px', marginLeft: '15px'}} > {singleGroup.name}</h6></div>
                                 </div>
-                                <div>
-                                </div>
-                                
                             </Col>
-                            
                         </Row>
-
 
                     </div>
 
