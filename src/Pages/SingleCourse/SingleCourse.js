@@ -780,7 +780,7 @@ const BASE_URL = "http://127.0.0.1:8000"
                     }
                    { enrolledStudents.length!==0 && enrolledStudents.map((st, index) => <div key={index}>
                         <img className="slider-img img-fluid" src={man} alt=''/>
-                        <h6> <Link to={`/user/${st.student_first_name}`}> {st.student_first_name}</Link> </h6>
+                        <h6> <Link to={`/user/${st.id}`}> {st.student_first_name}</Link> </h6>
                     </div> ) }
                    
                   </Slider>
