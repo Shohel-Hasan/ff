@@ -42,28 +42,25 @@ const AllCourses = (props) => {
 
 
     //getting all courses data
-    
     useEffect(() => {
-        fetch(`http://127.0.0.1:8000/course/all`, {
+        fetch(`http://127.0.0.1:8000/course/all/`, {
         method: 'GET',
         headers: {
             "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
             "Accept": "application/json",
             "Content-Type": "application/json"
         }})
-        .then(res =>{
-        return res.json()
-        })
+        .then(res => res.json())
         .then(data => {
             if (data.message) {
                 setNoCourses([{data: data.message}]
             )
             } else {
                 setAllCourses(data)
-            console.log(data)
+                console.log(data)
             }
         })
-    }, [])
+    }, [localStorage.getItem('id')])
     
 const BASE_URL = "http://127.0.0.1:8000"
 

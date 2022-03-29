@@ -10,7 +10,6 @@ const UserAboutPost = (props) => {
 
   const userId = useParams()
   console.log(typeof userId.userId)
-
   props.triggerCheckLoggedIn();
 
 
@@ -298,7 +297,6 @@ const UserAboutPost = (props) => {
 
 
   // update user GeneralInformation
-  // group about update 
   const updateUserGeneralInfoHeader = {
     // mode: 'no-cors',
     method: 'PATCH',
