@@ -786,8 +786,7 @@ const BASE_URL = "http://127.0.0.1:8000"
                   </Slider>
                 </div>
               </Col>
-            </Row>
-                           
+            </Row>     
             <Row className='box'>
               <Col>
             
