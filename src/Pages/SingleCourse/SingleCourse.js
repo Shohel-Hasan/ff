@@ -303,41 +303,41 @@ const SingleCourse = (props) => {
     }
 
 
-//   // update course cover pic 
-// const updateCourseCoverPic = () => {
-//   // e.preventDefault();
-//   const newData = new FormData();
-//   newData.append('cover_pic', courseCoverPic)
-//   console.log("i am here...", newData)
-//   setCourseCoverPicModal(false)
+  // update course cover pic 
+const updateCourseCoverPic = () => {
+  // e.preventDefault();
+  const newData = new FormData();
+  newData.append('cover_pic', courseCoverPic)
+  console.log("i am here...", newData)
+  setCourseCoverPicModal(false)
 
-//   fetch(`http://127.0.0.1:8000/course/group/<int:group_pk>/<int:course_pk>/`, {
-//   // mode: 'cors',
-//   method: "PATCH",
-//   headers: {
-//       "Authorization" : `Token ${localStorage.getItem('auth_token')}`, 
-//   },
-//   body: newData
-//   })
-//   .then(res=> {
-//       if (res.status===200){
-//         fetch(`http://127.0.0.1:8000/course/single-course/${courseId.courseId}/`, {
-//           method: 'GET',
-//           headers: {
-//               "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
-//               "Accept": "application/json",
-//               "Content-Type": "application/json"
-//           }})
-//           .then(res => res.json())
-//           .then(data => {setCourse(data)
-//           })
+  fetch(`http://127.0.0.1:8000/course/single-course/update/${courseId.courseId}/`, {
+  // mode: 'cors',
+  method: "PATCH",
+  headers: {
+      "Authorization" : `Token ${localStorage.getItem('auth_token')}`, 
+  },
+  body: newData
+  })
+  .then(res=> {
+      if (res.status===200){
+        fetch(`http://127.0.0.1:8000/course/single-course/${courseId.courseId}/`, {
+          method: 'GET',
+          headers: {
+              "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+              "Accept": "application/json",
+              "Content-Type": "application/json"
+          }})
+          .then(res => res.json())
+          .then(data => {setCourse(data)
+          })
       
-//       }
-//   })
-//   // .then(data=> console.log(data))
+      }
+  })
+  // .then(data=> console.log(data))
       
-//   .catch(error => console.log(error))
-// }
+  .catch(error => console.log(error))
+}
 
     const settings = {
         slidesToShow: 3,
@@ -424,11 +424,11 @@ const BASE_URL = "http://127.0.0.1:8000"
                 <Col md={8} className='text-center'>
                   <div className="text-end">
                       <span className="cover_up_wrapper">
-                      <input name="image_src" id="cover_up_filed" />
+                      <input name="image_src" id="cover_up_filed" onClick={()=>setCourseCoverPicModal(true)} />
                     </span>
                   </div>
 
-                  {/* <Modal
+                  <Modal
                     show={courseCoverPicModal}
                     onHide={() => setCourseCoverPicModal(false)}
                     dialogClassName="modal-90w"
@@ -452,7 +452,7 @@ const BASE_URL = "http://127.0.0.1:8000"
                         </Button>
                     </Form>  
                     </Modal.Body>
-                  </Modal> */}
+                  </Modal>
                   <div><img className='course-img img-fluid rounded' src={`${BASE_URL}${course.cover_pic}`} alt=""/></div>
                 </Col>
             </Row>
