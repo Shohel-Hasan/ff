@@ -13,12 +13,17 @@ const GroupProfile = (props) => {
   const [nameModal, setNameModal] =useState(false);
   const [updateGroupName, setUpdateGroupName] = useState("");
 
-  const [singleGroup, setSingleGroup] = useState({})
+  const [groupCoverPic, setGroupCoverPic] = useState();
+  const [groupProfilePic, setGroupProfilePic] = useState();
 
+  const [singleGroup, setSingleGroup] = useState({})
   const [description, setDescription] = useState("")
 
   //Upload modal states
- 
+  const [groupCoverPicModal, setGroupCoverPicModal] = useState(false);
+  const [groupProfilePicModal, setGroupProfilePicModal] = useState(false);
+  const handleClose = () => setShow(false);
+
 
 
   const [groupMember, setGroupMember] = useState({});
@@ -117,7 +122,6 @@ const handleGroupSummaryPost = () => {
               if (res.status===400) {
                 alert("please enter all the required field");
               } else if(res.status===201) {
-                alert("summary post created")
 
                 fetch(`http://127.0.0.1:8000/post/${groupId.groupId}/group-summery-all`, {
                   method: 'GET',
@@ -155,7 +159,6 @@ const handleGroupSummaryPost = () => {
               if (res.status===400) {
                 alert("please enter all the required field");
               } else if(res.status===201) {
-                alert("Thought post created")
                 fetch(`http://127.0.0.1:8000/post/${groupId.groupId}/group-thought-all`, {
                   method: 'GET',
                   headers: {
@@ -427,17 +430,121 @@ useEffect(() => {
       .catch(error => console.log(error))
 }
 
+// update group cover pic 
+const updateGroupCoverPic = () => {
+  // e.preventDefault();
+  const newData = new FormData();
+  newData.append('cover_pic', groupCoverPic)
+  console.log("i am here...", newData)
+  console.log("coverPic...", groupCoverPic)
+  setGroupCoverPicModal(false)
+
+  fetch(`http://127.0.0.1:8000/group/${groupId.groupId}/group-update/`, {
+  // mode: 'cors',
+  method: "PATCH",
+  headers: {
+      "Authorization" : `Token ${localStorage.getItem('auth_token')}`, 
+  },
+  body: newData
+  })
+  .then(res=> {
+      if (res.status===200){
+        fetch(`http://127.0.0.1:8000/group/${groupId.groupId}/group-detail/`, {
+          method: 'GET',
+          headers: {
+              "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+              "Accept": "application/json",
+              "Content-Type": "application/json"
+          }})
+          .then(res => res.json())
+          .then(data => {setSingleGroup(data)
+          })
+      
+      }
+  })
+  // .then(data=> console.log(data))
+      
+  .catch(error => console.log(error))
+}
+
+
+// update group cover pic 
+const updateGroupProfilePic = () => {
+  // e.preventDefault();
+  const newData = new FormData();
+  newData.append('profile_pic', groupProfilePic)
+  console.log("i am here...", newData)
+  console.log("coverPic...", groupProfilePic)
+  setGroupProfilePicModal(false)
+
+  fetch(`http://127.0.0.1:8000/group/${groupId.groupId}/group-update/`, {
+  // mode: 'cors',
+  method: "PATCH",
+  headers: {
+      "Authorization" : `Token ${localStorage.getItem('auth_token')}`, 
+  },
+  body: newData
+  })
+  .then(res=> {
+      if (res.status===200){
+        fetch(`http://127.0.0.1:8000/group/${groupId.groupId}/group-detail/`, {
+          method: 'GET',
+          headers: {
+              "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+              "Accept": "application/json",
+              "Content-Type": "application/json"
+          }})
+          .then(res => res.json())
+          .then(data => {setSingleGroup(data)
+          })
+      
+      }
+  })
+  // .then(data=> console.log(data))
+      
+  .catch(error => console.log(error))
+}
   return (
     <Container className="custom">
         {/* Group Profile */}
 
         <Row className="justify-content-center">
           <Col md={8}>
-               <div className="container">
-                  <span className="group-wrapper">
-                      <input name="image_src" id="group_filed"  />
-                  </span>
-              </div>
+              {groupMember.role==="Creator" && <div className="container">
+                <span className="group-wrapper">
+                    <input name="image_src" id="group_filed" onClick={() => setGroupCoverPicModal(true)}  />
+                </span>
+              </div>}
+
+              {/* update group cover pic modal  */}
+              <Modal
+                show={groupCoverPicModal}
+                onHide={() => setGroupCoverPicModal(false)}
+                dialogClassName="modal-90w"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+                >
+                <Modal.Header closeButton >
+                    <div className=''>
+                        <p className='title'>Upload Cover Picture</p>
+                    </div>
+                </Modal.Header>
+                <Modal.Body className="fb-box-shadow">
+                <Form >
+                    <Form.Group controlId="formFile" className="mb-3">
+                        <Form.Label>Cover Picture</Form.Label>
+                        <Form.Control  onChange={e => setGroupCoverPic(e.target.files[0])}  type="file" />
+                    </Form.Group>
+                    <Button className="mx-2" onClick={()=>updateGroupCoverPic()} variant="primary">Upload</Button>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
+                </Form>  
+                
+                    
+                </Modal.Body>
+              </Modal>
+              
               <div>
                 <img  className="rounded group-cover img-fluid" src={`${BASE_URL}${singleGroup.cover_pic}`} alt='/'/>
               </div>
@@ -449,9 +556,37 @@ useEffect(() => {
               <div className='d-flex align-items-center flex-wrap'>
                 <img style={{'objectFit': 'cover' }} className='group-pic'  src={`${BASE_URL}${singleGroup.profile_pic}`} alt=''/>
                    
-                   <span className="upload-wrapper">
-                     <input  name="image_src" id="group_filed"  />
-                   </span>    
+                  {groupMember.role==="Creator" && <span className="upload-wrapper">
+                     <input  name="image_src" id="group_filed" onClick={() => setGroupProfilePicModal(true)}  />
+                   </span>   } 
+
+                   <Modal
+                    show={groupProfilePicModal}
+                    onHide={() => setGroupProfilePicModal(false)}
+                    dialogClassName="modal-90w"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
+                    >
+                    <Modal.Header closeButton >
+                        <div className=''>
+                            <p className='title'>Upload Profile Picture</p>
+                        </div>
+                    </Modal.Header>
+                    <Modal.Body className="fb-box-shadow">
+                    <Form >
+                        <Form.Group controlId="formFile" className="mb-3">
+                            <Form.Label>Profile Picture</Form.Label>
+                            <Form.Control  onChange={e => setGroupProfilePic(e.target.files[0])}  type="file" />
+                        </Form.Group>
+                        <Button className="mx-2" onClick={()=>updateGroupProfilePic()} variant="primary">Upload</Button>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Close
+                        </Button>
+                    </Form>  
+                    
+                        
+                    </Modal.Body>
+                  </Modal>
               
                 <div className="d-flex align-items-center">
                   <small style={{ color: "#1877f2", fontSize:'20px' }} > {singleGroup.name}  </small>
