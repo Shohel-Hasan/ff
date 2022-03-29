@@ -12,7 +12,7 @@
 }
  
 .create_course_container {
-  padding-top: 58px;
+  padding-top: 29px;
 }
   
   .wrapper{
@@ -110,13 +110,11 @@
 
       .select-wrapper {
         background: url('../../Images/camera.svg') no-repeat;
-        background-size: cover;
-        display: block;
         position: relative;
         width: 25px;
         height: 25px;
-        left: 98%;
-        top: 30px;
+        left: 99%;
+        top: 28px;
       }
       #image_src {
         width: 26px;
