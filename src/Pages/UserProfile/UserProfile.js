@@ -138,7 +138,7 @@ const UserProfile = (props) => {
     const BASE_URL = "http://127.0.0.1:8000"
 
     return (
-        <Container fluid className='shadow profile_conatiner'>
+        <Container fluid className='profile_conatiner'>
             <Row className='justify-content-center align-items-center'>
                 {/* -------------Banner Image Section---------------- */}
 
@@ -319,7 +319,25 @@ const UserProfile = (props) => {
                             className="nav-link NavLink"
                             data-toggle="tab"
                         >
-                            My Courses
+                            My Course
+                        </Link>
+                        </li>
+                        <li className="nav-item">
+                        <Link
+                            to="user-following"
+                            className="nav-link NavLink"
+                            data-toggle="tab"
+                        >
+                            User Following
+                        </Link>
+                        </li>
+                        <li className="nav-item">
+                        <Link
+                            to="user-follow-us"
+                            className="nav-link NavLink"
+                            data-toggle="tab"
+                        >
+                            Follow Us
                         </Link>
                         </li>
                     </ul>

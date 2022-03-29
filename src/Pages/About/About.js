@@ -6,7 +6,7 @@ const About = () => {
     <Container>
       {/* Information Section */}
 
-      <Accordion defaultActiveKey="0" className="text-dark mt-5" alwaysOpen>
+      <Accordion defaultActiveKey="0" className="text-dark" alwaysOpen>
         <Accordion.Item eventKey="0">
           <Accordion.Header>General Information</Accordion.Header>
           <Accordion.Body>

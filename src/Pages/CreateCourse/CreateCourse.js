@@ -387,11 +387,6 @@ const friTime = (time) =>{
 
 const BASE_URL = "http://127.0.0.1:8000"
 
-     
-    
-    
-   
-
     return (
         <Container className='create_course_container' >
            
