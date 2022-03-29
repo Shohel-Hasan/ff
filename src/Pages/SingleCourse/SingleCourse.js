@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Accordion, Button, Col, Container, Row, Table, Modal } from 'react-bootstrap';
+import { Accordion, Button, Col, Container, Row, Table, Modal, Form } from 'react-bootstrap';
 import './SingleCourse.css'
 import badge from '../../Images/badge.svg'
 import man from '../../Images/man.jpg'
@@ -45,6 +45,12 @@ const SingleCourse = (props) => {
 
 
     const [isEnrolledAndPaid, setIsEnrolledAndPaid] = useState(false);
+
+    const [courseCoverPic, setCourseCoverPic] = useState();
+    const [courseCoverPicModal, setCourseCoverPicModal] = useState(false);
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+  
 
     const submitHandler = (event) => {
       event.preventDefault();
@@ -296,6 +302,43 @@ const SingleCourse = (props) => {
       setShowCheckout(!showCheckout);
     }
 
+
+//   // update course cover pic 
+// const updateCourseCoverPic = () => {
+//   // e.preventDefault();
+//   const newData = new FormData();
+//   newData.append('cover_pic', courseCoverPic)
+//   console.log("i am here...", newData)
+//   setCourseCoverPicModal(false)
+
+//   fetch(`http://127.0.0.1:8000/course/group/<int:group_pk>/<int:course_pk>/`, {
+//   // mode: 'cors',
+//   method: "PATCH",
+//   headers: {
+//       "Authorization" : `Token ${localStorage.getItem('auth_token')}`, 
+//   },
+//   body: newData
+//   })
+//   .then(res=> {
+//       if (res.status===200){
+//         fetch(`http://127.0.0.1:8000/course/single-course/${courseId.courseId}/`, {
+//           method: 'GET',
+//           headers: {
+//               "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+//               "Accept": "application/json",
+//               "Content-Type": "application/json"
+//           }})
+//           .then(res => res.json())
+//           .then(data => {setCourse(data)
+//           })
+      
+//       }
+//   })
+//   // .then(data=> console.log(data))
+      
+//   .catch(error => console.log(error))
+// }
+
     const settings = {
         slidesToShow: 3,
         slidesToScroll: 1,
@@ -379,11 +422,37 @@ const BASE_URL = "http://127.0.0.1:8000"
           <div className='bg-white pb-3' style={{borderBottom: "1px solid #ced0d4"}}>
             <Row className='justify-content-center'>
                 <Col md={8} className='text-center'>
-                   <div className="text-end">
-                       <span className="cover_up_wrapper">
-                       <input name="image_src" id="cover_up_filed"  />
-                      </span>
-                   </div>
+                  <div className="text-end">
+                      <span className="cover_up_wrapper">
+                      <input name="image_src" id="cover_up_filed" />
+                    </span>
+                  </div>
+
+                  {/* <Modal
+                    show={courseCoverPicModal}
+                    onHide={() => setCourseCoverPicModal(false)}
+                    dialogClassName="modal-90w"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
+                    >
+                    <Modal.Header closeButton >
+                        <div className=''>
+                            <p className='title'>Upload Cover Picture</p>
+                        </div>
+                    </Modal.Header>
+                    <Modal.Body className="fb-box-shadow">
+                    <Form >
+                        <Form.Group controlId="formFile" className="mb-3">
+                            <Form.Label>Cover Picture</Form.Label>
+                            <Form.Control  onChange={e => setCourseCoverPic(e.target.files[0])}  type="file" />
+                        </Form.Group>
+                        <Button className="mx-2" onClick={()=>updateCourseCoverPic()} variant="primary">Upload</Button>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Close
+                        </Button>
+                    </Form>  
+                    </Modal.Body>
+                  </Modal> */}
                   <div><img className='course-img img-fluid rounded' src={`${BASE_URL}${course.cover_pic}`} alt=""/></div>
                 </Col>
             </Row>
@@ -486,9 +555,7 @@ const BASE_URL = "http://127.0.0.1:8000"
           </div>
 
 
-          {/* course information  */}
-
-                  
+          {/* course information  */}  
           <Accordion className="p-3 " defaultActiveKey={["0"]} alwaysOpen >
             <Accordion.Item eventKey="1">
               <Accordion.Header> <b>Course Information</b> </Accordion.Header>
