@@ -123,28 +123,21 @@ export default function Registration(props) {
                 <div className={`${style.reg_bar}`}></div>
 
                 <div className={`my-3`}>
-                    <form onSubmit={handleRegistration} className={`form-group`}>
+                    <form onSubmit={handleRegistration} className={`form-group `}>
                         <input onChange={e => setFirstName(e.target.value)} value={first_name} type="text" className={`form-control my-2`} required placeholder='Full first_name'/>
                         <input onChange={e => setEmail(e.target.value)} value={email} type="email" className={`form-control my-2`} required placeholder='Your Email'/>
-                        <div className={`d-flex justify-content-center align-items-center`}>
-                            <input onChange={e => setPassword(e.target.value)} value={password} type="password" className={`form-control  my-2`} required placeholder='Password'/>
-                            <input onBlur={()=>handlePasswrd()} onChange={e => setConfirmPassword(e.target.value)} value={confirmPassword} type="password" className={`form-control my-2 `} required placeholder='Confirm Password'/>
+                        <div className={`d-flex justify-content-center align-items-center `}>
+                            <input onChange={e => setPassword(e.target.value)} value={password} type="password" className={`form-control my-2`} required placeholder='Password'/> &nbsp;
+                            <input onBlur={()=>handlePasswrd()} onChange={e => setConfirmPassword(e.target.value)} value={confirmPassword} type="password" className={`form-control my-2`} required placeholder='Confirm Password'/>
                         </div>
-                        <div className={`my-2`}>
-                            {/* <Button onClick={toggleShowA} className="mb-2">Toggle Toast <strong>with</strong> Animation</Button> */}
+                        <div className={`my-2`}> 
                            <Toast show={showA} >
                                <Toast.Body className="text-danger" onClick={toggleShowA}>Password did not matched...</Toast.Body>
                            </Toast>
                         </div>
-                        {/* <select onChange={e => setAcademicDescipline(e.target.value)} className="form-select my-2" aria-label="Default select example">
-                            <option selected disabled>Academic discipline</option>
-                            <option value="Major in Hons.">Major in Hons.</option>
-                            <option value="Masters">Masters</option>
-                            <option value="Others">Others</option>
-                        </select> */}
-                        <Creatable  className="my-2" onChange={handleValue} placeholder='Academic discipline' options={discipline} required></Creatable>
+                        <Creatable id="d_place"  className="my-2" onChange={handleValue} placeholder='Academic discipline' options={discipline} required></Creatable>
                        
-                        <Creatable  className="my-2" onChange={handleProfession} placeholder='Profession' options={Profession} required></Creatable>
+                        <Creatable id="d_place" className="my-2" onChange={handleProfession} placeholder='Profession' options={Profession} required></Creatable>
                         
                         {/* <select onChange={e => setProfession(e.target.value)} className="form-select my-2" aria-label="Default select example" required>
                             <option selected disabled>Profession</option>
@@ -158,7 +151,7 @@ export default function Registration(props) {
 
                         <div className='d-flex justify-content-center align-items-center'>
                             <select onChange={e => setMonthOfBirth(e.target.value)} className="form-select mx-1" aria-label="Default select example" required>
-                                <option selected disabled>month</option>
+                                <option className="m_font" selected disabled>month</option>
                                 <option value="01">Jan</option>
                                 <option value="02">Feb</option>
                                 <option value="03">Mar</option>
@@ -174,13 +167,13 @@ export default function Registration(props) {
                             </select>
                             
                             <select onChange={e => setDateOfBirth(e.target.value)} className="form-select" aria-label="Default select example" required>
-                                <option selected disabled>date</option>
+                                <option selected className="m_font" disabled>date</option>
                                 {dateArray.map((item) => <option value={item}>{item}</option>)}
                                 
                             </select>
                             
                             <select onChange={e => setYearOfBirth(e.target.value)} className="form-select mx-1" aria-label="Default select example" required>
-                                <option selected disabled>year</option>
+                                <option className="m_font" selected disabled>year</option>
                                 {yearArray.map((item) => <option value={item}>{item}</option>)}
                             </select>
                         </div>
@@ -189,19 +182,19 @@ export default function Registration(props) {
 
                         <div className="input-group d-flex justify-content-center align-items-center">
                             <div className=" p-2 mx-2 fb-box-shadow ">
-                                <label class="form-check-label mx-2" for="flexRadioDefault1">Male</label>
+                                <label class="form-check-label mx-2 m_font" for="flexRadioDefault1">Male</label>
                                 <input onChange={e => setGender(e.target.value)}  class="form-check-input" type="radio" value="Male" name="flexRadioDefault" id="flexRadioDefault1" required/>
                             </div>
                             
                             <div className=" p-2 mx-2 fb-box-shadow ">
 
-                                <label class="form-check-label mx-2" for="flexRadioDefault2">Female</label>
+                                <label class="form-check-label mx-2 m_font" for="flexRadioDefault2">Female</label>
                                 <input onChange={e => setGender(e.target.value)} class="form-check-input" type="radio" value="Female" name="flexRadioDefault" id="flexRadioDefault2" required />
                                
                             </div>
                             
                             <div className=" p-2 mx-2 fb-box-shadow ">
-                                <label class="form-check-label mx-2" for="flexRadioDefault3">Common</label>
+                                <label class="form-check-label mx-2 m_font" for="flexRadioDefault3">Common</label>
                                 <input onChange={e => setGender(e.target.value)} class="form-check-input" type="radio" value="Common" name="flexRadioDefault" id="flexRadioDefault3" required />
                             </div>
                         </div>
