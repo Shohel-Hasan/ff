@@ -156,27 +156,27 @@ const UserProfile = (props) => {
                         dialogClassName="modal-90w"
                         aria-labelledby="contained-modal-title-vcenter"
                         centered
-                    >
-                    <Modal.Header closeButton >
-                        <div className=''>
-                            <p className='title'>Upload Cover Picture</p>
-                        </div>
-                    </Modal.Header>
-                    <Modal.Body className="fb-box-shadow">
-                    <Form >
-                        <Form.Group controlId="formFile" className="mb-3">
-                            <Form.Label>Cover Picture</Form.Label>
-                            <Form.Control  onChange={e => setCoverPic(e.target.files[0])}  type="file" />
-                        </Form.Group>
-                        <Button className="mx-2" onClick={()=>updateUserCoverPic()} variant="primary">Upload</Button>
-                        <Button variant="secondary" onClick={handleClose}>
-                            Close
-                        </Button>
-                    </Form>  
-                    
+                        >
+                        <Modal.Header closeButton >
+                            <div className=''>
+                                <p className='title'>Upload Cover Picture</p>
+                            </div>
+                        </Modal.Header>
+                        <Modal.Body className="fb-box-shadow">
+                        <Form >
+                            <Form.Group controlId="formFile" className="mb-3">
+                                <Form.Label>Cover Picture</Form.Label>
+                                <Form.Control  onChange={e => setCoverPic(e.target.files[0])}  type="file" />
+                            </Form.Group>
+                            <Button className="mx-2" onClick={()=>updateUserCoverPic()} variant="primary">Upload</Button>
+                            <Button variant="secondary" onClick={handleClose}>
+                                Close
+                            </Button>
+                        </Form>  
                         
-                    </Modal.Body>
-                </Modal>
+                            
+                        </Modal.Body>
+                    </Modal>
 
                     {userGeneralInfo.cover_pic!==null && <div className='text-center'>
                         <img

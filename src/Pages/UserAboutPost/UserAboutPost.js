@@ -948,13 +948,103 @@ console.log(language)
                   <i onClick={addScore} className="fas fa-plus"></i>
                   {/* <i className="fas fa-plus"></i> */}
                 </div>
-
-                
               </Row>
             </form>}
           </Accordion.Body>
         </Accordion.Item>
 
+        {/* user contact information  */}
+        <Accordion.Item eventKey="3" className="my-1    ">
+          <Accordion.Header>
+            <Row>
+              <div>
+                <small className="">
+                  <b>Contact Information</b>
+                </small>
+              </div>
+            </Row>
+          </Accordion.Header>
+          <Accordion.Body>
+            <Row>
+              <form>
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Current Location
+                  </label>
+                  <div class="col-sm-5">
+                    <input
+                    onChange={event => setLoacation(event.target.value)} value={location}
+                      type="text"
+                      readonly
+                      class="form-control"
+                      id=""
+                      placeholder="City"
+                    />
+                  </div>
+                  <div class="col-sm-5">
+                    <input
+                    onChange={event => setCountry(event.target.value)} value={country}
+                      type="text"
+                      readonly
+                      class="form-control"
+                      id=""
+                      placeholder="Country"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Present Address
+                  </label>
+                  <div class="col-sm-10">
+                    <input onChange={event => setPresentAddress(event.target.value)} value={presentAddress} type="text" readonly class="form-control" id="" />
+                  </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Permanent Address
+                  </label>
+                  <div class="col-sm-10">
+                    <input onChange={event => setParmanentAddress(event.target.value)} value={parmanentAddress} type="text" readonly class="form-control" id="" />
+                  </div>
+                </div>
+                
+                {emailField.map(item => <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Email Address
+                  </label>
+                  <div class="col-sm-10">
+                    <input name={item} onBlur={event => {handleMultipleInput(event, formEmail, setFormEmail)}} type="text" readonly class="form-control" id="" />
+                    
+                  </div>
+                  <i onClick={() => removeInput(item, emailField, setEmailField)} className="fa fa-close d-flex flex-row-reverse mt-2"></i>
+                </div> )}
+                    
+                    <div className="text-end mt-2">
+                      <i onClick={addEmailField} className="fas fa-plus"></i>
+                    </div>
+                
+                {numberField.map(item => <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Phone Number
+                  </label>
+                  <div class="col-sm-10">
+                    <input name={item} onBlur={event => {handleMultipleInput(event, number, setNumber)}} type="number" readonly class="form-control" id="" />
+                  </div>
+                  <i onClick={() => removeInput(item, numberField, setNumberField)} className="fa fa-close d-flex flex-row-reverse mt-2"></i>
+                </div>)}
+                    
+                    <div className="text-end mt-2">
+                      <i onClick={addNumberField} className="fas fa-plus"></i>
+                    </div>
+                
+                <div className="text-end mt-3">
+                  <Button onClick={() => {console.log(formEmail); console.log(number)}} variant="primary justify ">Save</Button>
+                </div>
+              </form>
+            </Row>
+          </Accordion.Body>
+        </Accordion.Item>
       </Accordion>
       
       <Row>
