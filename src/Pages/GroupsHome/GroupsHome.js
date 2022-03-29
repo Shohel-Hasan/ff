@@ -160,7 +160,7 @@ const BASE_URL = "http://127.0.0.1:8000"
                         </Accordion.Item>
                     </Accordion>
                 </Col>
-                <Col md={6}>
+                <Col md={8}>
                 {allGroupsPosts && allGroupsPosts.map((post, index) => <div  key={index} className='my-3'>
                         <div className="fb-cards-designs">
                           <div className="fb-clone-card">
