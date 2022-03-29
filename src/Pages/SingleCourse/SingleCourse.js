@@ -209,7 +209,17 @@ const SingleCourse = (props) => {
       fetch(`http://127.0.0.1:8000/course/${courseId.courseId}/class-link-create/`, courseClassLinkHeader)
           .then(response => {response.json()
               if (response.status===201) {
-                alert("class link created")
+                fetch(`http://127.0.0.1:8000/course/${courseId.courseId}/class-link-detail`, {
+                  method: 'GET',
+                  headers: {
+                      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+                      "Accept": "application/json",
+                      "Content-Type": "application/json"
+                  }})
+                .then((res) => res.json())
+                .then((data) =>{console.log("course class link get: ")
+                                  setGetClassLink(data.url_link)
+                  });
               } else if(response.status===400) {
                 alert("class link allready created")
               }
@@ -241,10 +251,16 @@ const SingleCourse = (props) => {
       fetch(`http://127.0.0.1:8000/course/${courseId.courseId}/notice/create/`, courseNoticeHeader)
           .then(response => {response.json()
               if (response.status===201) {
-                alert("class notice created")
-              } else if(response.status===400) {
-                alert("class notice error")
-              }
+                fetch(`http://127.0.0.1:8000/course/${courseId.courseId}/notice/all/`, {
+                  method: 'GET',
+                  headers: {
+                      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+                      "Accept": "application/json",
+                      "Content-Type": "application/json"
+                  }})
+                .then(res => res.json())
+                .then(data =>setGetAllNotice(data));
+              } 
           })
           .catch(error => console.log(error))
     }
@@ -291,8 +307,17 @@ const SingleCourse = (props) => {
           .then(response => response.json())
           .then(data=>{
             console.log(data)
-            alert("class link updated")
-            setGetClassLink(data.url_link)
+            fetch(`http://127.0.0.1:8000/course/${courseId.courseId}/class-link-detail`, {
+                  method: 'GET',
+                  headers: {
+                      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+                      "Accept": "application/json",
+                      "Content-Type": "application/json"
+                  }})
+                .then((res) => res.json())
+                .then((data) =>{console.log("course class link get: ")
+                                  setGetClassLink(data.url_link)
+                  });
           })
           .catch(error => console.log(error))
       
@@ -422,7 +447,8 @@ const BASE_URL = "http://127.0.0.1:8000"
           <div className='bg-white pb-3' style={{borderBottom: "1px solid #ced0d4"}}>
             <Row className='justify-content-center'>
                 <Col md={8} className='text-center'>
-                  {isCourseStaff &&  <div className="text-end">
+                  {isCourseStaff &&  
+                  <div className="text-end">
                       <span className="cover_up_wrapper">
                       <input name="image_src" id="cover_up_filed" onClick={()=>setCourseCoverPicModal(true)} />
                     </span>
@@ -655,7 +681,7 @@ const BASE_URL = "http://127.0.0.1:8000"
                       <form >
                         <div className="form-group my-2">
                           <label >Course notice: </label>
-                          <input type="text" className="form-control" onChange={e=> setNotice(e.target.value)}  aria-describedby="emailHelp" placeholder="class link" /> 
+                          <input type="text" className="form-control" onChange={e=> setNotice(e.target.value)}  aria-describedby="emailHelp" placeholder="course notice" /> 
                         </div>
                         <button onClick={(e)=> courseNoticeCreate(e)}  className="btn btn-primary my-2">Submit</button>
                       </form>
