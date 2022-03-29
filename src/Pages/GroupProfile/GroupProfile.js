@@ -591,7 +591,7 @@ const updateGroupProfilePic = () => {
                 <div className="d-flex align-items-center">
                   <small style={{ color: "#1877f2", fontSize:'20px', fontWeight: 'bold' }} > {singleGroup.name}  </small>
                   <div>
-                      <img style={{'objectFit': 'cover' }} className="badge-tag m-1" src={badge} alt=''/>
+                      <img style={{'objectFit': 'cover' }} className="badge-tag mx-2" src={badge} alt=''/>
                   </div>
                   {/* <Modal  show={nameModal}  onHide={() => setNameModal(false)} dialogClassName="modal-90w" aria-labelledby="contained-modal-title-vcenter" centered>
                     <Modal.Header  closeButton >
@@ -983,7 +983,7 @@ const updateGroupProfilePic = () => {
               </Row>
 
               <Row className="d-flex justify-content-center">
-                      {allGroupPosts && allGroupPosts.map((post, index) => <Col md={9}  key={index} className='my-3'>
+                      {allGroupPosts && allGroupPosts.map((post, index) => <Col md={9}  key={index}>
                         <div className="fb-cards-designs">
                           <div className="fb-clone-card">
                             <div className="fb-card-main-content">
@@ -1070,7 +1070,7 @@ const updateGroupProfilePic = () => {
                               </div>}
                             </div>
 
-                              <div className="fb-card-like-comment-holder">
+                              {/* <div className="fb-card-like-comment-holder">
                                 <div className="fb-card-like-comment">
                                   <div className="likes-emoji-holder">
                                       <span className='emoji-holder'>14 Likes</span>
@@ -1079,18 +1079,18 @@ const updateGroupProfilePic = () => {
                                       <span  className='emoji-holder'>10 Comments</span>
                                   </div>
                                 </div>
-                              </div>
+                              </div> */}
 
                               <div className="fb-card-actions-holder">
                                 <div className="d-flex justify-content-between">
                                     <div className="fb-btn-holder">
-                                        <a className='text-decoration-none' href="/"><i className="fa hom-icon fa-thumbs-up"></i> Like</a>
+                                        <a className='text-decoration-none' href="/"><i className="fa hom-icon fa-thumbs-up"></i> <span>10</span> like</a>
                                     </div>
                                     <div className="fb-btn-holder">
-                                        <a className='text-decoration-none' href="/"><i className="far hom-icon fa-comment-alt"></i> Comment</a>
+                                        <a className='text-decoration-none' href="/"><i className="far hom-icon fa-comment-alt"></i> <span>10</span> Comment</a>
                                     </div>
                                     <div className="fb-btn-holder">
-                                        <a className='text-decoration-none' href="/"><i className="fa hom-icon fa-share-square"></i> Share</a>
+                                        <a className='text-decoration-none' href="/"><i className="fa hom-icon fa-share-square"></i> <span>10</span> Share</a>
                                     </div>
                                 </div>
                               </div>
