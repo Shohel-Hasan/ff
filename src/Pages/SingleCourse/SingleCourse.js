@@ -422,11 +422,11 @@ const BASE_URL = "http://127.0.0.1:8000"
           <div className='bg-white pb-3' style={{borderBottom: "1px solid #ced0d4"}}>
             <Row className='justify-content-center'>
                 <Col md={8} className='text-center'>
-                  <div className="text-end">
+                  {isCourseStaff &&  <div className="text-end">
                       <span className="cover_up_wrapper">
                       <input name="image_src" id="cover_up_filed" onClick={()=>setCourseCoverPicModal(true)} />
                     </span>
-                  </div>
+                  </div>}
 
                   <Modal
                     show={courseCoverPicModal}
