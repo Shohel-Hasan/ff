@@ -31,7 +31,7 @@
   filter: alpha(opacity=0); /* IE 5-7 */
 }
 .badge-tag{
- height: 20px;
+ height: 25px;
  border-radius: 50%;
  border: 3px solid #ced0d4;
 }

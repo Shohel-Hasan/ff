@@ -4,12 +4,27 @@
     <circle cx="18.5" cy="18.5" r="17.5" fill="none"/>
   </g>
   <g id="Group_12" data-name="Group 12" transform="translate(-359 -92)">
-    <rect id="Rectangle_26" data-name="Rectangle 26" width="17" height="11" rx="3" transform="translate(369 98)" fill="#1876f2"/>
-    <rect id="Rectangle_27" data-name="Rectangle 27" width="17" height="8" rx="4" transform="translate(369 110)" fill="#1876f2"/>
+    <g id="Path_34" data-name="Path 34" transform="translate(369 98)" fill="#fff">
+      <path d="M 14 9.5 L 3 9.5 C 2.172899961471558 9.5 1.5 8.827099800109863 1.5 8 L 1.5 3 C 1.5 2.172899961471558 2.172899961471558 1.5 3 1.5 L 14 1.5 C 14.82709980010986 1.5 15.5 2.172899961471558 15.5 3 L 15.5 8 C 15.5 8.827099800109863 14.82709980010986 9.5 14 9.5 Z" stroke="none"/>
+      <path d="M 3 3 L 3.000007629394531 3 C 3.000004768371582 3.000002384185791 3.000002861022949 3.00000524520874 3 3 L 3 8 L 14 7.999839782714844 L 14 3 L 3 3 M 3 0 L 14 0 C 15.65684986114502 0 17 1.34315013885498 17 3 L 17 8 C 17 9.65684986114502 15.65684986114502 11 14 11 L 3 11 C 1.34315013885498 11 0 9.65684986114502 0 8 L 0 3 C 0 1.34315013885498 1.34315013885498 0 3 0 Z" stroke="none" fill="#1876f2"/>
+    </g>
+    <g id="Path_35" data-name="Path 35" transform="translate(369 110)" fill="#1876f2">
+      <path d="M 13 6.5 L 4 6.5 C 2.621500015258789 6.5 1.5 5.378499984741211 1.5 4 C 1.5 2.621500015258789 2.621500015258789 1.5 4 1.5 L 13 1.5 C 14.37849998474121 1.5 15.5 2.621500015258789 15.5 4 C 15.5 5.378499984741211 14.37849998474121 6.5 13 6.5 Z" stroke="none"/>
+      <path d="M 4 3 C 3.448599815368652 3 3 3.448599815368652 3 4 C 3 4.551400184631348 3.448599815368652 5 4 5 L 13 5 C 13.55140018463135 5 14 4.551400184631348 14 4 C 14 3.448599815368652 13.55140018463135 3 13 3 L 4 3 M 4 0 L 13 0 C 15.20913982391357 0 17 1.790860176086426 17 4 C 17 6.209139823913574 15.20913982391357 8 13 8 L 4 8 C 1.790860176086426 8 0 6.209139823913574 0 4 C 0 1.790860176086426 1.790860176086426 0 4 0 Z" stroke="none" fill="#1876f2"/>
+    </g>
     <g id="Group_7" data-name="Group 7" transform="translate(-110 -48)">
-      <rect id="Rectangle_28" data-name="Rectangle 28" width="5" height="5" rx="1" transform="translate(479 167)" fill="#1876f2"/>
-      <rect id="Rectangle_32" data-name="Rectangle 32" width="5" height="5" rx="1" transform="translate(485 167)" fill="#1876f2"/>
-      <rect id="Rectangle_33" data-name="Rectangle 33" width="5" height="5" rx="1" transform="translate(491 167)" fill="#1876f2"/>
+      <g id="Rectangle_28" data-name="Rectangle 28" transform="translate(479 167)" fill="#fff" stroke="#1876f2" stroke-width="4">
+        <rect width="5" height="5" rx="1" stroke="none"/>
+        <rect x="2" y="2" width="1" height="1" rx="0.5" fill="none"/>
+      </g>
+      <g id="Rectangle_32" data-name="Rectangle 32" transform="translate(485 167)" fill="#fff" stroke="#1876f2" stroke-width="4">
+        <rect width="5" height="5" rx="1" stroke="none"/>
+        <rect x="2" y="2" width="1" height="1" rx="0.5" fill="none"/>
+      </g>
+      <g id="Rectangle_33" data-name="Rectangle 33" transform="translate(491 167)" fill="#fff" stroke="#1876f2" stroke-width="4">
+        <rect width="5" height="5" rx="1" stroke="none"/>
+        <rect x="2" y="2" width="1" height="1" rx="0.5" fill="none"/>
+      </g>
     </g>
   </g>
 </svg>
