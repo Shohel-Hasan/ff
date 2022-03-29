@@ -591,27 +591,9 @@ const updateGroupProfilePic = () => {
                 <div className="d-flex align-items-center">
                   <small style={{ color: "#1877f2", fontSize:'20px', fontWeight: 'bold' }} > {singleGroup.name}  </small>
                   <div>
-                      <img style={{'objectFit': 'cover' }} className="badge-tag mx-2" src={badge} alt=''/>
+                     {singleGroup.is_verified &&  <img style={{'objectFit': 'cover' }} className="badge-tag mx-2" src={badge} alt=''/>}
                   </div>
-                  {/* <Modal  show={nameModal}  onHide={() => setNameModal(false)} dialogClassName="modal-90w" aria-labelledby="contained-modal-title-vcenter" centered>
-                    <Modal.Header  closeButton >
-                      <div >
-                        <p className='fw-bolder'>Update your group name </p>
-                      </div>
-                    </Modal.Header>
-                    <Modal.Body className="fb-box-shadow">
-                        <Form>
-                          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                            <Form.Control onChange={(e) =>setUpdateGroupName(e.target.value)} as="textarea" rows={2}  placeholder="Edit your group name"/>
-                          </Form.Group>
-                        </Form>
-                        <div className="d-grid gap-2">
-                          <Button variant="primary" size="sm" onClick={()=> updateGroupNameFunction()} >
-                            Update
-                          </Button>
-                        </div>
-                    </Modal.Body>
-                  </Modal> */}
+                  
                 </div>
                 </div>
           </Col>

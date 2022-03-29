@@ -473,7 +473,7 @@ const BASE_URL = "http://127.0.0.1:8000"
                       <div className='text-center'><small style={{ color: "#1877f2", fontSize: '20px'}}>{course.group_name}</small></div>
                     </div>
                     <div className='text-center'>
-                       <img className="verified-badge" src={badge} alt=''/>
+                      {course.group_verify &&  <img className="verified-badge" src={badge} alt=''/>}
                     </div>
                    
                       
