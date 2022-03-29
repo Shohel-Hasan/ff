@@ -995,9 +995,13 @@ useEffect(() => {
                           
                         </Accordion.Header>
                         <Accordion.Body>
-                          <div className="mb-3">
-                          <i style={{color: '#1876f2'}} className="fas fa-edit mx-2" onClick={() => setNameModal(true)}></i>
-                          </div>
+                         
+                          <textarea
+                              onClick={() => setNameModal(true)}
+                              className="form-control"
+                              aria-label="With textarea"
+                              placeholder="Update Group Name" 
+                          ></textarea>
                         
                         </Accordion.Body>
                       </Accordion.Item>}

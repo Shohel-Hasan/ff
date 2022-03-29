@@ -466,14 +466,14 @@ const BASE_URL = "http://127.0.0.1:8000"
                       {!isCourseStaff &&  <Button  className='m-4 badge badge-pill mt-2'>Follow +</Button>}
                         </div>
                         <div>
-                          <div className="fb-card-actions d-flex justify-content-around">
-                            <div className="fb-btn-holder text-center mt-3">
+                          <div className="d-flex justify-content-around">
+                            <div className="text-center mt-3 mx-1">
                                 <a  className='text-decoration-none' href='/' ><i className="far fa-thumbs-up "></i> Like</a>
                             </div>
-                            <div className="fb-btn-holder text-center mt-3">
+                            <div className="mt-3 mx-1">
                                 <a className='text-decoration-none' href='/'><i className="far fa-comment"></i> Comment</a>
                             </div>
-                            <div className="fb-btn-holder text-center mt-3">
+                            <div className="fb-btn-holder text-center mt-3 mx-1">
                                 <a className='text-decoration-none' href='/'><i className="far fa-share-square"></i> Share</a>
                             </div>
                           </div>
