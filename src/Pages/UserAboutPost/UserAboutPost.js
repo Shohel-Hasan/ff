@@ -1006,7 +1006,7 @@ const updateUserGeneralInfo = () =>{
                   </label>
                   <div class="col-sm-5">
                     <input
-                    onChange={event => setCity(event.target.value)} defaultValue={city}
+                    onChange={event => setCity(event.target.value)} defaultValue={contactInfo.city}
                       type="text"
                       readonly
                       class="form-control"
@@ -1016,7 +1016,7 @@ const updateUserGeneralInfo = () =>{
                   </div>
                   <div class="col-sm-5">
                     <input
-                    onChange={event => setCountry(event.target.value)} defaultValue={country}
+                    onChange={event => setCountry(event.target.value)} defaultValue={contactInfo.country}
                       type="text"
                       readonly
                       class="form-control"
@@ -1030,7 +1030,7 @@ const updateUserGeneralInfo = () =>{
                     Present Address
                   </label>
                   <div class="col-sm-10">
-                    <input onChange={event => setPresentAddress(event.target.value)} defaultValue={presentAddress} type="text" readonly class="form-control" id="" />
+                    <input onChange={event => setPresentAddress(event.target.value)} defaultValue={contactInfo.present_address} type="text" readonly class="form-control" id="" />
                   </div>
                 </div>
                 <div class="form-group row mt-3">
@@ -1038,7 +1038,7 @@ const updateUserGeneralInfo = () =>{
                     Permanent Address
                   </label>
                   <div class="col-sm-10">
-                    <input onChange={event => setParmanentAddress(event.target.value)} defaultValue={parmanentAddress} type="text" readonly class="form-control" id="" />
+                    <input onChange={event => setParmanentAddress(event.target.value)} defaultValue={contactInfo.permanent_address} type="text" readonly class="form-control" id="" />
                   </div>
                 </div>
                 

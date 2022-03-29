@@ -103,7 +103,7 @@ const BASE_URL = "http://127.0.0.1:8000"
           <Col md={8} >
             <Row className='mt-4 shadow border custom-radius bg-white'>
               <Col sm={3} className="d-flex justify-content-center align-items-center my-2">
-              <img style={{"height": "80px", "width": "80px", "borderRadius": "50%"}}  src={`${BASE_URL}${course.course_cover_pic}`} alt='course_cover_pic'/>
+              <img style={{"height": "80px", "width": "80px", "borderRadius": "50%", objectFit: 'cover',}}  src={`${BASE_URL}${course.course_cover_pic}`} alt='course_cover_pic'/>
 
               </Col>
               <Col  sm={9} className="d-flex align-items-center my-2"> 
