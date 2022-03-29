@@ -5,7 +5,7 @@ import '../styles/Registration.module.css';
 import { Toast } from "react-bootstrap";
 
 export default function Registration(props) {
-    const [showA, setShowA] = useState(true);
+    const [showA, setShowA] = useState(false);
     const toggleShowA = () => setShowA(!showA);
 
     // states for registration
@@ -72,32 +72,37 @@ export default function Registration(props) {
     }
 
     // Academic discipline select option 
-    const options = [
+    const discipline = [
+        
         { value: 'Major in Hons.', label: 'Major in Hons.' },
         { value: 'Masters', label: 'Masters' }
         
       ]
 
       const handleValue = (value) =>{
-          console.log(value)
-          setAcademicDescipline(value.value)
+        //   console.log(value)
+          setAcademicDescipline(value.value);
       }
 
-      const customStyles = {
-       
-       
-        singleValue: (provided, state) => {
-          const opacity = state.isDisabled ? 0.5 : 1;
-          const transition = 'opacity 300ms';
-      
-          return { ...provided, opacity, transition };
-        }
-      }
+      //Profession Select Option
 
+      const Profession = [
+        { value: 'Researcher.', label: 'Researcher' },
+        { value: 'Teacher', label: 'Teacher' },
+        { value: 'Student', label: 'Student' }
+        
+      ]
+
+      const handleProfession = (value) =>{
+        // console.log(value.value)
+        setProfession(value.value);
+    }
+  
+      // set & confirm password
     const handlePasswrd = () =>{
+        setShowA(false);
         if ( password !== confirmPassword){
-            toggleShowA();
-         
+            setShowA(true);
         }
         else{
             setShowA(false);
@@ -123,12 +128,12 @@ export default function Registration(props) {
                         <input onChange={e => setEmail(e.target.value)} value={email} type="email" className={`form-control my-2`} required placeholder='Your Email'/>
                         <div className={`d-flex justify-content-center align-items-center`}>
                             <input onChange={e => setPassword(e.target.value)} value={password} type="password" className={`form-control  my-2`} required placeholder='Password'/>
-                            <input onBlur={handlePasswrd} onChange={e => setConfirmPassword(e.target.value)} value={confirmPassword} type="password" className={`form-control my-2 `} required placeholder='Confirm Password'/>
+                            <input onBlur={()=>handlePasswrd()} onChange={e => setConfirmPassword(e.target.value)} value={confirmPassword} type="password" className={`form-control my-2 `} required placeholder='Confirm Password'/>
                         </div>
-                        <div className={`my-3`}>
+                        <div className={`my-2`}>
                             {/* <Button onClick={toggleShowA} className="mb-2">Toggle Toast <strong>with</strong> Animation</Button> */}
-                           <Toast show={showA}>
-                               <Toast.Body>Password did not matched...</Toast.Body>
+                           <Toast show={showA} >
+                               <Toast.Body className="text-danger" onClick={toggleShowA}>Password did not matched...</Toast.Body>
                            </Toast>
                         </div>
                         {/* <select onChange={e => setAcademicDescipline(e.target.value)} className="form-select my-2" aria-label="Default select example">
@@ -137,14 +142,16 @@ export default function Registration(props) {
                             <option value="Masters">Masters</option>
                             <option value="Others">Others</option>
                         </select> */}
-                        <Creatable  className="my-2 discipline"  onChange={handleValue} options={options} required></Creatable>
+                        <Creatable  className="my-2" onChange={handleValue} placeholder='Academic discipline' options={discipline} required></Creatable>
+                       
+                        <Creatable  className="my-2" onChange={handleProfession} placeholder='Profession' options={Profession} required></Creatable>
                         
-                        <select onChange={e => setProfession(e.target.value)} className="form-select my-2" aria-label="Default select example" required>
+                        {/* <select onChange={e => setProfession(e.target.value)} className="form-select my-2" aria-label="Default select example" required>
                             <option selected disabled>Profession</option>
                             <option value="Researcher">Researcher</option>
                             <option value="Teacher">Teacher</option>
                             <option value="Student">Student</option>
-                        </select>
+                        </select> */}
                       
 
                         <p className='mb-2'>Date of Birth</p>
