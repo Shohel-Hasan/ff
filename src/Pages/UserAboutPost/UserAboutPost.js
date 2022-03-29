@@ -73,13 +73,17 @@ const UserAboutPost = (props) => {
   const [ielts_name, setIelts_name] = useState('');
   const [score, setScore] = useState('');
 
-
-  const [location, setLoacation] = useState('');
+  // contact informations state
+  const [city, setCity] = useState('');
   const [country, setCountry] = useState('');
   const [parmanentAddress, setParmanentAddress] = useState('');
   const [presentAddress, setPresentAddress] = useState('');
+
+
   const [formEmail, setFormEmail] = useState('');
   const [number, setNumber] = useState('');
+
+
   const [areaResearchInterest, setAreaResearchInterest] = useState({});
   const [keyResearchSkill, setKeyResearchSkill] = useState({});
   
@@ -398,8 +402,38 @@ const updateUserGeneralInfo = () =>{
         })
         .catch(error => console.log(error))
   }
+
+  // update user GeneralInformation
+  const updateUserContactInfoHeader = {
+    // mode: 'no-cors',
+    method: 'PATCH',
+    headers: {
+        "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      city:  city, 
+      country:  country, 
+      present_address: presentAddress,
+      permanent_address:   parmanentAddress
+    })
+  };
+
+  const updateUserContactInfo = () =>{
+    fetch(`http://127.0.0.1:8000/user/user-contact-info-update/${localStorage.getItem('id')}`, updateUserContactInfoHeader)
+      .then(response => {response.json()
+          if (response.status===200) {
+            console.log("okay")
+            fetch(`http://127.0.0.1:8000/user/user-contact-info/${userId.userId}`, header)
+            .then(response => response.json())
+            .then(data => { setContactInfo(data);
+            })
+          }
+      })
+      .catch(error => console.log(error))
+}
   
-console.log(language)
   useEffect(() => {
       console.log(random);
       console.log('use effect running')
@@ -894,23 +928,23 @@ console.log(language)
           {languageScore.length !== 0 && languageScore.map(item => 
           <Row className="my-2">
 
-                <div class="row mt-3">
-                  <div className="col-sm-2">
-                    <b>Name</b>
-                  </div>                  
-                  <div class="col-sm-10">
-                    <p>{item.name}</p>
-                  </div>
-                </div>
-                <div class="row mt-3">
-                  <div className="col-sm-2">
-                    <b>Score</b>
-                  </div>                  
-                  <div class="col-sm-10">
-                    <p>{item.ielts_toefl_score}</p>
-                  </div>
-                </div>  
-              </Row>)}
+            <div class="row mt-3">
+              <div className="col-sm-2">
+                <b>Name</b>
+              </div>                  
+              <div class="col-sm-10">
+                <p>{item.name}</p>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div className="col-sm-2">
+                <b>Score</b>
+              </div>                  
+              <div class="col-sm-10">
+                <p>{item.ielts_toefl_score}</p>
+              </div>
+            </div>  
+          </Row>)}
 
             {localStorage.getItem('id')===userId.userId &&  <form>
               <Row>
@@ -963,7 +997,8 @@ console.log(language)
             </Row>
           </Accordion.Header>
           <Accordion.Body>
-            <Row>
+            
+            {<Row>
               <form>
                 <div class="form-group row mt-3">
                   <label for="staticEmail" class="col-sm-2 col-form-label">
@@ -971,7 +1006,7 @@ console.log(language)
                   </label>
                   <div class="col-sm-5">
                     <input
-                    onChange={event => setLoacation(event.target.value)} value={location}
+                    onChange={event => setCity(event.target.value)} defaultValue={city}
                       type="text"
                       readonly
                       class="form-control"
@@ -981,7 +1016,7 @@ console.log(language)
                   </div>
                   <div class="col-sm-5">
                     <input
-                    onChange={event => setCountry(event.target.value)} value={country}
+                    onChange={event => setCountry(event.target.value)} defaultValue={country}
                       type="text"
                       readonly
                       class="form-control"
@@ -995,7 +1030,7 @@ console.log(language)
                     Present Address
                   </label>
                   <div class="col-sm-10">
-                    <input onChange={event => setPresentAddress(event.target.value)} value={presentAddress} type="text" readonly class="form-control" id="" />
+                    <input onChange={event => setPresentAddress(event.target.value)} defaultValue={presentAddress} type="text" readonly class="form-control" id="" />
                   </div>
                 </div>
                 <div class="form-group row mt-3">
@@ -1003,11 +1038,11 @@ console.log(language)
                     Permanent Address
                   </label>
                   <div class="col-sm-10">
-                    <input onChange={event => setParmanentAddress(event.target.value)} value={parmanentAddress} type="text" readonly class="form-control" id="" />
+                    <input onChange={event => setParmanentAddress(event.target.value)} defaultValue={parmanentAddress} type="text" readonly class="form-control" id="" />
                   </div>
                 </div>
                 
-                {emailField.map(item => <div class="form-group row mt-3">
+                {/* {emailField.map(item => <div class="form-group row mt-3">
                   <label for="staticEmail" class="col-sm-2 col-form-label">
                     Email Address
                   </label>
@@ -1016,13 +1051,13 @@ console.log(language)
                     
                   </div>
                   <i onClick={() => removeInput(item, emailField, setEmailField)} className="fa fa-close d-flex flex-row-reverse mt-2"></i>
-                </div> )}
-                    
+                </div> )} */}
+{/*                     
                     <div className="text-end mt-2">
                       <i onClick={addEmailField} className="fas fa-plus"></i>
-                    </div>
+                    </div> */}
                 
-                {numberField.map(item => <div class="form-group row mt-3">
+                {/* {numberField.map(item => <div class="form-group row mt-3">
                   <label for="staticEmail" class="col-sm-2 col-form-label">
                     Phone Number
                   </label>
@@ -1030,17 +1065,17 @@ console.log(language)
                     <input name={item} onBlur={event => {handleMultipleInput(event, number, setNumber)}} type="number" readonly class="form-control" id="" />
                   </div>
                   <i onClick={() => removeInput(item, numberField, setNumberField)} className="fa fa-close d-flex flex-row-reverse mt-2"></i>
-                </div>)}
+                </div>)} */}
                     
-                    <div className="text-end mt-2">
+                    {/* <div className="text-end mt-2">
                       <i onClick={addNumberField} className="fas fa-plus"></i>
-                    </div>
+                    </div> */}
                 
                 <div className="text-end mt-3">
-                  <Button onClick={() => {console.log(formEmail); console.log(number)}} variant="primary justify ">Save</Button>
+                  <Button onClick={() => updateUserContactInfo()} variant="primary justify ">Save</Button>
                 </div>
               </form>
-            </Row>
+            </Row>}
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>
