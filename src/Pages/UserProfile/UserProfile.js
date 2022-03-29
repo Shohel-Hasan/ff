@@ -248,10 +248,10 @@ const UserProfile = (props) => {
                             </Modal.Body>
                         </Modal>
                     
-                        <div>
+                        <div style={{marginTop: '-10px'}}>
                             <h1 className="name" style={{ color: "#1877f2" }}> {localStorage.getItem('first_name')} </h1>
                             <h6 className="fw-bold" style={{ color: "#1877f2" }}>{users.profession}</h6>
-                            {/* <h6 className="fw-bold" style={{ color: "#1877f2" }}>BUBT</h6> */}
+                           
                             <button  
                                 className="bg-primary rounded-pill btn-sm btn text-white"
                             >Follow <span>+</span></button>

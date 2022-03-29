@@ -200,7 +200,7 @@ export default function Registration(props) {
                             </div>
                         </div>
 
-                        <p className='my-3' style={{width: '95%', color: 'grey'}}>By clicking Sign Up, you agree to our <Link to='/privacy-policy'>Privacy Policy</Link>, Data Policy and Cookie Policy.</p>
+                        <p className='my-3' style={{width: '95%', color: 'grey'}}>By clicking Sign Up, you agree to our <Link className="text-decoration-none" to='/privacy-policy'>Privacy Policy,</Link> <Link className="text-decoration-none" to='/data-policy'>Data Policy and </Link><Link className="text-decoration-none" to='/cookie-policy'>Cookie Policy.</Link></p>
                         
                         <div className='d-flex justify-content-center align-items-center my-3'>
                             <input type="submit" className={`${style.register} ${style.button}`} />
