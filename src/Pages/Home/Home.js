@@ -675,7 +675,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
 
                     {/* Course Information Start */}
                     <Row>
-                      {allPosts && allPosts.map((post, index) => <div  key={index} className='my-3'>
+                      {allPosts && allPosts.map((post, index) => <div  key={index} className=''>
                         <div className="fb-cards-designs">
                           <div className="fb-clone-card">
                             <div className="fb-card-main-content">
@@ -687,8 +687,8 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
 
                                   </div>
                                   <div className="user-information">
-                                  {!post.group_name && <p><Link to={`/user/${post.user}`}>{post.user_first_name}</Link></p>}
-                                  {post.group_name && <p><Link to={`/group/${post.group}/details`}>{post.group_name}</Link></p>}
+                                  {!post.group_name && <p><Link className='text-decoration-none' to={`/user/${post.user}`}>{post.user_first_name}</Link></p>}
+                                  {post.group_name && <p><Link className='text-decoration-none' to={`/group/${post.group}/details`}>{post.group_name}</Link></p>}
 
                                     <small>{post.created_date}</small>
                                   </div>
@@ -762,7 +762,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                               </div>}
                             </div>
 
-                              <div className="fb-card-like-comment-holder">
+                              {/* <div className="fb-card-like-comment-holder">
                                 <div className="fb-card-like-comment">
                                   <div className="likes-emoji-holder">
                                       <span className='emoji-holder'>14 Likes</span>
@@ -771,18 +771,18 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                                       <span  className='emoji-holder'>10 Comments</span>
                                   </div>
                                 </div>
-                              </div>
+                              </div> */}
 
                               <div className="fb-card-actions-holder">
                                 <div className="d-flex justify-content-between">
                                     <div className="fb-btn-holder">
-                                        <Button className='text-primary' variant="outline-light"><i className="fa hom-icon fa-thumbs-up"></i> Like</Button>                     
+                                        <Button className='text-primary' variant="outline-light"><i className="fa hom-icon fa-thumbs-up"></i> <span>10</span> Like</Button>                     
                                     </div>
                                     <div className="fb-btn-holder">
-                                        <Button className='text-primary' variant="outline-light"><i className="far hom-icon fa-comment-alt"></i> Comment</Button>
+                                        <Button className='text-primary' variant="outline-light"><i className="far hom-icon fa-comment-alt"></i> <span>10</span> Comment</Button>
                                     </div>
                                     <div className="fb-btn-holder">
-                                        <Button className='text-primary' variant="outline-light"><i className="fa hom-icon fa-share-square"></i> Share</Button>
+                                        <Button className='text-primary' variant="outline-light"><i className="fa hom-icon fa-share-square"></i> <span>10</span> Share</Button>
                                     </div>
                                   
                                 </div>
