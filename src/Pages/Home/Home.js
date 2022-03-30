@@ -104,9 +104,7 @@ const handleSummaryPost = () => {
                       "Accept": "application/json",
                       "Content-Type": "application/json"
                   }})
-                  .then(res =>{
-                    return res.json()
-                  })
+                  .then(res => res.json())
                   .then(data =>  setSummaryPosts(data))
               }
           })
@@ -160,9 +158,7 @@ useEffect(() => {
       "Accept": "application/json",
       "Content-Type": "application/json"
   }})
-  .then(res =>{
-    return res.json()
-  })
+  .then(res =>res.json())
   .then(data => {
       if (data.message) {
         setNoSummaryPosts([{data: data.message}]
@@ -310,7 +306,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                     <Row className='justify-content-center my-4'>
                         <Col>
                             <div className="p-3 shadow-effect d-flex align-items-center  ">
-                              {userGeneralInfo.cover_pic!==null && <div className='w-25'>
+                              {userGeneralInfo.profile_pic!==null && <div className='w-25'>
                                   <div className='text-center'>
                                     <img
                                     className="rounded-circle"
@@ -321,7 +317,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                                   </div>
                               </div>}
 
-                              {userGeneralInfo.cover_pic===null && <div className='w-25'>
+                              {userGeneralInfo.profile_pic===null && <div className='w-25'>
                                   <div className='text-center'>
                                     <img
                                     className="rounded-circle"
@@ -694,7 +690,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                                   </div>
                                 </div>
                                 <div className="post-action">
-                                    <i className="fa fa-ellipsis-h"></i>
+                                    <i className="fa fa-ellipsis-h text-primary"></i>
                                 </div>
                               </div>
                               {post.title_of_research_article &&  <div className="fb-card-body simple-text-card simple-image-card">
