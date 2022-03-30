@@ -194,6 +194,44 @@ const UserProfile = (props) => {
         })
     }, [userId.userId])
 
+    // unfollow header
+    const unfollowHeader = {
+        // mode: 'no-cors',
+        method: 'DELETE',
+        headers: {
+            "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            following_id : userId.userId,
+        })
+    };
+    // unfollow user api
+    const unfollowUser = event => {
+        console.log("i am here..")
+        fetch('http://127.0.0.1:8000/social/unfollow/', unfollowHeader)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                fetch(`http://127.0.0.1:8000/social/following/${localStorage.getItem('id')}`, {
+                    method: 'GET',
+                    headers: {
+                        "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+                        "Accept": "application/json",
+                        "Content-Type": "application/json"
+                    }})
+                    .then(res => res.json())
+                    .then(data => {console.log(data)
+                        const following_ins = data.find(d=> d.following_id===+userId.userId)
+                        if (following_ins===undefined) {
+                            setIsFollowing(false)
+                        }
+                    })
+            })
+            .catch(error => console.log(error))
+    }
+
     const BASE_URL = "http://127.0.0.1:8000"
 
     return (
@@ -311,7 +349,7 @@ const UserProfile = (props) => {
                             <h1 className="name" style={{ color: "#1877f2" }}> {users.first_name} </h1>
                             <h6 className="fw-bold" style={{ color: "#1877f2" }}>{users.profession}</h6>
                            {localStorage.getItem('id')!==userId.userId && !isFollowing && <button className="bg-primary rounded-pill btn-sm btn text-white" onClick={()=>followCreate()}>Follow <span>+</span></button>}
-                           {isFollowing && <button className="bg-primary rounded-pill btn-sm btn text-white">Following</button>}
+                           {isFollowing && <button className="bg-primary rounded-pill btn-sm btn text-white" onClick={()=>unfollowUser()}>Following</button>}
                         </div>
                     </div>
                 </Col>
