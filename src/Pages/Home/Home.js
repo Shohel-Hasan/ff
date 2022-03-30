@@ -314,7 +314,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                                   <div className='text-center'>
                                     <img
                                     className="rounded-circle"
-                                    style={{ width: "80px", height: "80px", 'objectFit': 'cover' }} 
+                                    style={{ width: "80px", height: "80px", objectFit: 'cover' }} 
                                     src={`${BASE_URL}${userGeneralInfo.profile_pic}`}
                                     alt=''
                                     />
@@ -335,7 +335,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                               <div className='w-75'>
                                   <Form.Control
                                   onClick={() => setShow(true)}
-                                  className="rounded-pill post-filed mb-2 "
+                                  className="rounded-pill post-filed mb-2"
                                   type="text"
                                   placeholder="Share a thought that you like"
                                   />

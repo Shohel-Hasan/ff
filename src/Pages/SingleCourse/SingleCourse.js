@@ -563,13 +563,13 @@ const BASE_URL = "http://127.0.0.1:8000"
                         <div>
                           <div className="d-flex justify-content-around">
                             <div className="text-center mt-3 mx-1">
-                                <a  className='text-decoration-none' href='/' ><i className="far fa-thumbs-up "></i> Like</a>
+                                <Button  className='text-primary' variant="outline-light"><i className="far fa-thumbs-up "></i> <span>10</span> Like</Button>
                             </div>
                             <div className="mt-3 mx-1">
-                                <a className='text-decoration-none' href='/'><i className="far fa-comment"></i> Comment</a>
+                                <Button className='text-primary' variant="outline-light"><i className="far fa-comment"></i> <span>10</span> Comment</Button>
                             </div>
                             <div className="fb-btn-holder text-center mt-3 mx-1">
-                                <a className='text-decoration-none' href='/'><i className="far fa-share-square"></i> Share</a>
+                                <Button className='text-primary' variant="outline-light"><i className="far fa-share-square"></i> <span>10</span> Share</Button>
                             </div>
                           </div>
                         </div>

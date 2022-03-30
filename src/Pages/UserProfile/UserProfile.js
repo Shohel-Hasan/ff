@@ -342,8 +342,8 @@ const UserProfile = (props) => {
                             title="Post"
                            
                             >
-                            <NavDropdown.Item href="thoughtPost">
-                                Thought Post
+                            <NavDropdown.Item >
+                                <Link className='text-decoration-none' to='thoughtPost'> Thought Post</Link>
                             </NavDropdown.Item>
                             <NavDropdown.Item href="summaryPost">
                                 Research Summary

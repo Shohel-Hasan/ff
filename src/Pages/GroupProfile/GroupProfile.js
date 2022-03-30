@@ -1066,13 +1066,13 @@ const updateGroupProfilePic = () => {
                               <div className="fb-card-actions-holder">
                                 <div className="d-flex justify-content-between">
                                     <div className="fb-btn-holder">
-                                        <a className='text-decoration-none' href="/"><i className="fa hom-icon fa-thumbs-up"></i> <span>10</span> like</a>
+                                        <Button className='text-primary' variant="outline-light"><i className="fa hom-icon fa-thumbs-up"></i> <span>10</span> like</Button>
                                     </div>
                                     <div className="fb-btn-holder">
-                                        <a className='text-decoration-none' href="/"><i className="far hom-icon fa-comment-alt"></i> <span>10</span> Comment</a>
+                                        <Button className='text-primary' variant="outline-light"><i className="far hom-icon fa-comment-alt"></i> <span>10</span> Comment</Button>
                                     </div>
                                     <div className="fb-btn-holder">
-                                        <a className='text-decoration-none' href="/"><i className="fa hom-icon fa-share-square"></i> <span>10</span> Share</a>
+                                        <Button className='text-primary' variant="outline-light"><i className="fa hom-icon fa-share-square"></i> <span>10</span> Share</Button>
                                     </div>
                                 </div>
                               </div>
