@@ -96,7 +96,6 @@ const handleSummaryPost = () => {
               if (res.status===400) {
                 alert("please enter all the required field");
               } else if(res.status===201) {
-                alert("summary post created")
                 fetch(`http://127.0.0.1:8000/post/summerypost/all/`, {
                   method: 'GET',
                   headers: {
@@ -132,7 +131,6 @@ const handleThoughtPost = () => {
               if (res.status===400) {
                 alert("please enter all the required field");
               } else if(res.status===201) {
-                alert("Thought post created")
                 fetch(`http://127.0.0.1:8000/post/thoughtpost/all/`, {
                   method: 'GET',
                   headers: {
@@ -690,7 +688,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                                   </div>
                                 </div>
                                 <div className="post-action">
-                                    <i className="fa fa-ellipsis-h text-primary"></i>
+                                  <i className="fa fa-ellipsis-h text-primary"></i>
                                 </div>
                               </div>
                               {post.title_of_research_article &&  <div className="fb-card-body simple-text-card simple-image-card">
@@ -800,7 +798,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                               </div>
                             </div>
                           </div>
-                      </div>)
+                        </div>)
                       }
                     </Row>
 

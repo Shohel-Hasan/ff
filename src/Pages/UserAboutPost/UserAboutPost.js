@@ -1117,6 +1117,8 @@ const updateUserGeneralInfo = () =>{
             </Row>}
           </Accordion.Body>
         </Accordion.Item>
+
+        
       </Accordion>
       
       <Row>
