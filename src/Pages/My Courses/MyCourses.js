@@ -78,7 +78,7 @@ const MyCourses = (props) => {
           console.log(myCourses)
         }
     })
-}, [localStorage.getItem('id')])
+}, [])
 
 const BASE_URL = "http://127.0.0.1:8000"
 
