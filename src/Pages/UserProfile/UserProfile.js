@@ -4,8 +4,7 @@ import './UserProfile.css'
 import man from '../../Images/man.jpg'
 import img from '../../assets/re/cover_photo.svg'
 import { Link, Outlet, useParams } from 'react-router-dom';
-import camera from '../../Images/camera.svg'
-import { height } from '@mui/system';
+
 
 
 
@@ -26,6 +25,8 @@ const UserProfile = (props) => {
 
     const [following, setFollowing] = useState([]);
     const [isFollowing, setIsFollowing] = useState(false);
+
+    
 
 
     // getting user general Info
@@ -232,6 +233,8 @@ const UserProfile = (props) => {
             .catch(error => console.log(error))
     }
 
+
+
     const BASE_URL = "http://127.0.0.1:8000"
 
     return (
@@ -375,6 +378,7 @@ const UserProfile = (props) => {
                         <li>
                         <Nav className='border-bottom-2'>
                             <NavDropdown
+                            href="user-post"
                             id="nav-dropdown-dark-example"
                             title="Post"
                            
@@ -393,6 +397,7 @@ const UserProfile = (props) => {
                                 to="user-profile-post"
                                 className="nav-link NavLink"
                                 data-toggle="tab"
+                                
                             >
                                 About
                         </Link>
@@ -438,10 +443,12 @@ const UserProfile = (props) => {
                 </div>
                 </div>
             </div>
+          
             </Col>
-      
         </Row>
+        <h2>this is user dashbora</h2>
         <Outlet/>
+
     </Container>
     );
 };
