@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Accordion, Col, Container, Form, Row } from 'react-bootstrap';
+import { Accordion, Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const GroupsHome = () => {
@@ -121,7 +121,7 @@ const BASE_URL = "http://127.0.0.1:8000"
     return (
         <Container fluid className='home-container'>
             <Row className=''>
-                <Col md={3}>
+                <Col md={2}>
                     <Accordion className='my-3 rounded' alwaysOpen>
                         <Accordion.Item eventKey="0">
                             <Accordion.Header>My-Groups</Accordion.Header>
@@ -248,27 +248,16 @@ const BASE_URL = "http://127.0.0.1:8000"
                               </div>}
                             </div>
 
-                              <div className="fb-card-like-comment-holder">
-                                <div className="fb-card-like-comment">
-                                  <div className="likes-emoji-holder">
-                                      <span className='emoji-holder'>14 Likes</span>
-                                  </div>
-                                  <div className="like-comment-holder">
-                                      <span  className='emoji-holder'>10 Comments</span>
-                                  </div>
-                                </div>
-                              </div>
-
                               <div className="fb-card-actions-holder">
                                 <div className="d-flex justify-content-between">
                                     <div className="fb-btn-holder">
-                                        <a className='text-decoration-none' href="/"><i className="fa hom-icon fa-thumbs-up"></i> Like</a>
+                                        <Button className='text-primary' variant="outline-light"><i className="fa hom-icon fa-thumbs-up"></i> <span>10</span> Like</Button>
                                     </div>
                                     <div className="fb-btn-holder">
-                                        <a className='text-decoration-none' href="/"><i className="far hom-icon fa-comment-alt"></i> Comment</a>
+                                        <Button className='text-primary' variant="outline-light"><i className="far hom-icon fa-comment-alt"></i> <span>10</span> Comment</Button>
                                     </div>
                                     <div className="fb-btn-holder">
-                                        <a className='text-decoration-none' href="/"><i className="fa hom-icon fa-share-square"></i> Share</a>
+                                        <Button className='text-primary' variant="outline-light"><i className="fa hom-icon fa-share-square"></i> <span>10</span> Share</Button>
                                     </div>
                                 </div>
                               </div>
@@ -292,6 +281,8 @@ const BASE_URL = "http://127.0.0.1:8000"
                       </div>)
                       }
                 </Col>
+
+                <Col md={2}></Col>
 
             </Row>
  

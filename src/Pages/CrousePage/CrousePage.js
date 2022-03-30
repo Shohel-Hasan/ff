@@ -117,13 +117,13 @@ const CrousePage = (props) => {
                              <div className="fb-card-actions-holder">
                                 <div className="fb-card-actions d-flex justify-content-around">
                                     <div className="fb-btn-holder">
-                                        <a className='a-link' href="/"><i className="fa fa-thumbs-up"></i> Like</a>
+                                        <Button className='text-primary' variant="outline-light"> <i className="fa fa-thumbs-up"></i> Like</Button>
                                     </div>
                                     <div className="fb-btn-holder">
-                                        <a className='a-link' href="/"><i className="far fa-comment-alt"></i> Comment</a>
+                                        <Button className='text-primary' variant="outline-light"><i className="far fa-comment-alt"></i> Comment</Button>
                                     </div>
                                     <div className="fb-btn-holder">
-                                        <a className='a-link' href="/"><i className="fa fa-share-square"></i> Share</a>
+                                        <Button className='text-primary' variant="outline-light"><i className="fa fa-share-square"></i> Share</Button>
                                     </div>
                                 </div>
                             </div>
@@ -173,13 +173,13 @@ const CrousePage = (props) => {
                              <div className="fb-card-actions-holder">
                                 <div className="fb-card-actions d-flex justify-content-around">
                                     <div className="fb-btn-holder">
-                                        <a className='a-link' href="/"><i className="fa fa-thumbs-up"></i> Like</a>
+                                        <Button className='text-primary' variant="outline-light"><i className="fa fa-thumbs-up"></i> Like</Button>
                                     </div>
                                     <div className="fb-btn-holder">
-                                        <a className='a-link' href="/"><i className="far fa-comment-alt"></i> Comment</a>
+                                        <Button className='text-primary' variant="outline-light"><i className="far fa-comment-alt"></i> Comment</Button>
                                     </div>
                                     <div className="fb-btn-holder">
-                                        <a className='a-link' href="/"><i className="fa fa-share-square"></i> Share</a>
+                                        <Button className='text-primary' variant="outline-light"><i className="fa fa-share-square"></i> Share</Button>
                                     </div>
                                 </div>
                             </div>
