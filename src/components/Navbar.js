@@ -97,7 +97,7 @@ export default function Navbar(props) {
       </div>
       
       <div className={`${style.profile_section} d-flex flex-row justify-content-center align-items-center`}>
-       {userGeneralInfo.profile_pic!==null && <Link to={`user/${localStorage.getItem('id')}`}><img src={`${BASE_URL}${userGeneralInfo.profile_pic}`} className={`${style.avatar}`} alt='home' /></Link>}
+       {userGeneralInfo.profile_pic!==null && <Link to={`user/${localStorage.getItem('id')}`}><img style={{objectFit: 'cover'}} src={`${BASE_URL}${userGeneralInfo.profile_pic}`} className={`${style.avatar}`} alt='home' /></Link>}
        {userGeneralInfo.profile_pic===null && <Link to={`user/${localStorage.getItem('id')}`}> <img src={avatar} className={`${style.avatar}`} alt='home' /></Link>}
 
         <img  src={notification_icon_filled} className={`${style.end_icons} ${style.notification_icon}`} alt='home' />

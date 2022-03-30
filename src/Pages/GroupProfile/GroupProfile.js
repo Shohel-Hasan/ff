@@ -984,7 +984,9 @@ const updateGroupProfilePic = () => {
                                   </div>
                                 </div>
                                 <div className="post-action">
-                                    <i className="fa fa-ellipsis-h"></i>
+                                    <i className="fa fa-ellipsis-h text-primary"></i>
+
+                                    
                                 </div>
                               </div>
                               {post.title_of_research_article &&  <div className="fb-card-body simple-text-card simple-image-card">
