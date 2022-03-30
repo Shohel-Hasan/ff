@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col, Container, Form, Row, Modal,Button, FormControl,  InputGroup, Accordion } from 'react-bootstrap';
+import { Col, Container, Form, Row, Modal,Button, FormControl,  InputGroup, Accordion, Card, useAccordionButton, Dropdown } from 'react-bootstrap';
 import { Link, useParams } from "react-router-dom";
 import "./GroupProfile.css";
 import man from '../../Images/man.jpg';
@@ -10,7 +10,8 @@ const GroupProfile = (props) => {
   const [show, setShow] = useState(false);
   const [modal, setModal] = useState(false);
   const [setting, setSetting] = useState(false);
-  const [nameModal, setNameModal] =useState(false);
+
+  const [deleteModal, setDeleteModla] = useState()
   const [updateGroupName, setUpdateGroupName] = useState("");
 
   const [groupCoverPic, setGroupCoverPic] = useState();
@@ -504,6 +505,21 @@ const updateGroupProfilePic = () => {
       
   .catch(error => console.log(error))
 }
+
+const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
+  <span
+    href="/#"
+    ref={ref}
+    onClick={(e) => {
+      e.preventDefault();
+      onClick(e);
+    }}
+  >
+    {children}
+    <i className="fa fa-ellipsis-h text-primary"></i>
+  </span>
+));
+
   return (
     <Container className="custom">
         {/* Group Profile */}
@@ -984,9 +1000,15 @@ const updateGroupProfilePic = () => {
                                   </div>
                                 </div>
                                 <div className="post-action">
-                                    <i className="fa fa-ellipsis-h text-primary"></i>
+                                <Dropdown>
+                                    <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components"></Dropdown.Toggle>
 
-                                    
+                                    <Dropdown.Menu style={{margin: '0', padding: '0'}}>
+                                      <Dropdown.Item  eventKey="1">Edit</Dropdown.Item>
+                                      <Dropdown.Item  eventKey="2">Delete</Dropdown.Item>
+                                     
+                                    </Dropdown.Menu>
+                                  </Dropdown>
                                 </div>
                               </div>
                               {post.title_of_research_article &&  <div className="fb-card-body simple-text-card simple-image-card">
