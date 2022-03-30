@@ -1006,7 +1006,6 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
                                     <Dropdown.Menu style={{margin: '0', padding: '0'}}>
                                       <Dropdown.Item  eventKey="1">Edit</Dropdown.Item>
                                       <Dropdown.Item  eventKey="2">Delete</Dropdown.Item>
-                                     
                                     </Dropdown.Menu>
                                   </Dropdown>
                                 </div>
