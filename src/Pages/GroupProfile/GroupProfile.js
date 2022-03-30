@@ -559,14 +559,14 @@ const thoughtDelete = (id) => {
       .then(response =>{ response.json()
         if (response.status===204) {
           fetch(`http://127.0.0.1:8000/post/${groupId.groupId}/group-thought-all`, {
-                  method: 'GET',
-                  headers: {
-                      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
-                      "Accept": "application/json",
-                      "Content-Type": "application/json"
-                  }})
-                  .then(res =>res.json())
-                  .then(data => setGroupThoughtPosts(data))
+            method: 'GET',
+            headers: {
+                "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }})
+            .then(res =>res.json())
+            .then(data => setGroupThoughtPosts(data))
         }
       })
       .catch(error => console.log(error))
@@ -1069,19 +1069,19 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
                                   {post.title_of_research_article && <Dropdown>
                                     <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components"></Dropdown.Toggle>
 
-                                    <Dropdown.Menu style={{margin: '0', padding: '0'}}>
+                                   {groupMember.role==="Creator" && <Dropdown.Menu style={{margin: '0', padding: '0'}}>
                                       <Dropdown.Item  eventKey="1">Edit</Dropdown.Item>
                                       <Dropdown.Item  eventKey="2" onClick={() => summaryDelete(post.id)}>Delete</Dropdown.Item>
-                                    </Dropdown.Menu>
+                                    </Dropdown.Menu>}
                                   </Dropdown>}
 
                                   {!post.title_of_research_article && <Dropdown>
                                     <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components"></Dropdown.Toggle>
 
-                                    <Dropdown.Menu style={{margin: '0', padding: '0'}}>
+                                   {groupMember.role==="Creator" && <Dropdown.Menu style={{margin: '0', padding: '0'}}>
                                       <Dropdown.Item  eventKey="1">Edit</Dropdown.Item>
                                       <Dropdown.Item  eventKey="2" onClick={()=> thoughtDelete(post.id)}>Delete</Dropdown.Item>
-                                    </Dropdown.Menu>
+                                    </Dropdown.Menu>}
                                   </Dropdown>}
                                   
                                 </div>
