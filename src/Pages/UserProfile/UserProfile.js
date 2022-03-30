@@ -188,7 +188,6 @@ const UserProfile = (props) => {
         .then(res => res.json())
         .then(data => {console.log(data)
             const following_ins = data.find(d=> d.following_id===+userId.userId)
-            console.log(following_ins.following_id)
             if (following_ins.following_id===+userId.userId) {
                 setIsFollowing(true);
             }
@@ -384,16 +383,16 @@ const UserProfile = (props) => {
                             className="nav-link NavLink"
                             data-toggle="tab"
                         >
-                            User Following
+                            Following
                         </Link>
                         </li>
                         <li className="nav-item">
                         <Link
-                            to="user-follow-us"
+                            to="user-followers"
                             className="nav-link NavLink"
                             data-toggle="tab"
                         >
-                            Follow Us
+                            Followers
                         </Link>
                         </li>
                     </ul>

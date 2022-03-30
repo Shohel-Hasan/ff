@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Card, Col, Container, Row } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
-import img from '../../Images/research rider.png'
+import img from '../../Images/RR_Logo (3)-01.png';
 
-const UserFollowing = () => {
+const UserFollowers = () => {
 
-    const [followings, setFollowings] = useState([]);
-    const [noFollowings, setNofollowings] = useState([]);
+    const [followers, setFollowers] = useState([]);
+    const [noFollowers, setNoFollowers] = useState([]);
 
     const userId = useParams()
     console.log(typeof userId.userId)
@@ -14,7 +14,7 @@ const UserFollowing = () => {
 
     // getting is follow
     useEffect(() => {
-        fetch(`http://127.0.0.1:8000/social/following/${userId.userId}`, {
+        fetch(`http://127.0.0.1:8000/social/followers/${userId.userId}`, {
         method: 'GET',
         headers: {
             "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
@@ -24,10 +24,10 @@ const UserFollowing = () => {
         .then(res => res.json())
         .then(data => {console.log(data)
             if (data.message) {
-                setNofollowings([{data: data.message}]
+                setNoFollowers([{data: data.message}]
                 )
               } else {
-                setFollowings(data)
+                setFollowers(data)
                 console.log(data)
               }
         })
@@ -38,15 +38,14 @@ const UserFollowing = () => {
 
     return (
         <Container>
-
-            {noFollowings.map(noF => <Row key={noF.id} className="d-flex  g-4 justify-content-center my-3">
+            {noFollowers.map(noF => <Row key={noF.id} className="d-flex  g-4 justify-content-center my-3">
                 <Col md={8}>
                     <div>No following</div>
                 </Col>
             </Row>)
 
             }
-            {followings.map(follow=> <Row key={follow.id} xs={1} md={3}  className="d-flex  g-4 justify-content-center my-3">
+            {followers.map(follow=> <Row key={follow.id} xs={1} md={3}  className="d-flex  g-4 justify-content-center my-3">
                 <Col md={8} style={{  marginTop: '20px' }} className="fb-box-shadow d-flex align-items-center py-3">
                     {follow.profile_pic!==null && <img style={{ height: "60px", width: "60px", objectFit: 'cover' }} alt="user_profile" className="rounded-circle" src={`${BASE_URL}${follow.profile_pic}`} />}
                     {follow.profile_pic===null && <img style={{ height: "60px", width: "60px", objectFit: 'cover' }} alt="user_profile" className="rounded-circle" src={img} />}
@@ -55,12 +54,13 @@ const UserFollowing = () => {
                         <p><b><Link to={`/user/${follow.following_id}`} className='text-decoration-none'>{follow.first_name}</Link></b></p>
                     </div>
                     <div>
-                        {localStorage.getItem('id')===userId.userId && <button className='btn btn-primary'>Unfollow</button>}
+                        {localStorage.getItem('id')===userId.userId && <button className='btn btn-primary'>Follow</button>}
                     </div>
                 </Col>
             </Row>)}
+
         </Container>
     );
 };
 
-export default UserFollowing;
+export default UserFollowers;

@@ -25,7 +25,7 @@ import GroupsHome from "./Pages/GroupsHome/GroupsHome";
 import { useNavigate } from 'react-router-dom';
 import Setting from "./Pages/Settings/Setting";
 import UserFollowing from "./Pages/UserFollowing/UserFollowing";
-import UserFollowUs from "./Pages/UserFollowUs/UserFollowUs";
+import UserFollowers from "./Pages/UserFollowers/UserFollowers";
 
 
 
@@ -88,7 +88,7 @@ function App() {
         <Route path="user/:userId" element={<UserProfile triggerCheckLoggedIn={checkLoggedIn}/>}>
           <Route path="user-profile-post" element={<UserAboutPost triggerCheckLoggedIn={checkLoggedIn} />} />
           <Route path="user-following" element={<UserFollowing triggerCheckLoggedIn={checkLoggedIn} />} />
-          <Route path="user-follow-us" element={<UserFollowUs triggerCheckLoggedIn={checkLoggedIn} />} />
+          <Route path="user-followers" element={<UserFollowers triggerCheckLoggedIn={checkLoggedIn} />} />
           <Route path="thoughtPost" element={<ThoughtPost triggerCheckLoggedIn={checkLoggedIn} />} />
           <Route path="summaryPost" element={<SummaryPost triggerCheckLoggedIn={checkLoggedIn} />} />
         </Route>
