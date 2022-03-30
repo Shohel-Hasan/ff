@@ -24,6 +24,8 @@ const UserProfile = (props) => {
     const [modal, setModal] = useState(false);
     const handleClose = () => setShow(false);
 
+    const [following, setFollowing] = useState([]);
+    const [isFollowing, setIsFollowing] = useState(false);
 
 
     // getting user general Info
@@ -134,6 +136,64 @@ const UserProfile = (props) => {
         })
         .catch(error => console.log(error))
     }
+
+
+    // follow creating header
+    const followCreateHeader = {
+        // mode: 'no-cors',
+        method: 'POST',
+        headers: {
+            "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            following_id : userId.userId,
+        })
+    };
+    // follow create api
+    const followCreate = event => {
+        fetch('http://127.0.0.1:8000/social/create-following/', followCreateHeader)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                fetch(`http://127.0.0.1:8000/social/following/${localStorage.getItem('id')}`, {
+                    method: 'GET',
+                    headers: {
+                        "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+                        "Accept": "application/json",
+                        "Content-Type": "application/json"
+                    }})
+                    .then(res => res.json())
+                    .then(data => {console.log(data)
+                        const following_ins = data.find(d=> d.following_id===+userId.userId)
+                        console.log(following_ins.following_id)
+                        if (following_ins.following_id===+userId.userId) {
+                            setIsFollowing(true);
+                        }
+                    })
+            })
+            .catch(error => console.log(error))
+    }
+
+    // getting is follow
+    useEffect(() => {
+        fetch(`http://127.0.0.1:8000/social/following/${localStorage.getItem('id')}`, {
+        method: 'GET',
+        headers: {
+            "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        }})
+        .then(res => res.json())
+        .then(data => {console.log(data)
+            const following_ins = data.find(d=> d.following_id===+userId.userId)
+            console.log(following_ins.following_id)
+            if (following_ins.following_id===+userId.userId) {
+                setIsFollowing(true);
+            }
+        })
+    }, [userId.userId])
 
     const BASE_URL = "http://127.0.0.1:8000"
 
@@ -249,16 +309,12 @@ const UserProfile = (props) => {
                         </Modal>
                     
                         <div style={{marginTop: '-10px'}}>
-                            <h1 className="name" style={{ color: "#1877f2" }}> {localStorage.getItem('first_name')} </h1>
+                            <h1 className="name" style={{ color: "#1877f2" }}> {users.first_name} </h1>
                             <h6 className="fw-bold" style={{ color: "#1877f2" }}>{users.profession}</h6>
-                           
-                            <button  
-                                className="bg-primary rounded-pill btn-sm btn text-white"
-                            >Follow <span>+</span></button>
+                           {localStorage.getItem('id')!==userId.userId && !isFollowing && <button className="bg-primary rounded-pill btn-sm btn text-white" onClick={()=>followCreate()}>Follow <span>+</span></button>}
+                           {isFollowing && <button className="bg-primary rounded-pill btn-sm btn text-white">Following</button>}
                         </div>
                     </div>
-
-       
                 </Col>
                 <hr
                         style={{

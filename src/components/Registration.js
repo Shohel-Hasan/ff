@@ -64,7 +64,11 @@ export default function Registration(props) {
         console.log(registrationHeader.body)
 
         fetch('http://127.0.0.1:8000/user/registration', registrationHeader)
-            .then(response => response.json())
+            .then(response => {response.json()
+                if (response.status===400) {
+                    alert("user email already exists! try another email")
+                }
+            })
             .then(data => {
                 console.log(data)
                 props.closeModal();
