@@ -128,14 +128,14 @@ const BASE_URL = "http://127.0.0.1:8000"
                                 <Accordion.Body>
                                 { noGroup &&
                                     noGroup.map(no => <Row className="d-flex justify-content-center my-3"><Col md={8} style={{ background: "#fff" }} className="fb-box-shadow d-flex align-items-center justify-content-center py-3"><div  className="d-flex flex-column justify-content-center mx-4">
-                                    <p className="m-0 p-0"> {no.data} </p></div></Col></Row> )
+                                    <p> {no.data} </p></div></Col></Row> )
                                 }
 
                                 { myGroups &&
                                     myGroups.map(group=>  <Row key={group.id} className="d-flex justify-content-center my-3">
                                     
                                     <div  className="d-flex flex-column justify-content-center mx-4">
-                                        <p className="m-0 p-0"> <b> <Link className='text-decoration-none' to={`/group/${group.id}/details`}>  {group.name}</Link>  </b> </p>
+                                        <p> <b> <Link className='text-decoration-none' to={`/group/${group.id}/details`}>  {group.name}</Link>  </b> </p>
                                     </div>
                                     </Row>)
                                     }

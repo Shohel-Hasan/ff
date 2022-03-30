@@ -24,6 +24,8 @@ import ProductPolicy from "./Pages/ProductPolicy/ProductPolicy";
 import GroupsHome from "./Pages/GroupsHome/GroupsHome";
 import { useNavigate } from 'react-router-dom';
 import Setting from "./Pages/Settings/Setting";
+import UserFollowing from "./Pages/UserFollowing/UserFollowing";
+import UserFollowUs from "./Pages/UserFollowUs/UserFollowUs";
 
 
 
@@ -85,6 +87,8 @@ function App() {
         {/* Nested Routing Start */}
         <Route path="user/:userId" element={<UserProfile triggerCheckLoggedIn={checkLoggedIn}/>}>
           <Route path="user-profile-post" element={<UserAboutPost triggerCheckLoggedIn={checkLoggedIn} />} />
+          <Route path="user-following" element={<UserFollowing triggerCheckLoggedIn={checkLoggedIn} />} />
+          <Route path="user-follow-us" element={<UserFollowUs triggerCheckLoggedIn={checkLoggedIn} />} />
           {/* <Route path="thoughtPost" element={<ThoughtPost triggerCheckLoggedIn={checkLoggedIn} />} />
           <Route path="name/about" element={<About triggerCheckLoggedIn={checkLoggedIn} />} /> 
           <Route path="mainPost" element={<MainPost triggerCheckLoggedIn={checkLoggedIn} />} />
@@ -121,6 +125,7 @@ function App() {
         {/* Route not added in navbar*/}
         <Route path="/course-page" element={<CrousePage triggerCheckLoggedIn={checkLoggedIn} />} />
         <Route path="/settings" element={<Setting triggerCheckLoggedIn={checkLoggedIn} />} />
+        
       </Routes>
 
     </div>

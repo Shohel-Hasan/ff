@@ -523,7 +523,7 @@ const updateUserGeneralInfo = () =>{
   // console.log(workingHistory);
 
   return (
-    <Container className=" accordion_custom_div" style={{"padding-top": "69px"}} >
+    <Container className="accordion_custom_div" >
       {showChangepass && <ChangepassForm toggle={toggleShowChangePass} />}
       {showChangepass && <Overlay />}
       <Accordion alwaysOpen className="mb-5">
