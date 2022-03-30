@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Card, Col, Container, Row } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import img from '../../Images/research rider.png'
 
@@ -37,28 +37,25 @@ const UserFollowing = () => {
 
 
     return (
-        <Container>
+        <Container className='d-flex justify-content-center'>
 
             {noFollowings.map(noF => <Row key={noF.id} className="d-flex  g-4 justify-content-center my-3">
                 <Col md={8}>
                     <div>No following</div>
                 </Col>
             </Row>)
-
             }
-            {followings.map(follow=> <Row key={follow.id} xs={1} md={3}  className="d-flex  g-4 justify-content-center my-3">
-                <Col md={8} style={{  marginTop: '20px' }} className="fb-box-shadow d-flex align-items-center py-3">
-                    {follow.profile_pic!==null && <img style={{ height: "60px", width: "60px", objectFit: 'cover' }} alt="user_profile" className="rounded-circle" src={`${BASE_URL}${follow.profile_pic}`} />}
-                    {follow.profile_pic===null && <img style={{ height: "60px", width: "60px", objectFit: 'cover' }} alt="user_profile" className="rounded-circle" src={img} />}
-                    
-                    <div  className="d-flex flex-column justify-content-center mx-4">
-                        <p><b><Link to={`/user/${follow.following_id}`} className='text-decoration-none'>{follow.first_name}</Link></b></p>
-                    </div>
+             <Row className="d-flex w-75 justify-content-center my-4">
+             {followings.map(follow=>   <Col key={follow.id} md={6} className=" d-flex justify-content-between align-items-center my-3">
+                <Card className='w-100 fb-box-shadow p-4'>
                     <div>
-                        {localStorage.getItem('id')===userId.userId && <button className='btn btn-primary'>Unfollow</button>}
+                        {follow.profile_pic!==null && <img style={{ height: "60px", width: "60px", objectFit: 'cover' }} alt="user_profile" className="rounded-circle" src={`${BASE_URL}${follow.profile_pic}`} />}
+                        {follow.profile_pic===null && <img style={{ height: "60px", width: "60px", objectFit: 'cover' }} alt="user_profile" className="rounded-circle" src={img} />}
+                        <small><b><Link to={`/user/${follow.following_id}`} className='text-decoration-none mx-4'>{follow.first_name}</Link></b></small>
                     </div>
-                </Col>
-            </Row>)}
+                </Card>
+                </Col>)}
+            </Row>
         </Container>
     );
 };
