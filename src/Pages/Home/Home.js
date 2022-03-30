@@ -335,7 +335,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                               <div className='w-75'>
                                   <Form.Control
                                   onClick={() => setShow(true)}
-                                  className="rounded-pill post-filed mb-2 "
+                                  className="rounded-pill post-filed mb-2"
                                   type="text"
                                   placeholder="Share a thought that you like"
                                   />

@@ -89,10 +89,8 @@ function App() {
           <Route path="user-profile-post" element={<UserAboutPost triggerCheckLoggedIn={checkLoggedIn} />} />
           <Route path="user-following" element={<UserFollowing triggerCheckLoggedIn={checkLoggedIn} />} />
           <Route path="user-follow-us" element={<UserFollowUs triggerCheckLoggedIn={checkLoggedIn} />} />
-          {/* <Route path="thoughtPost" element={<ThoughtPost triggerCheckLoggedIn={checkLoggedIn} />} />
-          <Route path="name/about" element={<About triggerCheckLoggedIn={checkLoggedIn} />} /> 
-          <Route path="mainPost" element={<MainPost triggerCheckLoggedIn={checkLoggedIn} />} />
-          <Route path="summaryPost" element={<SummaryPost triggerCheckLoggedIn={checkLoggedIn} />} /> */}
+          <Route path="thoughtPost" element={<ThoughtPost triggerCheckLoggedIn={checkLoggedIn} />} />
+          <Route path="summaryPost" element={<SummaryPost triggerCheckLoggedIn={checkLoggedIn} />} />
         </Route>
         {/* Nested Routing End */}
         
