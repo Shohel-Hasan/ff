@@ -1117,8 +1117,1181 @@ const updateUserGeneralInfo = () =>{
             </Row>}
           </Accordion.Body>
         </Accordion.Item>
+        <Accordion.Item eventKey="4" className="my-1 ">
+          <Accordion.Header>
+            <Row>
+              <div>
+                <small className="">
+                  <b>Research Skill</b>
+                </small>
+              </div>
+            </Row>
+          </Accordion.Header>
+          <Accordion.Body>
+            <Row>
+              <form>
+                
+                {areaResearchField.map(item => <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Area of Research Interest
+                  </label>
+                  <div class="col-sm-10">
+                    <input name={item} onBlur={event => {handleMultipleInput(event, areaResearchInterest, setAreaResearchInterest)}} type="text" readonly class="form-control" id="" />
+                  </div>
+                  <i onClick={() => removeInput(item, areaResearchField, setAreaResearchField)} className="fa fa-close d-flex flex-row-reverse mt-2"></i>
+                </div>)}
+                  
+                  <div className="text-end mt-2">
+                    <i onClick={addAreaResearchField} className="fas fa-plus"></i>
+                  </div>
+                
+                {keyResearchField.map(item => <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Key Reseach Skill
+                  </label>
+                  <div class="col-sm-10">
+                    <input name={item} onBlur={event => {handleMultipleInput(event, keyResearchSkill, setKeyResearchSkill)}} type="text" readonly class="form-control" id="" />
+                  </div>
+                  <i onClick={() => removeInput(item, keyResearchField, setKeyResearchField)} className="fa fa-close d-flex flex-row-reverse mt-2"></i>
+                </div>)}
+                  
+                  <div className="text-end mt-2">
+                    <i onClick={addKeyResearchField} className="fas fa-plus"></i>
+                  </div>
+                
+                <div className="text-end mt-3">
+                  <Button onClick={() => {console.log(areaResearchInterest); console.log(keyResearchSkill)}} variant="primary justify ">Save</Button>
+                </div>
+              </form>
+            </Row>
+          </Accordion.Body>
+        </Accordion.Item>
+        <Accordion.Item eventKey="5" className="my-1    ">
+          <Accordion.Header>
+            <Row>
+              <div>
+                <small className="">
+                  <b> Published Research Article</b>
+                </small>
+              </div>
+            </Row>
+          </Accordion.Header>
+          <Accordion.Body>
+            <Row>
+            
+            {researchArticle.length !== 0 && researchArticle.map(item => <div className="my-2">
+                <input className="form-control" value={item.language_name} disabled/>
+                
+                <div className="d-flex align-items-center my-1">
+                  <span>Link</span>
+                  <input className="form-control mx-1" value={item.url_link} disabled/>
+                </div>
+                
+                <div className="d-flex align-items-center my-1">
+                  <span>Article Name</span>
+                  <input className="form-control mx-1" value={item.article_name} disabled/>
+                </div>
+                
+                <div className="d-flex align-items-center my-1">
+                  <span>Author's Name</span>
+                  <input className="form-control mx-1" value={item.authors_name} disabled/>
+                </div>
+
+                <div className="d-flex align-items-center my-1">
+                  <span>Journal's Name</span>
+                  <input className="form-control mx-1" value={item.journals_name} disabled/>
+                </div>
+
+                <div className="d-flex align-items-center my-1">
+                  <span>Publisher's Name</span>
+                  <input className="form-control mx-1" value={item.publisher_name} disabled/>
+                </div>
+
+                <div className="d-flex align-items-center my-1">
+                  <span>Publication Year</span>
+                  <input className="form-control mx-1" value={item.publication_year} disabled/>
+                </div>
+                
+              </div>)}
+
+              <form>
+                {pubYearField.map(item =><div><div className="mt-4 d-flex  ">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Has Url Link
+                  </label>
+                  <div>
+                    <Form.Group className="mx-3 " controlId="formBasicCheckbox">
+                      <Form.Check
+                        type="checkbox"
+                        onClick={() => setUrl(!url)}
+                        aria-controls="example-collapse-text"
+                        aria-expanded={url}
+                        label=""
+                      />
+                    </Form.Group>
+                  </div>
+                </div>
+                <div>
+                  <Collapse in={url}>
+                    <div id="example-collapse-text">
+                      <div class="form-group row mt-3">
+                        <label for="" class="col-sm-2 col-form-label">
+                          Url Link
+                        </label>
+                        <div class="col-sm-10">
+                          <input
+                          // name={item} onBlur={event => {handleMultipleInput(event, urlLink, setUrlLink)}}
+                          name={item} onChange={event => {setUrlLink(event.target.value)}}
+                            type="url"
+                            readonly
+                            class="form-control"
+                            id=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </Collapse>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Article Name
+                  </label>
+                  <div class="col-sm-10">
+                    {/* <input name={item} onBlur={event => {handleMultipleInput(event, articleName, setArticleName)}} type="text" readonly class="form-control" id="" /> */}
+                    <input name={item} onChange={event => {setArticleName(event.target.value)}} type="text" readonly class="form-control" id="" />
+                  </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Author's Name
+                  </label>
+                  <div class="col-sm-10">
+                    {/* <input name={item} onBlur={event => {handleMultipleInput(event, authorName, setAuthorName)}} type="text" readonly class="form-control" id="" /> */}
+                    <input name={item} onChange={event => {setAuthorName(event.target.value)}} type="text" readonly class="form-control" id="" />
+                  </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Journal's Name
+                  </label>
+                  <div class="col-sm-10">
+                    {/* <input name={item} onBlur={event => {handleMultipleInput(event, journalName, setJournalName)}} type="text" readonly class="form-control" id="" /> */}
+                    <input name={item} onChange={event => {setJournalName(event.target.value)}} type="text" readonly class="form-control" id="" />
+                  </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Publisher Name
+                  </label>
+                  <div class="col-sm-10">
+                    {/* <input name={item} onBlur={event => {handleMultipleInput(event, publisherName, setPublisherName)}} type="text" readonly class="form-control" id="" /> */}
+                    <input name={item} onChange={event => {setPublisherName(event.target.value)}} type="text" readonly class="form-control" id="" />
+                  </div>
+                </div>
+                
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Publication Year
+                  </label>
+                  <div class="col-sm-10">
+                    <input
+                    // name={item} onBlur={event => {handleMultipleInput(event, publisherYear, setPublisherYear)}}
+                    name={item} onChange={event => {setPublisherYear(event.target.value)}}
+                      type="number"
+                      readonly
+                      class="form-control"
+                      id=""
+                      min="1900"
+                      max="2099"
+                      step="1"
+                    />
+                  </div>
+                </div>
+                {/* <i onClick={() => removeInput(item, pubYearField, setPubYearField)} className="fa fa-close d-flex flex-row-reverse mt-2"></i> */}
+                </div>)}
+                
+                  {/* <div className="text-end mt-2">
+                    <i onClick={addPubYearField} className="fas fa-plus"></i>
+                  </div> */}
+                <div className="text-end mt-3">
+                <Button variant="primary justify ">Save</Button>
+                </div>
+              </form>
+            </Row>
+          </Accordion.Body>
+        </Accordion.Item>
+        <Accordion.Item eventKey="6" className="my-1    ">
+          <Accordion.Header>
+            <Row>
+              <div>
+                <small className="">
+                  <b>Research Work</b>
+                </small>
+              </div>
+            </Row>
+          </Accordion.Header>
+          <Accordion.Body>
+            <Row>
+              <form>
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Information on the involvement in research work url
+                  </label>
+                  <div class="col-sm-10">
+                    <input onChange={event => setInformationLink(event.target.value)} value={informationLink} type="url" readonly class="form-control" id="" />
+                  </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Institution
+                  </label>
+                  <div class="col-sm-10">
+                    <input onChange={event => setInformationLink(event.target.value)} value={informationLink} type="text" readonly class="form-control" id="" />
+                  </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Start Date
+                  </label>
+                  <div class="col-sm-10">
+                    <input
+                    onChange={event => setStartDate(event.target.value)} value={startDate}
+                      type="date"
+                      readonly
+                      class="form-control"
+                      id="duedate"
+                    />
+                  </div>
+                </div>
+                <div className="mt-4 d-flex  ">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Present
+                  </label>
+                  <div>
+                    <Form.Group className="mx-3 " controlId="formBasicCheckbox">
+                      <Form.Check
+                        type="checkbox"
+                        onClick={() => setDate(!date)}
+                        aria-controls="example-collapse-text"
+                        aria-expanded={url}
+                        label=""
+                      />
+                    </Form.Group>
+                  </div>
+                </div>
+                <div>
+                  <Collapse in={date}>
+                    <div id="example-collapse-text">
+                      <div class="form-group row mt-3">
+                        <label for="" class="col-sm-2 col-form-label">
+                          End Date
+                        </label>
+                        <div class="col-sm-10">
+                          <input
+                          onChange={event => setEndtDate(event.target.value)} value={endDate}
+                            type="date"
+                            readonly
+                            class="form-control"
+                            id="duedate"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </Collapse>
+                  <div className="text-end mt-3">
+                    <Button variant="primary justify ">Save</Button>
+                  </div>
+                </div>
+              </form>
+            </Row>
+          </Accordion.Body>
+        </Accordion.Item>
+        <Accordion.Item eventKey="7" className="my-1   ">
+          <Accordion.Header>
+            <Row>
+              <div>
+                <small className="">
+                  <b> Reseach Summary on Reseach Rider</b>
+                </small>
+              </div>
+            </Row>
+          </Accordion.Header>
+          <Accordion.Body>
+            <Row>
+              <form>
+                
+                {summaryField.map(item => <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Research Summary on Reseach Rider
+                  </label>
+                  <div class="col-sm-10">
+                    {/* <input name={item} onBlur={event => {handleMultipleInput(event, summary, setSummary)}} type="text" readonly class="form-control" id="" /> */}
+                    <input name={item} onChange={event => {setSummary(event.target.value)}} type="text" readonly class="form-control" id="" />
+                  </div>
+                  {/* <i onClick={() => removeInput(item, summaryField, setSummaryField)} className="fa fa-close d-flex flex-row-reverse"></i> */}
+                </div>)}
+                  
+                  {/* <div className="text-end mt-2">
+                    <i onClick={addSummaryField} className="fas fa-plus"></i>
+                  </div> */}
+                  
+                  <div className="text-end mt-3">
+                  <Button  variant="primary justify ">Save</Button>
+                  </div>
+              </form>
+            </Row>
+          </Accordion.Body>
+        </Accordion.Item>
+        <Accordion.Item eventKey="8" className="my-1  ">
+          <Accordion.Header>
+            <Row>
+              <div>
+                <small className="">
+                  <b> Thought on Reseach Rider</b>
+                </small>
+              </div>
+            </Row>
+          </Accordion.Header>
+          <Accordion.Body>
+            <Row>
+              <form>
+                
+                {thoughtField.map(item => <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Thought on Reseach Rider
+                  </label>
+                  <div class="col-sm-10">
+                    <input name={item} onBlur={event => {handleMultipleInput(event, thought, setThought)}} type="text" readonly class="form-control" id="" />
+                  </div>
+                  <i onClick={() => removeInput(item, thoughtField, setThoughtField)} className="fa fa-close d-flex flex-row-reverse"></i>
+                </div>)}
+                  
+                  <div className="text-end mt-2">
+                    <i onClick={addThoughtField} className="fas fa-plus"></i>
+                  </div>
+                  
+                  <div className="text-end mt-3">
+                    <Button variant="primary justify ">Save</Button>
+                  </div>
+              </form>
+            </Row>
+          </Accordion.Body>
+        </Accordion.Item>
+        <Accordion.Item eventKey="9" className="my-1   ">
+          <Accordion.Header>
+            <Row>
+              <div>
+                <small className="">
+                  <b>Book Publication</b>
+                </small>
+              </div>
+            </Row>
+          </Accordion.Header>
+          <Accordion.Body>
+            <Row>
+              <form>
+                {bookPubYearField.map(item => <div><div className="mt-4 d-flex  ">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    has url link
+                  </label>
+                  <div>
+                    <Form.Group className="mx-3 " controlId="formBasicCheckbox">
+                      <Form.Check
+                        type="checkbox"
+                        onClick={() => setPublish(!publish)}
+                        aria-controls="example-collapse-text"
+                        aria-expanded={publish}
+                        label=""
+                      />
+                    </Form.Group>
+                  </div>
+                </div>
+                <div>
+                  <Collapse in={publish}>
+                    <div id="example-collapse-text">
+                      <div class="form-group row mt-3">
+                        <label for="" class="col-sm-2 col-form-label">
+                          Published book url
+                        </label>
+                        <div class="col-sm-10">
+                          <input
+                          name={item} onBlur={event => {handleMultipleInput(event, bookPubUrl, setBookPubUrl)}}
+                          onChange={event => setBookPubUrl(event.target.value)} value={bookPubUrl}
+                            type="url"
+                            readonly
+                            class="form-control"
+                            id=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </Collapse>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Book's Name
+                  </label>
+                  <div class="col-sm-10">
+                    <input name={item} onBlur={event => {handleMultipleInput(event, bookName, setBookName)}} type="text" readonly class="form-control" id="" />
+                  </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Author's Name
+                  </label>
+                  <div class="col-sm-10">
+                    <input name={item} onBlur={event => {handleMultipleInput(event, authorsName, setAuthorsName)}} type="text" readonly class="form-control" id="" />
+                  </div>
+                </div>
+
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Publisher's Name
+                  </label>
+                  <div class="col-sm-10">
+                    <input name={item} onBlur={event => {handleMultipleInput(event, pubName, setPubName)}} type="text" readonly class="form-control" id="" />
+                  </div>
+                </div>
+                
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Publication Year
+                  </label>
+                  <div class="col-sm-10">
+                    <input
+                    name={item} onBlur={event => {handleMultipleInput(event, pubYear, setPubYear)}}
+                      type="number"
+                      readonly
+                      class="form-control"
+                      id=""
+                      min="1900"
+                      max="2099"
+                      step="1"
+                    />
+                  </div>
+                </div>
+                <i onClick={() => removeInput(item, bookPubYearField, setBookPubYearField)} className="fa fa-close d-flex flex-row-reverse mt-3"></i>
+                </div>)}
+
+                <div className="text-end mt-2">
+                  <i onClick={addBookPubYearField} className="fas fa-plus"></i>
+                </div>
+                <div className="text-end mt-3">
+                  <Button variant="primary justify ">Save</Button>
+                </div>
+              </form>
+            </Row>
+          </Accordion.Body>
+        </Accordion.Item>
+        <Accordion.Item eventKey="10" className="my-1    ">
+          <Accordion.Header>
+            <Row>
+              <div>
+                <small className="">
+                  <b>Working Skill</b>
+                </small>
+              </div>
+            </Row>
+          </Accordion.Header>
+          <Accordion.Body>
+            <Row>
+              <form>
+                
+                {keyWorkingSkillField.map(item => <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Key Working Skill
+                  </label>
+                  <div class="col-sm-10">
+                    <input name={item} onBlur={event => {handleMultipleInput(event, keyWorkingSkill, setKeyWorkingSkill)}} type="text" readonly class="form-control" id="" />
+                  </div>
+                  <i onClick={() => removeInput(item, keyWorkingSkillField, setKeyWorkingSkillField)} className="fa fa-close d-flex flex-row-reverse mt-3"></i>
+                </div>)}
+                  
+                  <div className="text-end mt-2">
+                    <i onClick={addKeyWorkingSkillField} className="fas fa-plus"></i>
+                  </div>
+                
+                {careerObjectPlanField.map(item => <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Career Object Plan
+                  </label>
+                  <div class="col-sm-10">
+                    <input name={item} onBlur={event => {handleMultipleInput(event, careerObjectPlans, setCareerObjectPlans)}} type="text" readonly class="form-control" id="" />
+                  </div>
+                  <i onClick={() => removeInput(item, careerObjectPlanField, setCareerObjectPlanField)} className="fa fa-close d-flex flex-row-reverse mt-3"></i>
+                </div>)}
+                  
+                  <div className="text-end mt-2">
+                    <i onClick={addCareerObjectPlanField} className="fas fa-plus"></i>
+                  </div>
+                
+                {areaWorkInterestField.map(item => <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Area of Working Interest
+                  </label>
+                  <div class="col-sm-10">
+                    <input name={item} onBlur={event => {handleMultipleInput(event, areaOfWorkInterest, setAreaOfWorkInterest)}} type="text" readonly class="form-control" id="" />
+                  </div>
+                  <i onClick={() => removeInput(item, areaWorkInterestField, setAreaWorkInterestField)} className="fa fa-close d-flex flex-row-reverse mt-3"></i>
+                </div>)}
+                  
+                  <div className="text-end mt-2">
+                    <i onClick={addAreaWorkingInterestField} className="fas fa-plus"></i>
+                  </div>
+                
+                <div className="text-end mt-3">
+                  <Button variant="primary justify ">Save</Button>
+                </div>
+              </form>
+            </Row>
+          </Accordion.Body>
+        </Accordion.Item>
+        <Accordion.Item eventKey="11" className="my-1    ">
+          <Accordion.Header>
+            <Row>
+              <div>
+                <small className="">
+                  <b>Working History</b>
+                </small>
+              </div>
+            </Row>
+          </Accordion.Header>
+          <Accordion.Body>
+            <Row>
+              
+            {workingHistory.length !== 0 && workingHistory.map(item => <div className="my-2">
+                
+                <div className="d-flex align-items-center my-1">
+                  <span>Designation</span>
+                  <input className="form-control mx-1" value={item.designation} disabled/>
+                </div>
+                
+                <div className="d-flex align-items-center my-1">
+                  <span>Department</span>
+                  <input className="form-control mx-1" value={item.department} disabled/>
+                </div>
+                
+                <div className="d-flex align-items-center my-1">
+                  <span>Institute</span>
+                  <input className="form-control mx-1" value={item.institute} disabled/>
+                </div>
+
+                <div className="d-flex align-items-center my-1">
+                  <span>Start Date</span>
+                  <input className="form-control mx-1" value={item.start_date} disabled/>
+                </div>
+                
+                <div className="d-flex align-items-center my-1">
+                  <span>End Date</span>
+                  <input className="form-control mx-1" value={item.end_date} disabled/>
+                </div>
+                
+              </div>)}
+
+              <form>
+                
+                {workingHistoryField.map(item => <div><div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Designation
+                  </label>
+                  <div class="col-sm-10">
+                    {/* <input name={item} onBlur={event => {handleMultipleInput(event, designation, setDesignation)}} type="text" readonly class="form-control" id="" /> */}
+                    <input name={item} onChange={event => {setDesignation(event.target.value)}} type="text" readonly class="form-control" id="" />
+                  </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Department
+                  </label>
+                  <div class="col-sm-10">
+                    {/* <input name={item} onBlur={event => {handleMultipleInput(event, department, setDepartment)}} type="text" readonly class="form-control" id="" /> */}
+                    <input name={item} onChange={event => {setDepartment(event.target.value)}} type="text" readonly class="form-control" id="" />
+                  </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Institution
+                  </label>
+                  <div class="col-sm-10">
+                    {/* <input name={item} onBlur={event => {handleMultipleInput(event, instituition, setInstituition)}} type="text" readonly class="form-control" id="" /> */}
+                    <input name={item} onChange={event => {setInstituition(event.target.value)}} type="text" readonly class="form-control" id="" />
+                  </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Start Date
+                  </label>
+                  <div class="col-sm-10">
+                    <input
+                    // name={item} onBlur={event => {handleMultipleInput(event, workingStartDate, setWorkingStartDate)}}
+                    name={item} onChange={event => {setWorkingStartDate(event.target.value)}}
+                      type="date"
+                      readonly
+                      class="form-control"
+                      id="duedate"
+                    />
+                  </div>
+                </div>
+                <div className="mt-4 d-flex  ">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Present
+                  </label>
+                  <div>
+                    <Form.Group className="mx-3 " controlId="formBasicCheckbox">
+                      <Form.Check
+                        type="checkbox"
+                        onClick={() => setWorkingdate(!workingdate)}
+                        aria-controls="example-collapse-text"
+                        aria-expanded={workingdate}
+                        label=""
+                      />
+                    </Form.Group>
+                  </div>
+                </div>
+                <div>
+                  <Collapse in={workingdate}>
+                    <div id="">
+                      <div class="form-group row mt-3">
+                        <label
+                          for="staticEmail"
+                          class="col-sm-2 col-form-label"
+                        >
+                          End Date
+                        </label>
+                        <div class="col-sm-10">
+                          <input
+                          // name={item} onBlur={event => {handleMultipleInput(event, workingEndtDate, setWorkingEndDate)}}
+                          name={item} onChange={event => {setWorkingEndDate(event.target.value)}}
+                            type="date"
+                            readonly
+                            class="form-control"
+                            id=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </Collapse>
+                </div>
+                {/* <i onClick={() => removeInput(item, workingHistoryField, setWorkingHistoryField)} className="fa fa-close d-flex flex-row-reverse mt-3"></i> */}
+                </div>)}
+                  
+                  {/* <div className="text-end mt-2">
+                    <i onClick={addWorkingHistoryField} className="fas fa-plus"></i>
+                  </div> */}
+                  
+                  <div className="text-end mt-3">
+                  <Button variant="primary justify ">Save</Button>
+                  </div>
+              </form>
+            </Row>
+          </Accordion.Body>
+        </Accordion.Item>
+        <Accordion.Item eventKey="12" className="my-1   ">
+          <Accordion.Header>
+            <Row>
+              <div>
+                <small className="">
+                  <b>Technology & Notable Skill</b>
+                </small>
+              </div>
+            </Row>
+          </Accordion.Header>
+          <Accordion.Body>
+            <Row>
+              <form>
+                {techSkillField.map(item => <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Technological Skill
+                  </label>
+                  <div class="col-sm-10">
+                    <input name={item} onBlur={event => {handleMultipleInput(event, techSkill, setTechSkill)}} type="text" readonly class="form-control" id="" />
+                  </div>
+                  <i onClick={() => removeInput(item, techSkillField, setTechSkillField)} className="fa fa-close d-flex flex-row-reverse mt-3"></i>
+                  
+                </div>)}
+                  
+                  <div className="text-end mt-2">
+                    <i onClick={addTechSkillField} className="fas fa-plus"></i>
+                  </div>
+                
+                {otherSkillField.map(item => <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Other Notable Skill
+                  </label>
+                  <div class="col-sm-10">
+                    <input name={item} onBlur={event => {handleMultipleInput(event, otherSkill, setOtherSkill)}} type="text" readonly class="form-control" id="" />
+                  </div>
+                  <i onClick={() => removeInput(item, otherSkillField, setOtherSkillField)} className="fa fa-close d-flex flex-row-reverse mt-3"></i>
+                </div>)}
+                  
+                  <div className="text-end mt-2">
+                    <i onClick={addOtherSkillField} className="fas fa-plus"></i>
+                  </div>
+                
+                <div className="text-end mt-3">
+                  <Button variant="primary justify ">Save</Button>
+                </div>
+              </form>
+            </Row>
+          </Accordion.Body>
+        </Accordion.Item>
+        <Accordion.Item eventKey="13" className="my-1  ">
+          <Accordion.Header>
+            <Row>
+              <div>
+                <small className="">
+                  <b>Education & Training</b>
+                </small>
+              </div>
+            </Row>
+          </Accordion.Header>
+          <Accordion.Body>
+            <Row>
+              
+              {academicDiscipline.length !== 0 && academicDiscipline.map(item => <div className="my-2">
+                
+                <div className="d-flex align-items-center my-1">
+                  <span>Academic Discipline</span>
+                  <input className="form-control mx-1" value={item.academic_discipline} disabled/>
+                </div>
+              </div>)}
+
+              <form>
+                {academicDescipline.map(item => <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Academic Discipline
+                  </label>
+                  <div class="col-sm-10">
+                    {/* <input name={item} onBlur={event => {handleMultipleInput(event, academicDesciplines, setAcademicDesciplines)}} type="text" readonly class="form-control" id="" /> */}
+                    <input name={item} onChange={event => {setAcademicDesciplines(event.target.value)}} type="text" readonly class="form-control" id="" />
+                  </div>
+                  {/* <i onClick={() => removeInput(item, academicDescipline, setAcademicDescipline)} className="fa fa-close d-flex flex-row-reverse mt-3"></i> */}
+                </div>)}
+                  
+                  {/* <div className="text-end mt-2">
+                    <i onClick={addAcademicDesciplineField} className="fas fa-plus"></i>
+                  </div> */}
+                
+                <div className="text-end mt-3">
+                <Button variant="primary justify ">Save</Button>
+                </div>
+              </form>
+            </Row>
+
+            <Row>
+              
+              
+
+              <form>
+                {academicAchievement.map(item =><div> <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Academic Achievement
+                  </label>
+                  <div class="col-sm-10">
+                    <input name={item} onBlur={event => {handleMultipleInput(event, academicAchievements, setAcademicAchievements)}} type="text" readonly class="form-control" id="" />
+                    {/* <input name={item} onChange={event => {setAcademicAchievements(event.target.value)}} type="text" readonly class="form-control" id="" /> */}
+                  </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Institution
+                  </label>
+                  <div class="col-sm-10">
+                    <input name={item} onBlur={event => {handleMultipleInput(event, educationInstution, setEducationInstitution)}} type="text" readonly class="form-control" id="" />
+                    {/* <input name={item} onChange={event => {setEducationInstitution(event.target.value)}} type="text" readonly class="form-control" id="" /> */}
+                  </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Year
+                  </label>
+                  <div class="col-sm-10">
+                    <input
+                    name={item} onBlur={event => {handleMultipleInput(event, educationYear, setEducationYear)}}
+                    // name={item} onChange={event => {setEducationYear(event.target.value)}}
+                      type="number"
+                      readonly
+                      class="form-control"
+                      id=""
+                      min="1900"
+                      max="2099"
+                      step="1"
+                    />
+                  </div>
+                </div>
+                {/* <i onClick={() => removeInput(item, academicAchievement, setAcademicAchievement)} className="fa fa-close d-flex flex-row-reverse mt-3"></i> */}
+                </div>)}
+                  
+                  {/* <div className="text-end mt-2">
+                    <i onClick={addAcademicAchievementField} className="fas fa-plus"></i>
+                  </div> */}
+                <div className="text-end mt-3">
+                <Button variant="primary justify ">Save</Button>
+                </div>
+              </form>
+            </Row>
+
+            <Row>
+              {academicDegreeInit.length !== 0 && academicDegreeInit.map(item => <div className="my-2">
+                
+                <div className="d-flex align-items-center my-1">
+                  <span>Academic Degree</span>
+                  <input className="form-control mx-1" value={item.degree} disabled/>
+                </div>
+                
+                <div className="d-flex align-items-center my-1">
+                  <span>Department</span>
+                  <input className="form-control mx-1" value={item.department} disabled/>
+                </div>
+                
+                <div className="d-flex align-items-center my-1">
+                  <span>Institution</span>
+                  <input className="form-control mx-1" value={item.institutions} disabled/>
+                </div>
+                
+                <div className="d-flex align-items-center my-1">
+                  <span>Start Date</span>
+                  <input className="form-control mx-1" value={item.start_date} disabled/>
+                </div>
+                
+                <div className="d-flex align-items-center my-1">
+                  <span>End Date</span>
+                  <input className="form-control mx-1" value={item.end_date} disabled/>
+                </div>
+              </div>)}
+              <form>
+                {academicDegree.map(item => <div><div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Academic Degree
+                  </label>
+                  <div class="col-sm-10">
+                    {/* <input name={item} onBlur={event => {handleMultipleInput(event, academicDegrees, setAcademicDegrees)}} type="text" readonly class="form-control" id="" /> */}
+                    <input name={item} onChange={event => {setAcademicDegrees(event.target.value)}} type="text" readonly class="form-control" id="" />
+                  </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Department
+                  </label>
+                  <div class="col-sm-10">
+                    {/* <input name={item} onBlur={event => {handleMultipleInput(event, educationDepartment, setEducationDepartment)}} type="text" readonly class="form-control" id="" /> */}
+                    <input name={item} onChange={event => {setEducationDepartment(event.target.value)}} type="text" readonly class="form-control" id="" />
+                  </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Institution
+                  </label>
+                  <div class="col-sm-10">
+                    {/* <input name={item} onBlur={event => {handleMultipleInput(event, institution2, setInstitution)}} type="text" readonly class="form-control" id="" /> */}
+                    <input name={item} onChange={event => {setEducationInstitution(event.target.value)}} type="text" readonly class="form-control" id="" />
+                  </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Start Date
+                  </label>
+                  <div class="col-sm-10">
+                    {/* <input name={item} onBlur={event => {handleMultipleInput(event, educationStartDate, setEducationStartDate)}} type="date" readonly class="form-control" id="" /> */}
+                    <input name={item} onChange={event => {setEducationStartDate(event.target.value)}} type="date" readonly class="form-control" id="" />
+                  </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    End Date
+                  </label>
+                  <div class="col-sm-10">
+                    {/* <input name={item} onBlur={event => {handleMultipleInput(event, educationEndDate, setEducationEndDate)}} type="date" readonly class="form-control" id="" /> */}
+                    <input name={item} onChange={event => {setEducationEndDate(event.target.value)}} type="date" readonly class="form-control" id="" />
+                  </div>
+                </div>
+                {/* <i onClick={() => removeInput(item, academicDegree, setAcademicDegree)} className="fa fa-close d-flex flex-row-reverse mt-3"></i> */}
+                </div>)}
+               
+                  
+                  {/* <div className="text-end mt-2">
+                    <i onClick={addAcademicDegreeField} className="fas fa-plus"></i>
+                  </div> */}
+                <div className="text-end mt-3">
+                <Button variant="primary justify ">Save</Button>
+                </div>
+              </form>
+            </Row>
+          </Accordion.Body>
+        </Accordion.Item>
+        <Accordion.Item eventKey="14" className="my-1    ">
+          <Accordion.Header>
+            <Row>
+              <div>
+                <small className="">
+                  <b>Training</b>
+                </small>
+              </div>
+            </Row>
+          </Accordion.Header>
+          <Accordion.Body>
+            <Row>
+            
+            {trainingInit.length !== 0 && trainingInit.map(item => <div className="my-2">
+                
+                <div className="d-flex align-items-center my-1">
+                  <span>Name</span>
+                  <input className="form-control mx-1" value={item.training_name} disabled/>
+                </div>
+                
+                <div className="d-flex align-items-center my-1">
+                  <span>Institution</span>
+                  <input className="form-control mx-1" value={item.institutions} disabled/>
+                </div>
+                
+                <div className="d-flex align-items-center my-1">
+                  <span>Start Date</span>
+                  <input className="form-control mx-1" value={item.start_date} disabled/>
+                </div>
+                
+                <div className="d-flex align-items-center my-1">
+                  <span>End Date</span>
+                  <input className="form-control mx-1" value={item.end_date} disabled/>
+                </div>
+              </div>)}
+
+              <form>
+                {training.map(item =><div> <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Name
+                  </label>
+                  <div class="col-sm-10">
+                    {/* <input name={item} onBlur={event => {handleMultipleInput(event, trainingName, setTrainingName)}} type="text" readonly class="form-control" id="" /> */}
+                    <input name={item} onChange={event => {setTrainingName(event.target.value)}} type="text" readonly class="form-control" id="" />
+                  </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Institution
+                  </label>
+                  <div class="col-sm-10">
+                    {/* <input name={item} onBlur={event => {handleMultipleInput(event, trainingInstution, setTrainingInstution)}} type="text" readonly class="form-control" id="" /> */}
+                    <input name={item} onChange={event => {setTrainingInstution(event.target.value)}} type="text" readonly class="form-control" id="" />
+                  </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Start Date
+                  </label>
+                  <div class="col-sm-10">
+                    {/* <input name={item} onBlur={event => {handleMultipleInput(event, trainingStartDate, setTrainingStartDate)}} type="date" readonly class="form-control" id="" /> */}
+                    <input name={item} onChange={event => {setTrainingStartDate(event.target.value)}} type="date" readonly class="form-control" id="" />
+                  </div>
+                </div>
+                <div className="mt-4 d-flex">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Present
+                  </label>
+                  <div>
+                    <Form.Group className="mx-3 " controlId="formBasicCheckbox">
+                      <Form.Check
+                        type="checkbox"
+                        onClick={() => setTrainingdate(!trainingdate)}
+                        aria-controls="example-collapse-text"
+                        aria-expanded={trainingdate}
+                        label=""
+                      />
+                    </Form.Group>
+                  </div>
+                </div>
+                <div>
+                  <Collapse in={trainingdate}>
+                    <div id="example-collapse-text">
+                      <div class="form-group row mt-3">
+                        <label for="" class="col-sm-2 col-form-label">
+                          End Date
+                        </label>
+                        <div class="col-sm-10">
+                          <input
+                          // name={item} onBlur={event => {handleMultipleInput(event, trainingEndDate, setTrainingEndDate)}}
+                          name={item} onChange={event => {setTrainingEndDate(event.target.value)}}
+                            type="date"
+                            readonly
+                            class="form-control"
+                            id="duedate"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </Collapse>
+                </div>
+                {/* <i onClick={() => removeInput(item, training, setTraining)} className="fa fa-close d-flex flex-row-reverse mt-3"></i> */}
+                </div>)}
+                  
+                  {/* <div className="text-end mt-2">
+                    <i onClick={addTrainingField} className="fas fa-plus"></i>
+                  </div> */}
+                  
+                  <div className="text-end mt-3">
+                  <Button variant="primary justify ">Save</Button>
+                  </div>
+              </form>
+            </Row>
+          </Accordion.Body>
+        </Accordion.Item>
+        <Accordion.Item eventKey="15" className="my-1    ">
+          <Accordion.Header>
+            <Row>
+              <div>
+                <small className="">
+                  {" "}
+                  <b>Workshop & Seminer</b>
+                </small>
+              </div>
+            </Row>
+          </Accordion.Header>
+          <Accordion.Body>
+            <Row>
+              {workShopInit.length !== 0 && workShopInit.map(item => <div className="my-2">
+                
+                <div className="d-flex align-items-center my-1">
+                  <span>Workshop Name</span>
+                  <input className="form-control mx-1" value={item.name} disabled/>
+                </div>
+                
+                <div className="d-flex align-items-center my-1">
+                  <span>Institution</span>
+                  <input className="form-control mx-1" value={item.institutions} disabled/>
+                </div>
+                
+                <div className="d-flex align-items-center my-1">
+                  <span>Start Date</span>
+                  <input className="form-control mx-1" value={item.start_date} disabled/>
+                </div>
+                
+                <div className="d-flex align-items-center my-1">
+                  <span>End Date</span>
+                  <input className="form-control mx-1" value={item.end_date} disabled/>
+                </div>
+              </div>)}
+
+              <form>
+                {workshop.map(item =><div> <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Workshop or Seminer Name
+                  </label>
+                  <div class="col-sm-10">
+                    {/* <input name={item} onBlur={event => {handleMultipleInput(event, workShopName, setWorkshopName)}} type="text" readonly class="form-control" id="" /> */}
+                    <input name={item} onChange={event => {setWorkshopName(event.target.value)}} type="text" readonly class="form-control" id="" />
+                  </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Institution
+                  </label>
+                  <div class="col-sm-10">
+                    {/* <input name={item} onBlur={event => {handleMultipleInput(event, workshopInstution, setWorkshopInstution)}} type="text" readonly class="form-control" id="" /> */}
+                    <input name={item} onChange={event => {setWorkshopInstution(event.target.value)}} type="text" readonly class="form-control" id="" />
+                  </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Start Date
+                  </label>
+                  <div class="col-sm-10">
+                    {/* <input name={item} onBlur={event => {handleMultipleInput(event, workshopStartDate, setWorkshopStartDate)}} type="date" readonly class="form-control" id="" /> */}
+                    <input name={item} onChange={event => {setWorkshopStartDate(event.target.value)}} type="date" readonly class="form-control" id="" />
+                  </div>
+                </div>
+                <div className="mt-4 d-flex">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Present
+                  </label>
+                  <div>
+                    <Form.Group className="mx-3 " controlId="formBasicCheckbox">
+                      <Form.Check
+                        type="checkbox"
+                        onClick={() => setSeminerdate(!seminerdate)}
+                        aria-controls="example-collapse-text"
+                        aria-expanded={seminerdate}
+                        label=""
+                      />
+                    </Form.Group>
+                  </div>
+                </div>
+                <div>
+                  <Collapse in={seminerdate}>
+                    <div id="example-collapse-text">
+                      <div class="form-group row mt-3">
+                        <label for="" class="col-sm-2 col-form-label">
+                          End Date
+                        </label>
+                        <div class="col-sm-10">
+                          <input
+                          // name={item} onBlur={event => {handleMultipleInput(event, workshopEndDate, setWorkshopEndDate)}}
+                          name={item} onChange={event => {setWorkshopEndDate(event.target.value)}}
+                            type="date"
+                            readonly
+                            class="form-control"
+                            id="duedate"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </Collapse>
+                </div>
+                {/* <i onClick={() => removeInput(item, workshop, setWorkshop)} className="fa fa-close d-flex flex-row-reverse mt-3"></i> */}
+                </div>)}
+                
+                  
+                  {/* <div className="text-end mt-2">
+                    <i onClick={addWorkshopField} className="fas fa-plus"></i>
+                  </div> */}
+                  
+                  <div className="text-end mt-3">
+                  <Button variant="primary justify ">Save</Button>
+                  </div>
+                
+                {otherWorkshop.map(item => <div><div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Other Notable Achievement
+                  </label>
+                  <div class="col-sm-10">
+                    <input name={item} onBlur={event => {handleMultipleInput(event, otherAchievement, setOtherAchievement)}} type="text" readonly class="form-control" id="" />
+                  </div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="staticEmail" class="col-sm-2 col-form-label">
+                    Year
+                  </label>
+                  <div class="col-sm-10">
+                    <input
+                      name={item} onBlur={event => {handleMultipleInput(event, otherYear, setOtherYear)}}
+                      type="number"
+                      readonly
+                      class="form-control"
+                      id=""
+                      min="1900"
+                      max="2099"
+                      step="1"
+                    />
+                  </div>
+                </div>
+                <i onClick={() => removeInput(item, otherWorkshop, setOtherWorkshop)} className="fa fa-close d-flex flex-row-reverse mt-3"></i>
+                 </div>)}
+                  
+                  <div className="text-end mt-2">
+                    <i onClick={addOtherWorkshopField} className="fas fa-plus"></i>
+                  </div>
+                <div className="text-end mt-3">
+                  <Button variant="primary justify ">Save</Button>
+                </div>
+              </form>
+            </Row>
+          </Accordion.Body>
+        </Accordion.Item>
       </Accordion>
       
+
+      
+
+
+
       <Row>
         {/* <Col>
             <button onClick={toggleShowChangePass}>Change password</button>
