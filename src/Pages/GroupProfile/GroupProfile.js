@@ -385,6 +385,7 @@ useEffect(() => {
 
   console.log("single group info: ", singleGroup)
   console.log("group member info: ", groupMember)
+  
   const BASE_URL = "http://127.0.0.1:8000"
 
 
@@ -523,7 +524,7 @@ const summaryDeleteHeader = {
 // summary delete
 const summaryDelete = (id) => {
   console.log("i am here..", typeof id)
-  fetch(`http://127.0.0.1:8000/group/${groupId.groupId}/group-summery/${id}/`, summaryDeleteHeader)
+  fetch(`http://127.0.0.1:8000/post/${groupId.groupId}/group-summery/${id}/`, summaryDeleteHeader)
       .then(response =>{ response.json()
         if (response.status===204) {
           fetch(`http://127.0.0.1:8000/post/${groupId.groupId}/group-summery-all`, {
@@ -535,6 +536,37 @@ const summaryDelete = (id) => {
                   }})
                   .then(res =>res.json())
                   .then(data => setGroupSummaryPosts(data))
+        }
+      })
+      .catch(error => console.log(error))
+}
+
+
+// thought delete header
+const thoughtDeleteHeader = {
+  // mode: 'no-cors',
+  method: 'DELETE',
+  headers: {
+      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+  },
+};
+// thought delete
+const thoughtDelete = (id) => {
+  console.log("i am here..", typeof id)
+  fetch(`http://127.0.0.1:8000/post/${groupId.groupId}/group-thought/${id}/`, thoughtDeleteHeader)
+      .then(response =>{ response.json()
+        if (response.status===204) {
+          fetch(`http://127.0.0.1:8000/post/${groupId.groupId}/group-thought-all`, {
+                  method: 'GET',
+                  headers: {
+                      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+                      "Accept": "application/json",
+                      "Content-Type": "application/json"
+                  }})
+                  .then(res =>res.json())
+                  .then(data => setGroupThoughtPosts(data))
         }
       })
       .catch(error => console.log(error))
@@ -1040,7 +1072,6 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
                                     <Dropdown.Menu style={{margin: '0', padding: '0'}}>
                                       <Dropdown.Item  eventKey="1">Edit</Dropdown.Item>
                                       <Dropdown.Item  eventKey="2" onClick={() => summaryDelete(post.id)}>Delete</Dropdown.Item>
-                                     
                                     </Dropdown.Menu>
                                   </Dropdown>}
 
@@ -1049,8 +1080,7 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
 
                                     <Dropdown.Menu style={{margin: '0', padding: '0'}}>
                                       <Dropdown.Item  eventKey="1">Edit</Dropdown.Item>
-                                      <Dropdown.Item  eventKey="2">Delete</Dropdown.Item>
-                                     
+                                      <Dropdown.Item  eventKey="2" onClick={()=> thoughtDelete(post.id)}>Delete</Dropdown.Item>
                                     </Dropdown.Menu>
                                   </Dropdown>}
                                   
