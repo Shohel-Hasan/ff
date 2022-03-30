@@ -39,7 +39,7 @@ const UserFollowing = () => {
     return (
         <Container className='d-flex justify-content-center'>
 
-            {noFollowings.map(noF => <Row key={noF.id} className="d-flex  g-4 justify-content-center my-3">
+            {noFollowings.map((noF, index) => <Row key={index} className="d-flex  g-4 justify-content-center my-3">
                 <Col md={8}>
                     <div>No following</div>
                 </Col>

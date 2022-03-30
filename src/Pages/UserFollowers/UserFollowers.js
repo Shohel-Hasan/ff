@@ -38,15 +38,14 @@ const UserFollowers = () => {
 
     return (
         <Container className='d-flex justify-content-center'>
-            {noFollowers.map(noF => <Row key={noF.id} className="d-flex  g-4 justify-content-center my-3">
+            {noFollowers.map((noF, index) => <Row key={index} className="d-flex  g-4 justify-content-center my-3">
                 <Col md={8}>
                     <div>No following</div>
                 </Col>
             </Row>)
-
             }
              <Row className="d-flex w-75 justify-content-center my-4">
-             {followers.map(follow=>   <Col key={follow.id} md={6} className=" d-flex justify-content-between align-items-center my-3">
+             {followers.map(follow=>  <Col key={follow.id} md={6} className=" d-flex justify-content-between align-items-center my-3">
                     <Card className='w-100 fb-box-shadow p-4'>
                         <div>
                             {follow.profile_pic!==null && <img style={{ height: "60px", width: "60px", objectFit: 'cover' }} alt="user_profile" className="rounded-circle" src={`${BASE_URL}${follow.profile_pic}`} />}
