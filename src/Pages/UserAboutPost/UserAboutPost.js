@@ -907,6 +907,11 @@ const updateUserGeneralInfo = () =>{
                 <div className="text-end mt-3">
                   <Button onClick={()=> languageProficiencyAdd()} variant="primary justify">Save</Button>
                 </div>
+                <i onClick={() => removeInput( )} className="fa fa-close d-flex flex-row-reverse mt-2"></i>
+
+                <div className="text-end mt-2">
+                  <i onClick={addScore} className="fas fa-plus"></i>
+                </div>
               </form> 
               </Row>}
           </Accordion.Body>
@@ -978,7 +983,7 @@ const updateUserGeneralInfo = () =>{
 
                 <div className="text-end mt-2">
                   <i onClick={addScore} className="fas fa-plus"></i>
-                  {/* <i className="fas fa-plus"></i> */}
+                  
                 </div>
               </Row>
             </form>}

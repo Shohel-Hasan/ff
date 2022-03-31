@@ -465,7 +465,7 @@ const BASE_URL = "http://127.0.0.1:8000"
                         <div className='w-25 text-center'>
                             <img
                               className="rounded-circle"
-                              style={{ width: "56px", height: "56px", objectFit: 'cover' }} 
+                              style={{ width: "80px", height: "80px", objectFit: 'cover' }} 
                               src={img}
                               alt=''
                             />
