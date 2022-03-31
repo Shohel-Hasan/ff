@@ -366,6 +366,8 @@ const handleUserThoughtPostUpdate = (id) => {
 
 
 const handleSummaryUpdateModal = (id) => {
+  console.log(id)
+
   setSummaryModal(true)
   // getting single thought post
   fetch(`http://127.0.0.1:8000/post/${localStorage.getItem('id')}/user-summery/${id}/`, {
@@ -434,7 +436,7 @@ const handleUserSummaryPostUpdate = (id) => {
 
 
 const allUserPosts = [...summaryPosts, ...thoughtPosts]
-const randomPosts = allUserPosts.sort(() => Math.random() - 0.5)
+// const randomPosts = allUserPosts.sort(() => Math.random() - 0.5)
 
 
 //Dropdown Toggle function
