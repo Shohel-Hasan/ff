@@ -1080,11 +1080,6 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
 
                                    {groupMember.role==="Creator" && <Dropdown.Menu style={{margin: '0', padding: '0'}}>
                                       <Dropdown.Item  eventKey="1">Edit</Dropdown.Item>
-
-                                      <Dropdown.Item  eventKey="2">Delete</Dropdown.Item>
-                                    </Dropdown.Menu>
-                                  </Dropdown>
-
                                       <Dropdown.Item  eventKey="2" onClick={()=> thoughtDelete(post.id)}>Delete</Dropdown.Item>
                                     </Dropdown.Menu>}
                                   </Dropdown>}
