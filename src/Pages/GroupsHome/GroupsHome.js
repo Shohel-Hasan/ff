@@ -114,7 +114,7 @@ useEffect(() => {
 // console.log(otherGroups)
 
 const allGroupsPosts = [...groupsSummaryPosts , ...groupsThoughtPosts ]
-const randomPosts = allGroupsPosts.sort(() => Math.random() - 0.5)
+// const randomPosts = allGroupsPosts.sort(() => Math.random() - 0.5)
 
 const BASE_URL = "http://127.0.0.1:8000"
 
