@@ -800,7 +800,7 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
                   </Modal>
               
                 <div className="d-flex align-items-center">
-                  <small style={{ color: "#1877f2", fontSize:'20px', fontWeight: 'bold' }} > {singleGroup.name}  </small>
+                  <small style={{ color: "#1877f2", fontSize:'20px', fontWeight: 'bold', marginLeft: '5px' }} > {singleGroup.name}  </small>
                   <div>
                      {singleGroup.is_verified &&  <img style={{'objectFit': 'cover' }} className="badge-tag mx-2" src={badge} alt=''/>}
                   </div>
