@@ -396,7 +396,7 @@ useEffect(() => {
   
   const allGroupPosts = [...GroupSummaryPosts , ...GroupThoughtPosts ]
   console.log("all groups post", allGroupPosts)
-  const randomPosts = allGroupPosts.sort(() => Math.random() - 0.5)
+  // const randomPosts = allGroupPosts.sort(() => Math.random() - 0.5)
 
 
   // update group name header
@@ -634,7 +634,6 @@ const handleGroupThoughtPostUpdate = (id) => {
 
 
 const handleSummaryUpdateModal = (id) => {
-  console.log(id)
   setSummaryModal(true)
   // getting single thought post
   fetch(`http://127.0.0.1:8000/post/${groupId.groupId}/group-summery/${id}/`, {
@@ -1196,13 +1195,13 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
                                   </div>
                                 </div>
                                 <div className="post-action">
-                                  {post.title_of_research_article && groupMember.role==="Creator" && <Dropdown>
+                                  {post.title_of_research_article && <Dropdown>
                                     <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components"></Dropdown.Toggle>
 
-                                    <Dropdown.Menu style={{margin: '0', padding: '0'}}>
+                                   {groupMember.role==="Creator" && <Dropdown.Menu style={{margin: '0', padding: '0'}}>
                                       <Dropdown.Item  eventKey="1" onClick={()=> handleSummaryUpdateModal(post.id)}>Edit</Dropdown.Item>
                                       <Dropdown.Item  eventKey="2" onClick={() => summaryDelete(post.id)}>Delete</Dropdown.Item>
-                                    </Dropdown.Menu>
+                                    </Dropdown.Menu>}
                                   </Dropdown>}
 
                                   {/* summary update modal  */}
