@@ -380,6 +380,7 @@ const UserProfile = (props) => {
                             <NavDropdown
                             href="user-post"
                             id="nav-dropdown-dark-example"
+                            style={{fontWeight: "500"}}
                             title="Post"
                            
                             >
