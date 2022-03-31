@@ -87,10 +87,10 @@ function App() {
 
         {/* Nested Routing Start */}
         <Route path="user/:userId" element={<UserProfile triggerCheckLoggedIn={checkLoggedIn}/>}>
-          <Route index  path="user-profile-post" element={<UserAboutPost triggerCheckLoggedIn={checkLoggedIn} />} />
+          <Route path="user-profile-post" element={<UserAboutPost triggerCheckLoggedIn={checkLoggedIn} />} />
           <Route path="user-following" element={<UserFollowing triggerCheckLoggedIn={checkLoggedIn} />} />
           <Route path="user-followers" element={<UserFollowers triggerCheckLoggedIn={checkLoggedIn} />} />
-          <Route path="user-post" element={<UserAllPost triggerCheckLoggedIn={checkLoggedIn} />} />
+          <Route index  element={<UserAllPost triggerCheckLoggedIn={checkLoggedIn} />} />
           <Route path="thoughtPost" element={<ThoughtPost triggerCheckLoggedIn={checkLoggedIn} />} />
           <Route path="summaryPost" element={<SummaryPost triggerCheckLoggedIn={checkLoggedIn} />} />
         </Route>

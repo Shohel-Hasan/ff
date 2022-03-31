@@ -446,9 +446,7 @@ const UserProfile = (props) => {
           
             </Col>
         </Row>
-        <h2>this is user dashbora</h2>
         <Outlet/>
-
     </Container>
     );
 };
