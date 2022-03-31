@@ -11,12 +11,18 @@ const UserAllPost = () => {
 
   const [show, setShow] = useState(false);
   const [modal, setModal] = useState(false);
+  const [thoughtModal, setThoughtModal] = useState(false);
+  const [summaryModal, setSummaryModal] = useState(false);
 
   const [noSummaryPosts, setNoSummaryPosts] = useState([]);
   const [summaryPosts, setSummaryPosts] = useState([]);
 
   const [noThoughtPosts, setNoThoughtPosts] = useState([]);
   const [thoughtPosts, setThoughtPosts] = useState([]);
+
+  const [singleThoughtPost, setSingleThoughtPost] = useState({});
+  const [singleSummaryPost, setSingleSummaryPost] = useState({});
+
 
   //Local Storage Data State
   const [storeTitlePost, setStoreTitlePost] = useState('');
@@ -296,6 +302,136 @@ const summaryDelete = (id) => {
       })
       .catch(error => console.log(error))
 }
+
+// thought update modal function
+const handleThoughtUpdateModal = (id) => {
+  setThoughtModal(true)
+  // getting single thought post
+  fetch(`http://127.0.0.1:8000/post/${localStorage.getItem('id')}/user-thought/${id}/`, {
+    method: 'GET',
+    headers: {
+        "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+    }})
+    .then(res =>res.json())
+    .then(data => setSingleThoughtPost(data))
+}
+
+
+// single thought post update header
+const thoughtUpdateHeader = {
+  // mode: 'no-cors',
+  method: 'PATCH',
+  headers: {
+      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    description : description,
+  })
+};
+// single thought post update
+const handleUserThoughtPostUpdate = (id) => {
+  console.log("i am here..", typeof id)
+  fetch(`http://127.0.0.1:8000/post/${localStorage.getItem('id')}/user-thought/${id}/`, thoughtUpdateHeader)
+      .then(response =>{ response.json()
+        if (response.status===200) {
+          setThoughtModal(false)
+
+          fetch(`http://127.0.0.1:8000/post/${localStorage.getItem('id')}/user-thought/${id}/`, {
+            method: 'GET',
+            headers: {
+                "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }})
+            .then(res =>res.json())
+            .then(data => setSingleThoughtPost(data))
+            fetch(`http://127.0.0.1:8000/post/${localStorage.getItem('id')}/user-thought-all`, {
+              method: 'GET',
+              headers: {
+                  "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+                  "Accept": "application/json",
+                  "Content-Type": "application/json"
+              }})
+              .then(res =>res.json())
+              .then(data => setThoughtPosts(data))
+        }
+      })
+      .catch(error => console.log(error))
+}
+
+
+
+const handleSummaryUpdateModal = (id) => {
+  setSummaryModal(true)
+  // getting single thought post
+  fetch(`http://127.0.0.1:8000/post/${localStorage.getItem('id')}/user-summery/${id}/`, {
+    method: 'GET',
+    headers: {
+        "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+    }})
+    .then(res =>res.json())
+    .then(data => setSingleSummaryPost(data))
+}
+
+// single thought post update
+const handleUserSummaryPostUpdate = (id) => {
+  const newData = new FormData();
+
+  newData.append('title_of_research_article', storeTitlePost? storeTitlePost : singleSummaryPost.title_of_research_article );
+  newData.append('objective_of_the_study', storeObjectivePost? storeObjectivePost : singleSummaryPost.objective_of_the_study );
+  newData.append('theoritical_Background', storeTheoreticalPost? storeTheoreticalPost : singleSummaryPost.theoritical_Background );
+  newData.append('research_gap', storeUniquenessPost? storeUniquenessPost : singleSummaryPost.research_gap ,);
+  newData.append('uniqueness_of_the_study', storeDataPost? storeDataPost : singleSummaryPost.uniqueness_of_the_study ,);
+  newData.append("data_source_sample_information",storeMethodologyPost? storeMethodologyPost : singleSummaryPost.data_source_sample_information )
+  newData.append("research_methodology",storeResultPost? storeResultPost : singleSummaryPost.research_methodology )
+  newData.append('result_discussion',storeValidityPost? storeValidityPost : singleSummaryPost.result_discussion )
+  newData.append('validity_reliability_of_finding',storeGapPost? storeGapPost : singleSummaryPost.validity_reliability_of_finding )
+  newData.append('usefulness_of_the_finding',storeUsefulnessPost? storeUsefulnessPost : singleSummaryPost.usefulness_of_the_finding )
+  newData.append('reference',storeReferencePost? storeReferencePost : singleSummaryPost.reference )
+  newData.append('annex',storeAnnexPost? storeAnnexPost : singleSummaryPost.annex )
+  newData.append('file1', file1? file1 : "")
+  newData.append('file2', file2? file2 : "")
+  newData.append('keyword',storeKeywordPost? storeKeywordPost : singleSummaryPost.keyword )
+  fetch(`http://127.0.0.1:8000/post/${localStorage.getItem('id')}/user-summery/${id}/`, {
+    method: "PATCH",
+    headers: {
+      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+    },
+    body: newData
+  
+  })
+      .then(response =>{ response.json()
+        if (response.status===200) {
+          setSummaryModal(false)
+          fetch(`http://127.0.0.1:8000/post/${userId.userId}/user-summery/${id}/`, {
+            method: 'GET',
+            headers: {
+                "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }})
+            .then(res =>res.json())
+            .then(data => setSingleSummaryPost(data))
+            fetch(`http://127.0.0.1:8000/post/${userId.userId}/user-summery-all`, {
+              method: 'GET',
+              headers: {
+                  "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+                  "Accept": "application/json",
+                  "Content-Type": "application/json"
+              }})
+              .then(res =>res.json())
+              .then(data => setSummaryPosts(data))
+        }
+      })
+      .catch(error => console.log(error))
+}
+
 
 const allUserPosts = [...summaryPosts, ...thoughtPosts]
 const randomPosts = allUserPosts.sort(() => Math.random() - 0.5)
@@ -692,17 +828,307 @@ const BASE_URL = "http://127.0.0.1:8000"
                           {post.title_of_research_article && <Dropdown>
                               <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components"></Dropdown.Toggle>
                               {localStorage.getItem('id')===userId.userId && <Dropdown.Menu style={{margin: '0', padding: '0'}}>
-                                <Dropdown.Item  eventKey="1">Edit</Dropdown.Item>
+                                <Dropdown.Item  eventKey="1" onClick={()=> handleSummaryUpdateModal(post.id)}>Edit</Dropdown.Item>
                                 <Dropdown.Item  eventKey="2" onClick={() => summaryDelete(post.id)}>Delete</Dropdown.Item>
                               </Dropdown.Menu>}
                             </Dropdown>}
+                            {/* summary update modal  */}
+                            <Modal show={summaryModal} onHide={() => setSummaryModal(false)}  dialogClassName="modal-90w"  aria-labelledby="contained-modal-title-vcenter"
+                                      centered size="lg">
+
+                                      <Modal.Header closeButton>
+                                              <p className='fw-bolder'>Update Research Summary</p>
+
+                                      </Modal.Header>
+                                      <Modal.Body className="fb-box-shadow">
+                                            {/*-------- section-1------------ */}
+                                    <Accordion>
+                                      <Form>
+                                            <Accordion.Item eventKey="0">
+                                            <Accordion.Header>
+                                                    Title of research article   
+                                            </Accordion.Header>
+                                                <Accordion.Body>
+                                                  <div id="example-collapse-text">
+                                                      <InputGroup className="mb-3"  onChange={(e) =>setStoreTitlePost(e.target.value)}>
+                                                        <FormControl defaultValue={singleSummaryPost.title_of_research_article} placeholder="Title of research article" />
+                                                      </InputGroup> 
+                                                      <div className="text-end">
+                                                              <Button onClick={handlePost} size="sm" variant="primary">Save as a draft</Button>
+                                                      </div>
+                                                  </div>
+                                                  </Accordion.Body>
+                                              </Accordion.Item>
+                                          
+                                              {/* section-2 */}
+                                              <Accordion.Item eventKey="1">
+                                              <Accordion.Header>
+                                                    Objective of the study  
+                                                </Accordion.Header>
+                                                  <Accordion.Body>
+                                                  <div id="example-collapse-text">
+                                                      <Form.Group  onChange={(e) =>setStoreObjectivePost(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                        <Form.Control defaultValue={singleSummaryPost.objective_of_the_study}  as="textarea" rows={6} placeholder='Objective of the study' />
+                                                    </Form.Group>
+                                                      <div className="text-end">
+                                                              <Button size="sm" onClick={handlePost} variant="primary">Save as a draft</Button>
+                                                      </div>
+                                                  </div>
+                                                </Accordion.Body>
+                                              </Accordion.Item>
+                                              {/* section-3 */}
+                                              <Accordion.Item eventKey="2">
+                                                <Accordion.Header>
+                                                  Theoretical Background   
+                                                      
+                                                  </Accordion.Header>
+                                                  <Accordion.Body>
+                                                  <div id="example-collapse-text">
+                                                      <Form.Group onChange={(e) =>setStoreTheoreticalPost(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                        <Form.Control defaultValue={singleSummaryPost.theoritical_Background} as="textarea" rows={6} placeholder='Theoretical Background' />
+                                                    </Form.Group>
+                                                      <div className="text-end">
+                                                              <Button onClick={handlePost} size="sm"  variant="primary">Save as a draft</Button>
+                                                      </div>
+                                                  </div>
+                                                  </Accordion.Body>
+                                              </Accordion.Item>
+                                              {/* section-4 */}
+                                              <Accordion.Item eventKey="3">
+                                              <Accordion.Header>
+                                                  Research Gap  
+                                                </Accordion.Header>
+                                                  <Accordion.Body>
+                                                  <div id="example-collapse-text">
+                                                      <Form.Group onChange={(e) =>setStoreGapPost(e.target.value)}  className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                        <Form.Control defaultValue={singleSummaryPost.research_gap}  as="textarea" rows={6} placeholder='Research Gap' />
+                                                    </Form.Group>
+                                                      <div className="text-end">
+                                                              <Button onClick={handlePost} size="sm"  variant="primary">Save as a draft</Button>
+                                                      </div>
+                                                  </div>
+                                                </Accordion.Body>
+                                              </Accordion.Item>
+                                
+                                              {/* section-5 */}
+                                              <Accordion.Item eventKey="4">
+                                                <Accordion.Header>
+                                                  Uniqueness of the study   
+                                                      
+                                                  </Accordion.Header>
+                                                  <Accordion.Body>
+                                                  <div id="example-collapse-text">
+                                                      <Form.Group onChange={(e) =>setStoreUniquenessPost(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                        <Form.Control defaultValue={singleSummaryPost.uniqueness_of_the_study} as="textarea" rows={6} placeholder='Uniqueness of the study' />
+                                                    </Form.Group>
+                                                      <div className="text-end">
+                                                              <Button onClick={handlePost} size="sm"  variant="primary">Save as a draft</Button>
+                                                      </div>
+                                                  </div>
+                                                  </Accordion.Body>
+                                              </Accordion.Item>
+                                
+                                            {/* section-6 */}
+                                            <Accordion.Item eventKey="5">
+                                                <Accordion.Header>
+                                                    Data source/sample Information   
+                                                          
+                                                </Accordion.Header>
+                                                <Accordion.Body>
+                                                  <div id="example-collapse-text">
+                                                      <Form.Group onChange={(e) =>setStoreDataPost(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                        <Form.Control defaultValue={singleSummaryPost.data_source_sample_information} as="textarea" rows={6} placeholder='Data source/sample Information' />
+                                                      </Form.Group>
+                                                      <div className="text-end">
+                                                              <Button onClick={handlePost} size="sm" variant="primary">Save as a draft</Button>
+                                                      </div>
+                                                  </div>
+                                                </Accordion.Body>
+                                              </Accordion.Item>
+                                
+                                              {/* section-7 */}
+                                              <Accordion.Item eventKey="6">
+                                                <Accordion.Header>
+                                                  Research methodology   
+                                                      
+                                                </Accordion.Header>
+                                                <Accordion.Body>
+                                                  <div id="example-collapse-text">
+                                                      <Form.Group onChange={(e) =>setStoreMethodologyPost(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                        <Form.Control defaultValue={singleSummaryPost.research_methodology} as="textarea" rows={6} placeholder='Research methodology' />
+                                                      </Form.Group>
+                                                      <div className="text-end">
+                                                              <Button onClick={handlePost} size="sm" variant="primary">Save as a draft</Button>
+                                                      </div>
+                                                  </div>
+                                                </Accordion.Body>
+                                              </Accordion.Item>
+                                
+                                              {/* section-8 */}
+                                              <Accordion.Item eventKey="7">
+                                              <Accordion.Header>
+                                                  Result & discussion   
+                                                      
+                                                </Accordion.Header>
+                                                <Accordion.Body>
+                                                  <div id="example-collapse-text">
+                                                      <Form.Group onChange={(e) =>setStoreResultPost(e.target.value)}  className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                        <Form.Control defaultValue={singleSummaryPost.result_discussion} as="textarea" rows={6} placeholder='Result & discussion' />
+                                                      </Form.Group>
+                                                      <div className="text-end">
+                                                              <Button onClick={handlePost} size="sm" variant="primary">Save as a draft</Button>
+                                                      </div>
+                                                  </div>
+                                                  </Accordion.Body>
+                                              </Accordion.Item>
+                                
+                                              {/* section-9 */}
+                                              <Accordion.Item eventKey="8">
+                                                <Accordion.Header>
+                                                  Validity & reliability of finding   
+                                                      
+                                                </Accordion.Header>
+                                                  <Accordion.Body>
+                                                  <div id="example-collapse-text">
+                                                      <Form.Group onChange={(e) =>setStoreValidityPost(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                        <Form.Control defaultValue={singleSummaryPost.validity_reliability_of_finding} as="textarea" rows={6} placeholder='Validity & reliability of finding' />
+                                                      </Form.Group>
+                                                      <div className="text-end">
+                                                              <Button onClick={handlePost} size="sm" variant="primary">Save as a draft</Button>
+                                                      </div>
+                                                  </div>
+                                                  </Accordion.Body>
+                                                </Accordion.Item>
+                                
+                                              {/* section-10 */}
+                                              <Accordion.Item eventKey="9">
+                                                  <Accordion.Header>
+                                                      Usefulness of the finding   
+                                                      
+                                                  </Accordion.Header>
+                                                  <Accordion.Body>
+                                                  <div id="example-collapse-text">
+                                                      <Form.Group onChange={(e) =>setStoreUsefulnessPost(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                        <Form.Control defaultValue={singleSummaryPost.usefulness_of_the_finding}  as="textarea" rows={6} placeholder='Usefulness of the finding' />
+                                                      </Form.Group>
+                                                      <div className="text-end">
+                                                              <Button onClick={handlePost} size="sm" variant="primary">Save as a draft</Button>
+                                                      </div>
+                                                  </div>
+                                                  </Accordion.Body>
+                                              </Accordion.Item>
+                                
+                                            {/* section-11 */}
+                                            <Accordion.Item eventKey="10">
+                                              <Accordion.Header>
+                                                  Reference   
+                                                      
+                                                </Accordion.Header>
+                                                <Accordion.Body>
+                                                  <div id="example-collapse-text">
+                                                      <Form.Group onChange={(e) =>setStoreReferencePost(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                        <Form.Control defaultValue={singleSummaryPost.reference}  as="textarea" rows={6} placeholder='Reference' />
+                                                      </Form.Group>
+                                                      <div className="text-end">
+                                                              <Button onClick={handlePost} size="sm" variant="primary">Save as a draft</Button>
+                                                      </div>
+                                                  </div>
+                                                </Accordion.Body>
+                                                </Accordion.Item>
+                                
+                                                {/* section-12 */}
+                                                <Accordion.Item eventKey="11">
+                                                <Accordion.Header>
+                                                  Annex   
+                                                      
+                                                </Accordion.Header>
+                                                <Accordion.Body>
+                                                  <div id="example-collapse-text">
+                                                      <Form.Group  onChange={(e) =>setStoreAnnexPost(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                        <Form.Control defaultValue={singleSummaryPost.annex} as="textarea" rows={6} placeholder='Annex' />
+                                                      </Form.Group>
+                                                      <div className="text-end">
+                                                              <Button onClick={handlePost} size="sm" variant="primary">Save as a draft</Button>
+                                                      </div>
+                                                  </div>
+                                                  </Accordion.Body>
+                                                </Accordion.Item>
+                                
+                                            {/* section-13 */}
+                                            <Accordion.Item eventKey="12">
+                                                <Accordion.Header>
+                                                  Uploaded File   
+                                                </Accordion.Header>
+                                                <Accordion.Body>
+                                                  <div id="example-collapse-text">
+                                                      <Form.Group controlId="formFileSm" className="mb-3">
+                                                        <Form.Control type="file" size="sm" onChange={e => setFile1(e.target.files[0])} />
+                                                      </Form.Group>
+                                                      <Form.Group controlId="formFileSm" className="mb-3">
+                                                        <Form.Control type="file" size="sm" onChange={e => setFile2(e.target.files[0])} />
+                                                      </Form.Group>
+                                                  </div>
+                                                  </Accordion.Body>
+                                              </Accordion.Item>
+                                
+                                              {/* section-14 */}
+                                              <Accordion.Item eventKey="13">
+                                                <Accordion.Header>
+                                                    Keyword   
+                                                </Accordion.Header>
+                                                <Accordion.Body>
+                                                  <div id="example-collapse-text">
+                                                    <Form.Group onChange={(e) =>setStoreKeywordPost(e.target.value)} className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                      <Form.Control defaultValue={singleSummaryPost.keyword} as="textarea" rows={6} placeholder='Keyword without space' />
+                                                    </Form.Group>
+                                                    <div className="text-end">
+                                                      <Button onClick={handlePost} size="sm" variant="primary">Save</Button>
+                                                    </div>
+                                                  </div>
+                                                </Accordion.Body>
+                                              </Accordion.Item>
+
+                                          {/*----------- Post Button --------------*/}
+                                          <div className="text-end m-3">
+                                                <Button className="px-4" onClick={()=> handleUserSummaryPostUpdate(post.id)}  size="sm" variant="primary">Update</Button>
+                                          </div>
+                                      </Form>
+                                  </Accordion>
+                                      </Modal.Body>
+                          </Modal>
+
                             {!post.title_of_research_article && <Dropdown>
                               <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components"></Dropdown.Toggle>
                                 {localStorage.getItem('id')===userId.userId && <Dropdown.Menu style={{margin: '0', padding: '0'}}>
-                                  <Dropdown.Item  eventKey="1">Edit</Dropdown.Item>
+                                  <Dropdown.Item  eventKey="1"  onClick={()=> handleThoughtUpdateModal(post.id)}>Edit</Dropdown.Item>
                                   <Dropdown.Item  eventKey="2" onClick={()=> thoughtDelete(post.id)}>Delete</Dropdown.Item>
                                 </Dropdown.Menu>}
                               </Dropdown>}
+                              <Modal
+                                    show={thoughtModal}
+                                    onHide={() => setThoughtModal(false)}
+                                    dialogClassName="modal-90w"
+                                    aria-labelledby="contained-modal-title-vcenter"
+                                    centered
+                                  >
+                                    <Modal.Header closeButton >   
+                                            <p className='fw-bolder'>Update Thought Post </p>
+                                    </Modal.Header>
+                                    <Modal.Body className="fb-box-shadow">
+                                        
+                                        <Form>
+                                          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                            <Form.Control onChange={(e) =>setDescription(e.target.value)} defaultValue={singleThoughtPost.description} as="textarea" rows={8}  placeholder="Share a thought that you like"/>
+                                          </Form.Group>
+                                        </Form>
+                                        <div className="d-grid gap-2">
+                                          <Button variant="primary" size="sm" onClick={()=> handleUserThoughtPostUpdate(post.id)} >
+                                            update
+                                          </Button>
+                                          </div>
+                                    </Modal.Body>
+                                  </Modal>
+
                           </div>
                         </div>
                         {post.title_of_research_article &&  <div className="fb-card-body simple-text-card simple-image-card">
