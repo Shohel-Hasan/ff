@@ -649,24 +649,48 @@ const handleSummaryUpdateModal = (id) => {
 
 
 // single thought post update header
-const summaryUpdateHeader = {
-  // mode: 'no-cors',
-  method: 'PATCH',
-  headers: {
-      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
-      "Accept": "application/json",
-      "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    description : description,
-  })
-};
+// const summaryUpdateHeader = {
+//   // mode: 'no-cors',
+//   method: 'PATCH',
+//   headers: {
+//       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+//       "Accept": "application/json",
+//       "Content-Type": "application/json"
+//   },
+//   body: JSON.stringify({
+//     description : description,
+//   })
+// };
 // single thought post update
 const handleGroupSummaryPostUpdate = (id) => {
-  console.log("i am here..", typeof id)
-  fetch(`http://127.0.0.1:8000/post/${groupId.groupId}/group-summery/${id}/`, summaryUpdateHeader)
+  const newData = new FormData();
+
+  newData.append('title_of_research_article', storeTitleGroup? storeTitleGroup : singleSummaryPost.title_of_research_article );
+  newData.append('objective_of_the_study', storeObjectiveGroup? storeObjectiveGroup : singleSummaryPost.objective_of_the_study );
+  newData.append('theoritical_Background', storeTheoreticalGroup? storeTheoreticalGroup : singleSummaryPost.theoritical_Background );
+  newData.append('research_gap', storeGapGroup? storeGapGroup : singleSummaryPost.research_gap ,);
+  newData.append('uniqueness_of_the_study', storeUniquenessGroupGroup? storeUniquenessGroupGroup : singleSummaryPost.uniqueness_of_the_study ,);
+  newData.append("data_source_sample_information",storeDataGroup? storeDataGroup : singleSummaryPost.data_source_sample_information )
+  newData.append("research_methodology",storeMethodologyGroup? storeMethodologyGroup : singleSummaryPost.research_methodology )
+  newData.append('result_discussion',storeResultGroup? storeResultGroup : singleSummaryPost.result_discussion )
+  newData.append('validity_reliability_of_finding',storeValidityGroup? storeValidityGroup : singleSummaryPost.validity_reliability_of_finding )
+  newData.append('usefulness_of_the_finding',storeUsefulnessGroup? storeUsefulnessGroup : singleSummaryPost.usefulness_of_the_finding )
+  newData.append('reference',storeReferenceGroup? storeReferenceGroup : singleSummaryPost.reference )
+  newData.append('annex',storeAnnexGroup? storeAnnexGroup : singleSummaryPost.annex )
+  newData.append('file1', file1? file1 : "")
+  newData.append('file2', file2? file2 : "")
+  newData.append('keyword',storeKeywordGroup? storeKeywordGroup : singleSummaryPost.keyword )
+  fetch(`http://127.0.0.1:8000/post/${groupId.groupId}/group-summery/${id}/`, {
+    method: "PATCH",
+    headers: {
+      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+    },
+    body: newData
+  
+  })
       .then(response =>{ response.json()
         if (response.status===200) {
+          setSummaryModal(false)
           fetch(`http://127.0.0.1:8000/post/${groupId.groupId}/group-summery/${id}/`, {
             method: 'GET',
             headers: {
@@ -1453,7 +1477,7 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
 
                                           {/*----------- Post Button --------------*/}
                                           <div className="text-end m-3">
-                                                <Button className="px-4" onClick={()=> handleGroupSummaryPost()}  size="sm" variant="primary">Post</Button>
+                                                <Button className="px-4" onClick={()=> handleGroupSummaryPostUpdate(post.id)}  size="sm" variant="primary">Update</Button>
                                           </div>
                                       </Form>
                                   </Accordion>
@@ -1502,7 +1526,7 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
                               {post.title_of_research_article &&  <div className="fb-card-body simple-text-card simple-image-card">
                                   <div className='p-3'>
                                     <p className='p-0 m-0'><b>Title of research article</b></p>
-                                    <small>{post.objective_of_the_study}</small>
+                                    <small>{post.title_of_research_article}</small>
                                   </div> 
                                   <div className='p-3'>
                                     <p className='p-0 m-0'><b>Objective of the study</b></p>
@@ -1555,7 +1579,7 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
                                   <div className='p-3'>
                                     {/* <input type='file' defaultValue={post.file1} /> */}
                                     <a href={`${BASE_URL}${post.file1}`} target="_blank">file1</a> <br />
-                                    <a href={`${BASE_URL}${post.file2}`} target="_blank">file2</a>
+                                   {post.file2!==null && <a href={`${BASE_URL}${post.file2}`} target="_blank">file2</a>}
                                   </div> 
                               </div>}
 
