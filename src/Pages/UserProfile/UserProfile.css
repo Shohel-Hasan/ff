@@ -21,8 +21,9 @@
   }
   
   .NavLink:active,
+  .NavLink:focus,
   .NavLink:visited {
-    color: hsl(214, 89%, 52%);
+    /* color: hsl(214, 89%, 52%); */
     border-bottom: 2px solid hsl(214, 89%, 52%) !important;
     padding-bottom: 2px;
   }
@@ -81,6 +82,12 @@
   opacity: 0;
   filter: alpha(opacity=0); /* IE 5-7 */
 }
+
+
+.dropdown-toggle::after {
+   margin-left: 5px !important;
+}
+
 
 @media (min-width: 320px){
 .user-profile {
