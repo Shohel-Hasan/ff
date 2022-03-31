@@ -9,6 +9,7 @@ const GroupProfile = (props) => {
 
   const [show, setShow] = useState(false);
   const [modal, setModal] = useState(false);
+  const [thoughtModal, setThoughtModal] = useState(false);
   const [setting, setSetting] = useState(false);
 
   const [deleteModal, setDeleteModla] = useState()
@@ -28,6 +29,7 @@ const GroupProfile = (props) => {
 
 
   const [groupMember, setGroupMember] = useState({});
+  const [singleThoughtPost, setSingleThoughtPost] = useState({});
   const [criteriaTitle, setCriteriaTitle] = useState("");
   const [criteriaDetail, setCriteriaDetail] = useState("");
   const [groupCriteria, setGroupCriteria] = useState([]);
@@ -572,6 +574,63 @@ const thoughtDelete = (id) => {
       .catch(error => console.log(error))
 }
 
+const handleThoughtUpdateModal = (id) => {
+  setThoughtModal(true)
+  // getting single thought post
+  fetch(`http://127.0.0.1:8000/post/${groupId.groupId}/group-thought/${id}/`, {
+    method: 'GET',
+    headers: {
+        "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+    }})
+    .then(res =>res.json())
+    .then(data => setSingleThoughtPost(data))
+}
+
+
+// single thought post update header
+const thoughtUpdateHeader = {
+  // mode: 'no-cors',
+  method: 'PATCH',
+  headers: {
+      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    description : description,
+  })
+};
+// single thought post update
+const handleGroupThoughtPostUpdate = (id) => {
+  console.log("i am here..", typeof id)
+  fetch(`http://127.0.0.1:8000/post/${groupId.groupId}/group-thought/${id}/`, thoughtUpdateHeader)
+      .then(response =>{ response.json()
+        if (response.status===200) {
+          fetch(`http://127.0.0.1:8000/post/${groupId.groupId}/group-thought/${id}/`, {
+            method: 'GET',
+            headers: {
+                "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }})
+            .then(res =>res.json())
+            .then(data => setSingleThoughtPost(data))
+            fetch(`http://127.0.0.1:8000/post/${groupId.groupId}/group-thought-all`, {
+              method: 'GET',
+              headers: {
+                  "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+                  "Accept": "application/json",
+                  "Content-Type": "application/json"
+              }})
+              .then(res =>res.json())
+              .then(data => setGroupThoughtPosts(data))
+        }
+      })
+      .catch(error => console.log(error))
+}
+
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
   <span
     href="/#"
@@ -1079,14 +1138,39 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
                                     <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components"></Dropdown.Toggle>
 
                                    {groupMember.role==="Creator" && <Dropdown.Menu style={{margin: '0', padding: '0'}}>
-                                      <Dropdown.Item  eventKey="1">Edit</Dropdown.Item>
+                                      <Dropdown.Item  eventKey="1" onClick={()=> handleThoughtUpdateModal(post.id)}>Edit</Dropdown.Item>
                                       <Dropdown.Item  eventKey="2" onClick={()=> thoughtDelete(post.id)}>Delete</Dropdown.Item>
                                     </Dropdown.Menu>}
                                   </Dropdown>}
-                                  
 
+                                  <Modal
+                                    show={thoughtModal}
+                                    onHide={() => setThoughtModal(false)}
+                                    dialogClassName="modal-90w"
+                                    aria-labelledby="contained-modal-title-vcenter"
+                                    centered
+                                  >
+                                    <Modal.Header closeButton >   
+                                            <p className='fw-bolder'>Thought Post </p>
+                                    </Modal.Header>
+                                    <Modal.Body className="fb-box-shadow">
+                                        
+                                        <Form>
+                                          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                            <Form.Control onChange={(e) =>setDescription(e.target.value)} defaultValue={singleThoughtPost.description} as="textarea" rows={8}  placeholder="Share a thought that you like"/>
+                                          </Form.Group>
+                                        </Form>
+                                        <div className="d-grid gap-2">
+                                          <Button variant="primary" size="sm" onClick={()=> handleGroupThoughtPostUpdate(post.id)} >
+                                            update
+                                          </Button>
+                                          </div>
+                                    </Modal.Body>
+                                  </Modal>
                                 </div>
                               </div>
+
+
                               {post.title_of_research_article &&  <div className="fb-card-body simple-text-card simple-image-card">
                                   <div className='p-3'>
                                     <p className='p-0 m-0'><b>Title of research article</b></p>
