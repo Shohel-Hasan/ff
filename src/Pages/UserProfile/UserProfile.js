@@ -386,8 +386,8 @@ const UserProfile = (props) => {
                             <NavDropdown.Item >
                                 <Link className='text-decoration-none' to='thoughtPost'> Thought Post</Link>
                             </NavDropdown.Item>
-                            <NavDropdown.Item href="summaryPost">
-                                Research Summary
+                            <NavDropdown.Item >
+                                <Link className='text-decoration-none' to='summaryPost'>Summary Post</Link>
                             </NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
