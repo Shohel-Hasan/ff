@@ -32,7 +32,7 @@ const UserAllPost = () => {
   const [file1, setFile1] = useState();
   const [file2, setFile2] = useState();
 
-  const [description, setDescription] = useState("")
+   const [description, setDescription] = useState("")
  
   const handlePost = () => {
     localStorage.setItem('storeTitlePost', storeTitlePost);
@@ -74,7 +74,7 @@ const handleSummaryPost = () => {
   newData.append('user', localStorage.getItem('id'))
 
 
-  console.log(newData)
+  
 
   fetch(`http://127.0.0.1:8000/post/${localStorage.getItem('id')}/user-summery-create/`, {
     method: "POST",
@@ -142,7 +142,7 @@ const handleThoughtPost = () => {
 
 
     const userId = useParams();
-    console.log(userId.userId)
+    
         
 // getting individual user summary posts 
 useEffect(() => {
@@ -190,7 +190,7 @@ useEffect(() => {
 
 const allUserPosts = [...summaryPosts, ...thoughtPosts]
 const randomPosts = allUserPosts.sort(() => Math.random() - 0.5)
-console.log(allUserPosts);
+
 
 //Dropdown Toggle function
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
