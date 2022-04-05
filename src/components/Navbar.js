@@ -10,7 +10,7 @@ import profile_icon from '../assets/re/Profile.svg';
 import setting_icon from '../assets/re/Settings.svg';
 
 import logo from '../assets/re/Navbar_Logo.svg';
-import avatar from '../assets/man.jpg';
+import avatar from '../Images/profile-thumbnails.svg';
 import notification_icon_filled from '../assets/re/Notice.svg';
 import style from '../styles/Navbar.module.css';
 import { useNavigate } from 'react-router-dom';

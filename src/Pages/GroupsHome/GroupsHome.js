@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Accordion, Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import man from '../../Images/profile-thumbnails.svg';
 
 const GroupsHome = () => {
 
@@ -114,7 +115,7 @@ useEffect(() => {
 // console.log(otherGroups)
 
 const allGroupsPosts = [...groupsSummaryPosts , ...groupsThoughtPosts ]
-const randomPosts = allGroupsPosts.sort(() => Math.random() - 0.5)
+// const randomPosts = allGroupsPosts.sort(() => Math.random() - 0.5)
 
 const BASE_URL = "http://127.0.0.1:8000"
 
@@ -144,10 +145,7 @@ const BASE_URL = "http://127.0.0.1:8000"
                         <Accordion.Item eventKey="1">
                             <Accordion.Header>Others-Group</Accordion.Header>
                                 <Accordion.Body>
-                                { noGroup &&
-                                    noGroup.map(no => <Row className="d-flex justify-content-center my-3"><Col md={8} style={{ background: "#fff" }} className="fb-box-shadow d-flex align-items-center justify-content-center py-3"><div  className="d-flex flex-column justify-content-center mx-4">
-                                    <p className="m-0 p-0"> {no.data} </p></div></Col></Row> )
-                                }
+                              
 
                                 { otherGroups &&
                                     otherGroups.map(group=>  <Row key={group.id} className="d-flex justify-content-center my-3">
@@ -156,6 +154,7 @@ const BASE_URL = "http://127.0.0.1:8000"
                                         </div>
                                     </Row>)
                                     }
+                                    { otherGroups === null &&  <h4 className='text-danger'>You Don't Enroll Any Course Yet</h4> }
                                 </Accordion.Body>
                         </Accordion.Item>
                     </Accordion>
@@ -173,8 +172,8 @@ const BASE_URL = "http://127.0.0.1:8000"
 
                                   </div>
                                   <div className="user-information">
-                                  {!post.group_name && <p><Link to={`/user/${post.user}`}>{post.user_first_name}</Link></p>}
-                                  {post.group_name && <p><Link to={`/group/${post.group}/details`}>{post.group_name}</Link></p>}
+                                  {!post.group_name && <p><Link className='text-decoration-none' to={`/user/${post.user}`}>{post.user_first_name}</Link></p>}
+                                  {post.group_name && <p><Link className='text-decoration-none'  to={`/group/${post.group}/details`}>{post.group_name}</Link></p>}
 
                                     <small>{post.created_date}</small>
                                   </div>
@@ -238,7 +237,7 @@ const BASE_URL = "http://127.0.0.1:8000"
                                   </div> 
                                   <div className='p-3'>
                                     {/* <input type='file' defaultValue={post.file1} /> */}
-                                    <a href={`${BASE_URL}${post.file1}`} target="_blank">file1</a> <br />
+                                    <a  href={`${BASE_URL}${post.file1}`} target="_blank">file1</a> <br />
                                     <a href={`${BASE_URL}${post.file2}`} target="_blank">file2</a>
                                   </div> 
                               </div>}
@@ -251,13 +250,13 @@ const BASE_URL = "http://127.0.0.1:8000"
                               <div className="fb-card-actions-holder">
                                 <div className="d-flex justify-content-between">
                                     <div className="fb-btn-holder">
-                                        <Button className='text-primary' variant="outline-light"><i className="fa hom-icon fa-thumbs-up"></i> <span>10</span> Like</Button>
+                                        <span className='text-primary'><i className="fa hom-icon fa-thumbs-up"></i> <span>10</span> Like</span>
                                     </div>
                                     <div className="fb-btn-holder">
-                                        <Button className='text-primary' variant="outline-light"><i className="far hom-icon fa-comment-alt"></i> <span>10</span> Comment</Button>
+                                        <span className='text-primary'><i className="far hom-icon fa-comment-alt"></i> <span>10</span> Comment</span>
                                     </div>
                                     <div className="fb-btn-holder">
-                                        <Button className='text-primary' variant="outline-light"><i className="fa hom-icon fa-share-square"></i> <span>10</span> Share</Button>
+                                        <span className='text-primary'><i className="fa hom-icon fa-share-square"></i> <span>10</span> Share</span>
                                     </div>
                                 </div>
                               </div>
@@ -265,7 +264,8 @@ const BASE_URL = "http://127.0.0.1:8000"
                               <div className="fb-card-comments">
                                   <div className="comment-input-holder">
                                     <div className="user-thumb">
-                                        <img src="https://i.ibb.co/St6QD00/DSC-0003.jpg" className="img-responsive" alt=''/>
+                                    { !post.group_name &&  <img  src={`${BASE_URL}${post.user_profile_pic}`} className="img-responsive" alt='user profile not found'/>}
+                                     {post.group_name &&  <img  src={`${BASE_URL}${post.group_profile_pic}`} className="img-responsive" alt='group profile not found'/>}
                                     </div>
                                     <div className="comment-input"> 
                                         <Form.Control

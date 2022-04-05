@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Accordion, Button, Col, Container, Dropdown, Form, FormControl, InputGroup, Modal, Row } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-import img from '../../Images/man.jpg';
+import img from '../../Images/profile-thumbnails.svg';
 
 
 const UserAllPost = () => {
@@ -16,6 +16,8 @@ const UserAllPost = () => {
 
   const [noSummaryPosts, setNoSummaryPosts] = useState([]);
   const [summaryPosts, setSummaryPosts] = useState([]);
+  const [userGeneralInfo, setUserGeneralInfo] = useState({});
+
 
   const [noThoughtPosts, setNoThoughtPosts] = useState([]);
   const [thoughtPosts, setThoughtPosts] = useState([]);
@@ -433,7 +435,20 @@ const handleUserSummaryPostUpdate = (id) => {
       })
       .catch(error => console.log(error))
 }
-
+// getting user general Info
+useEffect(() => {
+  fetch(`http://127.0.0.1:8000/user/user-general-info/${userId.userId}`, {
+  method: 'GET',
+  headers: {
+      "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+  }})
+  .then(res =>{
+  return res.json()
+  })
+  .then(data => setUserGeneralInfo(data))
+}, [userId.userId])
 
 const allUserPosts = [...summaryPosts, ...thoughtPosts]
 // const randomPosts = allUserPosts.sort(() => Math.random() - 0.5)
@@ -462,14 +477,22 @@ const BASE_URL = "http://127.0.0.1:8000"
               {localStorage.getItem('id')===userId.userId && <Row className='justify-content-center my-3'>   
                     <Col md={8} className='shadow-effect py-3'>
                       <div className="d-flex align-items-center">
-                        <div className='w-25 text-center'>
+                        {userGeneralInfo.profile_pic!==null && <div className='w-25 text-center'>
+                            <img
+                              className="rounded-circle"
+                              style={{ width: "56px", height: "56px", objectFit: 'cover' }} 
+                              src={`${BASE_URL}${userGeneralInfo.profile_pic}`}
+                              alt=''
+                            />
+                        </div>}
+                        {userGeneralInfo.profile_pic==null && <div className='w-25 text-center'>
                             <img
                               className="rounded-circle"
                               style={{ width: "80px", height: "80px", objectFit: 'cover' }} 
                               src={img}
                               alt=''
                             />
-                        </div>
+                        </div>}
                         <div className='w-75'>
                             <Form.Control
                             onClick={() => setShow(true)}

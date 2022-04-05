@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="150" height="150" viewBox="0 0 150 150">
+  <defs>
+    <clipPath id="clip-Profile_pic">
+      <rect width="150" height="150"/>
+    </clipPath>
+  </defs>
+  <g id="Profile_pic" data-name="Profile pic" clip-path="url(#clip-Profile_pic)">
+    <circle id="Ellipse_2" data-name="Ellipse 2" cx="75" cy="75" r="75" fill="#8abbf9"/>
+    <path id="Icon_material-people" data-name="Icon material-people" d="M49.654,48.775A20.638,20.638,0,1,0,29.017,28.137,20.551,20.551,0,0,0,49.654,48.775Zm0,13.758C33.626,62.533,1.5,70.582,1.5,86.61v17.2H97.808V86.61C97.808,70.582,65.683,62.533,49.654,62.533Z" transform="translate(25.5 19.5)" fill="#1778f3"/>
+  </g>
+</svg>

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Col, Collapse, Container, Form, Row } from 'react-bootstrap';
 import './CreateCourse.css'
-import man from '../../Images/man.jpg'
+import man from '../../Images/Cover-thumbnails.png'
 import { useNavigate, useParams } from 'react-router-dom';
+import Creatable, { useCreatable } from 'react-select/creatable';
 
 
 const CreateCourse = (props) => {
@@ -78,56 +79,6 @@ const CreateCourse = (props) => {
         })
     }, [groupId.groupId])
 
-   
-    // course data function
-    // const courseHeader = {
-    //     // mode: 'no-cors',
-    //     method: 'POST',
-    //     headers: {
-    //         "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
-    //         "Accept": "application/json",
-    //         "Content-Type": "application/json"
-    //     },
-    //     body: JSON.stringify({
-    //         name : courseName,
-    //         hour_per_class: hourPerClass,
-    //         class_per_week : classPerWeek,
-    //         total_class : totalClass,
-    //         total_class_hour : totalClassHour,
-    //         start_date :  courseStartYear + "-" + courseStartMonth + "-" + courseStartDay,
-    //         end_date : courseEndYear + "-" + courseEndMonth + "-" + courseEndDay,
-    //         class_routine : `{"Saturday": ${sat}, "Sunday": ${sun},"Monday": ${mon},"Tuesday": ${tue},"Wednesday": ${wed},"Thursday": ${thu},"Friday": ${fri},}`,
-    //         course_topic : courseTopic,
-    //         course_outcome : courseOutcome,
-    //         course_reward: courseReward,
-    //         enrollment_requirement: enrollmentRequirement,
-    //         course_responsibility: courseResponsibility,
-    //         course_enroll_start_date: enrollmentStartYear + "-" + enrollmentStartMonth + "-" +  enrollmentStartDay,
-    //         course_enroll_end_date: enrollmentEndYear + "-" + enrollmentEndMonth + "-" +  enrollmentEndDay,
-    //         enrollment_fee: enrollmentFee,
-    //         payment_procedure: paymentProcedure,
-    //         max_student  : expectedStudent,
-    //         disclaimer_from_group: disclaimer
-    //     })
-    // };
-
-    // const handleCourseCreate = (e) =>{
-    //     e.preventDefault();
-    //     console.log("I am hitting.....");
-    //     console.log(localStorage.getItem('auth_token'))
-
-    //     console.log(courseHeader.body)
-    //     e.preventDefault();
-    //     console.log(courseHeader.body)
-
-    //     fetch('http://127.0.0.1:8000/course/group/1/course-create/', courseHeader)
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             console.log(data)
-    //         })
-    //         .catch(error => console.log(error))
-        
-    // }
 
     // course create api 
     const handleCreateCourseFormData = () => {
@@ -186,29 +137,8 @@ const CreateCourse = (props) => {
           .catch(error => console.log(error))
       }
       
-    // const changeHandler = (e) => {
-        
-    //     console.log('click');
-    //     let Name = e.target.files[0];
-    //     setSelectedFile(Name);
-        // setSelectedFile(true);
-        
-
-        // if (e.target.files && e.target.files[0]) {
-        //     let img = e.target.files[0];
-        //     setSelectedFile({
-        //       image: URL.createObjectURL(img)
-        //     });
-        //   }
-    // }
    
     
-    // console.log(selectedFile);
-    
-    
-
-
-
     // ------ Course Starting Date ---------//
      const year = () => {
        
@@ -384,6 +314,15 @@ const friTime = (time) =>{
       }
 }
 
+// Course Teacher
+
+const Teacher = [
+    { value: 'Saddam Hossian', label: 'Saddam Hossian' },
+    { value: 'Tareq Sir', label: 'Tareq Sir' },
+    { value: 'Sadat vai', label: 'Sadat vai' }
+    
+  ]
+
 
 const BASE_URL = "http://127.0.0.1:8000"
 
@@ -406,7 +345,7 @@ const BASE_URL = "http://127.0.0.1:8000"
                                 </div>
                            
                          
-                             <img className='course-img img-fluid rounded' src={man} alt=""/>
+                             <img className='img-fluid rounded' src={man} alt=""/>
                              
                             </Col>
                         </Row>
@@ -415,15 +354,8 @@ const BASE_URL = "http://127.0.0.1:8000"
                        <Row  className='mt-2 justify-content-center'>
                             <Col md={8}>
                                 <div className='icon-container d-flex align-items-center'>
-                                     <img className='group-pic'  src={`${BASE_URL}${singleGroup.cover_pic}`} alt='' />
+                                     <img className='group-pic'  style={{objectFit: 'cover'}} src={`${BASE_URL}${singleGroup.cover_pic}`} alt='' />
                                      <div className="image-load mt-4">
-                                    
-                                        {/* <label for="file-input"> */}
-                                        {/* <input type="file"/>
-                                            <img src="https://icons.iconarchive.com/icons/dtafalonso/android-lollipop/128/Downloads-icon.png" alt=''/>
-                                           
-                                        </label>
-                                        <input className='d-none' id="file-input" type="file"/> */}
                                     </div>
                                     <div><h6 style={{ color: "#1877f2", fontSize:'20px', marginLeft: '15px'}} > {singleGroup.name}</h6></div>
                                 </div>
@@ -1104,29 +1036,16 @@ const BASE_URL = "http://127.0.0.1:8000"
                         </div>
 
                         
-                 
-                        {/* Course Teacher */}
-                        {/* <div className="form-group row mb-1">
+                     
+                        <div className="form-group row mb-1">
                             <label   className="col-sm-4 col-form-label">Course Teacher</label>
                            
                                 <div className='col-sm-8'>
                                 {serviceList.map((singleService, index) => (
                             <div >
-                                <select key={index}
-                                    name="Course Teacher"
-                                    type="text"
-                                    value={singleService.service}
-                                    onClick={ (e) => {handleServiceChange(e, index)} }  
-                                    className="input-lg form-control"
-                                    onChange={(e) =>setCourseTeacher(e.target.value)} required
-                                    >
-                                    <option disabled selected>Select Teacher</option> 
-                                    <option value="1">Saddam Hossain</option>
-                                    <option value="2">Saddam Hossain</option>
-                                    <option value="3">Saddam Hossain</option>
-                                </select> */}
-                                
-                                    {/* <div className='d-flex justify-content-end'>
+                                     <Creatable key={index} id="d_place"  placeholder='Course Teacher' options={Teacher} required></Creatable>
+                              
+                                    <div className='d-flex justify-content-end'>
                                         <div>                                                
                                             {serviceList.length - 1 === index && serviceList.length < 10 && (
                                                         <button
@@ -1152,12 +1071,12 @@ const BASE_URL = "http://127.0.0.1:8000"
                                                     </button>
                                                 )}
                                             </div>
-                                    </div> */}
-                                {/* </div>                                 
+                                    </div> 
+                                 </div>                                 
                                 ))}
                                 </div>
 
-                        </div> */}
+                        </div>
 
 
                     <div className='text-end my-2'>
