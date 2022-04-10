@@ -197,7 +197,7 @@ export default function Login() {
             { overlay && <Overlay /> }
             <div className={`${style.login_box} d-flex justify-content-between align-items-center flex-wrap`}>
                 <div className={`${style.image} d-flex flex-column justify-content-center align-items-center`}>
-                    <img src={image} alt="" />
+                    <img style={{objectFit: 'cover'}} src={image} alt="logo" />
                     <h5 className={`${style.slogan}`}>Grow up being a researcher</h5>
                 </div>
 

@@ -538,7 +538,7 @@ const summaryDelete = (id) => {
                   headers: {
                       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
                       "Accept": "application/json",
-                      "Content-Type": "application/json"
+                      "Content-Type": "application/json" 
                   }})
                   .then(res =>res.json())
                   .then(data => setGroupSummaryPosts(data))
@@ -1740,14 +1740,7 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
                       <Accordion.Item eventKey="3">
                         <Accordion.Header>Group Creator</Accordion.Header>
                         <Accordion.Body>
-                        {singleGroup && <Link to={`/user/${localStorage.getItem('id')}`}><p className="Name"> { singleGroup['first_name']}  </p></Link>}
-                        </Accordion.Body>
-                      </Accordion.Item>
-            
-                      <Accordion.Item eventKey="4">
-                        <Accordion.Header>Group Courses</Accordion.Header>
-                        <Accordion.Body>
-                        {groupCourses && groupCourses.map(gCourse => <Link key={gCourse.id} to={`/course/${gCourse.id}/details`}><p className="Name"> { gCourse.name}  </p></Link>)}
+                        {singleGroup && <Link className="text-decoration-none" to={`/user/${localStorage.getItem('id')}`}><p className="Name"> { singleGroup['first_name']}  </p></Link>}
                         </Accordion.Body>
                       </Accordion.Item>
                     </Accordion>

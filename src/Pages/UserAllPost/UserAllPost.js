@@ -527,7 +527,7 @@ const BASE_URL = "http://127.0.0.1:8000"
                                   <div>
                                       <img
                                         className="rounded-circle mx-2"
-                                        style={{ width: "35px", height: "35px", 'objectFit': 'cover' }} 
+                                        style={{ width: "35px", height: "35px", objectFit: 'cover' }} 
                                         src={img}
                                         alt=''
                                     />
@@ -838,8 +838,8 @@ const BASE_URL = "http://127.0.0.1:8000"
                         <div className="fb-card-header">
                           <div className="user-post-info">
                             <div className="user-thumb">
-                            { !post.group_name &&  <img  src={`${BASE_URL}${post.user_profile_pic}`} className="img-responsive" alt='user profile not found'/>}
-                            {post.group_name &&  <img  src={`${BASE_URL}${post.group_profile_pic}`} className="img-responsive" alt='group profile not found'/>}
+                            { !post.group_name &&  <img style={{objectFit: 'cover'}} src={`${BASE_URL}${post.user_profile_pic}`} className="img-responsive" alt='user profile not found'/>}
+                            {post.group_name &&  <img style={{objectFit: 'cover'}} src={`${BASE_URL}${post.group_profile_pic}`} className="img-responsive" alt='group profile not found'/>}
 
                             </div>
                             <div className="user-information">
@@ -1238,7 +1238,7 @@ const BASE_URL = "http://127.0.0.1:8000"
                         <div className="fb-card-comments">
                             <div className="comment-input-holder">
                               <div className="user-thumb">
-                                  <img src="https://i.ibb.co/St6QD00/DSC-0003.jpg" className="img-responsive" alt=''/>
+                                  <img style={{objectFit: 'cover'}} src="https://i.ibb.co/St6QD00/DSC-0003.jpg" className="img-responsive" alt=''/>
                               </div>
                               <div className="comment-input"> 
                                   <Form.Control

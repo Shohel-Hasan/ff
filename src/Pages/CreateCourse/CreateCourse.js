@@ -131,7 +131,8 @@ const CreateCourse = (props) => {
               if (res.status===400) {
                 alert("please enter all the required field");
               } else if(res.status===201) {
-                navigate(`/group/${groupId.groupId}/details`)
+                  console.log(res);
+                // navigate(`/group/${groupId.groupId}/details`)
               }
           })
           .catch(error => console.log(error))
@@ -345,7 +346,7 @@ const BASE_URL = "http://127.0.0.1:8000"
                                 </div>
                            
                          
-                             <img className='img-fluid rounded' src={man} alt=""/>
+                             <img style={{objectFit: 'cover'}} className='img-fluid rounded' src={man} alt=""/>
                              
                             </Col>
                         </Row>

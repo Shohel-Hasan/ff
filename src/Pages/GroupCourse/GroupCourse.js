@@ -69,7 +69,7 @@ const BASE_URL = "http://127.0.0.1:8000"
       {allCourses.map(course=> <Row key={course.id} className='py-2'>
                 <Col md={4}>
                     <div>
-                        <img className=' profile-img img-fluid' src={`${BASE_URL}${course.cover_pic}`} alt="Course Cover" />
+                        <img style={{objectFit: 'cover'}} className='profile-img img-fluid' src={`${BASE_URL}${course.cover_pic}`} alt="Course Cover" />
                     </div>
                 </Col>
                 <Col md={8}>        

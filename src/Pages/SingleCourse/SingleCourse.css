@@ -83,3 +83,6 @@ div[className*='special-label'], .form-control {
   opacity: 0;
   filter: alpha(opacity=0); /* IE 5-7 */
 }
+.click{
+  cursor: pointer;
+}

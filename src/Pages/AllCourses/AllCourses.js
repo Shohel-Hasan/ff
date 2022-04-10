@@ -81,7 +81,7 @@ const BASE_URL = "http://127.0.0.1:8000"
             {searchCourses && searchCourses.map(course=> <Row key={course.id} className='mt-5'>
                 <Col md={4}>
                     <div>
-                        <img className=' profile-img img-fluid' src={`${BASE_URL}${course.cover_pic}`} alt="Course Cover" />
+                        <img style={{objectFit: 'cover'}} className='profile-img img-fluid' src={`${BASE_URL}${course.cover_pic}`} alt="Course Cover" />
                     </div>
                 </Col>
 
@@ -128,13 +128,13 @@ const BASE_URL = "http://127.0.0.1:8000"
             {allCourses.map(course=> <Row key={course.id} className='mt-5'>
                 <Col md={4}>
                     <div>
-                        <img className=' profile-img img-fluid' src={`${BASE_URL}${course.cover_pic}`} alt="Course Cover" />
+                        <img style={{objectFit: 'cover'}} className='profile-img img-fluid' src={`${BASE_URL}${course.cover_pic}`} alt="Course Cover" />
                     </div>
                 </Col>
                 <Col md={8}>        
                     <div className='mt-2 d-flex justify-content-between'>
                         <div>
-                            <p className='fw-bold m-0 p-0'><Link to={`/course/${course.id}/details`}>{course.name}</Link></p>
+                            <p className='fw-bold m-0 p-0'><Link className='text-decoration-none' to={`/course/${course.id}/details`}>{course.name}</Link></p>
                             <small>{course.created_date}</small>
                         </div>
                         <Link to={`/course/${course.id}/details`}><Button size="sm">Enroll +</Button></Link>

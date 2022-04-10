@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Card, Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import './MyCourses.css'
 import { Link, useParams } from 'react-router-dom';
-import profile from "../../Images/user.jpg";
 import img from '../../assets/re/cover_photo.svg'
 
 
@@ -103,7 +102,7 @@ const BASE_URL = "http://127.0.0.1:8000"
           <Col md={8} >
             <Row className='mt-4 shadow border custom-radius bg-white'>
               <Col sm={3} className="d-flex justify-content-center align-items-center my-2">
-              <img style={{"height": "80px", "width": "80px", "borderRadius": "50%", objectFit: 'cover',}}  src={`${BASE_URL}${course.course_cover_pic}`} alt='course_cover_pic'/>
+              <img style={{"height": "80px", "width": "80px", borderRadius: "50%", objectFit: 'cover'}}  src={`${BASE_URL}${course.course_cover_pic}`} alt='course_cover_pic'/>
 
               </Col>
               <Col  sm={9} className="d-flex align-items-center my-2"> 

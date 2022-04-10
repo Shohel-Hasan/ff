@@ -27,15 +27,12 @@ import Setting from "./Pages/Settings/Setting";
 import UserFollowing from "./Pages/UserFollowing/UserFollowing";
 import UserFollowers from "./Pages/UserFollowers/UserFollowers";
 import UserAllPost from "./Pages/UserAllPost/UserAllPost";
-import GroupCourse from "./Pages/GroupCourse/GroupCourse";
+
 
 
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const navigate = useNavigate();
-
-  
 
   function checkLoggedIn() {
     let token = '';
@@ -106,7 +103,6 @@ function App() {
         {/* Params Routes start */}
         <Route path="course/:courseId/details" element={<SingleCourse triggerCheckLoggedIn={checkLoggedIn} />} />
         <Route path="group/:groupId/details" element={<GroupProfile triggerCheckLoggedIn={checkLoggedIn} />} ></Route>
-        <Route path="/groupCourse" element={<GroupProfile triggerCheckLoggedIn={checkLoggedIn} />} ></Route>
         {/* Params Routes end */}
 
         {/* Terms & Condition start */}

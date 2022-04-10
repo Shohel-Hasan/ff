@@ -25,7 +25,7 @@ const PageNotFound = () => {
                <div className='mt-3 d-flex justify-content-center align-items'> 
                       <Button variant="outline-primary" className="rounded d-flex justify-content-center align-items" > 
                           <img 
-                            style={{ width: "20px", height: "20px" }}
+                            style={{ width: "20px", height: "20px", objectFit:'cover' }}
                             src={homeIcon} 
                             alt=''
                           />

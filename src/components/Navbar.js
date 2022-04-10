@@ -78,6 +78,8 @@ export default function Navbar(props) {
       const BASE_URL = "http://127.0.0.1:8000"
 
       
+
+      
   return (
     <div className={`${style.navbar_main_container} ${style.fb_box_shadow} d-flex flex-row justify-content-between`}>
       <div className={`${style.branding} d-flex flex-row justify-content-center align-items-center`}>
@@ -91,9 +93,9 @@ export default function Navbar(props) {
       </div>
 
       <div className={`${style.mid_section} d-flex flex-row justify-content-center align-items-center`}>
-         <Link  to='/home'><img src={home_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
-         <Link  to='/groups-home'><img src={group_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
-         <Link  to="all-courses" ><img src={class_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
+         <Link className='nav_icon'  to='/home'><img src={home_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
+         <Link className='nav_icon'   to='/groups-home'><img src={group_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
+         <Link className='nav_icon'  to="all-courses" ><img src={class_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
       </div>
       
       <div className={`${style.profile_section} d-flex flex-row justify-content-center align-items-center`}>

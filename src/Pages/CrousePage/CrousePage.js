@@ -77,7 +77,7 @@ const CrousePage = (props) => {
                         <Col>
                             <div className='d-flex'>
                             <div>
-                                <img className='rounded profile-img img-fluid' src={img} alt="Course Cover" />
+                                <img style={{objectFit: 'cover'}} className='rounded profile-img img-fluid' src={img} alt="Course Cover" />
                             </div>
                             <div className='mx-2'>
                                 <p className='fw-bold'>Lorem ipsum dolor sit amet.</p>
@@ -130,7 +130,7 @@ const CrousePage = (props) => {
                         <Col>
                             <div className='d-flex'>
                             <div>
-                                <img className='rounded profile-img img-fluid' src={img} alt="Course Cover" />
+                                <img style={{objectFit: 'cover'}} className='rounded profile-img img-fluid' src={img} alt="Course Cover" />
                             </div>
                             <div className='mx-2'>
                                 <p className='fw-bold'>Lorem ipsum dolor sit amet.</p>
