@@ -134,7 +134,9 @@ const BASE_URL = "http://127.0.0.1:8000"
                 <Col md={8}>        
                     <div className='mt-2 d-flex justify-content-between'>
                         <div>
+
                             <p className='fw-bold m-0 p-0'><Link className='text-decoration-none' to={`/course/${course.id}/details`}>{course.name}</Link></p>
+
                             <small>{course.created_date}</small>
                         </div>
                         <Link to={`/course/${course.id}/details`}><Button size="sm">Enroll +</Button></Link>
