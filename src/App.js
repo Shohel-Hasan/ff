@@ -30,11 +30,9 @@ import UserAllPost from "./Pages/UserAllPost/UserAllPost";
 
 
 
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const navigate = useNavigate();
-
-  
 
   function checkLoggedIn() {
     let token = '';
@@ -63,26 +61,31 @@ function App() {
             // console.log(data.message)
             if (data.message) {
                 setIsLoggedIn(true);
+             
             } else {
-              setIsLoggedIn(false)
-              // navigate('/')
+              setIsLoggedIn(false);
+             
 
             }
             // console.log(isLoggedIn);
         })
         .catch(error => console.log(error))
-
-      return isLoggedIn;
+       console.log(isLoggedIn);
+       return isLoggedIn;
   }
 
   checkLoggedIn();
+  
+  // if (isLoggedIn) {
+  //   navigate('/home');
+  // } 
 
   return (
     <div className="body">
         { isLoggedIn && <Navbar triggerCheckLoggedIn={checkLoggedIn} />}
         <Routes>
 
-        <Route path="/" element={<Welcome />} />
+        <Route path="/" element={< Welcome isLoggedIn={isLoggedIn} />} />
         <Route path="/home" element={<Home triggerCheckLoggedIn={checkLoggedIn}/>} />
 
         {/* Nested Routing Start */}
@@ -99,7 +102,7 @@ function App() {
        
         {/* Params Routes start */}
         <Route path="course/:courseId/details" element={<SingleCourse triggerCheckLoggedIn={checkLoggedIn} />} />
-        <Route path="group/:groupId/details" element={<GroupProfile triggerCheckLoggedIn={checkLoggedIn} />} />
+        <Route path="group/:groupId/details" element={<GroupProfile triggerCheckLoggedIn={checkLoggedIn} />} ></Route>
         {/* Params Routes end */}
 
         {/* Terms & Condition start */}

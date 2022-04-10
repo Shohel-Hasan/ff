@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Container, Form, Nav, NavDropdown, Row, Modal, Button } from 'react-bootstrap';
-import './UserProfile.css'
-import man from '../../Images/man.jpg'
-import img from '../../assets/re/cover_photo.svg'
+import './UserProfile.css';
+import man from '../../Images/profile-thumbnails.svg';
+import img from '../../Images/Cover-thumbnails.png';
 import { Link, Outlet, useParams } from 'react-router-dom';
 
 
@@ -311,7 +311,7 @@ const UserProfile = (props) => {
                            src={man}
                            width="150px"
                            height="150px"
-                           alt='upload your profile pic'
+                           alt='upload your profile pic' 
                         /> }
 
                         {/* Upolad image section */}
@@ -348,7 +348,7 @@ const UserProfile = (props) => {
                             </Modal.Body>
                         </Modal>
                     
-                        <div style={{marginTop: '-10px'}}>
+                        <div >
                             <h1 className="name" style={{ color: "#1877f2" }}> {users.first_name} </h1>
                             <h6 className="fw-bold" style={{ color: "#1877f2" }}>{users.profession}</h6>
                            {localStorage.getItem('id')!==userId.userId && !isFollowing && <button className="bg-primary rounded-pill btn-sm btn text-white" onClick={()=>followCreate()}>Follow <span>+</span></button>}

@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, Modal, Container, Row, Form, Col } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import { upload } from "@testing-library/user-event/dist/upload";
 import { Link, useNavigate } from "react-router-dom";
 import img from '../../assets/re/cover_photo.svg'
 
@@ -88,7 +87,7 @@ console.log(myGroups.length)
 const handleGroup = () => {
   // e.preventDefault();
   const newData = new FormData();
-  newData.append('creator', 1)
+  // newData.append('creator', 1)
   newData.append('name', name);
   newData.append('about', about);
   newData.append('cover_pic', coverPic,);
@@ -130,12 +129,12 @@ const handleGroup = () => {
 const BASE_URL = "http://127.0.0.1:8000"
   return (
       <Container>
-        <Row className="pt-5">
-         {userGeneralInfo.cover_pic!==null && <img style={{"height": "320px", "width": "850px"}} className="mx-auto mt-5" alt="profile_img" src={`${BASE_URL}${userGeneralInfo.cover_pic}`} />}
-        {userGeneralInfo.cover_pic===null && <img style={{"height": "320px", "width": "850px"}} className="mx-auto mt-5" alt="profile_img" src={img} />}
-          <h4 style={{ color: "blue" }} className="text-center mt-4 mb-3">
+        <Row className="pt-1">
+         {userGeneralInfo.cover_pic!==null && <img style={{height: "320px", width: "850px", objectFit: 'cover'}} className="mx-auto mt-5" alt="profile_img" src={`${BASE_URL}${userGeneralInfo.cover_pic}`} />}
+        {userGeneralInfo.cover_pic===null && <img style={{height: "320px", width: "850px", objectFit:'cover'}} className="mx-auto mt-5" alt="profile_img" src={img} />}
+          <h2 style={{ color: "#1877f2" }} className="text-center my-3">
             {userInfo.first_name}
-          </h4>
+          </h2>
 
           <div className="d-flex justify-content-center">
           <Button
@@ -165,7 +164,7 @@ const BASE_URL = "http://127.0.0.1:8000"
                 controlId="exampleForm.ControlInput1"
               >
                 <Form.Label>Name</Form.Label>
-                <Form.Control type="text" onChange={e => setName(e.target.value)} value={name} placeholder="Your Name" />
+                <Form.Control type="text" onChange={e => setName(e.target.value)} value={name} placeholder="Group Name" />
               </Form.Group>
               <Form.Group
                 className="mb-3"
@@ -192,9 +191,9 @@ const BASE_URL = "http://127.0.0.1:8000"
             
           </Modal.Body>
           <Modal.Footer>
-            
           </Modal.Footer>
         </Modal>
+
         {/* modal end  */}
 
         { noGroup &&
@@ -207,66 +206,15 @@ const BASE_URL = "http://127.0.0.1:8000"
             <Col md={8} style={{ background: "#fff" }} className="fb-box-shadow d-flex align-items-center py-3 Python Bangladesh">
               <img style={{ height: "60px", width: "60px", objectFit: 'cover' }} alt="s" className="rounded-circle" src={`${BASE_URL}${group.cover_pic}`} />
               <div  className="d-flex flex-column justify-content-center mx-4">
-                <p className="m-0 p-0"> <b> <Link to={`/group/${group.id}/details`}>  {group.name}</Link>  </b> </p>
+                <p className="m-0 p-0"> <b><Link  className="text-decoration-none" to={`/group/${group.id}/details`}>  {group.name}</Link></b></p>
                 <small> {group.created_date} </small> 
               </div>
             </Col>
           </Row>)
         }
-       {/* { noGroup ? noGroup.map(no => <Row className="d-flex justify-content-center my-3"><Col md={8} style={{ background: "#fff" }} className="fb-box-shadow d-flex align-items-center justify-content-center py-3"><div  className="d-flex flex-column justify-content-center mx-4">
-             <p className="m-0 p-0"> {no.data} </p></div></Col></Row> ) :  myGroups.map(group=>  <Row key={group.id} className="d-flex justify-content-center my-3">
-         <Col md={8} style={{ background: "#fff" }} className="fb-box-shadow d-flex align-items-center py-3 Python Bangladesh">
-           <img style={{ height: "60px", width: "60px" }} alt="s" className="rounded-circle" src={`${BASE_URL}${group.cover_pic}`} />
-           <div  className="d-flex flex-column justify-content-center mx-4">
-             <p className="m-0 p-0"> <b> <Link to={`/group/${group.id}/details`}>  {group.name}</Link>  </b> </p>
-             <small> {group.created_date} </small> 
-           </div>
-         </Col>
-       </Row>)
-       } */}
-
-{/* 
-<Row  className="d-flex justify-content-center my-3">
-          <Col md={8} style={{ background: "#fff" }} className="fb-box-shadow d-flex align-items-center py-3 Python Bangladesh">
-            <img style={{ height: "60px", width: "60px" }} alt="s" className="rounded-circle" src={profile} />
-            <div  className="d-flex flex-column justify-content-center mx-4">
-              <p className="m-0 p-0"> <b>Python Bangladesh Python</b> </p>
-              <small> 03/03/2022</small> 
-            </div>
-          </Col>
-        </Row> */}
-        {/* <Row  className="d-flex justify-content-center my-3">
-          <Col md={8} style={{ background: "#fff" }} className="fb-box-shadow d-flex align-items-center py-3 Python Bangladesh">
-            <img style={{ height: "60px", width: "60px" }} alt="s" className="rounded-circle" src={profile} />
-            <div  className="d-flex flex-column justify-content-center mx-4">
-              <p className="m-0 p-0"> <b>Python Bangladesh</b> </p>
-              <small> 03/03/2022</small> 
-            </div>
-          </Col>
-        </Row>
-        <Row  className="d-flex justify-content-center my-3">
-          <Col md={8} style={{ background: "#fff" }} className="fb-box-shadow d-flex align-items-center py-3 Python Bangladesh">
-            <img style={{ height: "60px", width: "60px" }} alt="s" className="rounded-circle" src={profile} />
-            <div  className="d-flex flex-column justify-content-center mx-4">
-              <p className="m-0 p-0"> <b>Python Bangladesh</b> </p>
-              <small> 03/03/2022</small> 
-            </div>
-          </Col>
-        </Row>
-        <Row  className="d-flex justify-content-center my-3">
-          <Col md={8} style={{ background: "#fff" }} className="fb-box-shadow d-flex align-items-center py-3 Python Bangladesh">
-            <img style={{ height: "60px", width: "60px" }} alt="s" className="rounded-circle" src={profile} />
-            <div  className="d-flex flex-column justify-content-center mx-4">
-              <p className="m-0 p-0"> <b>Python Bangladesh</b> </p>
-              <small> 03/03/2022</small> 
-            </div>
-          </Col>
-        </Row> */}
       </Container>
   );
 };
 
 export default MyGroups;
 
-
-// https://meet.google.com/zep-ygmw-rjp

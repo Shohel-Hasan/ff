@@ -45,9 +45,8 @@
 .mid_section a:focus,
 .mid_section a:active{
     border-bottom: 2px solid #1876f2;
-    transform: scale(1.08);   
-      
-}
+    transform: scale(1.08);      
+} 
 
 
 .avatar {

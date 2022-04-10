@@ -147,7 +147,7 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
                           className="rounded-circle"
                           style={{ width: "80px", height: "80px", objectFit: 'cover' }} 
                           src={man}
-                          alt=''
+                          alt='Profile'
                           />
                       </div>
                     </div>
@@ -451,8 +451,8 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
                               <div className="fb-card-header">
                                 <div className="user-post-info">
                                   <div className="user-thumb">
-                                  { !post.group_name &&  <img  src={`${BASE_URL}${post.user_profile_pic}`} className="img-responsive" alt='user profile not found'/>}
-                                  {post.group_name &&  <img  src={`${BASE_URL}${post.group_profile_pic}`} className="img-responsive" alt='group profile not found'/>}
+                                  { !post.group_name &&  <img style={{objectFit: 'cover'}}  src={`${BASE_URL}${post.user_profile_pic}`} className="img-responsive" alt='user profile not found'/>}
+                                  {post.group_name &&  <img style={{objectFit: 'cover'}} src={`${BASE_URL}${post.group_profile_pic}`} className="img-responsive" alt='group profile not found'/>}
 
                                   </div>
                                   <div className="user-information">
@@ -555,7 +555,7 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
                               <div className="fb-card-comments">
                                   <div className="comment-input-holder">
                                     <div className="user-thumb">
-                                        <img src="https://i.ibb.co/St6QD00/DSC-0003.jpg" className="img-responsive" alt=''/>
+                                        <img style={{objectFit: 'cover'}} src="https://i.ibb.co/St6QD00/DSC-0003.jpg" className="img-responsive" alt=''/>
                                     </div>
                                     <div className="comment-input"> 
                                         <Form.Control

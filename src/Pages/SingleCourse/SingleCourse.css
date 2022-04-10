@@ -1,5 +1,5 @@
 .single_course {
-  padding-top: 67px;
+  padding-top: 53px;
 }
 
 .box{
@@ -82,4 +82,7 @@ div[className*='special-label'], .form-control {
   height: 24px;
   opacity: 0;
   filter: alpha(opacity=0); /* IE 5-7 */
+}
+.click{
+  cursor: pointer;
 }

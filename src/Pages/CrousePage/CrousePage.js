@@ -24,8 +24,7 @@ const CrousePage = (props) => {
              {/* Search Section End */}
 
                {/* Nested Routing Section Start */}
-
-
+               
                 <div className='d-flex justify-content-around mt-5'>
                     <div className='fb-box-shadow p-3 mx-1'><Link className='text-decoration-none'  to="#">Create course</Link></div>
                     <div className='fb-box-shadow p-3 mx-1'><Link className='text-decoration-none' to="#">Course teacher</Link></div>
@@ -78,7 +77,7 @@ const CrousePage = (props) => {
                         <Col>
                             <div className='d-flex'>
                             <div>
-                                <img className='rounded profile-img img-fluid' src={img} alt="Course Cover" />
+                                <img style={{objectFit: 'cover'}} className='rounded profile-img img-fluid' src={img} alt="Course Cover" />
                             </div>
                             <div className='mx-2'>
                                 <p className='fw-bold'>Lorem ipsum dolor sit amet.</p>
@@ -91,12 +90,9 @@ const CrousePage = (props) => {
                             </div>
                         </Col>
 
-                       
-                        
                     
                         {/* Information Details */}
 
-                    
                     
 
                      {/* Like, Comment section */}
@@ -117,13 +113,13 @@ const CrousePage = (props) => {
                              <div className="fb-card-actions-holder">
                                 <div className="fb-card-actions d-flex justify-content-around">
                                     <div className="fb-btn-holder">
-                                        <Button className='text-primary' variant="outline-light"> <i className="fa fa-thumbs-up"></i> Like</Button>
+                                        <span className='text-primary' variant="outline-light"> <i className="fa fa-thumbs-up"></i> Like</span>
                                     </div>
                                     <div className="fb-btn-holder">
-                                        <Button className='text-primary' variant="outline-light"><i className="far fa-comment-alt"></i> Comment</Button>
+                                        <span className='text-primary' variant="outline-light"><i className="far fa-comment-alt"></i> Comment</span>
                                     </div>
                                     <div className="fb-btn-holder">
-                                        <Button className='text-primary' variant="outline-light"><i className="fa fa-share-square"></i> Share</Button>
+                                        <span className='text-primary' variant="outline-light"><i className="fa fa-share-square"></i> Share</span>
                                     </div>
                                 </div>
                             </div>
@@ -134,7 +130,7 @@ const CrousePage = (props) => {
                         <Col>
                             <div className='d-flex'>
                             <div>
-                                <img className='rounded profile-img img-fluid' src={img} alt="Course Cover" />
+                                <img style={{objectFit: 'cover'}} className='rounded profile-img img-fluid' src={img} alt="Course Cover" />
                             </div>
                             <div className='mx-2'>
                                 <p className='fw-bold'>Lorem ipsum dolor sit amet.</p>
@@ -146,17 +142,13 @@ const CrousePage = (props) => {
                                
                             </div>
                         </Col>
-
-                       
-                        
-                    
+      
                         {/* Information Details */}
 
                     
                     
 
                      {/* Like, Comment section */}
-
 
                       <hr
                     style={{
@@ -173,13 +165,13 @@ const CrousePage = (props) => {
                              <div className="fb-card-actions-holder">
                                 <div className="fb-card-actions d-flex justify-content-around">
                                     <div className="fb-btn-holder">
-                                        <Button className='text-primary' variant="outline-light"><i className="fa fa-thumbs-up"></i> Like</Button>
+                                        <span className='text-primary' variant="outline-light"><i className="fa fa-thumbs-up"></i> Like</span>
                                     </div>
                                     <div className="fb-btn-holder">
-                                        <Button className='text-primary' variant="outline-light"><i className="far fa-comment-alt"></i> Comment</Button>
+                                        <span className='text-primary' variant="outline-light"><i className="far fa-comment-alt"></i> Comment</span>
                                     </div>
                                     <div className="fb-btn-holder">
-                                        <Button className='text-primary' variant="outline-light"><i className="fa fa-share-square"></i> Share</Button>
+                                        <span className='text-primary' variant="outline-light"><i className="fa fa-share-square"></i> Share</span>
                                     </div>
                                 </div>
                             </div>

@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Col, Container, Form, Row, Modal,Button, FormControl,  InputGroup, Accordion, Card, useAccordionButton, Dropdown } from 'react-bootstrap';
+import { Col, Container, Form, Row, Modal,Button, FormControl,  InputGroup, Accordion, Dropdown } from 'react-bootstrap';
 import { Link, useParams } from "react-router-dom";
 import "./GroupProfile.css";
-import man from '../../Images/man.jpg';
+import man from '../../Images/profile-thumbnails.svg';
 import badge from '../../Images/badge.svg'
+import GroupCourse from "../GroupCourse/GroupCourse";
 
 const GroupProfile = (props) => {
 
   const [show, setShow] = useState(false);
+  const [showCourse, setShowCourse] = useState(false);
+  const groupShow = () => setShowCourse(true);
+
   const [modal, setModal] = useState(false);
   const [thoughtModal, setThoughtModal] = useState(false);
   const [summaryModal, setSummaryModal] = useState(false);
@@ -534,7 +538,7 @@ const summaryDelete = (id) => {
                   headers: {
                       "Authorization" : `Token ${localStorage.getItem('auth_token')}`,
                       "Accept": "application/json",
-                      "Content-Type": "application/json"
+                      "Content-Type": "application/json" 
                   }})
                   .then(res =>res.json())
                   .then(data => setGroupSummaryPosts(data))
@@ -716,7 +720,7 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
 ));
 
   return (
-    <Container className="custom">
+    <Container className=" group-profile-container">
         {/* Group Profile */}
 
         <Row className="justify-content-center">
@@ -757,7 +761,7 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
               </Modal>
               
               <div>
-                <img  className="rounded group-cover img-fluid" src={`${BASE_URL}${singleGroup.cover_pic}`} alt='/'/>
+                <img style={{objectFit: 'cover'}}  className="rounded group-cover img-fluid" src={`${BASE_URL}${singleGroup.cover_pic}`} alt='/'/>
               </div>
           </Col>
         </Row>
@@ -802,7 +806,7 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
                 <div className="d-flex align-items-center">
                   <small style={{ color: "#1877f2", fontSize:'20px', fontWeight: 'bold', marginLeft: '5px' }} > {singleGroup.name}  </small>
                   <div>
-                     {singleGroup.is_verified &&  <img style={{'objectFit': 'cover' }} className="badge-tag mx-2" src={badge} alt=''/>}
+                     {singleGroup.is_verified &&  <img style={{objectFit: 'cover' }} className="badge-tag mx-2" src={badge} alt=''/>}
                   </div>
                   
                 </div>
@@ -811,22 +815,29 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
         </Row>
         <Row className='justify-content-center'>
           <Col md={8} className=" setting-section d-flex justify-content-end" >
-              {groupMember.role==="Creator" ? <div className="mx-2"> <Link to={`/${groupId.groupId}/create-course`}><Button size='sm' bg="primary">Create Course </Button></Link> </div> : <div className="mx-2">
-                <select
-                  className="form-select form-select-sm  mx-auto"
-                  aria-label="form-select-lg example"
-                >
-                  <option value="1">Follow</option>
-                  <option value="2">UnFollow</option>
-                  <option value="3">Joint as Content Creator</option>
-                  <option value="4">Requested as Content Creator</option>
-                  <option value="5">Content Creator</option>
-                </select>
-                </div> 
+              {groupMember.role==="Creator" && <div className="mx-2"> <Link to={`/${groupId.groupId}/create-course`}><Button size='sm' bg="primary">Create Course </Button></Link> </div> 
+              }
+              {groupMember.role==="user" && <div className="mx-2"><Button onClick={groupShow} size='sm' bg="primary">Group Courses </Button></div> 
               }
               <Button onClick={() => setSetting(true)} variant="outline-primary" size="sm"><i className="fa fa-gear"></i></Button>
             </Col>
         </Row>
+
+
+        <Modal
+               show={showCourse}
+               onHide={() =>setShowCourse(false)}
+               size='lg'
+               aria-labelledby="contained-modal-title-vcenter"
+               centered
+               >
+               <Modal.Header closeButton >
+                       Group Courses
+               </Modal.Header>
+               <Modal.Body className="fb-box-shadow">
+                     <GroupCourse/>
+               </Modal.Body>
+          </Modal>
 
       {/*-------------- Post Section----------------------- */}
 
@@ -836,7 +847,7 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
                           <div className='w-25 text-center'>
                               <img
                                 className="rounded-circle"
-                                style={{ width: "56px", height: "56px", 'objectFit': 'cover' }} 
+                                style={{ width: "56px", height: "56px", objectFit: 'cover' }} 
                                 src={`${BASE_URL}${singleGroup.cover_pic}`}
                                 alt=''
                               />
@@ -875,7 +886,7 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
                                     <div>
                                         <img
                                           className="rounded-circle mx-2"
-                                          style={{ width: "35px", height: "35px", 'objectFit': 'cover' }} 
+                                          style={{ width: "35px", height: "35px", objectFit: 'cover' }} 
                                           src={man}
                                           alt=''
                                       />
@@ -1183,8 +1194,8 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
                               <div className="fb-card-header">
                                 <div className="user-post-info">
                                   <div className="user-thumb">
-                                  { !post.group_name &&  <img  src={`${BASE_URL}${post.user_profile_pic}`} className="img-responsive" alt='user profile not found'/>}
-                                  {post.group_name &&  <img  src={`${BASE_URL}${post.group_profile_pic}`} className="img-responsive" alt='group profile not found'/>}
+                                  { !post.group_name &&  <img  src={`${BASE_URL}${post.user_profile_pic}`} style={{objectFit: 'cover'}} className="img-responsive" alt='user profile not found'/>}
+                                  {post.group_name &&  <img  src={`${BASE_URL}${post.group_profile_pic}`} style={{objectFit: 'cover'}} className="img-responsive" alt='group profile not found'/>}
 
                                   </div>
                                   <div className="user-information">
@@ -1573,27 +1584,18 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
                               </div>}
                             </div>
 
-                              {/* <div className="fb-card-like-comment-holder">
-                                <div className="fb-card-like-comment">
-                                  <div className="likes-emoji-holder">
-                                      <span className='emoji-holder'>14 Likes</span>
-                                  </div>
-                                  <div className="like-comment-holder">
-                                      <span  className='emoji-holder'>10 Comments</span>
-                                  </div>
-                                </div>
-                              </div> */}
+                    
 
                               <div className="fb-card-actions-holder">
                                 <div className="d-flex justify-content-between">
                                     <div className="fb-btn-holder">
-                                        <Button className='text-primary' variant="outline-light"><i className="fa hom-icon fa-thumbs-up"></i> <span>10</span> like</Button>
+                                        <span className='text-primary' variant="outline-light"><i className="fa hom-icon fa-thumbs-up"></i> <span>10</span> like</span>
                                     </div>
                                     <div className="fb-btn-holder">
-                                        <Button className='text-primary' variant="outline-light"><i className="far hom-icon fa-comment-alt"></i> <span>10</span> Comment</Button>
+                                        <span className='text-primary' variant="outline-light"><i className="far hom-icon fa-comment-alt"></i> <span>10</span> Comment</span>
                                     </div>
                                     <div className="fb-btn-holder">
-                                        <Button className='text-primary' variant="outline-light"><i className="fa hom-icon fa-share-square"></i> <span>10</span> Share</Button>
+                                        <span className='text-primary' variant="outline-light"><i className="fa hom-icon fa-share-square"></i> <span>10</span> Share</span>
                                     </div>
                                 </div>
                               </div>
@@ -1601,7 +1603,13 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
                               <div className="fb-card-comments">
                                   <div className="comment-input-holder">
                                     <div className="user-thumb">
-                                        <img src="https://i.ibb.co/St6QD00/DSC-0003.jpg" className="img-responsive" alt=''/>
+                                   
+                                    {post.user_profile_pic !==null && 
+                                          <img src={`${BASE_URL}${post.group_profile_pic}`} style={{objectFit: 'cover'}}  className="img-responsive" alt='user-profile'/>
+                                       }
+                                       {post.user_profile_pic  ===null && 
+                                          <img style={{objectFit: 'cover'}} src={man} className="img-responsive" alt='user-profile'/>
+                                       }
                                     </div>
                                     <div className="comment-input"> 
                                         <Form.Control
@@ -1732,519 +1740,13 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
                       <Accordion.Item eventKey="3">
                         <Accordion.Header>Group Creator</Accordion.Header>
                         <Accordion.Body>
-                        {singleGroup && <Link to={`/user/${localStorage.getItem('id')}`}><p className="Name"> { singleGroup['first_name']}  </p></Link>}
-                        </Accordion.Body>
-                      </Accordion.Item>
-            
-                      <Accordion.Item eventKey="4">
-                        <Accordion.Header>Group Courses</Accordion.Header>
-                        <Accordion.Body>
-                        {groupCourses && groupCourses.map(gCourse => <Link key={gCourse.id} to={`/course/${gCourse.id}/details`}><p className="Name"> { gCourse.name}  </p></Link>)}
+                        {singleGroup && <Link className="text-decoration-none" to={`/user/${localStorage.getItem('id')}`}><p className="Name"> { singleGroup['first_name']}  </p></Link>}
                         </Accordion.Body>
                       </Accordion.Item>
                     </Accordion>
                   </Modal.Body>
               </Modal>
-        {/* <Accordion.Item eventKey="3">
-          <Accordion.Header> Admin</Accordion.Header>
-          <Accordion.Body>
-            <Form.Label htmlFor=""></Form.Label>
-            <Form.Control
-            className="mb-2"
-              type="text"
-              aria-describedby=""
-              placeholder="search admin /paste the link of admin"
-            />
-            <a className="mx-2" href="#">
-              Send Request for admin
-            </a>
-          </Accordion.Body>
-        </Accordion.Item> */}
-
-
-        
-        {/* <Accordion.Item eventKey="4">
-          <Accordion.Header>Moderator</Accordion.Header>
-          <Accordion.Body>
-            <Form.Label htmlFor=""></Form.Label>
-            <Form.Control
-             className="mb-2"
-              type="text"
-              aria-describedby=""
-              placeholder="search admin /paste the link of moderator"
-            />
-             <a className="mx-2" href="#">
-              Send Request for moderator
-            </a>
-          </Accordion.Body>
-        </Accordion.Item>
-        <Accordion.Item eventKey="5">
-          <Accordion.Header>Content Creator</Accordion.Header>
-          <Accordion.Body>Mr.Z</Accordion.Body>
-        </Accordion.Item>
-        <Accordion.Item eventKey="6">
-          <Accordion.Header>Linked Group</Accordion.Header>
-          <Accordion.Body>
-          
-              <a  className="mx-2 mb-2"  href="#"> Create Group </a>
-              <Form.Label htmlFor=""></Form.Label>
-            <Form.Control
-             className="mb-2 mt-2"
-              type="text"
-              aria-describedby=""
-              placeholder="search linked group/paste the link of linked group BUBT"
-            />
-              <a className="mx-2" href="#">Send Request for moderator</a>
-            
-          </Accordion.Body>
-        </Accordion.Item> */}
-        {/* <Accordion.Item eventKey="7">
-          <Accordion.Header>
-            Contact Us <br />
-            <i style={{color: 'blue'}} className="fas fa-edit p-2"></i>
-          </Accordion.Header>
-          <Accordion.Body>
-            <div className="mb-3">
-              <div className="input-group">
-                <div className="input-group-prepend"></div>
-                <textarea
-                  className="form-control"
-                  aria-label="With textarea"
-                  placeholder="Contact Us"
-                ></textarea>
-              </div>
-            </div>
-          </Accordion.Body>
-        </Accordion.Item> */}
-        {/* <Accordion.Item eventKey="8">
-          <Accordion.Header>Followed keyword</Accordion.Header>
-          <Accordion.Body>
-            <p>
-              Name of folder<i style={{color: 'blue'}} className="fas fa-edit p-2"></i>
-            </p>
-            <div className="">
-              <div className="input-group">
-                <div className="input-group-prepend"></div>
-                <textarea
-                  className="form-control"
-                  aria-label="With textarea"
-                  Placeholder="Name of folder"
-                ></textarea>
-              </div>
-            </div>
-            <p className="mt-2">
-              Keyword <i style={{color: 'blue'}} className="fas fa-edit p-2"></i>
-            </p>
-            <div className="">
-              <div className="input-group">
-                <div className="input-group-prepend"></div>
-                <textarea
-                  className="form-control"
-                  aria-label="With textarea"
-                  Placeholder="keyword without space"
-                ></textarea>
-              </div>
-            </div>
-            <div className="text-end mt-2">
-              <i className="fas fa-plus"></i>
-            </div>
-            <div className="text-end mt-3">
-              <Button variant="primary justify ">Save</Button>
-            </div>
-          </Accordion.Body>
-        </Accordion.Item> */}
-        {/* <Accordion.Item eventKey="9">
-          <Accordion.Header>Followed resercher</Accordion.Header>
-          <Accordion.Body>
-            <Form.Label htmlFor=""></Form.Label>
-            <Form.Control
-              type="text"
-              aria-describedby=""
-              placeholder="Search followed person/paste the link of followed person"
-            />
-          </Accordion.Body>
-        </Accordion.Item> */}
-        {/* <Accordion.Item eventKey="10">
-          <Accordion.Header>Followed group</Accordion.Header>
-          <Accordion.Body>
-            <Form.Label htmlFor=""></Form.Label>
-            <Form.Control
-              type="text"
-              aria-describedby=""
-              placeholder="Search followed person/paste the link of followed group"
-            />
-          </Accordion.Body>
-        </Accordion.Item> */}
-        {/* <Accordion.Item eventKey="11">
-          <Accordion.Header>Share research thought </Accordion.Header>
-          <Accordion.Body>
-            <div className="input-group">
-              <div className="input-group-prepend"></div>
-              <textarea
-                className="form-control"
-                aria-label="With textarea"
-                placeholder="Share your any research/logical thought"
-              ></textarea>
-            </div>
-            <div className="text-end mt-3">
-              <Button variant="primary justify ">Save as a draft</Button>
-            </div>
-            <div className="text-end mt-3">
-              <Button variant="primary justify ">Post</Button>
-            </div>
-          </Accordion.Body>
-        </Accordion.Item> */}
-        {/* <Accordion.Item eventKey="12">
-          <Accordion.Header>Post a research article</Accordion.Header>
-          <Accordion.Body>
-          
-            <p
-              onClick={() => setTitle(!title)}
-              aria-controls="example-title-text"
-              aria-expanded={title}
-            >
-              Title of research article <i style={{color: 'blue'}} className="fas fa-edit "></i>
-            </p>
-            <Collapse in={title}>
-              <div id="example-objective-text">
-                <div className="input-group">
-                  <div className="input-group-prepend"></div>
-                  <textarea
-                    className="form-control"
-                    aria-label="With textarea"
-                    placeholder="Title of research article"
-                  ></textarea>
-                </div>
-                <div className="text-end mt-3">
-                  <Button variant="primary justify ">Save as a draft</Button>
-                </div>
-              </div>
-            </Collapse>
-
-
-            <p
-              onClick={() => setObjective(!objective)}
-              aria-controls="example-objective-text"
-              aria-expanded={objective}
-            >
-              Objective of the study <i style={{color: 'blue'}} className="fas fa-edit"></i>
-            </p>
-            <Collapse in={objective}>
-              <div id="example-title-text">
-                <div className="input-group">
-                  <div className="input-group-prepend"></div>
-                  <textarea
-                    className="form-control"
-                    aria-label="With textarea"
-                    placeholder="Objective  of the study"
-                  ></textarea>
-                </div>
-                <div className="text-end mt-3">
-                  <Button variant="primary justify ">Save as a draft</Button>
-                </div>
-              </div>
-            </Collapse>
-
-            <p
-              onClick={() => setTheoritical(!theoritical)}
-              aria-controls="example-title-text"
-              aria-expanded={theoritical}
-            >
-              Theoritical Background <i style={{color: 'blue'}} className="fas fa-edit"></i>
-            </p>
-            <Collapse in={theoritical}>
-              <div id="example-theoritical-text">
-                <div className="input-group">
-                  <div className="input-group-prepend"></div>
-                  <textarea
-                    className="form-control"
-                    aria-label="With textarea"
-                    placeholder="Theoritical background"
-                  ></textarea>
-                </div>
-                <div className="text-end mt-3">
-                  <Button variant="primary justify ">Save as a draft</Button>
-                </div>
-              </div>
-            </Collapse>
-
-
-            <p
-              onClick={() => setGap(!gap)}
-              aria-controls="example-title-text"
-              aria-expanded={gap}
-            >
-              Research Gap <i style={{color: 'blue'}} className="fas fa-edit"></i>
-            </p>
-            <Collapse in={gap}>
-              <div id="example-theoritical-text">
-                <div className="input-group">
-                  <div className="input-group-prepend"></div>
-                  <textarea
-                    className="form-control"
-                    aria-label="With textarea"
-                    placeholder="Research Gap"
-                  ></textarea>
-                </div>
-                <div className="text-end mt-3">
-                  <Button variant="primary justify ">Save as a draft</Button>
-                </div>
-              </div>
-            </Collapse>
-
-
-            <p
-              onClick={() => setUnique(!unique)}
-              aria-controls="example-title-text"
-              aria-expanded={unique}
-            >
-              Uniqueness of the study <i style={{color: 'blue'}} className="fas fa-edit"></i>
-            </p>
-            <Collapse in={unique}>
-              <div id="example-theoritical-text">
-                <div className="input-group">
-                  <div className="input-group-prepend"></div>
-                  <textarea
-                    className="form-control"
-                    aria-label="With textarea"
-                    placeholder="Uniqueness of the study"
-                  ></textarea>
-                </div>
-                <div className="text-end mt-3">
-                  <Button variant="primary justify ">Save as a draft</Button>
-                </div>
-              </div>
-            </Collapse>
-
-
-            <p
-              onClick={() => setData(!data)}
-              aria-controls="example-title-text"
-              aria-expanded={data}
-            >
-              Data source / Sample information <i style={{color: 'blue'}} className="fas fa-edit"></i>
-            </p>
-            <Collapse in={data}>
-              <div id="example-theoritical-text">
-                <div className="input-group">
-                  <div className="input-group-prepend"></div>
-                  <textarea
-                    className="form-control"
-                    aria-label="With textarea"
-                    placeholder="Data source/ Sample information"
-                  ></textarea>
-                </div>
-                <div className="text-end mt-3">
-                  <Button variant="primary justify ">Save as a draft</Button>
-                </div>
-              </div>
-            </Collapse>
-
-
-            <p
-              onClick={() => setMethodology(!methodology)}
-              aria-controls="example-title-text"
-              aria-expanded={methodology}
-            >
-              Research methodology <i style={{color: 'blue'}} className="fas fa-edit"></i>
-            </p>
-            <Collapse in={methodology}>
-              <div id="example-theoritical-text">
-                <div className="input-group">
-                  <div className="input-group-prepend"></div>
-                  <textarea
-                    className="form-control"
-                    aria-label="With textarea"
-                    placeholder="Research methodology"
-                  ></textarea>
-                </div>
-                <div className="text-end mt-3">
-                  <Button variant="primary justify ">Save as a draft</Button>
-                </div>
-              </div>
-            </Collapse>
-
-
-            <p
-              onClick={() => setResult(!result)}
-              aria-controls="example-title-text"
-              aria-expanded={result}
-            >
-              Result & discussion <i style={{color: 'blue'}} className="fas fa-edit icon"></i>
-            </p>
-            <Collapse in={result}>
-              <div id="example-theoritical-text">
-                <div className="input-group">
-                  <div className="input-group-prepend"></div>
-                  <textarea
-                    className="form-control"
-                    aria-label="With textarea"
-                    placeholder="Result & discussion"
-                  ></textarea>
-                </div>
-                <div className="text-end mt-3">
-                  <Button variant="primary justify ">Save as a draft</Button>
-                </div>
-              </div>
-            </Collapse>
-
-
-            <p
-              onClick={() => setValidity(!validity)}
-              aria-controls="example-title-text"
-              aria-expanded={validity}
-            >
-              Validity & reliability of finding{" "}
-              <i style={{color: 'blue'}} className="fas fa-edit icon"></i>
-            </p>
-            <Collapse in={validity}>
-              <div id="example-theoritical-text">
-                <div className="input-group">
-                  <div className="input-group-prepend"></div>
-                  <textarea
-                    className="form-control"
-                    aria-label="With textarea"
-                    placeholder="Validity & reliability of finding"
-                  ></textarea>
-                </div>
-                <div className="text-end mt-3">
-                  <Button variant="primary justify ">Save as a draft</Button>
-                </div>
-              </div>
-            </Collapse>
-
-
-            <p
-              onClick={() => setUseful(!useful)}
-              aria-controls="example-title-text"
-              aria-expanded={useful}
-            >
-              Usefulness of the finding <i style={{color: 'blue'}} className="fas fa-edit icon"></i>
-            </p>
-            <Collapse in={useful}>
-              <div id="example-theoritical-text">
-                <div className="input-group">
-                  <div className="input-group-prepend"></div>
-                  <textarea
-                    className="form-control"
-                    aria-label="With textarea"
-                    placeholder=" Usefulness of the finding"
-                  ></textarea>
-                </div>
-                <div className="text-end mt-3">
-                  <Button variant="primary justify "> Save as a draft</Button>
-                </div>
-              </div>
-            </Collapse>
-
-
-            <p
-              onClick={() => setReference(!reference)}
-              aria-controls="example-title-text"
-              aria-expanded={reference}
-            >
-              Reference <i style={{color: 'blue'}} className="fas fa-edit icon"></i>
-            </p>
-            <Collapse in={reference}>
-              <div id="example-theoritical-text">
-                <div className="input-group">
-                  <div className="input-group-prepend"></div>
-                  <textarea
-                    className="form-control"
-                    aria-label="With textarea"
-                    placeholder="Reference"
-                  ></textarea>
-                </div>
-                <div className="text-end mt-3">
-                  <Button variant="primary justify ">Save as a draft</Button>
-                </div>
-              </div>
-            </Collapse>
-
-
-            <p
-              onClick={() => setAnnex(!annex)}
-              aria-controls="example-title-text"
-              aria-expanded={annex}
-            >
-              Annex <i style={{color: 'blue'}} className="fas fa-edit icon"></i>
-            </p>
-            <Collapse in={annex}>
-              <div id="example-theoritical-text">
-                <div className="input-group">
-                  <div className="input-group-prepend"></div>
-                  <textarea
-                    className="form-control"
-                    aria-label="With textarea"
-                    placeholder="Annex"
-                  ></textarea>
-                </div>
-                <div className="text-end mt-3">
-                  <Button variant="primary justify ">Save as a draft</Button>
-                </div>
-              </div>
-            </Collapse>
-
-            <p
-              onClick={() => setFile(!file)}
-              aria-controls="example-title-text"
-              aria-expanded={file}
-            >
-              Uploaded file 
-            </p>
-            <Collapse in={file}>
-              <div id="example-theoritical-text">
-              <Form.Group controlId="formFile" className="mb-3">
-            <Form.Label > </Form.Label>
-              <Form.Control type="file" />
-              </Form.Group>
-              <Form.Group controlId="formFile" className="mb-3">
-            <Form.Label > </Form.Label>
-              <Form.Control type="file" />
-              </Form.Group>
-              </div>
-            </Collapse>
-
-
-            
-              
-            <p
-              onClick={() => setFileName(!fileName)}
-              aria-controls="example-title-text"
-              aria-expanded={fileName}
-            >
-              
-              Keyword <i style={{color: 'blue'}} className="fas fa-edit icon"></i>
-            </p>
-            <Collapse in={fileName }>
-              <div id="example-theoritical-text">
-                <div className="input-group">
-                  <div className="input-group-prepend"></div>
-                  <textarea
-                    className="form-control"
-                    aria-label="With textarea"
-                    placeholder="Keyword without space"
-                  ></textarea>
-                </div>
-                
-                <div className="text-end mt-2">
-              <i className="fas fa-plus"></i>
-            </div>
-                <div className="text-end mt-3">
-                  <Button variant="primary justify ">Save </Button>
-                </div>
-              </div>
-            </Collapse>
-            
-            
-
-           
-          </Accordion.Body>
-        </Accordion.Item> */}
-
-        {/* <div className="text-end mt-3">
-                  <Button variant="primary justify ">Post</Button>
-                </div> */}
+       
                
     
     </Container>

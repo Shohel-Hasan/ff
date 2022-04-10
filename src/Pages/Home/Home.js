@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Col, Container, Form, Row, Modal,Button, FormControl, InputGroup, Accordion } from 'react-bootstrap';
-import Slider from 'react-slick';
+import { Col, Container, Form, Row, Modal,Button, Accordion } from 'react-bootstrap';
 import './Home.css';
-import man from '../../Images/saddam.jpg';
+import man from '../../Images/profile-thumbnails.svg';
 import { useNavigate, Link } from 'react-router-dom';
 
 
@@ -163,7 +162,7 @@ useEffect(() => {
         )
       } else {
         setSummaryPosts(data)
-        // console.log("asdfsa", data)
+       
       }
      
   })
@@ -229,6 +228,9 @@ const allPosts = [...summaryPosts , ...thoughtPosts ]
 const randomPosts = allPosts.sort(() => Math.random() - 0.5)
 
 
+console.log(allPosts)
+
+
   const settings = {
     dots: false,
     infinite: true,
@@ -281,30 +283,17 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
         <Container fluid className='home-container'>
             <Row className="justify-content--center">
                 {/* Left col section start */}
-                <Col xs={2} className='left-col'>
-                    Left col section 
-                </Col>
-                {/* Left col section End */}
-
+                <Col xs={3} className='left-col'></Col>
+                
                 {/* Middle col section start */}
-                <Col xs={8} className='mid-col'>
-                        {/* <Row className='justify-content-center align-items-center'>
-                            <Col>
-                                <Slider {...settings}>
-                                 { allCourses.length!==0 && allCourses.map((course, index) => <div key={index}>
-                                        <img style={{'objectFit': 'cover' }} className="home-slider img-fluid" src={`${BASE_URL}${course.cover_pic}`} alt=''/>
-                                    </div>
-                                     )}
-                                
-                                </Slider>
-                            </Col>
-                        </Row> */}
+                <Col xs={7} className='mid-col'>
+               
 
                     {/* Post Section */}
                     <Row className='justify-content-center my-4'>
                         <Col>
-                            <div className="p-3 shadow-effect d-flex align-items-center  ">
-                              {userGeneralInfo.profile_pic!==null && <div className='w-25'>
+                            <div className="p-3 shadow-effect d-flex justify-content-center align-items-center">
+                              {userGeneralInfo.profile_pic!==null && <div className='img_sec'>
                                   <div className='text-center'>
                                     <img
                                     className="rounded-circle"
@@ -315,7 +304,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                                   </div>
                               </div>}
 
-                              {userGeneralInfo.profile_pic===null && <div className='w-25'>
+                              {userGeneralInfo.profile_pic===null && <div className='img_sec'>
                                   <div className='text-center'>
                                     <img
                                     className="rounded-circle"
@@ -356,27 +345,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                                     <p className='fw-bolder fs-6'>Thought Post </p>
                                   </Modal.Header>
                                   <Modal.Body className="fb-box-shadow">
-                                    <div className='d-flex mb-2'>
-                                       {userGeneralInfo.cover_pic!==null && <div>
-                                            <img
-                                              className="rounded-circle mx-2"
-                                              style={{ width: "35px", height: "35px", 'objectFit': 'cover' }} 
-                                              src={`${BASE_URL}${userGeneralInfo.profile_pic}`}
-                                              alt=''
-                                          />
-                                        </div>}
-                                        {userGeneralInfo.cover_pic===null && <div>
-                                            <img
-                                              className="rounded-circle mx-2"
-                                              style={{ width: "35px", height: "35px", 'objectFit': 'cover' }} 
-                                              src={man}
-                                              alt=''
-                                          />
-                                        </div>}
-                                        <div>
-                                            {/* <h6>{userGeneralInfo.user_first_name}</h6> */}
-                                        </div>
-                                    </div>
+                                  
                                     <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                                       <Form.Control onChange={(e) =>setDescription(e.target.value)} as="textarea" rows={8}  placeholder="Share a thought that you like"/>
                                     </Form.Group>
@@ -670,6 +639,7 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                     {/* Course Information Start */}
                     <Row>
                       {allPosts && allPosts.map((post, index) => <div  key={index} className=''>
+                      
                         <div className="fb-cards-designs">
                           <div className="fb-clone-card">
                             <div className="fb-card-main-content">
@@ -685,6 +655,8 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                                   {post.group_name && <p><Link className='text-decoration-none' to={`/group/${post.group}/details`}>{post.group_name}</Link></p>}
 
                                     <small>{post.created_date}</small>
+                                   
+                                  
                                   </div>
                                 </div>
                                 <div className="post-action">
@@ -693,55 +665,55 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                               </div>
                               {post.title_of_research_article &&  <div className="fb-card-body simple-text-card simple-image-card">
                                   <div className='p-3'>
-                                    <p className='p-0 m-0'><b>Title of research article</b></p>
+                                    <p><b>Title of research article</b></p>
                                     <small>{post.objective_of_the_study}</small>
                                   </div> 
                                   <div className='p-3'>
-                                    <p className='p-0 m-0'><b>Objective of the study</b></p>
+                                    <p><b>Objective of the study</b></p>
                                     <small >{post.objective_of_the_study}</small>
                                   </div> 
                                   <div className='p-3'>
-                                    <p className='p-0 m-0'><b>Theoretical background</b></p>
+                                    <p><b>Theoretical background</b></p>
                                     <small >{post.theoritical_Background}</small>
                                   </div> 
                                   <div className='p-3'>
-                                    <p className='p-0 m-0'><b>Research gap</b></p>
+                                    <p ><b>Research gap</b></p>
                                     <small >{post.research_gap}</small>
                                   </div> 
                                   <div className='p-3'>
-                                    <p className='p-0 m-0'><b>Uniqueness of the study</b></p>
+                                    <p><b>Uniqueness of the study</b></p>
                                     <small >{post.uniqueness_of_the_study}</small>
                                   </div> 
                                   <div className='p-3'>
-                                    <p className='p-0 m-0'><b>Data source/sample information</b></p>
+                                    <p><b>Data source/sample information</b></p>
                                     <small >{post.data_source_sample_information}</small>
                                   </div> 
                                   <div className='p-3'>
-                                    <p className='p-0 m-0'><b>Research methodology</b></p>
+                                    <p><b>Research methodology</b></p>
                                     <small >{post.research_methodology}</small>
                                   </div> 
                                   <div className='p-3'>
-                                    <p className='p-0 m-0'><b>Result & discussion</b></p>
+                                    <p><b>Result & discussion</b></p>
                                     <small >{post.result_discussion}</small>
                                   </div> 
                                   <div className='p-3'>
-                                    <p className='p-0 m-0'><b>Validity & reliability of finding</b></p>
+                                    <p><b>Validity & reliability of finding</b></p>
                                     <small >{post.validity_reliability_of_finding}</small>
                                   </div> 
                                   <div className='p-3'>
-                                    <p className='p-0 m-0'><b>Usefulness of the finding</b></p>
+                                    <p><b>Usefulness of the finding</b></p>
                                     <small >{post.usefulness_of_the_finding}</small>
                                   </div> 
                                   <div className='p-3'>
-                                    <p className='p-0 m-0'><b>Reference</b></p>
+                                    <p><b>Reference</b></p>
                                     <small >{post.reference}</small>
                                   </div> 
                                   <div className='p-3'>
-                                    <p className='p-0 m-0'><b>Annex</b></p>
+                                    <p><b>Annex</b></p>
                                     <small >{post.annex}</small>
                                   </div> 
                                   <div className='p-3'>
-                                    <p className='p-0 m-0'><b>Keyword</b></p>
+                                    <p><b>Keyword</b></p>
                                     <small>{post.keyword}</small>
                                   </div> 
                                   <div className='p-3'>
@@ -756,36 +728,31 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
                               </div>}
                             </div>
 
-                              {/* <div className="fb-card-like-comment-holder">
-                                <div className="fb-card-like-comment">
-                                  <div className="likes-emoji-holder">
-                                      <span className='emoji-holder'>14 Likes</span>
-                                  </div>
-                                  <div className="like-comment-holder">
-                                      <span  className='emoji-holder'>10 Comments</span>
-                                  </div>
-                                </div>
-                              </div> */}
-
+                             
                               <div className="fb-card-actions-holder">
                                 <div className="d-flex justify-content-between">
                                     <div className="fb-btn-holder">
-                                        <Button className='text-primary' variant="outline-light"><i className="fa hom-icon fa-thumbs-up"></i> <span>10</span> Like</Button>                     
+                                        <span className='text-primary'><i className="fa hom-icon fa-thumbs-up"></i> <span>10</span> Like</span>                     
                                     </div>
                                     <div className="fb-btn-holder">
-                                        <Button className='text-primary' variant="outline-light"><i className="far hom-icon fa-comment-alt"></i> <span>10</span> Comment</Button>
+                                        <span className='text-primary'><i className="far hom-icon fa-comment-alt"></i> <span>10</span> Comment</span>
                                     </div>
                                     <div className="fb-btn-holder">
-                                        <Button className='text-primary' variant="outline-light"><i className="fa hom-icon fa-share-square"></i> <span>10</span> Share</Button>
+                                        <span className='text-primary'><i className="fa hom-icon fa-share-square"></i> <span>10</span> Share</span>
                                     </div>
                                   
                                 </div>
                               </div>
-
+                              
                               <div className="fb-card-comments">
                                   <div className="comment-input-holder">
                                     <div className="user-thumb">
-                                        <img src="https://i.ibb.co/St6QD00/DSC-0003.jpg" className="img-responsive" alt=''/>
+                                       {post.user_profile_pic !==null && 
+                                          <img style={{objectFit: 'cover'}} src={`${BASE_URL}${post.user_profile_pic}`} className="img-responsive" alt='user-profile'/>
+                                       }
+                                       {post.user_profile_pic  ===null && 
+                                          <img style={{objectFit: 'cover'}} src={man} className="img-responsive" alt='user-profile'/>
+                                       }
                                     </div>
                                     <div className="comment-input"> 
                                         <Form.Control
@@ -804,12 +771,10 @@ const randomPosts = allPosts.sort(() => Math.random() - 0.5)
 
               </Col>
                {/* Middle col section end */}
-
-
+            
                {/* Right Col section */}
-              <Col xs={2}  className='right-col'>
-                Right Col section
-              </Col>
+              <Col xs={2
+              }  className='right-col'></Col>
             </Row>
        </Container>
     );

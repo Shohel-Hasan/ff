@@ -3,10 +3,10 @@ import { Accordion, Button, Col, Container, Row, Table, Modal, Form } from 'reac
 import './SingleCourse.css'
 import badge from '../../Images/badge.svg'
 import man from '../../Images/man.jpg'
+import bkash from '../../Images/Bkash.svg'
+import rocket from '../../Images/rocket.svg'
 import Slider from 'react-slick';
 import { Link, useParams } from 'react-router-dom';
-// import Checkout from '../../components/Checkout';
-import Overlay from '../../components/Overlay';
 import { useNavigate } from 'react-router-dom';
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
@@ -479,7 +479,7 @@ const BASE_URL = "http://127.0.0.1:8000"
                     </Form>  
                     </Modal.Body>
                   </Modal>
-                  <div><img className='course-img img-fluid rounded' src={`${BASE_URL}${course.cover_pic}`} alt=""/></div>
+                  <div><img style={{objectFit: 'cover'}} className='course-img img-fluid rounded' src={`${BASE_URL}${course.cover_pic}`} alt=""/></div>
                 </Col>
             </Row>
 
@@ -495,7 +495,7 @@ const BASE_URL = "http://127.0.0.1:8000"
                     <Row>
                     <Col md={4} > 
                     <div className='text-center'>
-                      <img className='group-img ' style={{"objectFit": "cover"}} src={`${BASE_URL}${course.group_profile_pic}`} alt=""/>
+                      <img className='group-img ' style={{objectFit: "cover"}} src={`${BASE_URL}${course.group_profile_pic}`} alt=""/>
                       <div className='text-center'><small style={{ color: "#1877f2", fontSize: '20px'}}>{course.group_name}</small></div>
                     </div>
                     <div className='text-center'>
@@ -522,10 +522,12 @@ const BASE_URL = "http://127.0.0.1:8000"
                             
                         </Modal.Header>
                         <Modal.Body className="fb-box-shadow">
-                        <div className='my-3'>
+                        <div className=''>
                             <p>Checkout here to enroll into this course</p>
                             <p>Please send money in the given number and put the tranxaction number and your phone number</p>
-                            <p>01841779449</p>
+                            <img style={{height: '50px', width: '60px', objectFit: 'cover'}} src={rocket} alt=''/>
+                            <img className='mx-4' style={{height: '60px', width: '70px', objectFit: 'cover'}}  src={bkash} alt=''/>
+                            <p className='fw-bolder'>01841779449</p>
                         </div>
 
                         <form action="" className={`form-group`} onSubmit={submitHandler}>
@@ -534,7 +536,6 @@ const BASE_URL = "http://127.0.0.1:8000"
                                 <option value="" selected disabled>Select payment method</option>
                                 <option value="bkash">Bkash</option>
                                 <option value="bkash">Rocket</option>
-                                {/* <option value="bkash">Nogod</option> */}
                             </select>
 
                             
@@ -563,13 +564,13 @@ const BASE_URL = "http://127.0.0.1:8000"
                         <div>
                           <div className="d-flex justify-content-around">
                             <div className="text-center mt-3 mx-1">
-                                <Button  className='text-primary' variant="outline-light"><i className="far fa-thumbs-up "></i> <span>10</span> Like</Button>
+                                <span className='text-primary'><i className="far fa-thumbs-up "></i> <span>10</span> Like</span>
                             </div>
                             <div className="mt-3 mx-1">
-                                <Button className='text-primary' variant="outline-light"><i className="far fa-comment"></i> <span>10</span> Comment</Button>
+                                <span className='text-primary'><i className="far fa-comment"></i> <span>10</span> Comment</span>
                             </div>
                             <div className="fb-btn-holder text-center mt-3 mx-1">
-                                <Button className='text-primary' variant="outline-light"><i className="far fa-share-square"></i> <span>10</span> Share</Button>
+                                <span className='text-primary'><i className="far fa-share-square"></i> <span>10</span> Share</span>
                             </div>
                           </div>
                         </div>
@@ -646,7 +647,7 @@ const BASE_URL = "http://127.0.0.1:8000"
                   <Row className='my-4 justify-content-center'>
                     <Col md={12}>
                       {noLink &&  <div>  <small>{noLink}</small>  </div>}
-                      {getClassLink &&  <div> <small>{getClassLink}</small>  </div>}
+                      {getClassLink &&  <div> <a href={getClassLink} rel="noreferrer">{getClassLink}</a>  </div>}
                     { isCourseStaff &&  <form>
                         <div className="form-group my-2">
                           <label >Class Meet Link</label>
@@ -706,7 +707,8 @@ const BASE_URL = "http://127.0.0.1:8000"
                         </div>}
 
                         {getClassLink &&  <div>
-                                  <small>{getClassLink}</small>
+                                 
+                                  <a href={getClassLink} rel="noreferrer">{getClassLink}</a>
                         </div>}
                       </Col>
                     </Row>
@@ -731,35 +733,6 @@ const BASE_URL = "http://127.0.0.1:8000"
               </Accordion.Item>
             </Accordion>
           }
-          
-
-        {/* -----------------------------------------Header Section End------------------------------------------------------- */}
-            {/* <Row className='mt-5 mb-5 box'> 
-              <Col md='5'>
-                    <span className='fs-5 fw-bold square'>Course Teacher</span>
-              </Col>
-              <Col md='7' className='mt-1'>
-                <Slider {...settings}>
-                  <div>
-                      <img className="img-ban rounded-circle img-fluid" src={img} alt=''/>
-                      <span className='text-muted mx-1'>Name</span>
-                  </div>
-                  <div>
-                      <img className="img-ban rounded-circle img-fluid" src={img} alt=''/>
-                      <span className='text-muted mx-1'>Name</span>
-                  </div>
-                  <div>
-                      <img  className="img-ban rounded-circle img-fluid" src={img} alt=''/>
-                      <span className='text-muted mx-1'>Name</span>
-                  </div>
-                  <div>
-                      <img  className="img-ban rounded-circle img-fluid" src={img} alt=''/>
-                      <span className='text-muted mx-1'>Name</span>
-                  </div>
-                </Slider>
-              </Col> 
-            </Row> */}
-
 
             <Row className='box'>
               <Col className='mt-5'>
@@ -779,7 +752,7 @@ const BASE_URL = "http://127.0.0.1:8000"
                       </div>)
                     }
                    { enrolledStudents.length!==0 && enrolledStudents.map((st, index) => <div key={index}>
-                        <img className="slider-img img-fluid" src={man} alt=''/>
+                        <img style={{objectFit: 'cover'}} className="slider-img img-fluid" src={man} alt=''/>
                         <h6> <Link to={`/user/${st.id}`}> {st.student_first_name}</Link> </h6>
                     </div> ) }
                    

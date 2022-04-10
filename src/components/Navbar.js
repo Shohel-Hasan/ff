@@ -10,7 +10,7 @@ import profile_icon from '../assets/re/Profile.svg';
 import setting_icon from '../assets/re/Settings.svg';
 
 import logo from '../assets/re/Navbar_Logo.svg';
-import avatar from '../assets/man.jpg';
+import avatar from '../Images/profile-thumbnails.svg';
 import notification_icon_filled from '../assets/re/Notice.svg';
 import style from '../styles/Navbar.module.css';
 import { useNavigate } from 'react-router-dom';
@@ -78,6 +78,8 @@ export default function Navbar(props) {
       const BASE_URL = "http://127.0.0.1:8000"
 
       
+
+      
   return (
     <div className={`${style.navbar_main_container} ${style.fb_box_shadow} d-flex flex-row justify-content-between`}>
       <div className={`${style.branding} d-flex flex-row justify-content-center align-items-center`}>
@@ -91,9 +93,9 @@ export default function Navbar(props) {
       </div>
 
       <div className={`${style.mid_section} d-flex flex-row justify-content-center align-items-center`}>
-         <Link  to='/home'><img src={home_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
-         <Link  to='/groups-home'><img src={group_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
-         <Link  to="all-courses" ><img src={class_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
+         <Link className='nav_icon'  to='/home'><img src={home_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
+         <Link className='nav_icon'   to='/groups-home'><img src={group_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
+         <Link className='nav_icon'  to="all-courses" ><img src={class_icon} className={`material-icons ${style.icons}`} alt='home' /></Link>
       </div>
       
       <div className={`${style.profile_section} d-flex flex-row justify-content-center align-items-center`}>

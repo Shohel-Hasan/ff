@@ -282,4 +282,10 @@
   }
 }
 
+@media(max-width: 320px){
+  .img_sec{
+    width: 100%;
+  }
+}
+
 
